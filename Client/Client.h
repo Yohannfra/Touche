@@ -18,7 +18,7 @@ class Client
         void connect_to_server(int port);
 
         // Check if the button of the sword is pressed
-        bool sword_button_pressed();
+        bool is_sword_button_pressed();
 
         // play a sound through the buzzer
         void play_sound(int frequency, int duracy);

@@ -9,9 +9,13 @@
 ## Usefull links
 [Mise en oeuvre du bluetooth sur esp32](http://tvaira.free.fr/bts-sn/activites/activite-ble/activite-ble-esp32.html) <br>
 [connect 2 esp32 with bluetooth](https://forum.arduino.cc/index.php?topic=580328.0) <br>
+[Tuto matrice de led](https://ouiaremakers.com/posts/tutoriel-diy-arduino-matrice-led-avec-max7219-cf6eaae4-ad47-4520-a70f-5697b49640ff)
+[examples de code bluetooth esp32](https://github.com/nkolban/ESP32_BLE_Arduino)
+[about ble range](https://community.openmqttgateway.com/t/esp32-ble-range/249/6)
+[how to increase ble range](https://github.com/nkolban/esp32-snippets/issues/674)
 
 ## Pricing
-maximum price = 50e ! <br>
+maximum price = 50e <br>
 arduino x 3 = 23e <br>
 buzzer x 10 = 3.99e <br>
 led pannel x 3 = 11e <br>
