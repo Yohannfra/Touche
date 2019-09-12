@@ -6,7 +6,10 @@ class Server
     public:
         int m_buzzer_pin;
         int m_led_pin;
-        int client_port[2];
+        int m_client_port[2];
+
+        Server(int buzzer_pin, int led_pin, int client_port_1, int client_port_2);
+        ~Server();
 
         //  Check if the connection to a client is still up
         bool is_connected_to_client(int client_id);
@@ -24,8 +27,6 @@ class Server
         //  color : g -> green
         //          r -> red
         void turn_on_led_panel(int duracy, char color);
-
-
-}
+};
 
 #endif

@@ -28,6 +28,6 @@ class Client
 
         // send data to server
         int send_data_to_server(int data);
-}
+};
 
 #endif
