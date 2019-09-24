@@ -6,7 +6,8 @@ void setup()
 	Serial.begin(9600);
 }
 
-void loop() {
+void loop()
+{
 	int button_state = digitalRead(button);
 
 	if (button_state) {
