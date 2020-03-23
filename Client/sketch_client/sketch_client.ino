@@ -1,26 +1,43 @@
 /*
 ** Assouline Yohann, 2020
-** WSFF
-** sketch_client
+** WSSF
+** File description:
+** main client file
 */
 
-const int BUTTON_PIN = 12;
-const int LED_PIN = 14;
+#include <esp_now.h>
+#include <WiFi.h>
+#include "constants.hpp"
+#include "client.hpp"
+#include "my_espNow.hpp"
+
+message_t message;
+
+void setup_pins()
+{
+    pinMode(LED_PIN, OUTPUT);
+    pinMode(BUTTON_PIN, INPUT);
+}
+
+void setup_default_message()
+{
+    memcpy(message.id_sender, MAC_ADDR, 6);
+    message.payload = TOUCH;
+}
 
 void setup()
 {
-    pinMode(BUTTON_PIN, INPUT);
-    pinMode(LED_PIN, OUTPUT);
-
-    Serial.begin(9600);
-    Serial.println("Booting !");
+    Serial.begin(115200);
+    if (setup_esp_now() != ESP_OK)
+        return handle_error();
+    setup_default_message();
+    setup_pins();
 }
 
 void loop()
 {
-    int button_state = digitalRead(BUTTON_PIN);
-    if (button_state) {
-        digitalWrite(LED_PIN, HIGH);
+    if (digitalRead(BUTTON_PIN)) {
+        send_message();
+        blink_led(LED_PIN);
     }
-    digitalWrite(LED_PIN, LOW);
 }
