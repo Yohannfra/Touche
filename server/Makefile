@@ -1,6 +1,7 @@
 all: build
 
 build:
+	ln -s -f ../../shared/constants.cpp ./src/
 	@pio run
 
 flash:

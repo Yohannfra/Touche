@@ -11,8 +11,6 @@
 #include <Arduino.h>
 #include <stdint.h>
 
-extern const byte BUTTON_PIN;
-extern const byte LED_PIN;
 extern const uint8_t MAC_ADDR[];
 extern const uint8_t SERVER_MAC_ADDR[];
 
@@ -22,5 +20,10 @@ typedef enum {
     ERROR,
     TOUCH
 } payload_types_e;
+
+typedef struct message_s {
+    uint8_t id_sender[];
+    payload_types_e payload;
+}   message_t;
 
 #endif // CONSTANTS_HPP

@@ -13,11 +13,6 @@
 
 message_t message;
 
-const byte LED_CONNECTED_1 = 14;
-const byte LED_CONNECTED_2 = 27;
-const byte LED_TOUCH_1= 12;
-const byte LED_TOUCH_2= 26;
-
 bool compId(uint8_t addr1, uint8_t addr2)
 {
 

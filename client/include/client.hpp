@@ -10,10 +10,8 @@
 
 #include "constants.hpp"
 
-typedef struct message_s {
-    uint8_t id_sender[];
-    payload_types_e payload;
-}   message_t;
+#define BUTTON_PIN 17
+#define LED_PIN 16
 
 // utils.ino
 void handle_error();

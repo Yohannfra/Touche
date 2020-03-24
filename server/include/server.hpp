@@ -10,11 +10,10 @@
 
 #include "constants.hpp"
 
-typedef struct message_s {
-    uint8_t id_sender[];
-    payload_types_e payload;
-}   message_t;
-
+#define LED_CONNECTED_1 14
+#define LED_CONNECTED_2 27
+#define LED_TOUCH_1 12
+#define LED_TOUCH_2 26
 
 void blink_led(byte pin);
 
