@@ -1,6 +1,6 @@
 /*
-** EPITECH PROJECT, 2020
-** DefaultName
+** Assouline Yohann, 2020
+** WSSF
 ** File description:
 ** utils
 */

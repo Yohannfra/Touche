@@ -1,8 +1,8 @@
 /*
-** EPITECH PROJECT, 2020
-** DefaultName
+** Assouline Yohann, 2020
+** WSSF
 ** File description:
-** led_matrix
+** led matrix header
 */
 
 #ifndef LED_MATRIX_H

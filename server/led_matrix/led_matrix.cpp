@@ -1,12 +1,12 @@
 /*
-** EPITECH PROJECT, 2020
-** DefaultName
+** Assouline Yohann, 2020
+** WSSF
 ** File description:
-** led_matrix
+** led matrix
 */
 
-#if 0
-#include "led_matrix.h"
+#include "led_matrix.hpp"
+#include <Arduino.h>
 
 void LedMatrix::Write_byte(unsigned char DATA)
 {
@@ -113,4 +113,3 @@ void LedMatrix::turn_light_off(void)
     Write(7, B00000000);
     Write(8, B00000000);
 }
-#endif

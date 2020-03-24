@@ -1,8 +1,8 @@
 /*
-** EPITECH PROJECT, 2020
-** DefaultName
+** Assouline Yohann, 2020
+** WSSF
 ** File description:
-** sketch_server
+** server main
 */
 
 #include <WiFi.h>
@@ -23,7 +23,7 @@ bool compId(uint8_t addr1, uint8_t addr2)
 void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
 {
     memcpy(&message, incomingData, sizeof(message_t));
-    if (message.payload == TOUCH) {
+    if (message.payload == HIT) {
         if (compId(1, 1)) {
             blink_led(LED_TOUCH_1);
         } else {

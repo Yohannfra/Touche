@@ -20,15 +20,33 @@ void setup_pins()
     pinMode(BUTTON_PIN, INPUT);
 }
 
+unsigned short getCurrentBoardIndex()
+{
+    uint8_t mac_tmp[6];
+    int values[6];
+
+    sscanf(WiFi.macAddress().c_str(), "%x:%x:%x:%x:%x:%x%*c",
+    &values[0], &values[1], &values[2], &values[3], &values[4], &values[5]);
+
+    for(int i = 0; i < 6; ++i )
+       mac_tmp[i] = (uint8_t)values[i];
+
+    // for (int i = 0; i < 3; i++) {
+    //     if ()
+    // }
+    return 1;
+}
+
 void setup_default_message()
 {
-    memcpy(message.id_sender, MAC_ADDR, 6);
-    message.payload = TOUCH;
+    message.index_sender = getCurrentBoardIndex();
+    message.payload = HIT;
 }
 
 void setup()
 {
     Serial.begin(115200);
+
     if (setup_esp_now() != ESP_OK)
         return handle_error();
     setup_default_message();
