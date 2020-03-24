@@ -8,6 +8,9 @@
 #ifndef CONSTANTS_HPP
 #define CONSTANTS_HPP
 
+#include <Arduino.h>
+#include <stdint.h>
+
 extern const byte BUTTON_PIN;
 extern const byte LED_PIN;
 extern const uint8_t MAC_ADDR[];

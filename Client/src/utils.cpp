@@ -6,6 +6,7 @@
 */
 
 #include "constants.hpp"
+#include <Arduino.h>
 
 void blink_led(byte pin)
 {

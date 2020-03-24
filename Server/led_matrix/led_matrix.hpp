@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2020
+** DefaultName
+** File description:
+** led_matrix
+*/
+
 #ifndef LED_MATRIX_H
 #define LED_MATRIX_H
 
@@ -13,7 +20,6 @@ class LedMatrix {
     public:
         LedMatrix(int pin_clk, int pin_cs, int pin_din);
         void init(void);
-        ~LedMatrix();
         void turn_light_on(int color); // color 1 red : 2 green
         void turn_light_on_arrow_style(int color); // color 1 red : 2 green
         void turn_light_off(void);

@@ -10,6 +10,7 @@
 #include "constants.hpp"
 #include "client.hpp"
 #include "my_espNow.hpp"
+#include <Arduino.h>
 
 message_t message;
 

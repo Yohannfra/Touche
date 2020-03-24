@@ -1,3 +1,11 @@
+/*
+** EPITECH PROJECT, 2020
+** DefaultName
+** File description:
+** led_matrix
+*/
+
+#if 0
 #include "led_matrix.h"
 
 void LedMatrix::Write_byte(unsigned char DATA)
@@ -44,11 +52,6 @@ LedMatrix::LedMatrix(int pin_clk, int pin_cs, int pin_din)
     m_pin_clk = pin_clk;
     m_pin_cs = pin_cs;
     m_pin_din = pin_din;
-}
-
-LedMatrix::~LedMatrix()
-{
-    // Nothing
 }
 
 void LedMatrix::turn_light_on(int color) // color 1 red : 2 green
@@ -110,3 +113,4 @@ void LedMatrix::turn_light_off(void)
     Write(7, B00000000);
     Write(8, B00000000);
 }
+#endif

@@ -1,12 +1,12 @@
 /*
-** Assouline Yohann, 2020
-** WSSF
+** EPITECH PROJECT, 2020
+** DefaultName
 ** File description:
-** client header
+** server
 */
 
-#ifndef CLIENT_HPP
-#define CLIENT_HPP
+#ifndef SERVER_HPP
+#define SERVER_HPP
 
 #include "constants.hpp"
 
@@ -15,7 +15,7 @@ typedef struct message_s {
     payload_types_e payload;
 }   message_t;
 
-// utils.ino
-void handle_error();
 
-#endif // CLIENT_HPP
+void blink_led(byte pin);
+
+#endif // SERVER_HPP
