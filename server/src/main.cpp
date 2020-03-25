@@ -12,6 +12,8 @@
 #include "constants.hpp"
 
 message_t message;
+time_t time_last_hit = 0;
+bool player_hit[2] = {false, false};
 
 void blink_both(int pin1, int pin2)
 {
@@ -22,17 +24,30 @@ void blink_both(int pin1, int pin2)
     digitalWrite(pin2, LOW);
 }
 
+void play_buzzer(bool state)
+{
+    // TODO
+    if (state)
+        Serial.println("BIIIIIIIIPPP");
+}
+
+void hit(int player_id)
+{
+    if (time_last_hit == 0) {
+        time_last_hit = millis();
+        player_hit[player_id - 1] = true;
+    } else {
+        if (millis() - time_last_hit <= FENCING_LAPS_DOUBLE_TOUCH) {
+            player_hit[player_id - 1] = true;
+        }
+    }
+}
+
 void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
 {
     memcpy(&message, incomingData, sizeof(message_t));
     if (message.payload == HIT) {
-        if (message.index_sender == CLIENT_1_MAC_ADDR_INDEX * SERIAL_ID) {
-            blink_led(LED_TOUCH_1);
-        } else if (message.index_sender == CLIENT_2_MAC_ADDR_INDEX * SERIAL_ID){
-            blink_led(LED_TOUCH_2);
-        } else {
-            blink_both(LED_TOUCH_1, LED_TOUCH_2);
-        }
+        hit(message.index_sender);
     }
 }
 
@@ -57,4 +72,24 @@ void setup()
 
 void loop()
 {
+    if (time_last_hit != 0) {
+        if (millis() - time_last_hit > FENCING_LAPS_DOUBLE_TOUCH) {
+            digitalWrite(LED_TOUCH_1, player_hit[0]);
+            digitalWrite(LED_TOUCH_2, player_hit[1]);
+            play_buzzer(true);
+            delay(FENCING_BLINKING_TIME);
+            digitalWrite(LED_TOUCH_1, LOW);
+            digitalWrite(LED_TOUCH_2, LOW);
+            play_buzzer(false);
+            player_hit[0] = false;
+            player_hit[1] = false;
+            time_last_hit = 0;
+        } else {
+            digitalWrite(LED_TOUCH_1, player_hit[0]);
+            digitalWrite(LED_TOUCH_2, player_hit[1]);
+            if (player_hit[0] || player_hit[1])
+                play_buzzer(true);
+        }
+    }
+    delay(10);
 }
