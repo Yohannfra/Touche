@@ -31,10 +31,10 @@ To access a specific board:
         MAC_ADDR_LIST[SERIAL_ID][CLIENT_2_MAC_ADDR_INDEX]
 */
 
-/* extern const uint8_t MAC_ADDR[]; */
-/* extern const uint8_t SERVER_MAC_ADDR[]; */
-
-extern const unsigned short FENCING_BLINKING_TIME;
+// How long the leds turn on when a player hit (ms)
+#define FENCING_BLINKING_TIME 1000
+// How long between two hits for it to be a double hit (ms)
+#define FENCING_LAPS_DOUBLE_TOUCH 250
 
 typedef enum {
     ERROR,
