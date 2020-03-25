@@ -1,8 +1,8 @@
 /*
-** EPITECH PROJECT, 2020
-** DefaultName
+** Assouline Yohann, 2020
+** WSSF
 ** File description:
-** server
+** server header
 */
 
 #ifndef SERVER_HPP
@@ -10,8 +10,6 @@
 
 #include "constants.hpp"
 
-#define LED_CONNECTED_1 14
-#define LED_CONNECTED_2 27
 #define LED_TOUCH_1 12
 #define LED_TOUCH_2 26
 

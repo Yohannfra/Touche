@@ -13,23 +13,33 @@
 
 message_t message;
 
-bool compId(uint8_t addr1, uint8_t addr2)
+void blink_both(int pin1, int pin2)
 {
-
-    // TODO
-    return true;
+    digitalWrite(pin1, HIGH);
+    digitalWrite(pin2, HIGH);
+    delay(1000);
+    digitalWrite(pin1, LOW);
+    digitalWrite(pin2, LOW);
 }
 
 void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
 {
     memcpy(&message, incomingData, sizeof(message_t));
     if (message.payload == HIT) {
-        if (compId(1, 1)) {
+        if (message.index_sender == CLIENT_1_MAC_ADDR_INDEX * SERIAL_ID) {
             blink_led(LED_TOUCH_1);
+        } else if (message.index_sender == CLIENT_2_MAC_ADDR_INDEX * SERIAL_ID){
+            blink_led(LED_TOUCH_2);
         } else {
-            blink_led(LED_TOUCH_1);
+            blink_both(LED_TOUCH_1, LED_TOUCH_2);
         }
     }
+}
+
+void setup_pins()
+{
+    pinMode(LED_TOUCH_1, OUTPUT);
+    pinMode(LED_TOUCH_2, OUTPUT);
 }
 
 void setup()
@@ -37,17 +47,12 @@ void setup()
     Serial.begin(115200);
 
     WiFi.mode(WIFI_STA);
-
     if (esp_now_init() != ESP_OK) {
         Serial.println("Error initializing ESP-NOW");
         return;
     }
-
+    setup_pins();
     esp_now_register_recv_cb(OnDataRecv);
-    pinMode(LED_TOUCH_1, OUTPUT);
-    pinMode(LED_TOUCH_2, OUTPUT);
-    pinMode(LED_CONNECTED_1, OUTPUT);
-    pinMode(LED_CONNECTED_2, OUTPUT);
 }
 
 void loop()

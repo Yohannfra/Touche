@@ -18,6 +18,7 @@
 #define CLIENT_2_MAC_ADDR_INDEX 2
 
 extern const uint8_t MAC_ADDR_LIST[][3][6];
+extern const String MAC_ADDR_LIST_STR[][3];
 
 /*
 To access a specific board:

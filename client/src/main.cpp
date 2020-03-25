@@ -22,19 +22,16 @@ void setup_pins()
 
 unsigned short getCurrentBoardIndex()
 {
-    uint8_t mac_tmp[6];
-    int values[6];
-
-    sscanf(WiFi.macAddress().c_str(), "%x:%x:%x:%x:%x:%x%*c",
-    &values[0], &values[1], &values[2], &values[3], &values[4], &values[5]);
-
-    for(int i = 0; i < 6; ++i )
-       mac_tmp[i] = (uint8_t)values[i];
-
-    // for (int i = 0; i < 3; i++) {
-    //     if ()
-    // }
-    return 1;
+    String mac_addr = WiFi.macAddress();
+    Serial.println(mac_addr);
+    for (int i = 0; i < 3; i++) {
+        // Serial.println(MAC_ADDR_LIST_STR[SERIAL_ID - 1][i]);
+        if (mac_addr == MAC_ADDR_LIST_STR[SERIAL_ID - 1][i])
+            return i;
+    }
+    Serial.println("Mac address not found in MAC_ADDR_LIST");
+    handle_error();
+    return 0; // NEVER READ
 }
 
 void setup_default_message()
