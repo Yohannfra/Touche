@@ -26,9 +26,9 @@ void blink_both(int pin1, int pin2)
 
 void play_buzzer(bool state)
 {
+    digitalWrite(BUZZER_PIN, state);
     // TODO
-    if (state)
-        Serial.println("BIIIIIIIIPPP");
+    // Play differents tones
 }
 
 void hit(int player_id)
@@ -55,6 +55,7 @@ void setup_pins()
 {
     pinMode(LED_TOUCH_1, OUTPUT);
     pinMode(LED_TOUCH_2, OUTPUT);
+    pinMode(BUZZER_PIN, OUTPUT);
 }
 
 void setup()
