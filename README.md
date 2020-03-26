@@ -47,5 +47,6 @@ $ make flash
 [micro usb connector](https://www.amazon.fr/dp/B07RDHNL9H/ref=psdc_2908498031_t1_B07GZKMPJ8) x 10 : 7€\
 [batteries](https://www.amazon.fr/dp/B07KKB874V?ref=ppx_pop_mob_ap_share) x 4 : 17€\
 [power regulator](https://www.amazon.fr/dp/B07DJZKMYM?ref=ppx_pop_mob_ap_share) x 5 : 7€
+[Interrupteur à glissière](https://www.amazon.fr/dp/B07Z4RW9X6/ref=psdc_1854586031_t2_B07LBPDB6S) x 150 : 10€
 
 **Total** : ~70€
