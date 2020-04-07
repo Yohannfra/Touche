@@ -44,7 +44,7 @@ $ make flash
 [Neopixel Ring](https://www.adafruit.com/product/1643) : 7€\
 [Buzzer](https://www.amazon.fr/Saim-Lzq-3022-%C3%A9lectronique-Alarme-sonore-Buzzer/dp/B073RZFZ3P/ref=sr_1_8?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=buzzer+12v&qid=1585170020&sr=8-8) x 2 : 10€\
 [Banana Connectors](https://www.amazon.co.uk/KEESIN-Binding-Amplifier-Terminal-Connector-Type-D/dp/B077T2FC7K/ref=sr_1_53?keywords=Banana+plugs&qid=1585170164&s=electronics&sr=1-53&swrs=62F105F7CFECBA9A955371224D113825) * 20 : 10€\
-[micro usb connector](https://www.amazon.fr/dp/B07RDHNL9H/ref=psdc_2908498031_t1_B07GZKMPJ8) x 10 : 7€\
+[micro usb connector / charger circuit](https://www.amazon.fr/Tp4056-Chargeur-Batterie-Lithium-Charger/dp/B07NVBLMVQ/ref=sr_1_4?dchild=1&keywords=tp4056&qid=1586195969&sr=8-4) x 10 : 10€\
 [batteries](https://www.amazon.fr/dp/B07KKB874V?ref=ppx_pop_mob_ap_share) x 4 : 17€\
 [power regulator](https://www.amazon.fr/dp/B07DJZKMYM?ref=ppx_pop_mob_ap_share) x 5 : 7€\
 [Interrupteur à glissière](https://www.amazon.fr/dp/B07Z4RW9X6/ref=psdc_1854586031_t2_B07LBPDB6S) x 150 : 10€
