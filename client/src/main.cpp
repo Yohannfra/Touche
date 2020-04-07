@@ -17,7 +17,7 @@ message_t message;
 void setup_pins()
 {
     pinMode(LED_PIN, OUTPUT);
-    pinMode(BUTTON_PIN, INPUT);
+    // pinMode(BUTTON_PIN, INPUT);
 }
 
 unsigned short getCurrentBoardIndex()
@@ -52,7 +52,9 @@ void setup()
 
 void loop()
 {
-    if (digitalRead(BUTTON_PIN)) {
+    int res = analogRead(BUTTON_PIN);
+
+    if (res > 3000) {
         send_message();
         blink_led(LED_PIN);
     }

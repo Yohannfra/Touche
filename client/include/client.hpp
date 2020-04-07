@@ -10,8 +10,8 @@
 
 #include "constants.hpp"
 
-#define BUTTON_PIN 17
-#define LED_PIN 16
+#define BUTTON_PIN 32
+#define LED_PIN 17
 
 // utils.ino
 void handle_error();
