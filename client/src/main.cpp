@@ -17,7 +17,9 @@ message_t message;
 void setup_pins()
 {
     pinMode(LED_PIN, OUTPUT);
-    // pinMode(BUTTON_PIN, INPUT);
+    digitalWrite(LED_PIN, HIGH);
+    delay(1000);
+    digitalWrite(LED_PIN, LOW);
 }
 
 unsigned short getCurrentBoardIndex()

@@ -13,11 +13,15 @@
 #define LED_COUNT (12)
 #define LED_RING_TYPE (NEO_GRB + NEO_KHZ800)
 
+extern const char RED[3];
+extern const char GREEN[3];
+
 class LedRing {
     public:
         LedRing(int pin);
         ~LedRing() = default;
-        void setAllColors(char r, char g, char b);
+        void setAllColors(const char rgb[3]);
+        void turnOff();
 
     private:
         Adafruit_NeoPixel _strip;

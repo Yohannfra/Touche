@@ -1,4 +1,11 @@
 /*
+** EPITECH PROJECT, 2020
+** DefaultName
+** File description:
+** main
+*/
+
+/*
 ** Assouline Yohann, 2020
 ** WSSF
 ** File description:
@@ -9,19 +16,22 @@
 #include <esp_now.h>
 #include <Arduino.h>
 #include "server.hpp"
+#include "LedRing.hpp"
 #include "constants.hpp"
 
 message_t message;
 time_t time_last_hit = 0;
 bool player_hit[2] = {false, false};
+LedRing led_ring_p1(LED_TOUCH_1);
+LedRing led_ring_p2(LED_TOUCH_2);
 
 void blink_both(int pin1, int pin2)
 {
-    digitalWrite(pin1, HIGH);
-    digitalWrite(pin2, HIGH);
+    led_ring_p1.setAllColors(RED);
+    led_ring_p2.setAllColors(GREEN);
     delay(1000);
-    digitalWrite(pin1, LOW);
-    digitalWrite(pin2, LOW);
+    led_ring_p1.turnOff();
+    led_ring_p2.turnOff();
 }
 
 void play_buzzer(bool state)
@@ -53,8 +63,8 @@ void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
 
 void setup_pins()
 {
-    pinMode(LED_TOUCH_1, OUTPUT);
-    pinMode(LED_TOUCH_2, OUTPUT);
+    // pinMode(LED_TOUCH_1, OUTPUT);
+    // pinMode(LED_TOUCH_2, OUTPUT);
     pinMode(BUZZER_PIN, OUTPUT);
 }
 
@@ -75,19 +85,23 @@ void loop()
 {
     if (time_last_hit != 0) {
         if (millis() - time_last_hit > FENCING_LAPS_DOUBLE_TOUCH) {
-            digitalWrite(LED_TOUCH_1, player_hit[0]);
-            digitalWrite(LED_TOUCH_2, player_hit[1]);
+            if (player_hit[0])
+                led_ring_p1.setAllColors(RED);
+            if (player_hit[1])
+                led_ring_p2.setAllColors(GREEN);
             play_buzzer(true);
             delay(FENCING_BLINKING_TIME);
-            digitalWrite(LED_TOUCH_1, LOW);
-            digitalWrite(LED_TOUCH_2, LOW);
+            led_ring_p1.turnOff();
+            led_ring_p2.turnOff();
             play_buzzer(false);
             player_hit[0] = false;
             player_hit[1] = false;
             time_last_hit = 0;
         } else {
-            digitalWrite(LED_TOUCH_1, player_hit[0]);
-            digitalWrite(LED_TOUCH_2, player_hit[1]);
+            if (player_hit[0])
+                led_ring_p1.setAllColors(RED);
+            if (player_hit[1])
+                led_ring_p2.setAllColors(GREEN);
             if (player_hit[0] || player_hit[1])
                 play_buzzer(true);
         }
