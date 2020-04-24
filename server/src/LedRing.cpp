@@ -9,6 +9,7 @@
 
 const char RED[3] {0xFF, 0, 0};
 const char GREEN[3] {0, 0xFF, 0};
+const char ORANGE[3] {0xFF, 0x7F, 0};
 
 LedRing::LedRing(int pin) : _strip(LED_COUNT, pin, LED_RING_TYPE)
 {

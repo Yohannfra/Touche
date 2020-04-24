@@ -27,7 +27,6 @@ unsigned short getCurrentBoardIndex()
     String mac_addr = WiFi.macAddress();
     Serial.println(mac_addr);
     for (int i = 0; i < 3; i++) {
-        // Serial.println(MAC_ADDR_LIST_STR[SERIAL_ID - 1][i]);
         if (mac_addr == MAC_ADDR_LIST_STR[SERIAL_ID - 1][i])
             return i;
     }
@@ -57,7 +56,18 @@ void loop()
     int res = analogRead(BUTTON_PIN);
 
     if (res > 3000) {
-        send_message();
-        blink_led(LED_PIN);
+        message.payload = HIT;
+        send_message(&message);
+        // blink_led(LED_PIN);
     }
+
+    int res_ground = touchRead(GROUND_PIN);
+
+    Serial.println(res_ground);
+    if (res_ground < 20) {
+        // message.payload = GROUND;
+        // send_message(&message);
+        Serial.println(res_ground);
+    }
+    delay(100);
 }

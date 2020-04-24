@@ -11,17 +11,15 @@
 #include "constants.hpp"
 #include <client.hpp>
 
-extern message_t message;
-
 void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
 {
     Serial.print("\r\nLast Packet Send Status:\t");
     Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
 
-void send_message()
+void send_message(const message_t *message)
 {
-    esp_err_t result = esp_now_send(MAC_ADDR_LIST[SERIAL_ID][SERVER_MAC_ADDR_INDEX], (uint8_t *) &message, sizeof(message_t));
+    esp_err_t result = esp_now_send(MAC_ADDR_LIST[SERIAL_ID][SERVER_MAC_ADDR_INDEX], (uint8_t *)message, sizeof(message_t));
 
     if (result == ESP_OK) {
         Serial.println("Sent with success");

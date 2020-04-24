@@ -38,7 +38,8 @@ To access a specific board:
 
 typedef enum {
     ERROR,
-    HIT
+    HIT,
+    GROUND
 } payload_types_e;
 
 typedef struct message_s {

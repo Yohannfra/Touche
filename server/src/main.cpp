@@ -22,6 +22,7 @@
 message_t message;
 time_t time_last_hit = 0;
 bool player_hit[2] = {false, false};
+unsigned long player_ground_touched[2] = {0, 0};
 LedRing led_ring_p1(LED_TOUCH_1);
 LedRing led_ring_p2(LED_TOUCH_2);
 
@@ -36,9 +37,9 @@ void blink_both(int pin1, int pin2)
 
 void play_buzzer(bool state)
 {
-    digitalWrite(BUZZER_PIN, state);
-    // TODO
-    // Play differents tones
+    #if 0
+        digitalWrite(BUZZER_PIN, state);
+    #endif
 }
 
 void hit(int player_id)
@@ -53,18 +54,33 @@ void hit(int player_id)
     }
 }
 
+void ground_touched(int player_id)
+{
+    player_ground_touched[player_id - 1] = millis();
+    led_ring_p1.setAllColors(ORANGE);
+    led_ring_p2.setAllColors(ORANGE);
+    delay(500);
+    led_ring_p1.turnOff();
+    led_ring_p2.turnOff();
+}
+
 void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
 {
     memcpy(&message, incomingData, sizeof(message_t));
-    if (message.payload == HIT) {
-        hit(message.index_sender);
+    switch (message.payload) {
+        case HIT:
+            hit(message.index_sender);
+            break;
+        case GROUND:
+            ground_touched(message.index_sender);
+            break;
+        default:
+            break;
     }
 }
 
 void setup_pins()
 {
-    // pinMode(LED_TOUCH_1, OUTPUT);
-    // pinMode(LED_TOUCH_2, OUTPUT);
     pinMode(BUZZER_PIN, OUTPUT);
 }
 
@@ -106,5 +122,4 @@ void loop()
                 play_buzzer(true);
         }
     }
-    delay(10);
 }

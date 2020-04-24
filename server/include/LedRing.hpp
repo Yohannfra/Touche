@@ -15,6 +15,7 @@
 
 extern const char RED[3];
 extern const char GREEN[3];
+extern const char ORANGE[3];
 
 class LedRing {
     public:

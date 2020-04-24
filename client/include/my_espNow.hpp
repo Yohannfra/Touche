@@ -10,6 +10,6 @@
 
 esp_err_t setup_esp_now();
 
-void send_message();
+void send_message(const message_t *message);
 
 #endif // ESPNOW_HPP
