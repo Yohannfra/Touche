@@ -38,3 +38,6 @@ To flash the server, connect the esp32 via usb and run
 $ cd server
 $ make flash
 ```
+
+## Licence
+    This project is licensed under the terms of the MIT license.
