@@ -1,10 +1,3 @@
-/*
-** Assouline Yohann, 2020
-** WSSF
-** File description:
-** constants
-*/
-
 #ifndef CONSTANTS_HPP
 #define CONSTANTS_HPP
 

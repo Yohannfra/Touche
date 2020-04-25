@@ -1,17 +1,3 @@
-/*
-** EPITECH PROJECT, 2020
-** DefaultName
-** File description:
-** main
-*/
-
-/*
-** Assouline Yohann, 2020
-** WSSF
-** File description:
-** server main
-*/
-
 #include <WiFi.h>
 #include <esp_now.h>
 #include <Arduino.h>

@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2020
-** DefaultName
-** File description:
-** LedRing
-*/
-
 #ifndef LEDRING_HPP
 #define LEDRING_HPP
 

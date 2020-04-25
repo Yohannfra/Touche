@@ -1,10 +1,3 @@
-/*
-** Assouline Yohann, 2020
-** WSSF
-** File description:
-** led matrix
-*/
-
 #include "led_matrix.hpp"
 #include <Arduino.h>
 

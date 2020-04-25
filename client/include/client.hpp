@@ -1,10 +1,3 @@
-/*
-** Assouline Yohann, 2020
-** WSSF
-** File description:
-** client header
-*/
-
 #ifndef CLIENT_HPP
 #define CLIENT_HPP
 

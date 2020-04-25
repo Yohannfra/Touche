@@ -1,10 +1,3 @@
-/*
-** Assouline Yohann, 2020
-** WSSF
-** File description:
-** utils
-*/
-
 #include <Arduino.h>
 #include "constants.hpp"
 

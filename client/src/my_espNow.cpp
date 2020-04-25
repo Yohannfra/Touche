@@ -1,10 +1,3 @@
-/*
-** Assouline Yohann, 2020
-** WSSF
-** File description:
-** client espnow
-*/
-
 #include <Arduino.h>
 #include <esp_now.h>
 #include <WiFi.h>

@@ -1,10 +1,3 @@
-/*
-** Assouline Yohann, 2020
-** WSSF
-** File description:
-** client espnow header
-*/
-
 #ifndef ESPNOW_HPP
 #define ESPNOW_HPP
 

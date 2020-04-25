@@ -1,11 +1,11 @@
-/*
-** Assouline Yohann, 2020
-** WSSF
-** File description:
-** constants
-*/
-
 #include "constants.hpp"
+
+/*
+* Those are the mac address of the boards i use to dev the project.
+* To find the address of your boards use ../tools/get_esp32_mac_address/
+* Then replace those addresses with yours.
+* Be careful to keep in mind which will be the server and which the clients.
+*/
 
 const String MAC_ADDR_LIST_STR[][3] {
     {

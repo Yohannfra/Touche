@@ -1,10 +1,3 @@
-/*
-** Assouline Yohann, 2020
-** WSSF
-** File description:
-** led matrix header
-*/
-
 #ifndef LED_MATRIX_H
 #define LED_MATRIX_H
 

@@ -1,10 +1,3 @@
-/*
-** Assouline Yohann, 2020
-** WSSF
-** File description:
-** server header
-*/
-
 #ifndef SERVER_HPP
 #define SERVER_HPP
 

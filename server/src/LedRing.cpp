@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2020
-** DefaultName
-** File description:
-** led_ring
-*/
-
 #include "LedRing.hpp"
 
 const char RED[3] {0xFF, 0, 0};

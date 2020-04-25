@@ -1,10 +1,3 @@
-/*
-** Assouline Yohann, 2020
-** WSSF
-** File description:
-** main client file
-*/
-
 #include <esp_now.h>
 #include <WiFi.h>
 #include "constants.hpp"
