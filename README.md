@@ -1,5 +1,7 @@
 ## Wireless System For Fencing (WSFF)
 
+[demo video](https://www.youtube.com/watch?v=2zLI0LZTVw4)
+
 A wireless scoring system for fencing based on esp32 chips and [ESP-NOW] protocol
 
 This project is composed of parts : the client and the server
