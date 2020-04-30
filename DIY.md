@@ -19,6 +19,7 @@
 - screwdriver
 - a few screw
 - some electric wire
+- a hot glue pistol
 
 
 ## 3d printing
