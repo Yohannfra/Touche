@@ -4,28 +4,29 @@
 #include "server.hpp"
 #include "LedRing.hpp"
 #include "constants.hpp"
+#include "Utils.hpp"
 
 message_t message;
 time_t time_last_hit = 0;
 bool player_hit[2] = {false, false};
 unsigned long player_ground_touched[2] = {0, 0};
-LedRing led_ring_p1(LED_TOUCH_1);
-LedRing led_ring_p2(LED_TOUCH_2);
+LedRing ledRingP1(LED_TOUCH_1);
+LedRing ledRingP2(LED_TOUCH_2);
 
-void blink_both(int pin1, int pin2)
+void blinkBoth(int pin1, int pin2)
 {
-    led_ring_p1.setAllColors(RED);
-    led_ring_p2.setAllColors(GREEN);
+    ledRingP1.setAllColors(RED);
+    ledRingP2.setAllColors(GREEN);
     delay(1000);
-    led_ring_p1.turnOff();
-    led_ring_p2.turnOff();
+    ledRingP1.turnOff();
+    ledRingP2.turnOff();
 }
 
-void play_buzzer(bool state)
+void playBuzzer(bool state)
 {
-    #if 0
-        digitalWrite(BUZZER_PIN, state);
-    #endif
+#ifndef DEBUG
+    digitalWrite(BUZZER_PIN, state);
+#endif
 }
 
 void hit(int player_id)
@@ -43,23 +44,28 @@ void hit(int player_id)
 void ground_touched(int player_id)
 {
     player_ground_touched[player_id - 1] = millis();
-    led_ring_p1.setAllColors(ORANGE);
-    led_ring_p2.setAllColors(ORANGE);
+    ledRingP1.setAllColors(ORANGE);
+    ledRingP2.setAllColors(ORANGE);
     delay(500);
-    led_ring_p1.turnOff();
-    led_ring_p2.turnOff();
+    ledRingP1.turnOff();
+    ledRingP2.turnOff();
 }
 
 void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
 {
     memcpy(&message, incomingData, sizeof(message_t));
+    printDebugLog("Message received: ");
+    printDebugLog(message.payload == HIT ? "HIT\n" : "GROUND\n");
     switch (message.payload) {
         case HIT:
             hit(message.index_sender);
             break;
-        case GROUND:
-            ground_touched(message.index_sender);
-            break;
+        /* case GROUND: */
+        /*     ground_touched(message.index_sender); */
+        /*     printDebugLog("Capsens value: "); */
+        /*     printDebugLog(message.capsensValue); */
+        /*     printDebugLog("\n"); */
+        /*     break; */
         default:
             break;
     }
@@ -72,11 +78,14 @@ void setup_pins()
 
 void setup()
 {
-    Serial.begin(115200);
-
     WiFi.mode(WIFI_STA);
+
+#ifdef DEBUG
+    setupSerial(115200);
+#endif
     if (esp_now_init() != ESP_OK) {
-        Serial.println("Error initializing ESP-NOW");
+        printDebugLog("Error initializing ESP-NOW\n");
+        handleError();
         return;
     }
     setup_pins();
@@ -88,24 +97,24 @@ void loop()
     if (time_last_hit != 0) {
         if (millis() - time_last_hit > FENCING_LAPS_DOUBLE_TOUCH) {
             if (player_hit[0])
-                led_ring_p1.setAllColors(RED);
+                ledRingP1.setAllColors(RED);
             if (player_hit[1])
-                led_ring_p2.setAllColors(GREEN);
-            play_buzzer(true);
+                ledRingP2.setAllColors(GREEN);
+            playBuzzer(true);
             delay(FENCING_BLINKING_TIME);
-            led_ring_p1.turnOff();
-            led_ring_p2.turnOff();
-            play_buzzer(false);
+            ledRingP1.turnOff();
+            ledRingP2.turnOff();
+            playBuzzer(false);
             player_hit[0] = false;
             player_hit[1] = false;
             time_last_hit = 0;
         } else {
             if (player_hit[0])
-                led_ring_p1.setAllColors(RED);
+                ledRingP1.setAllColors(RED);
             if (player_hit[1])
-                led_ring_p2.setAllColors(GREEN);
+                ledRingP2.setAllColors(GREEN);
             if (player_hit[0] || player_hit[1])
-                play_buzzer(true);
+                playBuzzer(true);
         }
     }
 }

@@ -25,7 +25,7 @@ To access a specific board:
 */
 
 // How long the leds turn on when a player hit (ms)
-#define FENCING_BLINKING_TIME 1000
+#define FENCING_BLINKING_TIME 2000
 // How long between two hits for it to be a double hit (ms)
 #define FENCING_LAPS_DOUBLE_TOUCH 250
 
@@ -37,6 +37,7 @@ typedef enum {
 
 typedef struct message_s {
     unsigned short index_sender;
+    int capsensValue;
     payload_types_e payload;
 }   message_t;
 

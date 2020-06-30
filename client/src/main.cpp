@@ -3,11 +3,12 @@
 #include "constants.hpp"
 #include "client.hpp"
 #include "my_espNow.hpp"
+#include "Utils.hpp"
 #include <Arduino.h>
 
 message_t message;
 
-void setup_pins()
+void setupPins()
 {
     pinMode(LED_PIN, OUTPUT);
     digitalWrite(LED_PIN, HIGH);
@@ -18,17 +19,19 @@ void setup_pins()
 unsigned short getCurrentBoardIndex()
 {
     String mac_addr = WiFi.macAddress();
-    Serial.println(mac_addr);
+
+    printDebugLog(mac_addr.c_str());
+    printDebugLog("\n");
     for (int i = 0; i < 3; i++) {
         if (mac_addr == MAC_ADDR_LIST_STR[SERIAL_ID - 1][i])
             return i;
     }
-    Serial.println("Mac address not found in MAC_ADDR_LIST");
-    handle_error();
+    printDebugLog("Mac address not found in MAC_ADDR_LIST\n");
+    handleError();
     return 0; // NEVER READ
 }
 
-void setup_default_message()
+void setupDefaultMessage()
 {
     message.index_sender = getCurrentBoardIndex();
     message.payload = HIT;
@@ -36,12 +39,16 @@ void setup_default_message()
 
 void setup()
 {
-    Serial.begin(115200);
+#ifdef DEBUG
+    setupSerial(115200);
+#endif
 
-    if (setup_esp_now() != ESP_OK)
-        return handle_error();
-    setup_default_message();
-    setup_pins();
+    if (setupEspNow() != ESP_OK) {
+        printDebugLog("Error initializing ESP-NOW\n");
+        handleError();
+    }
+    setupDefaultMessage();
+    setupPins();
 }
 
 void loop()
@@ -50,17 +57,19 @@ void loop()
 
     if (res > 3000) {
         message.payload = HIT;
-        send_message(&message);
-        // blink_led(LED_PIN);
+        if (sendMessage(&message) == ESP_OK) {
+            delay(FENCING_BLINKING_TIME);
+        }
+        blinkLed(LED_PIN);
     }
-
-    int res_ground = touchRead(GROUND_PIN);
-
-    Serial.println(res_ground);
-    if (res_ground < 20) {
-        // message.payload = GROUND;
-        // send_message(&message);
-        Serial.println(res_ground);
-    }
-    delay(100);
+    /* int res_ground = touchRead(GROUND_PIN); */
+    /* Serial.println(res_ground); */
+    /* if (res_ground < 40) { *1/ */
+    /*     message.payload = GROUND; */
+    /*     message.capsensValue = res_ground; */
+    /*     send_message(&message); */
+    /*     Serial.println(res_ground); */
+    /* delay(500); */
+    /* } */
+    /* delay(100); */
 }
