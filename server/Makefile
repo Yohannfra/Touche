@@ -1,8 +1,6 @@
 all: build
 
 build:
-	ln -s -f ../../shared/constants.cpp ./src/
-	ln -s -f ../../shared/Utils.cpp ./src/
 	@pio run
 
 debug:
