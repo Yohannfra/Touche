@@ -4,6 +4,8 @@
 #include <Arduino.h>
 #include <stdint.h>
 
+#include "FencingConstants.hpp"
+
 #define SERIAL_ID 1
 
 #define SERVER_MAC_ADDR_INDEX 0
@@ -23,11 +25,6 @@ To access a specific board:
     Board 2:
         MAC_ADDR_LIST[SERIAL_ID][CLIENT_2_MAC_ADDR_INDEX]
 */
-
-// How long the leds turn on when a player hit (ms)
-#define FENCING_BLINKING_TIME 2000
-// How long between two hits for it to be a double hit (ms)
-#define FENCING_LAPS_DOUBLE_TOUCH 250
 
 typedef enum {
     ERROR,
