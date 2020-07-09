@@ -60,12 +60,12 @@ void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
         case HIT:
             hit(message.index_sender);
             break;
-        /* case GROUND: */
-        /*     ground_touched(message.index_sender); */
-        /*     printDebugLog("Capsens value: "); */
-        /*     printDebugLog(message.capsensValue); */
-        /*     printDebugLog("\n"); */
-        /*     break; */
+        case GROUND:
+            ground_touched(message.index_sender);
+            printDebugLog("Capsens value: ");
+            printDebugLog(message.capsensValue);
+            printDebugLog("\n");
+            break;
         default:
             break;
     }

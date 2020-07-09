@@ -27,7 +27,7 @@ unsigned short getCurrentBoardIndex()
             return i;
     }
     printDebugLog("Mac address not found in MAC_ADDR_LIST\n");
-    handleError();
+    handleError(); // Should go to sleep here TODO
     return 0; // NEVER READ
 }
 
@@ -53,23 +53,24 @@ void setup()
 
 void loop()
 {
-    int res = analogRead(BUTTON_PIN);
+    int res = analogRead(BUTTON_PIN); // change to digitalRead
 
-    if (res > 3000) {
+    if (res > 3000) { // Change that for digitalRead !
         message.payload = HIT;
         if (sendMessage(&message) == ESP_OK) {
             delay(FENCING_BLINKING_TIME);
         }
         blinkLed(LED_PIN);
     }
-    /* int res_ground = touchRead(GROUND_PIN); */
-    /* Serial.println(res_ground); */
-    /* if (res_ground < 40) { *1/ */
-    /*     message.payload = GROUND; */
-    /*     message.capsensValue = res_ground; */
-    /*     send_message(&message); */
-    /*     Serial.println(res_ground); */
-    /* delay(500); */
-    /* } */
-    /* delay(100); */
+
+    int res_ground = touchRead(GROUND_PIN);
+
+    Serial.println(res_ground);
+    if (res_ground < GROUND_VALUE_CAPSENS_EPEE) {
+        message.payload = GROUND;
+        message.capsensValue = res_ground;
+        sendMessage(&message);
+        Serial.println(res_ground);
+        delay(500);
+    }
 }
