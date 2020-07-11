@@ -8,4 +8,6 @@
 #define LED_RING (12)
 #define BUZZER_PIN (17)
 
+void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len);
+
 #endif // SERVER_HPP

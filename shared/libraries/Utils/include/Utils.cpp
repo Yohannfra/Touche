@@ -8,6 +8,20 @@ void printDebugLog(const char *s)
 #endif
 }
 
+void printDebugLog(const int n)
+{
+#ifdef DEBUG
+    Serial.print(n)
+#endif
+}
+
+void printDebugLog(const float f)
+{
+#ifdef DEBUG
+    Serial.print(f)
+#endif
+}
+
 void blinkLed(byte pin)
 {
     digitalWrite(pin, HIGH);

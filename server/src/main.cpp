@@ -29,48 +29,6 @@ void playBuzzer(bool state)
 #endif
 }
 
-void hit(int player_id)
-{
-    if (time_last_hit == 0) {
-        time_last_hit = millis();
-        player_hit[player_id - 1] = true;
-    } else {
-        if (millis() - time_last_hit <= FENCING_LAPS_DOUBLE_TOUCH) {
-            player_hit[player_id - 1] = true;
-        }
-    }
-}
-
-void ground_touched(int player_id)
-{
-    player_ground_touched[player_id - 1] = millis();
-    ledRingP1.setAllColors(ORANGE);
-    ledRingP2.setAllColors(ORANGE);
-    delay(500);
-    ledRingP1.turnOff();
-    ledRingP2.turnOff();
-}
-
-void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
-{
-    memcpy(&message, incomingData, sizeof(message_t));
-    printDebugLog("Message received: ");
-    printDebugLog(message.payload == HIT ? "HIT\n" : "GROUND\n");
-    switch (message.payload) {
-        case HIT:
-            hit(message.index_sender);
-            break;
-        case GROUND:
-            ground_touched(message.index_sender);
-            printDebugLog("Capsens value: ");
-            printDebugLog(message.capsensValue);
-            printDebugLog("\n");
-            break;
-        default:
-            break;
-    }
-}
-
 void setup_pins()
 {
     pinMode(BUZZER_PIN, OUTPUT);
@@ -92,29 +50,28 @@ void setup()
     esp_now_register_recv_cb(OnDataRecv);
 }
 
+void reset_values()
+{
+    ledRingP1.turnOff();
+    ledRingP2.turnOff();
+    playBuzzer(false);
+    player_hit[0] = false;
+    player_hit[1] = false;
+    time_last_hit = 0;
+}
+
 void loop()
 {
-    if (time_last_hit != 0) {
-        if (millis() - time_last_hit > FENCING_LAPS_DOUBLE_TOUCH) {
-            if (player_hit[0])
-                ledRingP1.setAllColors(RED);
-            if (player_hit[1])
-                ledRingP2.setAllColors(GREEN);
-            playBuzzer(true);
-            delay(FENCING_BLINKING_TIME);
-            ledRingP1.turnOff();
-            ledRingP2.turnOff();
-            playBuzzer(false);
-            player_hit[0] = false;
-            player_hit[1] = false;
-            time_last_hit = 0;
-        } else {
-            if (player_hit[0])
-                ledRingP1.setAllColors(RED);
-            if (player_hit[1])
-                ledRingP2.setAllColors(GREEN);
-            if (player_hit[0] || player_hit[1])
-                playBuzzer(true);
+    if (time_last_hit) {
+        if (player_hit[0]) {
+            ledRingP1.setAllColors(RED);
+        }
+        if (player_hit[1]) {
+            ledRingP2.setAllColors(GREEN);
+        }
+        playBuzzer(player_hit[0] || player_hit[1]);
+        if (time_last_hit - millis() > FENCING_BLINKING_TIME) {
+            reset_values(); // Time's up, we reset everything
         }
     }
 }

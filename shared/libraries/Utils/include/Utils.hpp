@@ -2,6 +2,8 @@
 #define UTILS_HPP
 
 void printDebugLog(const char *s);
+void printDebugLog(const int n);
+void printDebugLog(const float f);
 
 void blinkLed(byte pin);
 
