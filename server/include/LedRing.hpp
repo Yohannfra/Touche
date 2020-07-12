@@ -15,6 +15,7 @@ class LedRing {
         LedRing(int pin);
         ~LedRing() = default;
         void setAllColors(const char rgb[3]);
+        void setDiscretColor(const char rgb[3]);
         void turnOff();
 
     private:

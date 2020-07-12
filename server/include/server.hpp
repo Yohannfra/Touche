@@ -8,6 +8,10 @@
 #define LED_RING (12)
 #define BUZZER_PIN (17)
 
+// espNowCallback.cpp
 void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len);
+
+// buzzer.cpp
+void playBuzzer(bool state);
 
 #endif // SERVER_HPP
