@@ -38,10 +38,19 @@ void init_gpios(void)
     // TODO init capsens
 }
 
-
 void app_main()
 {
     print_chip_infos();
     init_gpios();
     init_esp_now();
+
+    while (true) {
+        if (gpio_get_level(BUTTON_GPIO)) {
+            // send esp_now msg ....
+            gpio_set_level(LED_GPIO, 1);
+            vTaskDelay(1000 / portTICK_PERIOD_MS);
+            gpio_set_level(LED_GPIO, 0);
+            vTaskDelay(50 / portTICK_PERIOD_MS);
+        }
+    }
 }
