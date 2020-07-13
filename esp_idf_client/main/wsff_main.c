@@ -6,10 +6,11 @@
 
 #include "driver/gpio.h"
 #include "esp_now.h"
+#include "esp_log.h"
 
 #include "client.h"
 
-void restart_board()
+void restart_board(void)
 {
     printf("Restarting...\n");
     fflush(stdout);
@@ -38,19 +39,54 @@ void init_gpios(void)
     // TODO init capsens
 }
 
+void send_hit(void)
+{
+    ESP_LOGI("Client", "Sending hit...");
+    // TODO
+    ESP_LOGI("Client", "Done.");
+}
+
+void send_ground(void)
+{
+    ESP_LOGI("Client", "Sending ground...");
+    // TODO
+    ESP_LOGI("Client", "Done.");
+}
+
+void init_captouch(void)
+{
+    // TODO
+}
+
+int get_captouch(int gpio)
+{
+    (void)gpio;
+
+    return 0;
+}
+
 void app_main()
 {
     print_chip_infos();
     init_gpios();
     init_esp_now();
+    init_captouch();
+
+    ESP_LOGI("Client", "Init Done. Starting the main loop");
 
     while (true) {
         if (gpio_get_level(BUTTON_GPIO)) {
-            // send esp_now msg ....
+            send_hit();
             gpio_set_level(LED_GPIO, 1);
             vTaskDelay(1000 / portTICK_PERIOD_MS);
             gpio_set_level(LED_GPIO, 0);
-            vTaskDelay(50 / portTICK_PERIOD_MS);
         }
+        // recup la value capsens ...
+        int captouch_value = get_captouch(GROUND_GPIO);
+        if (captouch_value > GROUND_VALUE_CAPSENS_EPEE) {
+            send_ground();
+        }
+        // leave time for other tasks in FreeRTOS
+        vTaskDelay(10 / portTICK_PERIOD_MS);
     }
 }
