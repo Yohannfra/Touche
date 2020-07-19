@@ -9,6 +9,7 @@
 #include "esp_log.h"
 
 #include "client.h"
+#include "constants.h"
 
 void restart_board(void)
 {
@@ -39,11 +40,29 @@ void init_gpios(void)
     // TODO init capsens
 }
 
+void send_message(message_t *message)
+{
+    esp_err_t result = esp_now_send(
+            MAC_ADDR_LIST[SERIAL_ID][SERVER_MAC_ADDR_INDEX],
+            (uint8_t *)message,
+            sizeof(message_t));
+
+    if (result == ESP_OK) {
+        ESP_LOGI("Client", "Sent with success");
+    } else {
+        ESP_LOGI("Client", "Error sending the data : %s", esp_err_to_name(result));
+    }
+}
+
 void send_hit(void)
 {
+    message_t message;
+
+    message.index_sender = 0;
+    message.capsensValue = -1;
+    message.payload = HIT;
     ESP_LOGI("Client", "Sending hit...");
-    // TODO
-    ESP_LOGI("Client", "Done.");
+    send_message(&message);
 }
 
 void send_ground(void)
