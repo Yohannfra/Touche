@@ -1,5 +1,4 @@
 #include "esp_now.h"
-
 #include "esp_log.h"
 #include "esp_spi_flash.h"
 #include "esp_system.h"
@@ -9,7 +8,12 @@
 #include "nvs_flash.h"
 
 #include <stdio.h>
+#include <string.h>
+
 #include "constants.h"
+
+
+static esp_now_peer_info_t peer;
 
 void wifi_init()
 {
@@ -29,14 +33,14 @@ void wifi_init()
 static void espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status)
 {
     if (mac_addr == NULL) {
-        printf("Send callback arg error");
+        ESP_LOGI("Client", "Send callback arg error");
         return;
     }
-    printf("\r\nLast Packet Send Status:\t");
-    printf("%s\n",
+    ESP_LOGI("Client", "\r\nLast Packet Send Status:\t");
+    ESP_LOGI("Client", "%s\n",
         status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
-#include <string.h>
+
 void init_esp_now()
 {
     esp_err_t ret = nvs_flash_init();
@@ -51,8 +55,6 @@ void init_esp_now()
     // Initialize ESPNOW and register sending and receiving callback function.
     ESP_ERROR_CHECK(esp_now_init());
     ESP_ERROR_CHECK(esp_now_register_send_cb(espnow_send_cb));
-
-    esp_now_peer_info_t peer;
 
     memcpy(peer.peer_addr, MAC_ADDR_LIST[SERIAL_ID][SERVER_MAC_ADDR_INDEX], 6);
     peer.channel = 0;

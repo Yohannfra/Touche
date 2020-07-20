@@ -45,7 +45,7 @@ void send_message(message_t *message)
     esp_err_t result = esp_now_send(
             MAC_ADDR_LIST[SERIAL_ID][SERVER_MAC_ADDR_INDEX],
             (uint8_t *)message,
-            sizeof(message_t));
+            sizeof(message));
 
     if (result == ESP_OK) {
         ESP_LOGI("Client", "Sent with success");
