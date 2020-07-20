@@ -34,9 +34,7 @@ void setup()
 {
     WiFi.mode(WIFI_STA);
 
-#ifdef DEBUG
     setupSerial(115200);
-#endif
     if (esp_now_init() != ESP_OK) {
         printDebugLog("Error initializing ESP-NOW\n");
         handleError();
@@ -45,6 +43,8 @@ void setup()
     setup_pins();
     reset_values();
     esp_now_register_recv_cb(OnDataRecv);
+    ledRingP1.setAllColors(BLACK);
+    ledRingP2.setAllColors(BLACK);
 }
 
 void loop()

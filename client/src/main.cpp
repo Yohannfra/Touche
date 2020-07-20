@@ -39,9 +39,7 @@ void setupDefaultMessage()
 
 void setup()
 {
-#ifdef DEBUG
     setupSerial(115200);
-#endif
 
     if (setupEspNow() != ESP_OK) {
         printDebugLog("Error initializing ESP-NOW\n");

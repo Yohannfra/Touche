@@ -3,23 +3,17 @@
 
 void printDebugLog(const char *s)
 {
-#ifdef DEBUG
-    Serial.print(s)
-#endif
+    Serial.print(s);
 }
 
 void printDebugLog(const int n)
 {
-#ifdef DEBUG
-    Serial.print(n)
-#endif
+    Serial.print(n);
 }
 
 void printDebugLog(const float f)
 {
-#ifdef DEBUG
-    Serial.print(f)
-#endif
+    Serial.print(f);
 }
 
 void blinkLed(byte pin)
