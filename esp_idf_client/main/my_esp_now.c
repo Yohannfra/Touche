@@ -6,14 +6,13 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "nvs_flash.h"
-
 #include <stdio.h>
 #include <string.h>
 
 #include "constants.h"
 
-
 static esp_now_peer_info_t peer;
+
 
 void wifi_init()
 {
@@ -41,7 +40,7 @@ static void espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status
         status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
 
-void init_esp_now()
+void init_esp_now(void)
 {
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -51,8 +50,7 @@ void init_esp_now()
     ESP_ERROR_CHECK(ret);
 
     wifi_init(); // Wifi must be started before esp_now
-    //
-    // Initialize ESPNOW and register sending and receiving callback function.
+
     ESP_ERROR_CHECK(esp_now_init());
     ESP_ERROR_CHECK(esp_now_register_send_cb(espnow_send_cb));
 
