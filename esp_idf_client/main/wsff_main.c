@@ -25,11 +25,13 @@ void init_gpios(void)
     io_conf.pull_up_en = 0; //disable pull-up mode
     gpio_config(&io_conf);
 
-    // // BUTTON GPIO
-    // io_conf.mode = GPIO_MODE_INPUT;
-    // io_conf.pin_bit_mask = BUTTON_GPIO_BM;
-    // io_conf.pull_down_en = 1;
-    // gpio_config(&io_conf);
+    // BUTTON GPIO
+    io_conf.intr_type = GPIO_INTR_ANYEDGE; // Enable interrupt on both rising and falling edges
+    io_conf.mode = GPIO_MODE_INPUT;               // Set as Input
+    io_conf.pin_bit_mask = BUTTON_GPIO_BM; // Bitmask
+    io_conf.pull_up_en = GPIO_PULLUP_DISABLE;     // Disable pullup
+    io_conf.pull_down_en = GPIO_PULLDOWN_ENABLE;  // Enable pulldown
+    gpio_config(&io_conf);
 }
 void task_button_pressed(void *pvParameter);
 
@@ -39,10 +41,12 @@ void app_main()
     init_gpios();
     init_esp_now();
     init_captouch(GROUND_GPIO);
+
+    ESP_LOGI("Client", "Creating the button task.");
     xTaskCreate(&task_button_pressed, "buttonPressed", 2048, NULL, 5, NULL);
 
-
-    ESP_LOGI("Client", "Init Done. Starting the main loop");
+    ESP_LOGI("Client", "Creating the esp now task");
+    // xtask create for espnow
 
     // while (true) {
     //     if (gpio_get_level(BUTTON_GPIO)) {

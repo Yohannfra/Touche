@@ -20,21 +20,9 @@ void isr_button_pressed(void *args)
 
 void task_button_pressed(void *pvParameter)
 {
-    // Configure button
-    gpio_config_t btn_config;
-
-    btn_config.intr_type =
-        GPIO_INTR_ANYEDGE; // Enable interrupt on both rising and falling edges
-    btn_config.mode = GPIO_MODE_INPUT;               // Set as Input
-    btn_config.pin_bit_mask = BUTTON_GPIO_BM; // Bitmask
-    btn_config.pull_up_en = GPIO_PULLUP_DISABLE;     // Disable pullup
-    btn_config.pull_down_en = GPIO_PULLDOWN_ENABLE;  // Enable pulldown
-    gpio_config(&btn_config);
-    ESP_LOGI("Client", "Button configured\n");
-
     // Configure interrupt and add handler
     gpio_install_isr_service(0); // Start Interrupt Service Routine service
-    gpio_isr_handler_add(BUTTON_GPIO, isr_button_pressed, NULL); // Add handler of interrupt
+    gpio_isr_handler_add(BUTTON_GPIO, isr_button_pressed, NULL);
     ESP_LOGI("Client", "Interrupt configured\n");
 
     // Wait
