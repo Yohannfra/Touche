@@ -15,9 +15,6 @@
 #define BUTTON_GPIO (14)
 #define BUTTON_GPIO_BM (1ULL << BUTTON_GPIO)
 
-// buzzer.cpp
-void playBuzzer(bool state);
-
 void print_chip_infos(void);
 void init_esp_now();
 
