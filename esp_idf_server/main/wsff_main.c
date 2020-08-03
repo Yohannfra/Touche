@@ -1,4 +1,8 @@
 #include <stdio.h>
+#include <unistd.h>
+#include <time.h>
+#include <string.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
@@ -11,51 +15,53 @@
 
 #include "server.h"
 #include "constants.h"
+
 #include "buzzer.h"
+#include "neopixel_handler.h"
 
 time_t time_last_hit = 0;
 payload_types_e player_hit[2] = {NONE, NONE};
 static unsigned int time_ground_touched_discrete_color = 0;
 
-void restart_board(void)
-{
-    printf("Restarting...\n");
-    fflush(stdout);
-    esp_restart();
-}
+// led rings
+neopixel_data_t np1;
+neopixel_data_t np2;
 
 void init_gpios(void)
 {
     gpio_config_t io_conf;
 
-    // LED RING 1
-    io_conf.intr_type = GPIO_INTR_DISABLE; // disable interupt
-    io_conf.mode = GPIO_MODE_OUTPUT; // output gpio
-    io_conf.pin_bit_mask = LED_RING_1_GPIO_BM; // the pin bitmask
-    io_conf.pull_down_en = 0; //disable pull-down mode
-    io_conf.pull_up_en = 0; //disable pull-up mode
-    gpio_config(&io_conf);
+    // // BUTTON GPIO
+    // io_conf.mode = GPIO_MODE_INPUT;
+    // io_conf.pin_bit_mask = BUTTON_GPIO_BM;
+    // io_conf.pull_down_en = 1;
+    // gpio_config(&io_conf);
 
-    // LED RING 2
-    io_conf.intr_type = GPIO_INTR_DISABLE; // disable interupt
-    io_conf.mode = GPIO_MODE_OUTPUT; // output gpio
-    io_conf.pin_bit_mask = LED_RING_2_GPIO_BM; // the pin bitmask
-    io_conf.pull_down_en = 0; //disable pull-down mode
-    io_conf.pull_up_en = 0; //disable pull-up mode
-    gpio_config(&io_conf);
-
-    // BUTTON GPIO
-    io_conf.mode = GPIO_MODE_INPUT;
-    io_conf.pin_bit_mask = BUTTON_GPIO_BM;
-    io_conf.pull_down_en = 1;
-    gpio_config(&io_conf);
-
+    // buzzer
     init_buzzer(BUZZER_GPIO_BM);
+
+    // led rings
+    np1.gpio = LED_RING_1_GPIO;
+    np1.channel = RMT_CHANNEL_2;
+    init_neopixel(&np1);
+    turn_off_neopixel(&np1);
+
+    np2.gpio = LED_RING_2_GPIO;
+    np2.channel = RMT_CHANNEL_3;
+    init_neopixel(&np2);
+    turn_off_neopixel(&np2);
+    usleep(1000 * 10);
 }
 
-void reset_values()
+void reset_values(void)
 {
+    turn_off_neopixel(&np1);
+    turn_off_neopixel(&np2);
 
+    time_last_hit = 0;
+    player_hit[0] = NONE;
+    player_hit[1] = NONE;
+    time_ground_touched_discrete_color = 0;
 }
 
 void app_main()
@@ -68,15 +74,15 @@ void app_main()
     while (true) {
         if (time_last_hit) {
             if (player_hit[PLAYER_1] == HIT) {
-                /* ledRingP1.setAllColors(RED); */
+                set_color_neopixel(&np1, RED);
             } else if (player_hit[PLAYER_1] == GROUND) {
-                /* ledRingP1.setDiscretColor(ORANGE); */
+                set_color_neopixel(&np1, ORANGE);
                 time_ground_touched_discrete_color = esp_timer_get_time();
             }
             if (player_hit[PLAYER_2] == HIT) {
-                /* ledRingP2.setAllColors(GREEN); */
+                set_color_neopixel(&np2, GREEN);
             } else if (player_hit[PLAYER_2] == GROUND) {
-                /* ledRingP2.setDiscretColor(ORANGE); */
+                set_color_neopixel(&np2, ORANGE);
                 time_ground_touched_discrete_color = esp_timer_get_time();
             }
             if (player_hit[PLAYER_1] == HIT || player_hit[PLAYER_2] == HIT)

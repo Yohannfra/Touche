@@ -1,2 +1,2 @@
-idf_component_register(SRCS "buzzer.c" "wsff_main.c"
+idf_component_register(SRCS "neopixel_handler.c" "buzzer.c" "wsff_main.c"
                     INCLUDE_DIRS "")
