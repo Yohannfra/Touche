@@ -18,8 +18,6 @@ static unsigned long player_ground_touched[2] = {0, 0};
 
 extern time_t time_last_hit;
 extern bool player_hit[2];
-/* extern LedRing ledRingP1; */
-/* extern LedRing ledRingP2; */
 
 #define GET_OPPONENT(id) (id == PLAYER_1) ? PLAYER_1 : PLAYER_2
 

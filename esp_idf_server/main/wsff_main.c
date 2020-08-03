@@ -29,7 +29,7 @@ neopixel_data_t np2;
 
 void init_gpios(void)
 {
-    gpio_config_t io_conf;
+    // gpio_config_t io_conf;
 
     // // BUTTON GPIO
     // io_conf.mode = GPIO_MODE_INPUT;
