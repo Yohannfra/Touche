@@ -16,3 +16,9 @@ int get_captouch(int gpio)
 
     return 0;
 }
+
+void task_captouch(void *pvParameter)
+{
+
+
+}
