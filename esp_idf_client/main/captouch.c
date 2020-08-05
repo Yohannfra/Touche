@@ -4,13 +4,13 @@
 #include "driver/touch_pad.h"
 #include "esp_log.h"
 
-void init_captouch(void)
+void captouch_init(void)
 {
     touch_pad_init();
     // touch_pad_set_voltage(TOUCH_HVOLT_2V7, TOUCH_LVOLT_0V5, TOUCH_HVOLT_ATTEN_1V);
 }
 
-int get_captouch(int gpio)
+int captouch_get_value(int gpio)
 {
     (void)gpio;
 

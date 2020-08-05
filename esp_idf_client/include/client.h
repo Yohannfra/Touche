@@ -1,7 +1,10 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-// --------------------------------- Gpios ------------------------------------- //
+#include <stdint.h>
+
+static const uint8_t SERVER_MAC_ADDR[6] = {0x24, 0x62, 0xAB, 0xB0, 0x73, 0x50};
+
 #define LED_GPIO (17)
 #define LED_GPIO_BM (1ULL << LED_GPIO)
 
@@ -11,23 +14,6 @@
 #define GROUND_GPIO (23)
 #define GROUND_GPIO_BM (1ULL << GROUND_GPIO)
 
-// --------------------------------- Fencing constants ------------------------- //
 #define GROUND_VALUE_CAPSENS_EPEE (40)
-
-// --------------------------------- Prototypes -------------------------------- //
-/*
-* @brief Print a few informations about the esp32
-*/
-void print_chip_infos(void);
-
-/*
-* @brief send hit message to server
-*/
-void send_hit(void);
-
-/*
-* @brief send ground message to server
-*/
-void send_ground(void);
 
 #endif // CLIENT_H
