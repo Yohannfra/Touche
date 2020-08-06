@@ -5,28 +5,8 @@
 
 #include "FencingConstants.h"
 
-#define SERIAL_ID 1
-
-#define SERVER_MAC_ADDR_INDEX 0
-#define CLIENT_1_MAC_ADDR_INDEX 1
-#define CLIENT_2_MAC_ADDR_INDEX 2
-
 #define PLAYER_1 0
 #define PLAYER_2 1
-
-extern const char MAC_ADDR_LIST_STR[][3][20];
-extern const uint8_t MAC_ADDR_LIST[][3][6];
-
-/*
-To access a specific board:
-
-    Server:
-        MAC_ADDR_LIST[SERIAL_ID][SERVER_MAC_ADDR_INDEX]
-    Board 1:
-        MAC_ADDR_LIST[SERIAL_ID][CLIENT_1_MAC_ADDR_INDEX]
-    Board 2:
-        MAC_ADDR_LIST[SERIAL_ID][CLIENT_2_MAC_ADDR_INDEX]
-*/
 
 typedef enum {
     NONE,
