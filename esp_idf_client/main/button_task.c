@@ -7,7 +7,7 @@
 
 #include <esp_log.h>
 #include <stdio.h>
-#include "my_esp_now.h"
+#include "esp_now_client.h"
 
 static int hit_recvd = 0;
 

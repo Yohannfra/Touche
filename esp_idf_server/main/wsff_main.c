@@ -8,16 +8,15 @@
 #include "esp_system.h"
 #include "esp_spi_flash.h"
 #include "esp_timer.h"
-
 #include "driver/gpio.h"
 #include "esp_now.h"
 #include "esp_log.h"
 
 #include "server.h"
 #include "constants.h"
-
 #include "buzzer.h"
 #include "neopixel_handler.h"
+#include "esp_now_server.h"
 
 int64_t time_last_hit = 0;
 payload_types_e player_hit[2] = {NONE, NONE};
