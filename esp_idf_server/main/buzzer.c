@@ -20,7 +20,9 @@ void init_buzzer(int pin)
 
 void playBuzzer(void)
 {
+    #if 0 // Just for debug, remove for real test
     gpio_set_level(BUZZER_GPIO, 1);
+    #endif
 }
 
 void stopBuzzer(void)

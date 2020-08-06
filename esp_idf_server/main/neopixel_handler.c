@@ -31,12 +31,15 @@ void init_neopixel(neopixel_data_t *np_data)
     np_data->px.timings.reset.duration0 = 600;
     np_data->px.timings.reset.duration1 = 600;
     np_data->px.brightness = 0x80;
+
+    np_data->is_on = false;
 }
 
 void turn_off_neopixel(neopixel_data_t *np_data)
 {
     np_clear(&np_data->px);
     np_show(&np_data->px, np_data->channel);
+    np_data->is_on = false;
     usleep(1000 * 10);
 }
 
@@ -52,13 +55,9 @@ void set_color_neopixel(neopixel_data_t *np_data, int r, int g, int b)
     for (int i = 0; i < NB_LED; i++) {
         np_set_pixel_color(&np_data->px, i, color);
     }
+    np_data->is_on = true;
     np_show(&np_data->px, np_data->channel);
     usleep(1000 * 10);
-}
-
-void show_neopixel(neopixel_data_t *np_data)
-{
-    np_show(&np_data->px, np_data->channel);
 }
 
 void test_neopixels_blink(neopixel_data_t *np1, neopixel_data_t *np2)

@@ -19,7 +19,7 @@
 #include "buzzer.h"
 #include "neopixel_handler.h"
 
-time_t time_last_hit = 0;
+int64_t time_last_hit = 0;
 payload_types_e player_hit[2] = {NONE, NONE};
 static unsigned int time_ground_touched_discrete_color = 0;
 
@@ -57,40 +57,44 @@ void reset_values(void)
 {
     turn_off_neopixel(&np1);
     turn_off_neopixel(&np2);
+    stopBuzzer();
 
     time_last_hit = 0;
-    player_hit[0] = NONE;
-    player_hit[1] = NONE;
+    player_hit[PLAYER_1] = NONE;
+    player_hit[PLAYER_2] = NONE;
     time_ground_touched_discrete_color = 0;
 }
 
 void app_main()
 {
-    // print_chip_infos();
     init_gpios();
     init_esp_now();
     esp_timer_init();
 
     while (true) {
         if (time_last_hit) {
-            if (player_hit[PLAYER_1] == HIT) {
+            if (player_hit[PLAYER_1] == HIT && !np1.is_on) { // p1 hit
                 set_color_neopixel(&np1, RED);
-            } else if (player_hit[PLAYER_1] == GROUND) {
+                ESP_LOGI("Server", "P1 hit");
+            } else if (player_hit[PLAYER_1] == GROUND) { // p1 gnd
                 set_color_neopixel(&np1, ORANGE);
                 time_ground_touched_discrete_color = esp_timer_get_time();
             }
-            if (player_hit[PLAYER_2] == HIT) {
+            if (player_hit[PLAYER_2] == HIT && !np2.is_on) { // p2 hit
                 set_color_neopixel(&np2, GREEN);
-            } else if (player_hit[PLAYER_2] == GROUND) {
+            } else if (player_hit[PLAYER_2] == GROUND) { // p2 gnd
                 set_color_neopixel(&np2, ORANGE);
                 time_ground_touched_discrete_color = esp_timer_get_time();
             }
-            if (player_hit[PLAYER_1] == HIT || player_hit[PLAYER_2] == HIT)
+            if (player_hit[PLAYER_1] == HIT || player_hit[PLAYER_2] == HIT) { // buzzer
                 playBuzzer();
-            else
+            } else {
                 stopBuzzer();
-            if (time_last_hit - esp_timer_get_time() > FENCING_BLINKING_TIME ||
-                time_ground_touched_discrete_color - esp_timer_get_time() > FENCING_LAPS_GROUND_NO_TOUCH) {
+            }
+            if (esp_timer_get_time() - time_last_hit > FENCING_BLINKING_TIME) { // ||
+                // int64_t n = esp_timer_get_time();
+                // ESP_LOGI("Server", "%lld - %lld = %lld", n, time_last_hit, (n - time_last_hit));
+                // time_ground_touched_discrete_color - esp_timer_get_time() > FENCING_LAPS_GROUND_NO_TOUCH) {
                 reset_values(); // Time's up, we reset everything
             }
         }

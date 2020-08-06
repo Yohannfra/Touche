@@ -2,13 +2,17 @@
 #define NEOPIXEL_HANDLER_H
 
 #include <stdint.h>
+#include <stdbool.h>
 #include "neopixel.h"
 
 #define NB_LED 12
 
-#define RED 0xFF, 0, 0
 
-#define GREEN 0, 0xFF, 0
+// WTF RED ET GREEN SONT SWAP
+
+#define GREEN 0xFF, 0, 0
+
+#define RED 0, 0xFF, 0
 
 #define ORANGE 0xFF, 0x7F, 0
 
@@ -18,6 +22,7 @@ typedef struct neopixel_data_s
     pixel_settings_t px;
     int gpio;
     rmt_channel_t channel;
+    bool is_on;
 }   neopixel_data_t;
 
 void init_neopixel(neopixel_data_t *neopixel_data);

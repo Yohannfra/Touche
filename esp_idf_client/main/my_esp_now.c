@@ -13,6 +13,7 @@
 #include "client.h"
 
 static esp_now_peer_info_t peer;
+static message_t message;
 
 static void wifi_init()
 {
@@ -54,14 +55,19 @@ void my_espnow_init(void)
     peer.channel = 0;
     peer.encrypt = false;
     esp_now_add_peer(&peer);
+
+    // set up default values for message
+    esp_wifi_get_mac(WIFI_IF_STA, message.sender_mac_addr);
+    message.payload = NONE;
+    message.capsensValue = -1;
 }
 
-static void my_espnow_send_message(message_t *message)
+static void my_espnow_send_message(message_t *msg)
 {
     esp_err_t result = esp_now_send(
             SERVER_MAC_ADDR,
-            (uint8_t *)message,
-            sizeof(message));
+            (uint8_t *)msg,
+            sizeof(message_t));
 
     if (result == ESP_OK) {
         ESP_LOGI("Client", "Sent with success");
@@ -72,10 +78,7 @@ static void my_espnow_send_message(message_t *message)
 
 void my_espnow_send_hit(void)
 {
-    message_t message;
-
-    message.index_sender = 0;
-    message.capsensValue = -1;
+    message.capsensValue = 42;
     message.payload = HIT;
     ESP_LOGI("Client", "Sending hit...");
     my_espnow_send_message(&message);
@@ -83,10 +86,7 @@ void my_espnow_send_hit(void)
 
 void my_espnow_send_ground(void)
 {
-    message_t message;
-
-    message.index_sender = 0;
-    message.capsensValue = -1;
+    message.capsensValue = 42; // TODO
     message.payload = GROUND;
     ESP_LOGI("Client", "Sending ground...");
     my_espnow_send_message(&message);

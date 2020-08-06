@@ -24,8 +24,7 @@ void task_button_pressed(void *pvParameter)
     ESP_LOGI("Client", "Interrupt configured\n");
 
     while (1) {
-        ESP_LOGI("test", "Waiting for button press....");
-
+        // ESP_LOGI("Client", "Waiting for button press....");
         if (hit_recvd) {
             gpio_set_level(LED_GPIO, true);
             my_espnow_send_hit();
