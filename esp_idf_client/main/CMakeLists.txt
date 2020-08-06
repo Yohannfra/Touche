@@ -1,2 +1,2 @@
-idf_component_register(SRCS "esp_now_client.c" "button_task.c" "captouch.c" "wsff_main.c"
+idf_component_register(SRCS "wsff_client_main.c" "esp_now_client.c" "button_task.c" "captouch.c"
                     INCLUDE_DIRS "")
