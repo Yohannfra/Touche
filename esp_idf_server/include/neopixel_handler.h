@@ -14,7 +14,7 @@
 
 #define RED 0, 0xFF, 0
 
-#define ORANGE 0xFF, 0x7F, 0
+#define ORANGE 0x7F, 0xFF, 0
 
 typedef struct neopixel_data_s
 {

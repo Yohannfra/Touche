@@ -33,25 +33,18 @@ void wifi_init()
     ESP_ERROR_CHECK(esp_wifi_set_storage(WIFI_STORAGE_RAM));
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
     ESP_ERROR_CHECK(esp_wifi_start());
-
-#if CONFIG_ESPNOW_ENABLE_LONG_RANGE
-    ESP_ERROR_CHECK(esp_wifi_set_protocol(ESPNOW_WIFI_IF, WIFI_PROTOCOL_11B|WIFI_PROTOCOL_11G|WIFI_PROTOCOL_11N|WIFI_PROTOCOL_LR));
-#endif
 }
 
 static void hit(int player_id)
 {
-    // time_last_hit = 1;
-    // ESP_LOGI("Server", "Hit LUUU");
-    // player_hit[PLAYER_1] = HIT;
-    // return;
-
     // If a player touched but the the opponent's ground got triggered before
-    // if (player_ground_touched[GET_OPPONENT(player_hit)] - esp_timer_get_time() < FENCING_LAPS_GROUND_NO_TOUCH) {
-    //     player_hit[player_id] = GROUND;
-    //     player_ground_touched[GET_OPPONENT(player_hit)] = 0;
-    //     return;
-    // } else { // should not happend but error handling
+    if (player_ground_touched[GET_OPPONENT(player_hit)] &&
+            player_ground_touched[GET_OPPONENT(player_hit)] - esp_timer_get_time() < FENCING_LAPS_GROUND_NO_TOUCH) {
+        player_hit[player_id] = GROUND;
+        player_ground_touched[GET_OPPONENT(player_hit)] = 0;
+        return;
+    }
+    // else { // Not sure abt this one
     //     player_ground_touched[GET_OPPONENT(player_hit)] = 0;
     // }
 
@@ -67,8 +60,9 @@ static void hit(int player_id)
 
 static void ground_touched(int player_id)
 {
-    if (player_ground_touched[player_id] == 0)
+    if (player_ground_touched[player_id] == 0) {
         player_ground_touched[player_id] = esp_timer_get_time();
+    }
 }
 
 static void print_recvd_msg(message_t *message, int player_id)
@@ -89,12 +83,13 @@ int register_mac_addr(uint8_t sender_mac_addr[6])
         memcpy(client_mac_addr[PLAYER_1], sender_mac_addr, sizeof(uint8_t[6]));
         return PLAYER_1;
     }
+    if (CMP_MAC_ADDR(client_mac_addr[PLAYER_1], sender_mac_addr) == 0)
+        return PLAYER_1;
+
     if (CMP_MAC_ADDR(client_mac_addr[PLAYER_2], UNITIALIZED_MAC_ADDR) == 0) {
         memcpy(client_mac_addr[PLAYER_2], sender_mac_addr, sizeof(uint8_t[6]));
         return PLAYER_2;
     }
-    if (CMP_MAC_ADDR(client_mac_addr[PLAYER_1], sender_mac_addr) == 0)
-        return PLAYER_1;
     if (CMP_MAC_ADDR(client_mac_addr[PLAYER_2], sender_mac_addr) == 0)
         return PLAYER_2;
     abort(); // UNKNOWN THIRD ADDRESS, FIX LATER WITH IDK WHAT YET
@@ -132,7 +127,7 @@ void init_esp_now(void)
     ESP_ERROR_CHECK(ret);
 
     wifi_init(); // Wifi must be started before esp_now
-    //
+
     // Initialize ESPNOW and register sending and receiving callback function.
     ESP_ERROR_CHECK(esp_now_init());
     ESP_ERROR_CHECK(esp_now_register_recv_cb(OnDataRecv));
