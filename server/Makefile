@@ -1,13 +1,9 @@
-all: build
+PROJECT_NAME := wsff-server
 
-build:
-	@pio run
+SERVER_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
-debug:
-	@pio debug
+# Fixme for LTS but ok for now
+CPPFLAGS += -iquote $(SERVER_DIR)/../shared/ \
+			-iquote $(SERVER_DIR)/include
 
-flash:
-	@pio run --target upload
-
-clean:
-	@pio run --target clean
+include $(IDF_PATH)/make/project.mk

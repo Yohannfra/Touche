@@ -1,13 +1,9 @@
-all: build
+PROJECT_NAME := wsff-client
 
-build:
-	@pio run
+CLIENT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
-debug:
-	@pio debug
+# Fixme for LTS but ok for now
+CPPFLAGS += -iquote $(CLIENT_DIR)/../shared/  \
+			-iquote $(CLIENT_DIR)/include
 
-flash:
-	@pio run --target upload
-
-clean:
-	@pio run --target clean
+include $(IDF_PATH)/make/project.mk
