@@ -34,22 +34,16 @@ void init_gpios(void)
     io_conf.pull_down_en = GPIO_PULLDOWN_ENABLE;
     gpio_config(&io_conf);
 }
+
 void task_button_pressed(void *pvParameter);
+void captouch_read_task(void *pvParameter);
 
 void app_main()
 {
     init_gpios();
     my_espnow_init();
-    captouch_init(GROUND_GPIO);
+    captouch_init();
 
-    ESP_LOGI("Client", "Creating the button task.");
     xTaskCreate(&task_button_pressed, "buttonPressed", 2048, NULL, 5, NULL);
-
-    // while (true) {
-    //     // recup la value capsens ...
-    //     int captouch_value = get_captouch(GROUND_GPIO);
-    //     if (captouch_value > GROUND_VALUE_CAPSENS_EPEE) {
-    //         send_ground();
-    //     }
-    // }
+    xTaskCreate(&captouch_read_task, "captouchRead", 2048, NULL, 5, NULL);
 }

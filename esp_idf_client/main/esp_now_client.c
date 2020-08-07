@@ -84,9 +84,9 @@ void my_espnow_send_hit(void)
     my_espnow_send_message(&message);
 }
 
-void my_espnow_send_ground(void)
+void my_espnow_send_ground(uint16_t value)
 {
-    message.capsensValue = 42; // TODO
+    message.capsensValue = value;
     message.payload = GROUND;
     ESP_LOGI("Client", "Sending ground...");
     my_espnow_send_message(&message);
