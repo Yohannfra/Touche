@@ -43,10 +43,9 @@ static void hit(int player_id)
         player_hit[player_id] = GROUND;
         player_ground_touched[GET_OPPONENT(player_hit)] = 0;
         return;
+    } else { // Not sure abt this one
+        player_ground_touched[GET_OPPONENT(player_hit)] = 0;
     }
-    // else { // Not sure abt this one
-    //     player_ground_touched[GET_OPPONENT(player_hit)] = 0;
-    // }
 
     if (time_last_hit == 0) {
         time_last_hit = esp_timer_get_time();
