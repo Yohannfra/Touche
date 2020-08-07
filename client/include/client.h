@@ -16,4 +16,6 @@ static const uint8_t SERVER_MAC_ADDR[6] = {0x24, 0x62, 0xAB, 0xB0, 0x73, 0x50};
 
 #define GROUND_VALUE_CAPSENS_EPEE (40)
 
+#define TIME_NO_ACTION_BEFORE_SLEEP (150000000) // 2.5 mins
+
 #endif // CLIENT_H

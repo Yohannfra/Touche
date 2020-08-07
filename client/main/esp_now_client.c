@@ -5,6 +5,7 @@
 #include "esp_wifi.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "esp_timer.h"
 #include "nvs_flash.h"
 #include <stdio.h>
 #include <string.h>
@@ -14,6 +15,8 @@
 
 static esp_now_peer_info_t peer;
 static message_t message;
+
+extern int64_t time_since_last_action;
 
 static void wifi_init()
 {
@@ -74,6 +77,7 @@ static void my_espnow_send_message(message_t *msg)
     } else {
         ESP_LOGI("Client", "Error sending the data : %s", esp_err_to_name(result));
     }
+    time_since_last_action = esp_timer_get_time();
 }
 
 void my_espnow_send_hit(void)

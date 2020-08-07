@@ -35,7 +35,7 @@ void captouch_read_task(void *pvParameter)
         if (touch_value < 120) { // Find the perfect value // cf TODO
             my_espnow_send_ground(touch_value);
         }
-        ESP_LOGI("Client", "Touchpad : %d", touch_value);
+        // ESP_LOGI("Client", "Touchpad : %d", touch_value);
         vTaskDelay(200 / portTICK_PERIOD_MS);
     }
 }
