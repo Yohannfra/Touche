@@ -28,5 +28,6 @@ typedef struct neopixel_data_s
 void init_neopixel(neopixel_data_t *neopixel_data);
 void turn_off_neopixel(neopixel_data_t *neopixel_data);
 void set_color_neopixel(neopixel_data_t *neopixel_data, int r, int g, int b);
+void set_discrete_color_neopixel(neopixel_data_t *np_data, int r, int g, int b);
 
 #endif /* NEOPIXEL_HANDLER_H */

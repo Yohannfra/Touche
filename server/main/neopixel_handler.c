@@ -60,6 +60,18 @@ void set_color_neopixel(neopixel_data_t *np_data, int r, int g, int b)
     usleep(1000 * 10);
 }
 
+void set_discrete_color_neopixel(neopixel_data_t *np_data, int r, int g, int b)
+{
+ uint32_t color = color_rgb_to_int(r, g, b);
+
+    for (int i = 0; i < NB_LED; i+=3) { // 0 3 6 9
+        np_set_pixel_color(&np_data->px, i, color);
+    }
+    np_data->is_on = true;
+    np_show(&np_data->px, np_data->channel);
+    usleep(1000 * 10);
+}
+
 void test_neopixels_blink(neopixel_data_t *np1, neopixel_data_t *np2)
 {
     while (1) {
