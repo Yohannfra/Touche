@@ -6,6 +6,8 @@
 #include "server.h"
 #include "constants.h"
 
+static bool buzzer_state = false;
+
 void init_buzzer(int pin)
 {
     gpio_config_t io_conf;
@@ -23,9 +25,16 @@ void playBuzzer(void)
     #if 0 // Just for debug, remove for real test
     gpio_set_level(BUZZER_GPIO, 1);
     #endif
+    buzzer_state = true;
 }
 
 void stopBuzzer(void)
 {
     gpio_set_level(BUZZER_GPIO, 0);
+    buzzer_state = false;
+}
+
+bool is_buzzer_on(void)
+{
+    return buzzer_state;
 }
