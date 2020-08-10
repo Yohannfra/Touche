@@ -16,7 +16,7 @@
 #include "server.h"
 
 static message_t message;
-static unsigned long player_ground_touched[2] = {0, 0};
+extern unsigned long player_ground_touched[2];
 static uint8_t client_mac_addr[2][6] = {{0}, {0}};
 
 extern int64_t time_last_hit;
@@ -66,11 +66,13 @@ static void ground_touched(int player_id)
 
     if (player_ground_touched[player_id] == 0 && time_last_hit == 0) { // ground sent first, easy case
         player_ground_touched[player_id] = current_time;
+        player_hit[player_id] = GROUND;
+        time_last_hit = current_time;
     } else if (player_ground_touched[player_id] == 0 && time_last_hit &&
         current_time - time_last_hit < TIME_BEFORE_SHOWING_HIT) {
         // eg. p1 touched p2 on gnd but the p1 msg arrived first
         if (player_hit[GET_OPPONENT(player_id) == HIT])
-            player_hit[GET_OPPONENT(player_id)] = NONE;
+            player_hit[GET_OPPONENT(player_id)] = GROUND;
     }
 }
 
