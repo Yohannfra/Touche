@@ -24,7 +24,7 @@ extern payload_types_e player_hit[2];
 
 #define GET_OPPONENT(id) (id == PLAYER_1) ? PLAYER_2 : PLAYER_1
 
-void wifi_init()
+void wifi_init(void)
 {
     tcpip_adapter_init();
     ESP_ERROR_CHECK(esp_event_loop_create_default());
@@ -37,21 +37,24 @@ void wifi_init()
 
 static void hit(int player_id)
 {
+    int64_t current_time = esp_timer_get_time();
+
     // If a player touched but the the opponent's ground got triggered before
     if (player_ground_touched[GET_OPPONENT(player_hit)] &&
-            player_ground_touched[GET_OPPONENT(player_hit)] - esp_timer_get_time() < FENCING_LAPS_GROUND_NO_TOUCH) {
+            player_ground_touched[GET_OPPONENT(player_hit)] - current_time < FENCING_LAPS_GROUND_NO_TOUCH) {
         player_hit[player_id] = GROUND;
         player_ground_touched[GET_OPPONENT(player_hit)] = 0;
+        time_last_hit = current_time;
         return;
     } else { // Not sure abt this one
         player_ground_touched[GET_OPPONENT(player_hit)] = 0;
     }
 
     if (time_last_hit == 0) {
-        time_last_hit = esp_timer_get_time();
+        time_last_hit = current_time;
         player_hit[player_id] = HIT;
     } else {
-        if (esp_timer_get_time() - time_last_hit <= FENCING_LAPS_DOUBLE_TOUCH) {
+        if (current_time - time_last_hit <= FENCING_LAPS_DOUBLE_TOUCH) {
             player_hit[player_id] = HIT;
         }
     }
@@ -59,8 +62,15 @@ static void hit(int player_id)
 
 static void ground_touched(int player_id)
 {
-    if (player_ground_touched[player_id] == 0) {
-        player_ground_touched[player_id] = esp_timer_get_time();
+    int64_t current_time = esp_timer_get_time();
+
+    if (player_ground_touched[player_id] == 0 && time_last_hit == 0) { // ground sent first, easy case
+        player_ground_touched[player_id] = current_time;
+    } else if (player_ground_touched[player_id] == 0 && time_last_hit &&
+        current_time - time_last_hit < TIME_BEFORE_SHOWING_HIT) {
+        // eg. p1 touched p2 on gnd but the p1 msg arrived first
+        if (player_hit[GET_OPPONENT(player_id) == HIT])
+            player_hit[GET_OPPONENT(player_id)] = NONE;
     }
 }
 
