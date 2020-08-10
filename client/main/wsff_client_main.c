@@ -15,6 +15,10 @@
 #include "constants.h"
 #include "esp_now_client.h"
 #include "captouch.h"
+#include "epee_button.h"
+
+#include "sleep_handler.h"
+
 
 int64_t time_since_last_action = 0;
 
@@ -41,10 +45,6 @@ void init_gpios(void)
     io_conf.pull_down_en = GPIO_PULLDOWN_ENABLE;
     gpio_config(&io_conf);
 }
-
-void task_button_pressed(void *pvParameter);
-void captouch_read_task(void *pvParameter);
-void sleep_handle_task(void *pvParameter);
 
 void app_main()
 {
