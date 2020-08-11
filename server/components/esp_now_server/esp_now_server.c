@@ -24,6 +24,10 @@ extern payload_types_e player_hit[2];
 
 #define GET_OPPONENT(id) (id == PLAYER_1) ? PLAYER_2 : PLAYER_1
 
+#if EXTERNAL_ESP32_LOGGER
+static esp_now_peer_info_t peer;
+#endif
+
 void wifi_init(void)
 {
     tcpip_adapter_init();
@@ -113,6 +117,16 @@ void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
     int player_id = register_mac_addr(message.sender_mac_addr);
     print_recvd_msg(&message, player_id);
 
+#if EXTERNAL_ESP32_LOGGER
+    esp_err_t result = esp_now_send(EXTERNAL_LOGGER_MAC_ADDR,
+        (uint8_t *)&message, sizeof(message_t));
+    if (result == ESP_OK) {
+        ESP_LOGI("Client", "Sent with success");
+    } else {
+        ESP_LOGI("Client", "Error sending the data : %s", esp_err_to_name(result));
+    }
+#endif
+
     switch (message.payload) {
         case HIT:
             hit(player_id);
@@ -126,6 +140,17 @@ void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len)
         case ERROR:
             break; // TODO : error handling or stuff
     }
+}
+
+static void OnDataSend(const uint8_t *mac_addr, esp_now_send_status_t status)
+{
+    if (mac_addr == NULL) {
+        ESP_LOGI("Server", "Send callback arg error");
+        return;
+    }
+    ESP_LOGI("Server", "\r\nLast Packet Send Status:\t");
+    ESP_LOGI("Server", "%s\n",
+        status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
 }
 
 void init_esp_now(void)
@@ -142,4 +167,12 @@ void init_esp_now(void)
     // Initialize ESPNOW and register sending and receiving callback function.
     ESP_ERROR_CHECK(esp_now_init());
     ESP_ERROR_CHECK(esp_now_register_recv_cb(OnDataRecv));
+    ESP_ERROR_CHECK(esp_now_register_send_cb(OnDataSend));
+
+#if EXTERNAL_ESP32_LOGGER
+    memcpy(peer.peer_addr, EXTERNAL_LOGGER_MAC_ADDR, 6 * sizeof(uint8_t));
+    peer.channel = 0;
+    peer.encrypt = false;
+    esp_now_add_peer(&peer);
+#endif
 }

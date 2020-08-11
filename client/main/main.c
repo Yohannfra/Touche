@@ -19,7 +19,7 @@
 
 #include "sleep_handler.h"
 
-
+// used in other files for sleep management
 int64_t time_since_last_action = 0;
 
 void init_gpios(void)

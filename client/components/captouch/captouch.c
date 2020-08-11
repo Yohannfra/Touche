@@ -6,13 +6,14 @@
 #include "client.h"
 #include "esp_now_client.h"
 
+// Based on peripherals/touch_pad_read
+
 #define TOUCH_PAD_NO_CHANGE   (-1)
 #define TOUCH_THRESH_NO_USE   (0)
 #define TOUCH_FILTER_MODE_EN  (1)
 #define TOUCHPAD_FILTER_TOUCH_PERIOD (10)
 
 #define TOUCH_PAD_ZERO 0
-// Based on peripherals/touch_pad_read
 
 // TODO : Do a capsens value sync with touching opponent epee or something
 
