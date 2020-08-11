@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#define EXTERNAL_ESP32_LOGGER 1
+#define EXTERNAL_ESP32_LOGGER 0
 
 #if EXTERNAL_ESP32_LOGGER
 #include <stdint.h>
