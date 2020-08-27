@@ -13,7 +13,7 @@
 #define TOUCH_FILTER_MODE_EN  (1)
 #define TOUCHPAD_FILTER_TOUCH_PERIOD (10)
 
-#define TOUCH_PAD_ZERO 0
+#define TOUCH_PAD_ZERO 9
 
 // TODO : Do a capsens value sync with touching opponent epee or something
 
