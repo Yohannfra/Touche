@@ -31,6 +31,7 @@
 #include <driver/rmt.h>
 #include <soc/dport_reg.h>
 
+#include "freertos/semphr.h"
 #include "neopixel.h"
 #include <esp_log.h>
 
