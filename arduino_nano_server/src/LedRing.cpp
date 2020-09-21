@@ -1,10 +1,12 @@
 #include "LedRing.hpp"
 
-LedRing::LedRing(byte pin)
+LedRing::LedRing(byte pin) : strip(NB_NEOPIXEL, pin, NEO_GRB + NEO_KHZ800)
 {
     this->pin = pin;
-    this->strip = Adafruit_NeoPixel(NB_NEOPIXEL, this->pin, NEO_GRB + NEO_KHZ800);
+}
 
+void LedRing::init()
+{
     this->strip.begin();
     this->strip.setBrightness(50);
     this->strip.show();
@@ -13,7 +15,7 @@ LedRing::LedRing(byte pin)
 void LedRing::turn_off()
 {
     this->strip.clear();
-    // this->strip.show(); // Not sure
+    this->strip.show();
 }
 
 void LedRing::set_color(byte r, byte g, byte b)

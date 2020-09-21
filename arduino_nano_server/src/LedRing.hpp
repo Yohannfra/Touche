@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 
-#define RED_RGB 0FF, 0, 0
+#define RED_RGB 0xFF, 0, 0
 #define GREEN_RGB 0, 0xFF, 0
 
 #define NB_NEOPIXEL 12
@@ -18,6 +18,7 @@ private:
 public:
     LedRing(byte pin);
     void turn_off();
+    void init();
     void set_color(byte r, byte g, byte b);
 };
 
