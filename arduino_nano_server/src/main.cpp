@@ -5,27 +5,33 @@
 #include <Arduino.h>
 
 #define BUZZER_PIN 14
-#define LED_RING_1_PIN 7
-#define LED_RING_2_PIN 4
+#define LED_RING_PIN 3
 
-Buzzer buzzer(14);
-LedRing led_ring_1(LED_RING_1_PIN);
-LedRing led_ring_2(LED_RING_2_PIN);
-RadioModule radio_module();
+Buzzer buzzer(BUZZER_PIN);
+LedRing led_ring(LED_RING_PIN);
+RadioModule radio_module;
 
 void setup()
 {
     Serial.begin(9600);
-
-    led_ring_1.init();
+    while (!Serial) {
+        ; // wait for serial
+    }
+    // radio_module.init();
+    // led_ring.init();
 }
 
 void loop()
 {
-    led_ring_1.set_color(RED_RGB);
-    delay(1000);
-    led_ring_1.set_color(GREEN_RGB);
-    delay(1000);
-    led_ring_1.turn_off();
-    delay(1000);
+    // radio_module.wait_for_message();
+    // led_ring.set_color(RED_RGB);
+    // led_ring.turn_off();
+
+    // delay(500);
+    // led_ring.set_color(RED_RGB);
+    // delay(500);
+    // led_ring.set_half_colors(RED_RGB, GREEN_RGB);
+    // delay(500);
+    // led_ring.turn_off();
+    // delay(500);
 }
