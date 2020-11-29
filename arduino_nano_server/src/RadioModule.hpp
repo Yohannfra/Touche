@@ -2,7 +2,6 @@
 #define RADIOMODULE_HPP
 
 #include <Arduino.h>
-#include <NRF24.h>
 #include <SPI.h>
 
 class RadioModule
@@ -12,7 +11,7 @@ private:
 public:
     RadioModule();
     void init();
-    void wait_for_message();
+    long receiveMsg();
 };
 
 #endif /* RADIOMODULE_HPP */
