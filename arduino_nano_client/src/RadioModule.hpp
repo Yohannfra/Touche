@@ -2,15 +2,16 @@
 #define RADIOMODULE_HPP
 
 #include <Arduino.h>
-#include <NRF24.h>
 #include <SPI.h>
 
 class RadioModule
 {
-private:
-    NRF24 nrf24;
-public:
-    RadioModule();
+    private:
+
+    public:
+        RadioModule();
+        void init();
+        void sendMsg();
 };
 
 #endif /* RADIOMODULE_HPP */
