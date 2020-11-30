@@ -7,7 +7,7 @@
 #include "protocol.h"
 #include "fencingConstants.h"
 
-#define BUZZER_PIN 14 // FIXME
+#define BUZZER_PIN 10
 #define LED_RING_PIN 3
 
 Buzzer buzzer(BUZZER_PIN);
@@ -81,18 +81,22 @@ void loop()
         }
     }
 
-    if (player_hit[0] && player_hit[1]) {
-        led_ring.set_half_colors(RED_RGB, GREEN_RGB);
-    } else if (player_hit[0]) {
-        led_ring.set_color(GREEN_RGB);
-    } else if (player_hit[1]) {
-        led_ring.set_color(RED_RGB);
+    if (player_hit[0] || player_hit[1]) {
+        buzzer.play();
+        if (player_hit[0] && player_hit[1]) {
+            led_ring.set_half_colors(RED_RGB, GREEN_RGB);
+        } else if (player_hit[0]) {
+            led_ring.set_color(GREEN_RGB);
+        } else if (player_hit[1]) {
+            led_ring.set_color(RED_RGB);
+        }
     }
 
-    if (millis() - time_last_hit > FENCING_BLINKING_TIME) {
+    if (millis() - time_last_hit > FENCING_BLINKING_TIME) { // time's up, reset all states
         player_hit[0] = false;
         player_hit[1] = false;
         time_last_hit = 0;
         led_ring.turn_off();
+        buzzer.stop();
     }
 }

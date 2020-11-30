@@ -48,7 +48,7 @@ void loop()
             radio_module.sendMsg(device_id, HIT);
         }
     }
-    if (time_button_pressed_delay && millis() - time_button_pressed_delay > 1000 /* 1 second */) {
+    if (time_button_pressed_delay && millis() - time_button_pressed_delay > 1000) {
             digitalWrite(LED_PIN, LOW);
             time_button_pressed_delay = 0;
     }
