@@ -26,6 +26,17 @@ void LedRing::set_color(byte r, byte g, byte b)
     this->strip.show();
 }
 
+void LedRing::blink(byte r, byte g, byte b, int time_ms)
+{
+    for (int i = 0; i < 3; i++) {
+        set_color(r, g, b);
+        delay(time_ms);
+        turn_off();
+        delay(time_ms);
+    }
+}
+
+
 void LedRing::set_half_colors(byte r, byte g, byte b,
                                     byte r2, byte g2, byte b2)
 {

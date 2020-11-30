@@ -22,6 +22,8 @@ public:
     void set_color(byte r, byte g, byte b);
     void set_half_colors(byte r, byte g, byte b,
                     byte r2, byte g2, byte b2);
+    void blink(byte r, byte g, byte b, int time_ms);
+
 };
 
 

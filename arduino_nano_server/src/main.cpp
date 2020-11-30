@@ -31,8 +31,10 @@ void register_player(int8_t id)
 {
     if (knowns_ids[0] == 0) { // register player 1
         knowns_ids[0] = id;
+        led_ring.blink(RED_RGB, 200);
     } else if (knowns_ids[1] == 0) { // register player 2
         knowns_ids[1] = id;
+        led_ring.blink(GREEN_RGB, 200);
     } else { // UNKNOW GUY
         Serial.print("UNKNOWN ID: ");
         Serial.println(id);
