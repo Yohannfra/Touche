@@ -11,7 +11,7 @@ class RadioModule
     public:
         RadioModule();
         void init();
-        void sendMsg();
+        void sendMsg(int8_t id, int8_t type);
 };
 
 #endif /* RADIOMODULE_HPP */

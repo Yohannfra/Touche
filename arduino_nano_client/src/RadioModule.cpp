@@ -4,6 +4,7 @@
 #include <RF24.h>
 #include <RF24_config.h>
 #include <SPI.h>
+#include "protocol.h"
 
 RF24 radio(7,8);
 
@@ -29,19 +30,20 @@ void RadioModule::init()
     radio.setDataRate(RF24_250KBPS);
 }
 
-
-long rxTxData = 0;
-void RadioModule::sendMsg()
+void RadioModule::sendMsg(int8_t id, int8_t type)
 {
-   bool ack = radio.write(&rxTxData, sizeof(rxTxData));
+    packet_t packet = 0;
 
-   Serial.print("Sent: ");
-   Serial.println(rxTxData);
-   rxTxData += 1;
+    packet |= id;
+    packet |= type;
+    bool ack = radio.write(&packet, sizeof(packet));
 
-   if (ack) {
-     Serial.println("ACK received");
-   } else {
-     Serial.println("ACK not received");
-   }
+    // Serial.print("Sent: ");
+    // Serial.println(rxTxData);
+
+    if (ack) {
+        Serial.println("ACK received");
+    } else {
+        Serial.println("ACK not received");
+    }
 }
