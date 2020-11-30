@@ -36,7 +36,6 @@ void LedRing::blink(byte r, byte g, byte b, int time_ms)
     }
 }
 
-
 void LedRing::set_half_colors(byte r, byte g, byte b,
                                     byte r2, byte g2, byte b2)
 {

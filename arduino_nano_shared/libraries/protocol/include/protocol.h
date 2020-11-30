@@ -18,6 +18,8 @@ typedef uint8_t packet_t;
 
 #define TO_ID(n) (n << 3)
 
-// #define IS_ACTION_ACK(n) (n & ACK)
+#define IS_HIT(n) (n & HIT)
+#define IS_GND(n) (n & GND)
+#define IS_ACK(n) (n & ACK)
 
 #endif // PROTOCOL_H
