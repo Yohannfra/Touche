@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <SPI.h>
+#include "protocol.h"
 
 class RadioModule
 {
@@ -11,7 +12,7 @@ private:
 public:
     RadioModule();
     void init();
-    long receiveMsg();
+    packet_t receiveMsg();
 };
 
 #endif /* RADIOMODULE_HPP */

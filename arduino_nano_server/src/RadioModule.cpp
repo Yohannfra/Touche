@@ -11,7 +11,6 @@
 RF24 my_nrf24(7, 8);
 
 const uint64_t pipe = 0xE8E8F0F0E1LL;
-long rxTxData;
 
 RadioModule::RadioModule()
 {
@@ -37,11 +36,13 @@ void RadioModule::init()
     Serial.println("initialised");
 }
 
-long RadioModule::receiveMsg()
+packet_t RadioModule::receiveMsg()
 {
+    packet_t t;
+
     if (my_nrf24.available()) {
-        my_nrf24.read(&rxTxData, sizeof(rxTxData));
-        return rxTxData;
+        my_nrf24.read(&t, sizeof(t));
+        return t;
     }
     return 0;
 }
