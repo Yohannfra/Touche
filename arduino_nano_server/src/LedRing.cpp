@@ -41,7 +41,7 @@ void LedRing::set_half_colors(byte r, byte g, byte b,
                                     byte r2, byte g2, byte b2)
 {
     for (size_t i = 0; i < NB_NEOPIXEL; i++) {
-        if (i < NB_NEOPIXEL / 2)
+        if (i % 2)
             this->strip.setPixelColor(i, r, g, b);
         else
             this->strip.setPixelColor(i, r2, g2, b2);
