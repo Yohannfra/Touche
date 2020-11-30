@@ -1,10 +1,11 @@
 #include <Arduino.h>
+
 #include "Captouch.hpp"
 #include "RadioModule.hpp"
 
 #include "protocol.h"
 #include "fencingConstants.h"
-#include "id.h"
+#include "board_id.h"
 
 #define BUTTON_PIN 3
 #define LED_PIN 5
@@ -12,7 +13,7 @@
 Captouch captouch(4, 2);
 RadioModule radio_module;
 
-device_id_t id = TO_ID(CLIENT_ID);
+uint8_t device_id;
 
 unsigned long time_button_pressed_calibration = 0;
 unsigned long time_button_pressed_delay = 0;
@@ -20,9 +21,12 @@ unsigned long time_button_pressed_delay = 0;
 void setup()
 {
     Serial.begin(9600);
-    randomSeed(analogRead(0));
 
-    id = TO_ID(random(1000)); // FIXME DIRTY TRICK   < ------
+    device_id = getBoardId();
+    if (device_id == -1) {
+        Serial.println("Unknown Board ID");
+        Serial.println("Please add board id to BOARDS_IDS in board_id.cpp");
+    }
 
     pinMode(BUTTON_PIN, INPUT);
     pinMode(LED_PIN, OUTPUT);
@@ -41,7 +45,7 @@ void loop()
         if (time_button_pressed_delay == 0) {
             time_button_pressed_delay = millis();
             digitalWrite(LED_PIN, HIGH);
-            radio_module.sendMsg(id, HIT);
+            radio_module.sendMsg(device_id, HIT);
         }
     }
     if (time_button_pressed_delay && millis() - time_button_pressed_delay > 1000 /* 1 second */) {
@@ -59,7 +63,7 @@ void loop()
     //     time_button_pressed_calibration = 0;
     // }
 
-    if (captouch.trigger_ground()) {
+    // if (captouch.trigger_ground()) { // Fait bugger le button wtf
         // TODO : send ground
-    }
+    // }
 }

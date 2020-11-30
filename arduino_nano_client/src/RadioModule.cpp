@@ -5,6 +5,7 @@
 #include <RF24_config.h>
 #include <SPI.h>
 #include "protocol.h"
+#include "utils.hpp"
 
 RF24 radio(7,8);
 
@@ -34,12 +35,16 @@ void RadioModule::sendMsg(int8_t id, int8_t type)
 {
     packet_t packet = 0;
 
-    packet |= id;
+    packet |= (id << 3);
     packet |= type;
-    bool ack = radio.write(&packet, sizeof(packet));
 
-    // Serial.print("Sent: ");
-    // Serial.println(rxTxData);
+    #if 0
+    utils::print_bin("id", id);
+    utils::print_bin("type", type);
+    utils::print_bin("packet", packet);
+    #endif
+
+    bool ack = radio.write(&packet, sizeof(packet));
 
     if (ack) {
         Serial.println("ACK received");
