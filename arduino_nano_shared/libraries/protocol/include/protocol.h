@@ -14,10 +14,10 @@ typedef uint8_t packet_t;
 
     The 5 firsts bits are the id: IDIDI---
 
-    The 3 lasts bits are the action: -----AHG
-        A -> ACK : UNUSED FOR NOW
-        H -> HIT : When a player hit
+    The 3 lasts bits are the action: -----GHA
         G -> GND : When a player gnd is touched
+        H -> HIT : When a player hit
+        A -> ACK : UNUSED FOR NOW
 */
 
 #define PLAYER_1 0
