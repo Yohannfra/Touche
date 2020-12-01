@@ -1,11 +1,13 @@
 #include "Buzzer.hpp"
 #include "LedRing.hpp"
 #include "RadioModule.hpp"
+#include "PlayerManager.hpp"
 
 #include <Arduino.h>
 
 #include "protocol.h"
 #include "fencingConstants.h"
+#include "DebugLog.hpp"
 
 #define BUZZER_PIN 10
 #define LED_RING_PIN 3
@@ -13,8 +15,7 @@
 Buzzer buzzer(BUZZER_PIN);
 LedRing led_ring(LED_RING_PIN);
 RadioModule radio_module;
-
-device_id_t knowns_ids[2] = {0, 0};
+PlayerManager player_manager;
 
 void setup()
 {
@@ -27,23 +28,8 @@ void setup()
     led_ring.init();
 }
 
-void register_player(int8_t id)
-{
-    if (knowns_ids[0] == 0) { // register player 1
-        knowns_ids[0] = id;
-        led_ring.blink(RED_RGB, 200);
-    } else if (knowns_ids[1] == 0) { // register player 2
-        knowns_ids[1] = id;
-        led_ring.blink(GREEN_RGB, 200);
-    } else { // UNKNOWN ID
-        Serial.print("UNKNOWN ID: ");
-        Serial.println(id);
-    }
-}
-
 unsigned long time_last_hit = 0;
 bool player_hit[2] = {false, false};
-device_id_t id_last_hit = 0;
 
 void hit(uint8_t id)
 {
@@ -59,21 +45,32 @@ void hit(uint8_t id)
     }
 }
 
+void resetValues()
+{
+    DEBUG_LOG("resetting values");
+    player_hit[0] = false;
+    player_hit[1] = false;
+    time_last_hit = 0;
+    led_ring.turn_off();
+    buzzer.stop();
+}
+
 void loop()
 {
     packet_t packet = radio_module.receiveMsg();
 
     if (packet) {
-        Serial.print("Received: ");
-        Serial.println(packet);
+        DEBUG_LOG_VAL("Received: ", packet);
 
         device_id_t id = GET_ID(packet);
 
-        if (id != knowns_ids[0] && id != knowns_ids[1]) {
-           register_player(id);
+        if (player_manager.getPlayerFromID(id) == UNKNOWN_ID) {
+            int8_t index = player_manager.registerPlayer(id);
+            if (index != UNKNOWN_ID) {
+                led_ring.blink(COLOR_CODE[index], 200);
+            }
             return;
         }
-
         if (IS_HIT(packet)) {
             hit(id);
         } else if (IS_GND(packet)) {
@@ -92,11 +89,7 @@ void loop()
         }
     }
 
-    if (millis() - time_last_hit > FENCING_BLINKING_TIME) { // time's up, reset all states
-        player_hit[0] = false;
-        player_hit[1] = false;
-        time_last_hit = 0;
-        led_ring.turn_off();
-        buzzer.stop();
+    if (time_last_hit && millis() - time_last_hit > FENCING_BLINKING_TIME) {
+        resetValues();
     }
 }
