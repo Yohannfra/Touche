@@ -2,7 +2,7 @@
 #include "LedRing.hpp"
 #include "RadioModule.hpp"
 #include "PlayerManager.hpp"
-
+#include "ActionManager.hpp"
 #include <Arduino.h>
 
 #include "protocol.h"
@@ -16,6 +16,7 @@ Buzzer buzzer(BUZZER_PIN);
 LedRing led_ring(LED_RING_PIN);
 RadioModule radio_module;
 PlayerManager player_manager;
+ActionManager action_manager;
 
 void setup()
 {
@@ -28,29 +29,10 @@ void setup()
     led_ring.init();
 }
 
-unsigned long time_last_hit = 0;
-bool player_hit[2] = {false, false};
-
-void hit(uint8_t id)
-{
-    int64_t current_time = millis();
-
-    if (time_last_hit == 0) { // first hit
-        time_last_hit = millis();
-        player_hit[id -1] = true;
-    } else {
-        if (current_time - time_last_hit <= FENCING_LAPS_DOUBLE_TOUCH) {
-            player_hit[id - 1] = true;
-        }
-    }
-}
-
 void resetValues()
 {
     DEBUG_LOG("resetting values");
-    player_hit[0] = false;
-    player_hit[1] = false;
-    time_last_hit = 0;
+    action_manager.reset();
     led_ring.turn_off();
     buzzer.stop();
 }
@@ -62,34 +44,41 @@ void loop()
     if (packet) {
         DEBUG_LOG_VAL("Received: ", packet);
 
-        device_id_t id = GET_ID(packet);
+        device_id_t player_id = GET_ID(packet);
+        player_index_e player_index = player_manager.getPlayerFromID(player_id);
 
-        if (player_manager.getPlayerFromID(id) == UNKNOWN_ID) {
-            int8_t index = player_manager.registerPlayer(id);
-            if (index != UNKNOWN_ID) {
+        DEBUG_LOG_VAL("id: ", player_id);
+        DEBUG_LOG_VAL("index: ", player_index);
+
+        if (player_index == NOT_A_PLAYER) {
+            int8_t index = player_manager.registerPlayer(player_id);
+            if (index != NOT_A_PLAYER) { // to prevent more than to clients
                 led_ring.blink(COLOR_CODE[index], 200);
             }
-            return;
+            return; // no hit on register
         }
         if (IS_HIT(packet)) {
-            hit(id);
+            DEBUG_LOG_LN("HIT");
+            action_manager.hit(player_index);
         } else if (IS_GND(packet)) {
-            // TODO
+            DEBUG_LOG_LN("GROUND");
+            action_manager.ground(player_index);
         }
     }
 
-    if (player_hit[0] || player_hit[1]) {
+    hit_type_e hit_type = action_manager.getHitStatus();
+
+    if (hit_type != NO_HIT) {
         buzzer.play();
-        if (player_hit[0] && player_hit[1]) {
+        if (hit_type == DOUBLE_HIT) {
             led_ring.set_half_colors(RED_RGB, GREEN_RGB);
-        } else if (player_hit[0]) {
-            led_ring.set_color(GREEN_RGB);
-        } else if (player_hit[1]) {
+        } else if (hit_type == HIT_PLAYER_1) {
             led_ring.set_color(RED_RGB);
+        } else if (hit_type == HIT_PLAYER_2) {
+            led_ring.set_color(GREEN_RGB);
         }
     }
-
-    if (time_last_hit && millis() - time_last_hit > FENCING_BLINKING_TIME) {
+    if (action_manager.isResetTime()) {
         resetValues();
     }
 }

@@ -45,7 +45,7 @@ void loop()
         if (time_button_pressed_delay == 0) {
             time_button_pressed_delay = millis();
             digitalWrite(LED_PIN, HIGH);
-            radio_module.sendMsg(device_id, HIT);
+            radio_module.sendMsg(device_id, HIT_BIT_MASK);
         }
     }
     if (time_button_pressed_delay && millis() - time_button_pressed_delay > 1000) {

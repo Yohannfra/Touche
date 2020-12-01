@@ -20,19 +20,16 @@ typedef uint8_t packet_t;
         A -> ACK : UNUSED FOR NOW
 */
 
-#define PLAYER_1 0
-#define PLAYER_2 1
-
-#define ACK 0b00000001
-#define HIT 0b00000010
-#define GND 0b00000100
+#define ACK_BIT_MASK 0b00000001
+#define HIT_BIT_MASK 0b00000010
+#define GND_BIT_MASK 0b00000100
 
 #define GET_ID(n) (n >> 3)
 
 #define TO_ID(n) (n << 3)
 
-#define IS_HIT(n) (n & HIT)
-#define IS_GND(n) (n & GND)
-#define IS_ACK(n) (n & ACK)
+#define IS_HIT(n) (n & HIT_BIT_MASK)
+#define IS_GND(n) (n & GND_BIT_MASK)
+#define IS_ACK(n) (n & ACK_BIT_MASK)
 
 #endif // PROTOCOL_H

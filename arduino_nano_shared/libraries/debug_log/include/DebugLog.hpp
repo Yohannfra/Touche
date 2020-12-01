@@ -25,7 +25,7 @@
 #    define DEBUG_LOG_LN(msg)                                                 \
         do {                                                                  \
         } while (0);
-#    define DEBUG_LOG_VAL(msg, val)                                                 \
+#    define DEBUG_LOG_VAL(msg, val)                                           \
         do {                                                                  \
         } while (0);
 #endif
