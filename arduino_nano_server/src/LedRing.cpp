@@ -26,6 +26,21 @@ void LedRing::set_color(byte r, byte g, byte b)
     this->strip.show();
 }
 
+void LedRing::do_circle_annimation(byte r, byte g, byte b)
+{
+    for (size_t i = 0; i < NB_NEOPIXEL; i++) {
+        this->strip.setPixelColor(i, r, g, b);
+        this->strip.show();
+        delay(100);
+    }
+    for (size_t i = 0; i < NB_NEOPIXEL; i++) {
+        this->strip.setPixelColor(i, 0, 0, 0);
+        this->strip.show();
+        delay(100);
+    }
+    this->turn_off();
+}
+
 void LedRing::blink(byte r, byte g, byte b, int time_ms, size_t nb_blinks)
 {
     for (size_t i = 0; i < nb_blinks; i++) {

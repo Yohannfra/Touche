@@ -26,7 +26,7 @@ public:
                     byte r2, byte g2, byte b2);
     void blink(byte r, byte g, byte b, int time_ms, size_t nb_blinks = 3);
     void blink(const uint8_t rgb[3], int time_ms, size_t nb_blinks = 3);
-
+    void do_circle_annimation(byte r, byte g, byte b);
 };
 
 #endif /* LEDRING_HPP */
