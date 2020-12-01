@@ -7,6 +7,19 @@ typedef uint8_t device_id_t;
 
 typedef uint8_t packet_t;
 
+/*
+    A packet is 8 bits
+
+    00000000
+
+    The 5 firsts bits are the id: IDIDI---
+
+    The 3 lasts bits are the action: -----AHG
+        A -> ACK : UNUSED FOR NOW
+        H -> HIT : When a player hit
+        G -> GND : When a player gnd is touched
+*/
+
 #define PLAYER_1 0
 #define PLAYER_2 1
 

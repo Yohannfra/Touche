@@ -29,7 +29,4 @@ public:
 
 };
 
-
-
-
 #endif /* LEDRING_HPP */
