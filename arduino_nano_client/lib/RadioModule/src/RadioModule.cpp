@@ -1,34 +1,31 @@
 #include "RadioModule.hpp"
 
 #include <nRF24L01.h>
-#include <RF24.h>
 #include <RF24_config.h>
 #include <SPI.h>
 #include "protocol.h"
 #include "utils.hpp"
+#include "DebugLog.hpp"
 
-RF24 radio(7,8);
+static const uint64_t pipe = 0xE8E8F0F0E1LL;
 
-const uint64_t pipe = 0xE8E8F0F0E1LL;
-
-RadioModule::RadioModule()
+RadioModule::RadioModule(uint16_t cePin, uint16_t csPin) : _radio(cePin, csPin)
 {
-
 }
 
 void RadioModule::init()
 {
-    radio.begin();
+    _radio.begin();
 
-    if (radio.isChipConnected()) {
-        Serial.println("Connected");
+    if (_radio.isChipConnected()) {
+        DEBUG_LOG_LN("Connected");
     } else {
-        Serial.println("Connection Error");
+        DEBUG_LOG_LN("Connection Error");
     }
-    radio.openWritingPipe(pipe);
-    radio.openReadingPipe(1,pipe);
-    radio.setPALevel(RF24_PA_MIN);
-    radio.setDataRate(RF24_250KBPS);
+    _radio.openWritingPipe(pipe);
+    _radio.openReadingPipe(1 ,pipe);
+    _radio.setPALevel(RF24_PA_MIN);
+    _radio.setDataRate(RF24_250KBPS);
 }
 
 void RadioModule::sendMsg(int8_t id, int8_t type)
@@ -44,11 +41,11 @@ void RadioModule::sendMsg(int8_t id, int8_t type)
     utils::print_bin("packet", packet);
     #endif
 
-    bool ack = radio.write(&packet, sizeof(packet));
+    bool ack = _radio.write(&packet, sizeof(packet));
 
     if (ack) {
-        Serial.println("ACK received");
+        DEBUG_LOG_LN("ACK received");
     } else {
-        Serial.println("ACK not received");
+        DEBUG_LOG_LN("ACK not received");
     }
 }

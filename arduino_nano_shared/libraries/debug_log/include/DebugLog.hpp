@@ -1,7 +1,7 @@
 #ifndef DEBUGLOG_HPP
 #define DEBUGLOG_HPP
 
-#if DEBUG
+#ifdef DEBUG
 #    define DEBUG_LOG(msg)                                                    \
         do {                                                                  \
             Serial.print(msg);                                                \

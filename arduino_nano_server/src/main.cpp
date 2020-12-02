@@ -20,11 +20,13 @@ ActionManager action_manager;
 
 void setup()
 {
+#ifdef DEBUG
     Serial.begin(9600);
 
     while (!Serial) {
         ; // wait for serial
     }
+#endif
     radio_module.init();
     led_ring.init();
 }

@@ -14,7 +14,7 @@ Captouch::Captouch(uint8_t pin_out, uint8_t pin_in) : capacitive_sensor(pin_out,
 long Captouch::get_value()
 {
     long touchval = this->capacitive_sensor.capacitiveSensorRaw(1);
-    // Serial.println(touchval);
+    // DEBUG_LOG_LN(touchval);
     return touchval;
 }
 
