@@ -11,14 +11,17 @@ static const uint8_t BOARDS_IDS[3][9] = {
     {0x55, 0x39, 0x36, 0x35, 0x30, 0x39, 0x0D, 0x29, 0x19}
 };
 
+#ifdef DEBUG
 void printArduinoUniqueID()
 {
     for(size_t i = 0; i < UniqueIDsize; i++) {
+        Serial.print("0x");
         Serial.print(UniqueID[i], HEX);
         Serial.print(" ");
     }
     Serial.println("");
 }
+#endif
 
 int8_t getBoardId()
 {
