@@ -6,10 +6,9 @@
 class Led
 {
     private:
-        uint8_t _pin;
         bool _state;
     public:
-        Led(uint8_t pin);
+        Led();
         bool getState() const;
         void turnOn();
         void turnOff();

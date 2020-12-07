@@ -1,12 +1,18 @@
 #include "EpeeButton.hpp"
 
-EpeeButton::EpeeButton(uint8_t pin)
+/*
+    The button pin is 3 (PD3)
+    Using this method to make it faster
+*/
+
+#define BUTTON_PIN (1 << 3) // PD3
+
+EpeeButton::EpeeButton()
 {
-    _pin = pin;
-    pinMode(_pin, INPUT);
+    DDRD &= ~BUTTON_PIN; // set pin 3 as input
 }
 
 bool EpeeButton::isPressed() const
 {
-    return digitalRead(_pin);
+    return PIND & BUTTON_PIN; // read pin 3
 }

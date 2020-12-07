@@ -1,10 +1,16 @@
 #include "Led.hpp"
 
-Led::Led(uint8_t pin)
+/*
+    The led pin is 5 (PD5)
+    Using this method to make it faster
+*/
+
+#define LED_PIN (1 << 5)
+
+Led::Led()
 {
-    _pin = pin;
     _state = false;
-    pinMode(_pin, OUTPUT);
+    DDRD |= LED_PIN; // set led pin as output
 }
 
 bool Led::getState() const
@@ -14,13 +20,13 @@ bool Led::getState() const
 
 void Led::turnOn()
 {
-    digitalWrite(_pin, HIGH);
+    PORTD |= (LED_PIN);
     _state = true;
 }
 
 void Led::turnOff()
 {
-    digitalWrite(_pin, LOW);
+    PORTD &= ~(LED_PIN);
     _state = false;
 }
 
