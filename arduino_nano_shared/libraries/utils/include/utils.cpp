@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include "utils.hpp"
+#include "board_id.h"
 
+#ifdef DEBUG
 void utils::print_bin(const char *name, uint8_t n)
 {
     char buff[9] = "00000000";
@@ -15,3 +17,15 @@ void utils::print_bin(const char *name, uint8_t n)
     Serial.print(" : ");
     Serial.println(buff);
 }
+
+void utils::print_board_infos()
+{
+    Serial.println("=========== Board infos ===========");
+    Serial.print("Arduino ID: ");
+    printArduinoUniqueID();
+    Serial.print("WSFF ID: ");
+    Serial.println(getBoardId());
+    Serial.println("===========     End     ===========");
+}
+
+#endif
