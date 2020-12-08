@@ -1,29 +1,49 @@
 #include "Captouch.hpp"
 #include <CapacitiveSensor.h>
-
-
-#define TOUCHVAL_THREESHOLD 50000 // change me
+#include "DebugLog.hpp"
 
 Captouch::Captouch(uint8_t pin_out, uint8_t pin_in) : capacitive_sensor(pin_out, pin_in)
 {
     this->pin_out = pin_out;
     this->pin_in = pin_in;
     this->capacitive_sensor.set_CS_AutocaL_Millis(0xFFFFFFFF); // turn off autocalibrate
+    _calibrationSum = 0;
+    _calibrationIndex = 0;
+    _threshold = 0;
 }
 
 long Captouch::get_value()
 {
-    long touchval = this->capacitive_sensor.capacitiveSensorRaw(1);
-    // DEBUG_LOG_LN(touchval);
+    long touchval = this->capacitive_sensor.capacitiveSensorRaw(40);
+
+    DEBUG_LOG_LN(touchval);
     return touchval;
 }
 
 bool Captouch::trigger_ground()
 {
-    return this->get_value() > TOUCHVAL_THREESHOLD;
+    if (_threshold == 0)
+        return false;
+
+    long val = this->get_value();
+    if (_threshold - CAPTOUCH_ERROR_MARGIN < val && val < _threshold + CAPTOUCH_ERROR_MARGIN)
+        return true;
+    return false;
 }
 
-void Captouch::calibrate()
+bool Captouch::calibrate()
 {
-    // TODO
+    _calibrationSum += this->get_value();
+    _calibrationIndex += 1;
+    return _calibrationIndex == MAX_CALIBRATIONS_SAMPLES;
+}
+
+void Captouch::end_calibration(bool success)
+{
+    if (success) {
+        _threshold = _calibrationSum / _calibrationIndex;
+        DEBUG_LOG_VAL("Treshold is now: ", _threshold);
+    }
+    _calibrationIndex = 0;
+    _calibrationSum = 0;
 }

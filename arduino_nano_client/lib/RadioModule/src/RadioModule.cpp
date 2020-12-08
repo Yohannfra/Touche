@@ -23,7 +23,7 @@ void RadioModule::init()
         DEBUG_LOG_LN("Connection Error");
     }
     _radio.openWritingPipe(pipe);
-    _radio.openReadingPipe(1 ,pipe);
+    _radio.openReadingPipe(1, pipe);
     _radio.setPALevel(RF24_PA_MIN);
     _radio.setDataRate(RF24_250KBPS);
 }

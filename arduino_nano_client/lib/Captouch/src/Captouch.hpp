@@ -3,20 +3,27 @@
 
 #include <CapacitiveSensor.h>
 
+#define MAX_CALIBRATIONS_SAMPLES 200
+
+#define CAPTOUCH_ERROR_MARGIN 2000
+
 class Captouch
 {
 private:
     uint8_t pin_out;
     CapacitiveSensor capacitive_sensor;
     uint8_t pin_in;
-    long get_value();
+
+    long _calibrationSum;
+    size_t _calibrationIndex;
+    int _threshold;
 
 public:
     Captouch(uint8_t pin_out, uint8_t pin_in);
     bool trigger_ground();
-    void calibrate();
+    long get_value();
+    bool calibrate();
+    void end_calibration(bool success);
 };
-
-
 
 #endif /* CAPTOUCH_HPP */
