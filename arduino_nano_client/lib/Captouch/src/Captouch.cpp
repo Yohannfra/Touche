@@ -40,7 +40,7 @@ bool Captouch::calibrate()
 
 void Captouch::end_calibration(bool success)
 {
-    if (success) {
+    if (success && _calibrationIndex > 0 /* to avoid div by 0 */) {
         _threshold = _calibrationSum / _calibrationIndex;
         DEBUG_LOG_VAL("Treshold is now: ", _threshold);
     }
