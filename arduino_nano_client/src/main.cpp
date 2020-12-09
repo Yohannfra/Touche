@@ -9,19 +9,18 @@
 #include "board_id.h"
 #include "DebugLog.hpp"
 #include "utils.hpp"
+#include "Timer.hpp"
 
-Captouch captouch(4, 2);
-RadioModule radio_module(7, 8);
-EpeeButton epee_button;
-Led led;
+static Captouch captouch(4, 2);
+static RadioModule radio_module(7, 8);
+static EpeeButton epee_button;
+static Led led;
+static Timer timerHit;
+static Timer timerButtonMaintened;
 
 uint8_t device_id;
 
 #define TIME_TO_ACTIVATE_CALIBRATION 3000
-#define CALIBRATION_TIME 3000
-
-unsigned long time_button_pressed_calibration = 0;
-unsigned long time_button_pressed_delay = 0;
 
 void setup()
 {
@@ -56,29 +55,36 @@ void run_calibration_process()
         }
     }
     DEBUG_LOG_LN("Calibration Done");
-    // captouch.end_calibration(true);
+    captouch.end_calibration(true);
     radio_module.sendMsg(device_id, CALIBRATION_END_BIT_MASK);
 }
 
 void loop()
 {
     if (epee_button.isPressed()) {
-        if (time_button_pressed_delay == 0 && !captouch.trigger_ground()) { // hit
-            time_button_pressed_delay = millis();
+        if (!timerButtonMaintened.isRunning()) {
+            timerButtonMaintened.start();
+        }
+
+        if (!timerHit.isRunning() && !captouch.trigger_ground()) { // hit
+            timerHit.start();
             led.turnOn();
             DEBUG_LOG_LN("Sending Hit");
             radio_module.sendMsg(device_id, HIT_BIT_MASK);
         }
 
-        if (millis() - time_button_pressed_delay > TIME_TO_ACTIVATE_CALIBRATION) { // calibration
+        if (timerButtonMaintened.isRunning() && timerButtonMaintened.getTimeElapsed() > TIME_TO_ACTIVATE_CALIBRATION) { // calibration
             run_calibration_process();
-            time_button_pressed_delay = 0;
-        }
-    }
-
-    if (time_button_pressed_delay && !epee_button.isPressed() &&
-                        millis() - time_button_pressed_delay > FENCING_BLINKING_TIME) { // reset
             led.turnOff();
-            time_button_pressed_delay = 0;
+            timerButtonMaintened.reset();
+            timerButtonMaintened.reset();
+        }
+    } else { // button not pressed
+        timerButtonMaintened.reset();
+
+        if (timerHit.isRunning() && timerHit.getTimeElapsed() > FENCING_BLINKING_TIME) { // reset
+            led.turnOff();
+            timerHit.reset();
+        }
     }
 }
