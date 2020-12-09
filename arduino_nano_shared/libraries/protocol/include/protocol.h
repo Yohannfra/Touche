@@ -3,9 +3,7 @@
 
 #include <stdint.h>
 
-typedef uint8_t device_id_t;
-
-typedef uint8_t packet_t;
+typedef uint16_t packet_t;
 
 /*
     A packet is 16 bits
@@ -27,20 +25,18 @@ typedef uint8_t packet_t;
             0 : GND : When a player gnd is touched
 */
 
-#define ACK_BIT_MASK                      (0b00000001)
-#define HIT_BIT_MASK                      (0b00000010)
-#define GND_BIT_MASK                      (0b00000100)
-#define CALIBRATION_STARTING_BIT_MASK     (0b00001000)
-#define CALIBRATION_END_BIT_MASK          (0b00010000)
-#define CLIENT_GOING_TO_SLEEP_BIT_MASK    (0b00100000)
-#define CALIBRATION_FAILED_BIT_MASK       (0b01000000)
+typedef uint8_t device_id_t;
 
-#define GET_ID(n) (n >> 3)
+#define GET_ID(n) (n >> 8)
 
-#define TO_ID(n) (n << 3)
-
-#define IS_HIT(n) (n & HIT_BIT_MASK)
-#define IS_GND(n) (n & GND_BIT_MASK)
-#define IS_ACK(n) (n & ACK_BIT_MASK)
+typedef enum {
+    ACK                     = (uint8_t)(1 << 0),
+    HIT                     = (uint8_t)(1 << 1),
+    GND                     = (uint8_t)(1 << 2),
+    CALIBRATION_STARTING    = (uint8_t)(1 << 3),
+    CALIBRATION_END         = (uint8_t)(1 << 4),
+    CLIENT_GOING_TO_SLEEP   = (uint8_t)(1 << 5),
+    CALIBRATION_FAILED      = (uint8_t)(1 << 6),
+}   payload_type_e;
 
 #endif // PROTOCOL_H

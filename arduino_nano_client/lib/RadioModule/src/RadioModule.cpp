@@ -3,7 +3,6 @@
 #include <nRF24L01.h>
 #include <RF24_config.h>
 #include <SPI.h>
-#include "protocol.h"
 #include "utils.hpp"
 #include "DebugLog.hpp"
 
@@ -28,12 +27,12 @@ void RadioModule::init()
     _radio.setDataRate(RF24_250KBPS);
 }
 
-void RadioModule::sendMsg(int8_t id, int8_t type)
+void RadioModule::sendMsg(int8_t id, payload_type_e payload)
 {
     packet_t packet = 0;
 
-    packet |= (id << 3);
-    packet |= type;
+    packet |= (id << 8);
+    packet |= payload;
 
     #if 0
     utils::print_bin("id", id);

@@ -18,7 +18,7 @@ static Led led;
 static Timer timerHit;
 static Timer timerButtonMaintened;
 
-uint8_t device_id;
+static device_id_t device_id;
 
 #define TIME_TO_ACTIVATE_CALIBRATION 3000
 
@@ -44,19 +44,19 @@ void setup()
 void run_calibration_process()
 {
     DEBUG_LOG_LN("Starting calibration");
-    radio_module.sendMsg(device_id, CALIBRATION_STARTING_BIT_MASK);
+    radio_module.sendMsg(device_id, CALIBRATION_STARTING);
 
     while (captouch.calibrate() == false) {
         if (epee_button.isPressed() == false) {
             DEBUG_LOG_LN("Button released during calibration");
-            radio_module.sendMsg(device_id, CALIBRATION_FAILED_BIT_MASK);
+            radio_module.sendMsg(device_id, CALIBRATION_FAILED);
             captouch.end_calibration(false);
             return;
         }
     }
     DEBUG_LOG_LN("Calibration Done");
     captouch.end_calibration(true);
-    radio_module.sendMsg(device_id, CALIBRATION_END_BIT_MASK);
+    radio_module.sendMsg(device_id, CALIBRATION_END);
 }
 
 void loop()
@@ -70,7 +70,7 @@ void loop()
             timerHit.start();
             led.turnOn();
             DEBUG_LOG_LN("Sending Hit");
-            radio_module.sendMsg(device_id, HIT_BIT_MASK);
+            radio_module.sendMsg(device_id, HIT);
         }
 
         if (timerButtonMaintened.isRunning() && timerButtonMaintened.getTimeElapsed() > TIME_TO_ACTIVATE_CALIBRATION) { // calibration
