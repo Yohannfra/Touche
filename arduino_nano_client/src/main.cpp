@@ -77,7 +77,6 @@ void loop()
             run_calibration_process();
             led.turnOff();
             timerButtonMaintened.reset();
-            timerButtonMaintened.reset();
         }
     } else { // button not pressed
         timerButtonMaintened.reset();
