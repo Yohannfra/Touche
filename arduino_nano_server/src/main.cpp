@@ -8,6 +8,7 @@
 #include "protocol.h"
 #include "fencingConstants.h"
 #include "DebugLog.hpp"
+#include "utils.hpp"
 
 #define BUZZER_PIN 10
 #define LED_RING_PIN 3
@@ -26,6 +27,7 @@ void setup()
     while (!Serial) {
         ; // wait for serial
     }
+    utils::print_board_infos();
 #endif
     radio_module.init();
     led_ring.init();
@@ -44,27 +46,48 @@ void loop()
     packet_t packet = radio_module.receiveMsg();
 
     if (packet) {
+
         DEBUG_LOG_VAL("Received: ", packet);
 
         device_id_t player_id = GET_ID(packet);
         player_index_e player_index = player_manager.getPlayerFromID(player_id);
+        payload_type_e payload = (payload_type_e)((uint8_t)packet);
 
         DEBUG_LOG_VAL("id: ", player_id);
         DEBUG_LOG_VAL("index: ", player_index);
 
         if (player_index == NOT_A_PLAYER) {
-            int8_t index = player_manager.registerPlayer(player_id);
+            player_index_e index = player_manager.registerPlayer(player_id);
             if (index != NOT_A_PLAYER) { // to prevent more than to clients
                 led_ring.blink(COLOR_CODE[index], 200);
             }
             return; // no hit on register
         }
-        if (IS_HIT(packet)) {
+
+        switch (payload)
+        {
+        case HIT:
             DEBUG_LOG_LN("HIT");
             action_manager.hit(player_index);
-        } else if (IS_GND(packet)) {
+            break;
+        case GND:
             DEBUG_LOG_LN("GROUND");
             action_manager.ground(player_index);
+            break;
+        case CALIBRATION_STARTING:
+            DEBUG_LOG_LN("CALIBRATION STARTED");
+            led_ring.do_circle_annimation(ORANGE_RGB);
+            break;
+        case CALIBRATION_END:
+            DEBUG_LOG_LN("CALIBRATION END");
+            led_ring.blink(GREEN_RGB, 100, 5);
+            break;
+        case CALIBRATION_FAILED:
+            DEBUG_LOG_LN("CALIBRATION FAILED");
+            led_ring.blink(RED_RGB, 100, 5);
+            break;
+        default:
+            break;
         }
     }
 

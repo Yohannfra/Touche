@@ -16,7 +16,7 @@ long Captouch::get_value()
 {
     long touchval = this->capacitive_sensor.capacitiveSensorRaw(40);
 
-    DEBUG_LOG_LN(touchval);
+    // DEBUG_LOG_LN(touchval); // Fait tout bug wtf
     return touchval;
 }
 
@@ -26,6 +26,7 @@ bool Captouch::trigger_ground()
         return false;
 
     long val = this->get_value();
+    DEBUG_LOG_VAL("Captouch value: ", val);
     if (_threshold - CAPTOUCH_ERROR_MARGIN < val && val < _threshold + CAPTOUCH_ERROR_MARGIN)
         return true;
     return false;
@@ -35,7 +36,8 @@ bool Captouch::calibrate()
 {
     _calibrationSum += this->get_value();
     _calibrationIndex += 1;
-    return _calibrationIndex == MAX_CALIBRATIONS_SAMPLES;
+
+    return _calibrationIndex == MAX_CALIBRATIONS_SAMPLES - 1;
 }
 
 void Captouch::end_calibration(bool success)

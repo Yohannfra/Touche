@@ -6,6 +6,7 @@
 
 #define RED_RGB 0xFF, 0, 0
 #define GREEN_RGB 0, 0xFF, 0
+#define ORANGE_RGB 0xFF, 0xA5, 0
 
 static const uint8_t COLOR_CODE[2][3] = {{RED_RGB}, {GREEN_RGB}};
 

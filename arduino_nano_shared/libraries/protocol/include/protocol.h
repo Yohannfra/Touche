@@ -3,8 +3,6 @@
 
 #include <stdint.h>
 
-typedef uint16_t packet_t;
-
 /*
     A packet is 16 bits
 
@@ -24,6 +22,8 @@ typedef uint16_t packet_t;
             1 : HIT : When a player hit
             0 : GND : When a player gnd is touched
 */
+
+typedef uint16_t packet_t;
 
 typedef uint8_t device_id_t;
 

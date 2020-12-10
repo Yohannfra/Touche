@@ -14,9 +14,9 @@ typedef enum {
 class ActionManager
 {
     typedef enum {
-        HIT,
-        GND,
-        NONE
+        ACTION_HIT,
+        ACTION_GND,
+        NO_ACTION,
     } action_type_e;
 
     private:

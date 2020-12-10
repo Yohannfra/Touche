@@ -15,8 +15,8 @@ private:
     uint8_t pin_in;
 
     long _calibrationSum;
-    size_t _calibrationIndex;
-    int _threshold;
+    long _calibrationIndex;
+    long _threshold;
 
 public:
     Captouch(uint8_t pin_out, uint8_t pin_in);
