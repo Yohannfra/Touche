@@ -10,6 +10,7 @@
 #include "DebugLog.hpp"
 #include "utils.hpp"
 #include "Timer.hpp"
+#include "SleepManager.hpp"
 
 static Captouch captouch(4, 2);
 static RadioModule radio_module(7, 8);
@@ -17,6 +18,7 @@ static EpeeButton epee_button;
 static Led led;
 static Timer timerHit;
 static Timer timerButtonMaintened;
+static SleepManager sleepManager;
 
 static device_id_t device_id;
 

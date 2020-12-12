@@ -6,7 +6,6 @@
 class EpeeButton
 {
     private:
-        uint8_t _pin;
     public:
         EpeeButton();
         bool isPressed() const;
