@@ -1,6 +1,8 @@
 #ifndef DEBUGLOG_HPP
 #define DEBUGLOG_HPP
 
+#include <Arduino.h>
+
 #ifdef DEBUG
 #    define DEBUG_LOG(msg)                                                    \
         do {                                                                  \

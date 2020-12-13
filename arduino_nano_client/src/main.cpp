@@ -18,11 +18,14 @@ static EpeeButton epee_button;
 static Led led;
 static Timer timerHit;
 static Timer timerButtonMaintened;
+static Timer timerForSleep;
 static SleepManager sleepManager;
 
 static device_id_t device_id;
 
 #define TIME_TO_ACTIVATE_CALIBRATION 3000
+
+#define TIME_BEFORE_SLEEP (5000UL * 60UL) // 5000 * 60 = 5 minutes
 
 void setup()
 {
@@ -35,12 +38,13 @@ void setup()
 #endif
 
     device_id = getBoardId();
-    if (device_id == -1) {
+    if (device_id == 0) {
         DEBUG_LOG_LN("Unknown Board ID");
         DEBUG_LOG_LN("Please add board id to BOARDS_IDS in board_id.cpp");
     }
     radio_module.init();
     led.blink(500);
+    timerForSleep.start();
 }
 
 void run_calibration_process()
@@ -64,6 +68,8 @@ void run_calibration_process()
 void loop()
 {
     if (epee_button.isPressed()) {
+        timerForSleep.start();
+
         if (!timerButtonMaintened.isRunning()) {
             timerButtonMaintened.start();
         }
@@ -75,7 +81,8 @@ void loop()
             radio_module.sendMsg(device_id, HIT);
         }
 
-        if (timerButtonMaintened.isRunning() && timerButtonMaintened.getTimeElapsed() > TIME_TO_ACTIVATE_CALIBRATION) { // calibration
+        if (timerButtonMaintened.isRunning() &&
+                timerButtonMaintened.getTimeElapsed() > TIME_TO_ACTIVATE_CALIBRATION) { // calibration
             run_calibration_process();
             led.turnOff();
             timerButtonMaintened.reset();
@@ -87,5 +94,12 @@ void loop()
             led.turnOff();
             timerHit.reset();
         }
+    }
+
+    // if unused for more than 5 mins go to sleep
+    if (timerForSleep.isRunning() && timerForSleep.getTimeElapsed() > TIME_BEFORE_SLEEP) {
+        led.turnOff();
+        sleepManager.sleep();
+        timerForSleep.start();
     }
 }

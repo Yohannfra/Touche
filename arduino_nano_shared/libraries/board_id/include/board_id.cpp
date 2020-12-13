@@ -36,5 +36,5 @@ int8_t getBoardId()
             return i+1;
         }
     }
-    return -1;
+    return 0;
 }
