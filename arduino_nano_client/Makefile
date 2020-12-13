@@ -25,7 +25,6 @@ clean_release:
 	@pio run -e release --target clean
 
 # common
-
 clean_all: clean_debug clean_release
 
 .PHONY: all flash clean debug flash_debug clean_debug release flash_release clean_release clean_all
