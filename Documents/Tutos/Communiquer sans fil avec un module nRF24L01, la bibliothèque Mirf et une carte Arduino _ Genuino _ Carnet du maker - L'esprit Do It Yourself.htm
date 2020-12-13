@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<!-- saved from url=(0134)https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/ -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="fr" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- HTML meta -->
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino / Genuino | Carnet du maker - L'esprit Do It Yourself</title>
+
+    <!-- Standard meta -->
+    <meta name="author" content="Fabien Batteix">
+    <meta name="copyright" content="© TamiaLab 2015">
+    <meta name="description" content="L&#39;esprit du Do It Yourself">
+
+    <!-- Analytics verification codes -->
+    <meta name="google-site-verification" content="t3KwbPbJCHz-enFYH50Hcd8PDN8NWWC9gCMx7uTjhpQ">
+    <meta property="twitter:account_id" content="3043075520">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="https://www.carnetdumaker.net/static/images/apple-touch-icon.2805113e07a3.png">
+    <link rel="icon" sizes="192x192" href="https://www.carnetdumaker.net/static/images/icon-touch.2805113e07a3.png">
+    <link rel="shortcut icon" href="https://www.carnetdumaker.net/static/favicon.338abbb5ea8d.ico">
+    <meta name="msapplication-TileColor" content="#4582ec">
+    <meta name="msapplication-TileImage" content="https://www.carnetdumaker.net/static/images/tile.9bee3f492c17.png">
+
+    <!-- RSS link -->
+    
+    <link rel="alternate" type="application/rss+xml" title="Articles récents (flux RSS)" href="https://www.carnetdumaker.net/articles/flux/">
+    <link rel="alternate" type="application/atom+xml" title="Articles récents (flux Atom)" href="https://www.carnetdumaker.net/articles/flux/atom/">
+
+
+    <!-- OpenGraph and Twitter cards -->
+    
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino / Genuino">
+        <meta property="og:description" content="L&#39;époque des communications câblées est révolue. Aujourd&#39;hui, de plus en plus de communications se font sans fil, que ce soit pour le meilleur ou pour le pire. Dans ce tutoriel, nous allons aborder ensemble un sujet complexe : la communication entre cartes électroniques. Nous nous intéresserons à un duo de choc, aussi classique qu&#39;efficace : le module radio nRF24L01 et la bibliothèque Arduino Mirf. En bonus, nous verrons comment fabriquer une sonnette rudimentaire, pour le plus grand bonheur des amateurs de DIY et de domotique.">
+        <meta property="og:image" content="https://www.carnetdumaker.net/uploads/headings/img_une_arduino_tuto_nrf24_mirf.jpg">
+        <meta property="og:url" content="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/">
+        <meta property="og:site_name" content="!-APP.SHORT_TITLE-!">
+        <meta property="og:locale" content="fr_FR">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@carnetdumaker">
+        <meta name="twitter:creator" content="@skywodd">
+        <!-- Twitter cards: title truncate after 70 chars, 200 chars for description -->
+        <!-- Twitter cards: minimum image size: 120x120px for summary, 280x150px for summary_large_image and photo -->
+        <!-- Type photo require og:image:width and og:image:height for better cropping -->
+        
+    
+        <meta property="article:author" content="https://www.facebook.com/fabien.batteix">
+    
+    <meta property="article:published_time" content="2016-06-04T12:00:00+02:00">
+    <meta property="article:modified_time" content="2017-03-21T12:19:51.657085+01:00">
+
+    
+
+    <!-- Google search add-on -->
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "url": "https://www.carnetdumaker.net",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://www.carnetdumaker.net/recherche/?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+        }
+    </script>
+
+    <!-- Extra head -->
+    
+
+    <!-- Canonical URL -->
+    
+
+    <!-- Bootstrap -->
+    
+        <link rel="stylesheet" href="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/bootstrap.min.46b8cbc34bfa.css">
+    
+    <style>
+        body {
+            padding-top: 120px;
+            padding-bottom: 20px;
+            background-image: url("https://www.carnetdumaker.net/static/images/px_by_Gre3g.4a5f6677a4df.png");
+        }
+
+        .page-content {
+            background-color: white;
+        }
+
+        .page-footer {
+            background-color: white;
+        }
+
+        /* Fix for anchor link */
+        :target:before {
+            content: "";
+            display: block;
+            height: 140px; /* fixed header height*/
+            margin-top: -140px; /* negative fixed header height */
+            visibility: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/main.a483d303d861.css">
+
+    <!-- Font-awesome -->
+    
+        <link rel="stylesheet" href="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/font-awesome.min.4fbd15cb6047.css">
+    
+
+    <!-- Modernizr -->
+    <script src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/modernizr-2.8.3-respond-1.4.2.min.c5de01ee6da0.js"></script>
+    <script src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/jquery-1.11.3.min.895323ed2f72.js"></script>
+</head>
+
+<body>
+    <!-- No support for IE versions before IE8 -->
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">Vous utilisez un navigateur web <strong>extrêmement vieux</strong>. Merci <a href="http://browsehappy.com/">de mettre à jour votre navigateur</a> afin de visiter ce site sans problémes.</p>
+    <![endif]-->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-navbar-collapse-1">
+                    <span class="sr-only">Ouvrir le menu</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- TODO Add logo in the a tag above -->
+                <a class="navbar-brand" href="https://www.carnetdumaker.net/">Carnet du maker</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="header-navbar-collapse-1">
+                <!-- Left navbar -->
+                <ul class="nav navbar-nav">
+                    <li><a href="https://www.carnetdumaker.net/articles/">Blog</a></li>
+                    <li><a href="https://www.carnetdumaker.net/forum/">Forum</a></li>
+                    <li class="dropdown">
+                        <a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Communauté <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="https://www.carnetdumaker.net/membres/"><i class="fa fa-users"></i> Liste des membres</a></li>
+                            <li><a href="https://www.carnetdumaker.net/annonces/"><i class="fa fa-bullhorn"></i> Annonces &amp; news</a></li>
+                            <li><a href="https://www.carnetdumaker.net/bugtracker/"><i class="fa fa-bug"></i> Gestionnaire de bugs</a></li>
+                            <li><a href="https://www.carnetdumaker.net/images/"><i class="fa fa-picture-o"></i> Galerie d'images</a></li>
+                            <li><a href="https://www.carnetdumaker.net/snippets/"><i class="fa fa-code"></i> Extraits de code</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Right navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <form role="search" class="navbar-form hidden-sm" method="get" action="https://www.carnetdumaker.net/recherche/">
+                            <div class="form-group">
+                                <label class="sr-only" for="searchInput">Recherche</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="searchInput" name="q" placeholder="Recherche" required="">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search" title="Go !"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                        <a href="https://www.carnetdumaker.net/recherche/" title="Recherche" class="visible-sm"><i class="fa fa-search"></i></a>
+                    </li>
+                    <li class="dropdown">
+                    
+                        <a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Connexion <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="https://www.carnetdumaker.net/authentification/connexion/?next=/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/"><i class="fa fa-lock"></i> Connexion</a></li>
+                            <li><a href="https://www.carnetdumaker.net/inscription/"><i class="fa fa-user-plus"></i> Inscription</a></li>
+                        </ul>
+                    
+                    </li>
+				</ul>
+            </div>
+        </div>
+        
+
+    <!-- Fix body padding -->
+    <style>
+        body {
+            padding-top: 185px;
+        }
+    </style>
+
+    <!-- Second navbar for blog categories -->
+    <div class="container" id="blog-category-navbar-fade" style="display: none;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-navbar-collapse-2">
+                <span class="sr-only">Ouvrir le menu</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.carnetdumaker.net/articles/categories/">Catégories</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="header-navbar-collapse-2">
+            <!-- Blog navbar -->
+            <ul class="nav navbar-nav">
+                
+                
+                    
+                        <li><a href="https://www.carnetdumaker.net/articles/categories/blog/">Blog</a></li>
+                    
+                
+                    
+                        <li><a href="https://www.carnetdumaker.net/articles/categories/cours/">Cours</a></li>
+                    
+                
+                    
+                        <li class="dropdown">
+                            <a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tutoriels <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="https://www.carnetdumaker.net/articles/categories/tutoriels/">Voir cette catégorie</a></li>
+                                <li class="divider"></li>
+                                
+                    
+                        <li><a href="https://www.carnetdumaker.net/articles/categories/tutoriels/arduino/">Arduino</a></li>
+                    
+                
+                    
+                        <li><a href="https://www.carnetdumaker.net/articles/categories/tutoriels/administration-systeme/">Administration système</a></li>
+                    
+                
+                    
+                        <li><a href="https://www.carnetdumaker.net/articles/categories/tutoriels/mecanique/">Mécanique</a></li>
+                    
+                
+                            </ul>
+                        </li>
+                    
+                
+                    
+                        <li><a href="https://www.carnetdumaker.net/articles/categories/projets/">Projets</a></li>
+                    
+                
+                    
+                        <li><a href="https://www.carnetdumaker.net/articles/categories/tests/">Tests</a></li>
+                    
+                
+                    
+                        <li><a href="https://www.carnetdumaker.net/articles/categories/dossiers/">Dossiers</a></li>
+                    
+                
+                <li><a href="https://www.carnetdumaker.net/articles/archives/">Les archives</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+        <!-- Beta-stage alert -->
+        <p class="text-warning text-center" id="beta-alert" style="display: none;"><i class="fa fa-exclamation-triangle"></i> Site en beta !
+            Merci de rapporter tout bug sur le <a class="text-warning" href="https://www.carnetdumaker.net/bugtracker/">gestionnaire de bug</a> du site.
+            Bonne lecture !
+        </p>
+    </nav>
+
+    <!-- Page content -->
+    <div class="container container-narrow page-content">
+
+        <!-- Breadcrumb -->
+        <div class="row">
+            <ul class="breadcrumb">
+                <li><a href="https://www.carnetdumaker.net/">Accueil</a></li>
+    <li><a href="https://www.carnetdumaker.net/articles/">Articles</a></li>
+    <li><a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/">Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino / Genuino</a></li>
+            </ul>
+        </div>
+
+        <!-- Global announcements -->
+        <div class="row">
+            
+
+    <div class="col-md-12">
+        <div class="panel-group">
+            
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h1 class="panel-title"><i class="fa fa-bullhorn"></i> <a href="https://www.carnetdumaker.net/annonces/gros-probleme-demails-avec-yahoo/">Gros probléme d'emails avec Yahoo</a></h1>
+                    </div>
+
+                    <div class="panel-body">
+                        <p class="text-justify">Yahoo refuse tous les emails du site. Si vous avez une adresse chez un autre prestataire, c'est le moment de l'utiliser <img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/wink.5c9123198072.png" alt=";)" class="emoticons">
+</p>
+<p class="text-justify">En cas de soucis, n'hésitez pas à aller faire un tour sur la page de contact en bas de page.</p>
+
+                    </div>
+
+                    <div class="panel-footer">
+                        <p><i class="fa fa-user"></i> par <a href="https://www.carnetdumaker.net/membres/skywodd/">skywodd</a>, le <time datetime="21-02-2017 19:27">fév. 21, 2017 à 7:27 après-midi</time></p>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+
+        </div>
+
+        <!-- Flash messages -->
+        
+
+        <!-- Extra before content -->
+        <div class="row">
+            
+        </div>
+
+        <!-- Content -->
+        <div class="row">
+            
+
+
+    <!-- Article detail -->
+    <div class="col-md-12">
+
+        <!-- Article title -->
+        <h1>Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino / Genuino</h1>
+        <h2 class="no-top-margin"><small>Allo? Quelqu'un m'entend ?</small></h2>
+
+        <!-- Article preview mode warning -->
+        
+
+        <!-- Article heading image -->
+        
+            <img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/img_une_arduino_tuto_nrf24_mirf.jpg" alt="Image d&#39;entête" class="img-responsive">
+            <p><!-- Spacer --></p>
+        
+
+        <!-- Article information 1/2 -->
+        <p><i class="fa fa-user"></i> par <a href="https://www.carnetdumaker.net/membres/skywodd/">skywodd</a> |
+            <i class="fa fa-calendar"></i> <time datetime="04-06-2016 10:00">juin 4, 2016</time> |
+            <i class="fa fa-copyright"></i> Licence (voir pied de page)
+            </p>
+        <p><i class="fa fa-folder-open"></i> Catégories : <a href="https://www.carnetdumaker.net/articles/categories/tutoriels/"><span class="label label-info">Tutoriels</span></a> <a href="https://www.carnetdumaker.net/articles/categories/tutoriels/arduino/"><span class="label label-info">Arduino</span></a> |
+            <i class="fa fa-tags"></i> Mots clefs : <a href="https://www.carnetdumaker.net/articles/tags/arduino/"><span class="label label-info">Arduino</span></a> <a href="https://www.carnetdumaker.net/articles/tags/genuino/"><span class="label label-info">Genuino</span></a> <a href="https://www.carnetdumaker.net/articles/tags/sans-fil/"><span class="label label-info">Sans fil</span></a> <a href="https://www.carnetdumaker.net/articles/tags/nrf24l01/"><span class="label label-info">nRF24L01</span></a> <a href="https://www.carnetdumaker.net/articles/tags/nordic/"><span class="label label-info">Nordic</span></a> <a href="https://www.carnetdumaker.net/articles/tags/rf/"><span class="label label-info">RF</span></a></p>
+
+        <!-- Article information 2/2 -->
+        
+            <p><i class="fa fa-pencil-square-o"></i>Cet article a été modifié pour la dernière fois le <time datetime="21-03-2017 11:19">mars 21, 2017 à 11:19 matin</time></p>
+        
+        
+        
+            <p><i class="fa fa-warning"></i> Cet article n'a pas été mis à jour depuis un certain temps, son contenu n'est peut être plus d'actualité.</p>
+        
+
+        <!-- Staff links -->
+        
+
+        <!-- Article head notes -->
+        
+            
+        
+
+        <hr>
+
+        <!-- Article description -->
+        
+            <p><strong>L'époque des communications câblées est révolue. Aujourd'hui, de plus en plus de communications se font sans fil, que ce soit pour le meilleur ou pour le pire. Dans ce tutoriel, nous allons aborder ensemble un sujet complexe : la communication entre cartes électroniques. Nous nous intéresserons à un duo de choc, aussi classique qu'efficace : le module radio nRF24L01 et la bibliothèque Arduino Mirf. En bonus, nous verrons comment fabriquer une sonnette rudimentaire, pour le plus grand bonheur des amateurs de DIY et de domotique.</strong></p>
+        
+
+        <!-- Article summary (HTML) -->
+        
+            <h3>Sommaire</h3>
+            <ul class="titles-summary">
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#le-module-nrf24l01" class="titles-summary-link">Le module nRF24L01</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#la-bibliotheque-mirf" class="titles-summary-link">La bibliothéque Mirf</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#le-montage-de-demonstration" class="titles-summary-link">Le montage de démonstration</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#utilisation-de-la-bibliotheque-mirf" class="titles-summary-link">Utilisation de la bibliothèque Mirf</a>
+<ul class="titles-summary-subentry">
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#les-variables-et-fonctions-de-la-bibliotheque-mirf" class="titles-summary-link">Les variables et fonctions de la bibliothèque Mirf</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#emission-et-reception" class="titles-summary-link">Émission et réception</a>
+</li>
+</ul>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#codes-dexemples" class="titles-summary-link">Codes d'exemples</a>
+<ul class="titles-summary-subentry">
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#ping-pong" class="titles-summary-link">Ping pong</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#envoi-de-texte" class="titles-summary-link">Envoi de texte</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#envoi-de-variable" class="titles-summary-link">Envoi de variable</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#envoi-de-structure" class="titles-summary-link">Envoi de structure</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#envoi-de-tableau-de-valeurs" class="titles-summary-link">Envoi de tableau de valeurs</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#envoi-de-commande-simple" class="titles-summary-link">Envoi de commande simple</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#envoi-de-commandes-complexes" class="titles-summary-link">Envoi de commandes complexes</a>
+</li>
+</ul>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#bonus-une-sonnette-diy" class="titles-summary-link">Bonus : une sonnette DIY</a>
+<ul class="titles-summary-subentry">
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#le-montage" class="titles-summary-link">Le montage</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#le-code" class="titles-summary-link">Le code</a>
+</li>
+</ul>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#bonus-diminuer-la-vitesse-de-communication-pour-augmenter-la-portee" class="titles-summary-link">Bonus : diminuer la vitesse de communication pour augmenter la portée</a>
+</li>
+<li class="titles-summary-entry">
+<a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#conclusion" class="titles-summary-link">Conclusion</a>
+</li>
+</ul>
+            <p><!-- Spacer --></p>
+        
+
+        <!-- Article content -->
+        
+            <p class="text-justify">Bonjour à toutes et à tous !
+</p>
+<p class="text-justify">Quand on entreprend de mettre en relation plusieurs cartes électroniques, on se pose toujours la même question : avec ou sans câble ?
+</p>
+<p class="text-justify">La mise en réseau de plusieurs cartes électroniques au moyen de câbles est une solution fiable, peu coûteuse et relativement simple à mettre en oeuvre.
+Un simple faisceau de fils permet de mettre en relation plusieurs cartes au sein d'un même montage. 
+Pour de longues distances, un module RS485, un câble blindé et quelques borniers suffisent à couvrir de (très) longues distances.
+</p>
+<p class="text-justify">Cependant, les câbles ont un gros défaut. Il faut les câbler. Câbler deux cartes électroniques au sein d'un même montage est trivial, car les longueurs de câbles sont réduites. 
+Certes, parfois le résultat final n'est pas très propre, mais avec un peu de patience, on arrive généralement à tout câbler et à tout faire passer dans une jolie boite.
+</p>
+<p class="text-justify">Maintenant imaginez-vous devoir creuser une tranchée de plus 50cm de profondeur, 
+sur plusieurs dizaines de mètres pour simplement relier un capteur de température de votre jardin à votre station météo dans le salon. 
+On est d'accord, ce n'est pas terrible comme activité familiale pour le week-end.
+</p>
+<p class="text-justify">Dans ce genre de situation, les modules radio sont un pur bonheur. 
+Pas de câble, pas de tranchée, pas de prise de tête. Certes, il y a de nombreux points négatifs comme la consommation électrique, la sécurité, 
+les interférences, le temps de propagation et la portée du signal, etc. 
+Mais entre se creuser la tête quelques heures pour mettre en place un système sans fil relativement propre et creuser littéralement pendant plusieurs heures, 
+le choix est vite fait. Surtout que parfois, il n'est tout simplement pas possible de faire passer le moindre câble.
+</p>
+<p class="text-justify">Dans cet article, nous allons-nous intéresser à un duo bien connu des amateurs d'Arduino : le module radio nRF24L01 et la bibliothèque Mirf.
+</p>
+<h3><a id="le-module-nrf24l01">Le module nRF24L01</a></h3>
+
+<p class="text-justify">Avant de commencer ce tutoriel, intéressons-nous d'abord au module radio lui-même.
+</p>
+<p class="text-justify">Le module radio <a href="http://www.nordicsemi.com/eng/Products/2.4GHz-RF/nRF24L01P">nRF24L01</a> est un module radio tout intégré du fabricant <a href="http://www.nordicsemi.com/">Nordic Semiconductor</a>. 
+Il s'agit d'un module radio intégrant tout le nécessaire pour émettre et recevoir des données sur la gamme de fréquences de 2.4GHz (comme le WiFi ou le Bluetooth) 
+en utilisant le protocole de communication propriétaire de Nordic nommée "ShockBurst". 
+Ce protocole de communication permet au nRF24L01 d'être considéré comme un modem complet, avec adressage, gestion des erreurs de transmission et retransmission automatique en cas de non-réponse du destinataire.
+</p>
+<p class="text-justify"><strong>N.B. Le module nRF24L01 utilise la même gamme de fréquences que le WiFi et le Bluetooth, mais n'est pas compatible avec ceux deux protocoles !</strong>
+</p>
+<p class="text-justify"><em>PS L'utilisation du protocole ShockBurst est intégrée dans le hardware du module et n'est pas désactivable. 
+Ceci n'est pas un problème pour 99,9999% des utilisateurs qui cherchent juste à transmettre des données et/ou des commandes. C'est même dans ce cas un énorme avantage. 
+Si vous souhaitez faire un espion radio ou un module de transmission avec votre propre protocole de communication radio (<a href="https://fr.wikipedia.org/wiki/Couche_physique">couche physique du modèle OSI</a>), 
+passez votre chemin, le nRF24L01 n'est pas conçu pour cela.</em>
+</p>
+<p class="text-justify">Il existe deux versions du module nRF24L01 : la version classique et la version "+". 
+Le nRF24L01+ est la nouvelle révision du chipset radio. Cette nouvelle version apporte énormément d'amélioration au module radio. 
+</p>
+<p class="text-justify"><em>N.B. Si vous avez le choix entre une version classique et une version "+", choisissez toujours la version "+". 
+Les deux versions sont compatibles d'un point de vue logiciel, mais d'un point de vue physique, la version "+" est bien plus intéressante. 
+La version "+" a l'avantage d'avoir plus de mémoire, plusieurs canaux de communication simultanés et une fonction de renvoi automatique en cas de non-réponse du destinataire. 
+La version "+" a aussi une plus grande portée, une meilleure sensibilité en réception et un débit plus important en transmission. 
+Bref, utilisez la version "+" sans vous poser de question.</em>
+</p>
+<p class="text-justify"><em>PS Vous trouverez peut-être sur Internet des références au module nRF2401A. 
+Il s'agit d'une très vieille version du module radio nRF24L01 qui n'est plus du tout d'actualité aujourd'hui.</em>
+</p>
+<p class="text-center"></p><figure class="thumbnail">
+<p class="text-justify"><a href="https://www.carnetdumaker.net/images/module-nrf24l01-de-sparkfun-avec-antenne-ceramique-integree/"><img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/P1010041_recadre.jpg" alt="Module nRF24L01+ de Sparkfun avec antenne céramique intégrée" width="640" height="614"></a>
+</p>
+<figcaption class="caption"><p class="text-center">Module nRF24L01+ de Sparkfun avec antenne céramique intégrée</p>
+</figcaption>
+
+</figure>
+<p></p>
+
+<p class="text-justify">Parmi la multitude de cartes embarquant le module nRF24L01+, j'ai décidé d'utiliser <a href="https://www.sparkfun.com/products/691">une carte avec une antenne céramique intégrée de Sparkfun</a>,
+à la fois pour sa simplicité de câblage, son antenne et son régulateur 3.3 volts intégré. 
+Ce régulateur de tension intégré permet de relier le module directement sur une carte compatible Arduino, 3.3 volts ou 5 volts sans se poser de question.
+</p>
+<p class="text-justify">Avec cette carte, il est possible de communiquer sur une distance de ~100 mètres à 250Kbps (bits par seconde, en effectif cela donne un débit de quelques kilo-octets par seconde). 
+De plus, avec le régulateur de tension intégré, il est possible d'alimenter la carte avec une tension d'entrée comprise entre 3.3 et 7 volts (maximum), 
+ce qui rend ce module utilisable avec n'importe quelle carte Arduino ou compatible d'un point de vue électrique.
+</p>
+<p class="text-justify"><em>PS Le débit maximum du nRF24L01+ est de 2Mbps, mais à cette vitesse la portée n'est que de quelques mètres. 
+La portée dépend beaucoup de l'antenne. Une antenne "trace" (directement gravé sur la carte) n'a pas une grande portée, une antenne céramique a plus de portée, 
+le mieux est bien évidemment d'utiliser une "vraie" antenne avec un connecteur SMA (pas de vis plaqué or).</em>
+</p>
+<p class="text-justify">Pour conclure cette petite introduction technique, j'ajouterai que le nRF24L01+ dispose de 32 octets de mémoire en émission et en réception par canaux de communication, pour un total de 6 canaux de communication simultanés. 
+La taille maximum d'un paquet est de 32 octets, ce qui est assez faible, mais largement suffisant pour transmettre des mesures, des commandes ou des informations de télémétries pour un robot par exemple.
+</p>
+<p class="text-justify">Les modules nRF24L01 fonctionnent sur la plage 2400 ~ 2525MHz, découpée en 128 canaux différents. 
+Attention donc aux bornes WiFi ou Bluetooth trop puissantes ou beaucoup trop proche, il peut y avoir des interférences. 
+Dans la pratique, à moins de mettre le module nRF24L01 au-dessus de sa box Internet, il n'y a pas de problème.
+</p>
+<p class="text-center"></p><figure class="thumbnail">
+<p class="text-justify"><a href="https://www.carnetdumaker.net/images/module-nrf24l01-chinois-avec-antenne-trace/"><img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/P1010064_recadre.jpg" alt="Module nRF24L01+ chinois avec antenne trace" width="598" height="640"></a>
+</p>
+<figcaption class="caption"><p class="text-center">Module nRF24L01+ chinois avec antenne "trace"</p>
+</figcaption>
+
+</figure>
+<p></p>
+
+<p class="text-justify">Autre petite précision, sur eBay et autres sites de vente "made in china", vous trouverez en grande quantité des modules nRF24L01+ comme celui en photo ci-dessus.
+</p>
+<p class="text-justify">Ces modules sont assez standard, mais ne disposent pas de régulateur de tension intégré, il faut donc les connecter obligatoirement à une alimentation 3.3 volts. 
+De plus, l'antenne "trace" n'est pas des plus efficace. Mais à quelques dollars pièce, frais de port compris, cela vaut le coup.
+</p>
+<div class="panel panel-info">
+    <div class="panel-body">
+        <i class="fa fa-info-circle text-info"></i> <p class="text-justify">N'ayant pas trouvé de composant <a href="http://fritzing.org/home/">Fritzing</a> pour les schémas des chapitres un peu plus bas, j'ai dû utiliser un de ces modules chinois pour l'explication du câblage. 
+Cependant, le composant Frtizing n'est pas de moi, je l'ai trouvé <a href="https://github.com/vdemay/fritzing-parts/blob/master/parts/NRF24L01.fzpz">sur github</a>.
+</p>
+<p class="text-justify">J'espère que vous ne me tiendrez pas rigueur pour cette petite différence au niveau du croquis de câblage. 
+Les broches ne sont pas aux mêmes endroits, mais sur le module de Sparkfun, chaque broche est annotée avec son nom, contrairement aux modules chinois. 
+Il suffit donc de faire preuve d'un peu de bon sens pour retrouver son chemin <img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/wink.5c9123198072.png" alt=";)" class="emoticons">
+</p>
+<p class="text-justify">Pour les utilisateurs de module chinois, coup de chance pour vous, le croquis de câblage vous sera servi sur un plateau d'ici quelques chapitres.
+</p>
+    </div>
+</div>
+
+<p class="text-center"></p><figure class="thumbnail">
+<p class="text-justify"><a href="https://www.carnetdumaker.net/images/brochage-du-module-nrf24l01-de-sparkfun/"><img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/P1010028_recadre.jpg" alt="Brochage du module nRF24L01+ de Sparkfun" width="640" height="601"></a>
+</p>
+<figcaption class="caption"><p class="text-center">Brochage du module nRF24L01+ de Sparkfun</p>
+</figcaption>
+
+</figure>
+<p></p>
+
+<p class="text-justify">Le module radio nRF24L01 communique avec son maitre au moyen d'un <a href="https://fr.wikipedia.org/wiki/Serial_Peripheral_Interface">bus SPI</a>. 
+On retrouve donc au niveau du brochage les trois broches communes au bus SPI, à savoir : <code>MISO</code> (données esclaves -&gt; maitre), <code>MOSI</code> (données maitre -&gt; esclaves) et <code>SCK</code> (horloge), 
+de même que deux broches pour la sélection du module sur le bus SPI et son activation / passage en veille, respectivement : <code>CSN</code> et <code>CE</code>.
+</p>
+<p class="text-justify">Le module radio nRF24L01 dispose aussi d'une broche d'interruption nommée <code>IRQ</code> (active à <code>LOW</code>), permettant d'avertir le microcontrôleur maitre qu'un nouveau paquet de données vient d'être reçu. 
+Avec cette fonctionnalité, il est possible de faire des applications basse consommation fonctionnant sur batterie ou de la <a href="https://fr.wikipedia.org/wiki/Programmation_%C3%A9v%C3%A9nementielle">programmation événementielle</a>. 
+Cela sera surement le sujet d'un prochain article.
+</p>
+<p class="text-justify"><em>N.B. Les broches du nRF24L01 sont compatibles 5 volts, même si le module lui-même fonctionne uniquement en 3.3 volts. 
+N'ayez pas d'inquiétude, il n'est pas nécessaire d'ajouter une quelconque forme d'adaptateur de tension ou autre.</em>
+</p>
+<h3><a id="la-bibliotheque-mirf">La bibliothéque Mirf</a></h3>
+
+<p class="text-justify"><em>Le chapitre sur le module nRF24L01 ayant quelque peu débordé, je vais essayer de faire au plus court pour ce chapitre.</em>
+</p>
+<p class="text-justify">La bibliothèque Mirf permet de contrôler rapidement et facilement des modules nRF24L01. 
+Celle-ci est conçue de manière très simpliste, sans extra. Le gros du travail est laissé à la charge du module radio lui même.
+</p>
+<p class="text-justify">La bibliothèque Mirf se contente juste d'exposer des fonctions de haut niveau pour communiquer avec le module radio sans se prendre la tête.
+</p>
+<p class="text-justify">La bibliothèque Mirf est disponible <a href="https://github.com/aaronds/arduino-nrf24l01">sur GitHub</a>. 
+Les instructions d'installation (en anglais) sont disponibles sur <a href="https://www.arduino.cc/en/Guide/Libraries">le site arduino.cc</a>.
+</p>
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-exclamation-triangle"></i> Attention à la compatibilité</h3>
+    </div>
+    <div class="panel-body">
+        <p class="text-justify">La bibliothèque Mirf est un peu ancienne est a quelque peu vieillie (4 ans sans mise à jour, ça fait un certain temps). 
+</p>
+<p class="text-justify">Dans un prochain article (celui-ci sera disponible en bas de page le moment venu), je vous présenterai une autre bibliothèque nommée <a href="http://tmrh20.github.io/RF24/">RF24</a>, 
+plus complexe et plus "lourde", mais compatible avec beaucoup plus de cartes Arduino (mais pas que).
+</p>
+<p class="text-justify">Pour les utilisateurs de cartes Aduino Due, vous pouvez utiliser la bibliothèque Mirf simplement en modifiant la ligne :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">SPI.setClockDivider(SPI_2XCLOCK_MASK); 
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify">Dans le fichier <code>MirfHardwareSpiDriver.cpp</code> par :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#ifndef DUE</span>
+SPI.setClockDivider(<span style="color: #666666">10</span>);
+<span style="color: #BC7A00">#else</span>
+SPI.setClockDivider(SPI_2XCLOCK_MASK);
+<span style="color: #BC7A00">#endif </span>
+</pre></div>
+</td></tr></tbody></table></div>
+    </div>
+</div>
+
+<h3><a id="le-montage-de-demonstration">Le montage de démonstration</a></h3>
+
+<p class="text-justify">Afin de tester la bibliothèque Mirf, nous allons réaliser ensemble un petit montage de démonstration.
+Celui-ci servira aussi de base pour le chapitre bonus <img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/wink.5c9123198072.png" alt=";)" class="emoticons">
+</p>
+<p class="text-center"></p><figure class="thumbnail">
+<p class="text-justify"><a href="https://www.carnetdumaker.net/images/photographie-du-materiel-necessaire-la-realisation-du-montage-de-demonstration-de-la-bibliotheque-arduino-mirf/"><img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/P1010047_recadre.jpg" alt="Photographie du matériel nécessaire à la réalisation du montage de démonstration de la bibliothèque Arduino Mirf" width="640" height="316"></a>
+</p>
+<figcaption class="caption"><p class="text-center">Matériel nécessaire</p>
+</figcaption>
+
+</figure>
+<p></p>
+
+<p class="text-justify">Pour réaliser ce montage, il va nous falloir :
+</p>
+<ul>
+<li><p class="text-justify">Deux cartes Arduino UNO (et deux câbles USB),</p>
+</li>
+
+<li><p class="text-justify">Deux modules nRF24L01+,</p>
+</li>
+
+<li><p class="text-justify">Deux plaques d'essai et des fils pour câbler notre montage.</p>
+</li>
+
+</ul>
+
+<p class="text-center"></p><figure class="thumbnail">
+<p class="text-justify"><a href="https://www.carnetdumaker.net/images/vue-prototypage-du-montage-de-demonstration-de-la-bibliotheque-arduino-mirf/"><img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/nrf24l01_arduino_bb.jpg" alt="Vue prototypage du montage de démonstration de la bibliothèque Arduino Mirf" width="640" height="506"></a>
+</p>
+<figcaption class="caption"><p class="text-center">Vue prototypage du montage</p>
+</figcaption>
+
+</figure>
+<p></p>
+
+<p class="text-center"></p><figure class="thumbnail">
+<p class="text-justify"><a href="https://www.carnetdumaker.net/images/vue-schematique-du-montage-de-demonstration-de-la-bibliotheque-arduino-mirf/"><img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/nrf24l01_arduino_schéma.jpg" alt="Vue schématique du montage de démonstration de la bibliothèque Arduino Mirf" width="640" height="578"></a>
+</p>
+<figcaption class="caption"><p class="text-center">Vue schématique du montage</p>
+</figcaption>
+
+</figure>
+<p></p>
+
+<p class="text-justify"><strong>N.B. Le montage expliqué ci-dessous est à réaliser en deux exemplaires pour pouvoir tester l'envoi et la réception simultanée de données.</strong>
+</p>
+<p class="text-justify">Pour commencer notre montage, nous allons câbler la broche <code>VCC</code> du module radio à l'alimentation de la carte Arduino au moyen d'un fil. 
+Dans le cas d'un module radio avec régulation de tension intégré (comme c'est le cas avec le module de Sparkfun), il convient de relier la broche <code>VCC</code> du module radio à la broche <code>5V</code> de la carte Arduino. 
+Dans le cas d'un module radio sans régulateur de tension intégré (comme c'est le cas avec les modules chinois), il convient de relier la broche <code>VCC</code> du module radio à la broche <code>3V3</code> de la carte Arduino.
+</p>
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-heartbeat"></i> Attention aux Arduino pro et pro mini</h3>
+    </div>
+    <div class="panel-body">
+        <p class="text-justify">Certaines cartes Arduino, comme les cartes Arduino Pro 5v et Arduino Pro mini 5v ne disposent pas de régulateur 3.3 volts, seulement d'un régulateur 5 volts. 
+Avec ces cartes, la broche <code>3V3</code> est reliée directement à la broche <code>5V</code>. 
+</p>
+<p class="text-justify">Alimenter un module radio 3.3 volts avec une tension de 5 volts le détruira immédiatement. 
+Vérifiez la tension sur la broche <code>3V3</code> avec un multimètre si vous avez un doute avant de câbler votre module radio.
+</p>
+    </div>
+</div>
+
+<p class="text-justify">On relie ensuite la broche <code>GND</code> du module radio à la broche <code>GND</code> de la carte Arduino.
+</p>
+<p class="text-center"></p><figure class="thumbnail">
+<p class="text-justify"><a href="https://www.carnetdumaker.net/images/photographie-du-montage-de-demonstration-de-la-bibliotheque-arduino-mirf/"><img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/P1010051_recadre.jpg" alt="Photographie du montage de démonstration de la bibliothèque Arduino Mirf" width="640" height="436"></a>
+</p>
+<figcaption class="caption"><p class="text-center">Le montage fini</p>
+</figcaption>
+
+</figure>
+<p></p>
+
+<p class="text-justify">Pour terminer, il faut relier les autres broches du port SPI, en suivant le tableau ci-dessous :
+</p>
+<table class="table table-condensed table-striped">
+<tbody><tr>
+<th><p class="text-justify">Module radio</p>
+</th>
+
+<th><p class="text-justify">Carte Arduino</p>
+</th>
+
+</tr>
+
+
+<tr>
+<td><p class="text-justify">IRQ</p>
+</td>
+
+<td><p class="text-justify">D8 (ou non connecté, peu importe pour ce tutoriel)</p>
+</td>
+
+</tr>
+
+
+<tr>
+<td><p class="text-justify">CE</p>
+</td>
+
+<td><p class="text-justify">D9</p>
+</td>
+
+</tr>
+
+
+<tr>
+<td><p class="text-justify">CSN</p>
+</td>
+
+<td><p class="text-justify">D10</p>
+</td>
+
+</tr>
+
+
+<tr>
+<td><p class="text-justify">MOSI</p>
+</td>
+
+<td><p class="text-justify">D11</p>
+</td>
+
+</tr>
+
+
+<tr>
+<td><p class="text-justify">MISO</p>
+</td>
+
+<td><p class="text-justify">D12</p>
+</td>
+
+</tr>
+
+
+<tr>
+<td><p class="text-justify">SCK</p>
+</td>
+
+<td><p class="text-justify">D13</p>
+</td>
+
+</tr>
+
+</tbody></table>
+
+<p class="text-justify"><em>N.B. Les broches <code>IRQ</code>, <code>CE</code> et <code>CSN</code> peuvent être câblées sur d'autres broches que <code>D8</code>, <code>D9</code> et <code>D10</code> en fonction des besoins du projet. 
+J'ai choisi d'utiliser une série de broches qui se suivent par purs soucis de simplicité. 
+Cependant, les autres broches sont obligatoirement câblées sur <code>D11</code>, <code>D12</code> et <code>D13</code>.</em>
+</p>
+<p class="text-center"></p><figure class="thumbnail">
+<p class="text-justify"><a href="https://www.carnetdumaker.net/images/photographie-des-deux-cartes-finies-du-montage-de-demonstration-de-la-bibliotheque-arduino-mirf/"><img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/P1010072_recadre.jpg" alt="Photographie des deux cartes finies du montage de démonstration de la bibliothèque Arduino Mirf" width="640" height="448"></a>
+</p>
+<figcaption class="caption"><p class="text-center">Et de deux !</p>
+</figcaption>
+
+</figure>
+<p></p>
+
+<p class="text-justify">Une fois le câblage fini, il ne reste plus qu'à tout recommencer une seconde fois pour avoir au moins deux cartes de test.
+</p>
+<p class="text-justify"><em>Astuce de bricoleur : les cartes Arduino UNO font exactement la même largeur qu'une plaque de prototypage classique. 
+Un bête élastique permet donc d'obtenir une carte de test tout-en-un qui tient dans la main et que l'on peut balader avec soi pour faire des tests de portée par exemple.</em>
+</p>
+<p class="text-justify"><em>PS Si vous voulez augmenter la durée de vie du module radio, vous pouvez mettre des résistances de 10K ohms entre les broches <code>CE</code>, <code>CSN</code>, <code>MOSI</code> et <code>SCK</code> du module radio et la carte Arduino. 
+Ces résistances limiteront le courant en entrée du module radio et permettront au module de supporter plus facilement la tension de 5 volts sur les broches en provenance de la carte Arduino.
+Cela est cependant totalement optionnel.</em>
+</p>
+<h3><a id="utilisation-de-la-bibliotheque-mirf">Utilisation de la bibliothèque Mirf</a></h3>
+
+<p class="text-justify">Une fois la bibliothèque Mirf installée, il suffit d'ajouter ces quelques lignes en début de programme pour l'utiliser :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI (ne cherchez pas à comprendre)</span><span style="color: #BC7A00"></span>
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify">Ensuite dans la fonction <code>setup()</code>, il suffit d'appeler quelques fonctions pour initialiser le module radio (on verra le détail dans le chapitre suivant) :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothèque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du canal de communication (128 canaux disponibles, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #666666">32</span>; <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+}
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify">Le premier bloc de code permet d'initialiser la bibliothèque elle-même en fournissant les numéros de broches des broches <code>CE</code> et <code>CSN</code>.
+</p>
+<p class="text-justify">Le second bloc de code permet de choisir le canal de fréquence et la taille des messages qui vont être transmis. 
+Cette taille est fixe et doit être fournie à l'initialisation du module radio.
+</p>
+<p class="text-justify">Le troisième et dernier bloc de code permet de choisir l'adresse d'émission (<code>TADDR</code>) et de réception (<code>RADDR</code>) du module.
+</p>
+<p class="text-justify">Chaque adresse fait 5 octets de long, cela donne <code>1 099 511 627 776</code> adresses possibles par canal de fréquence. Autant dire qu'il y a de la marge.
+</p>
+<h4><a id="les-variables-et-fonctions-de-la-bibliotheque-mirf">Les variables et fonctions de la bibliothèque Mirf</a></h4>
+
+<p class="text-justify">Afin de comprendre comment marche la bibliothèque Mirf, nous allons voir ensemble les différentes variables et fonctions qu'elle contient.
+</p>
+<p class="text-justify"><code>Mirf.cePin</code> : Cette variable permet de définir la broche a utiliser pour la broche <code>CE</code> du module radio (par défaut <code>D8</code>).
+</p>
+<p class="text-justify"><code>Mirf.csnPin</code> : Cette variable permet de définir la broche à utiliser pour la broche <code>CSN</code> du module radio (par défaut <code>D7</code>).
+</p>
+<p class="text-justify"><code>Mirf.channel</code> : Cette variable permet de définir le canal de fréquence à utiliser pour l’émission et la réception (de <code>0</code> à <code>127</code>, par défaut <code>1</code>).
+</p>
+<p class="text-justify"><code>Mirf.payload</code> : Cette variable permet de définir la taille des « payload » (messages) à transmettre, au maximum 32 octets (par défaut 16 octets). 
+</p>
+<p class="text-justify"><strong>N.B. Cette constante doit être la même pour tous les modules qui dialogueront ensemble.</strong>
+</p>
+<p class="text-justify"><code>Mirf.spi</code> : Toujours assigner la valeur <code>&amp;MirfHardwareSpi</code> à cette variable. 
+Ne cherchez pas à comprendre, il s'agit d'une fonctionnalité avancée que personne n'utilise.
+</p>
+<p class="text-justify"><code>Mirf.init()</code> : Initialise la bibliothèque Mirf avec les valeurs des variables <code>Mirf.cePin</code>, <code>Mirf.csnPin</code> et <code>Mirf.spi</code> définies ci-dessus.
+</p>
+<p class="text-justify"><code>Mirf.config()</code> : Configure le module radio avec les valeurs de <code>Mirf.channel</code> et <code>Mirf.payload</code>. 
+Active la partie réception du module et vide la mémoire du buffer de réception. 
+</p>
+<p class="text-justify"><code>Mirf.send(valeur)</code> : Permet de transmettre un message à un module radio distant. 
+La valeur donnée en paramètre de la fonction doit être un tableau d'octets <code>(bytes*)</code> d'une taille égale à la valeur assignée dans <code>Mirf.payload</code> (voir chapitres suivants pour les exemples d'utilisation).
+</p>
+<p class="text-justify"><code>Mirf.setRADDR(adresse)</code> : Permet de choisir l'adresse (tableau de 5 octets) de réception de ce module radio. 
+C'est via cette adresse qu'il sera possible d'envoi un message à la carte Arduino depuis une autre carte Arduino distante.
+</p>
+<p class="text-justify"><em>N.B. Il est possible de changer l'adresse de réception dynamiquement à tout moment lors de l'exécution du code. Cela rend possible l'implémentation de topologie réseau complexe.</em>
+</p>
+<p class="text-justify"><code>Mirf.set TADDR(adresse)</code> : Permet de choisir l'adresse (tableau de 5 octets) d'émission pour le prochain message qui sera transmis avec la fonction <code>Mirf.send()</code>.
+</p>
+<p class="text-justify"><em>N.B. Comme pour l'adresse de réception, il est possible de changer l'adresse d'émission dynamiquement à tout moment lors de l'exécution du code. 
+Cela rend possible la communication avec un nombre arbitrairement grand de module radio sur la même fréquence.</em>
+</p>
+<p class="text-justify"><code>Mirf.dataReady()</code> : Retourne vrai (<code>true</code>) si un nouveau message a été reçu, faux (<code>false</code>) sinon. 
+</p>
+<p class="text-justify"><code>Mirf.isSending()</code> : Retourne vrai (<code>true</code>) si un message est en cours d’émission, faux (<code>false</code>) sinon. 
+</p>
+<p class="text-justify"><code>Mirf.rxFifoEmpty()</code> : Retourne vrai (<code>true</code>) si le buffer de réception est vide, faux (<code>false</code>) sinon. 
+</p>
+<p class="text-justify"><code>Mirf.txFifoEmpty()</code> : Retourne vrai (<code>true</code>) si le buffer de transmission est vide, faux (<code>false</code>) sinon. 
+</p>
+<p class="text-justify"><code>Mirf.getData(data)</code> : Copie le dernier message reçu dans le tableau d'octets <code>data</code> passé en paramètre. 
+Le tableau d'octets doit faire la même taille que <code>Mirf.payload</code>.
+</p>
+<p class="text-justify"><code>Mirf.getStatus()</code> : Retourne la valeur brute du registre <code>status</code> du module radio.
+</p>
+<p class="text-justify"><em>N.B. Le registre <code>status</code> du nRF24L01 donne énormément d’informations additionnelles qui ne sont pas disponibles via des fonctions de la bibliothèque Mirf, 
+par exemple la gestion des renvois automatiques, la gestion des échecs d’envoi, l’encombrement du canal de fréquence, etc. 
+Comme il s'agit de fonctionnalités vraiment avancées, je ne donnerai pas plus de détails dans ce tutoriel.</em>
+</p>
+<p class="text-justify"><code>Mirf.powerUpRx()</code> : Active la partie réception du module radio si celle-ci a été désactivée manuellement avec <code>Mirf.powerDown()</code>. 
+</p>
+<p class="text-justify"><code>Mirf.powerUpTx()</code> : Active la partie émission du module radio si celle-ci a été désactivée manuellement avec <code>Mirf.powerDown()</code>. 
+</p>
+<p class="text-justify"><code>Mirf.powerDown()</code> : Met le module radio en veille. Celui-ci ne sera plus capable de recevoir ou d'émettre de messages, mais il ne consommera quasiment plus de courant. 
+Cette fonction est très pratique pour des applications "basse consommation", comme des systèmes de mesure ou des boutons sans fil.
+</p>
+<p class="text-justify"><em>PS Un <a href="https://github.com/aaronds/arduino-nrf24l01/blob/master/Mirf/examples/ping_server_interupt/ping_server_interupt.pde">exemple de code</a> utilisant cette fonctionnalité est disponible dans les codes d'exemples fournis avec la bibliothèque Mirf.</em>
+</p>
+<h4><a id="emission-et-reception">Émission et réception</a></h4>
+
+<p class="text-justify">Le plus compliqué avec les modules nRF24L01 est la gestion des tailles de paquets en émission et en réception, car la taille des paquets est fixe. 
+</p>
+<p class="text-justify">Pour que tout fonctionne correctement, il faut choisir une taille de paquet et s'y tenir pour tout les modules nRF24L01 susceptibles de communiquer entre eux. 
+Si vous ne savez pas quelle taille va faire les données, utilisez la taille maximum de 32 octets comme valeur pour la variable <code>Mirf.payload</code>.
+</p>
+<p class="text-justify">L'envoi d'un paquet de données se fait en trois étapes :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">byte paquet[<span style="color: #666666">32</span>];
+strcpy(paquet, <span style="color: #BA2121">"Hello World!"</span>); <span style="color: #408080; font-style: italic">// Préparation du paquet</span>
+
+Mirf.send(paquet); <span style="color: #408080; font-style: italic">// Envoi du paquet</span>
+
+<span style="color: #008000; font-weight: bold">while</span>(Mirf.isSending()); <span style="color: #408080; font-style: italic">// Attente de la fin de l'envoi</span>
+</pre></div>
+</td></tr></tbody></table></div>
+
+<ol type="1">
+<li><p class="text-justify">Mettre en forme les données pour que le tout donne un joli tableau de <code>Mirf.payload</code> octets.</p>
+</li>
+
+<li><p class="text-justify">Envoyer le paquet avec <code>Mirf.send()</code>.</p>
+</li>
+
+<li><p class="text-justify">Attendre la fin de l'envoi avec une boucle autour de <code>Mirf.isSending()</code>.</p>
+</li>
+
+</ol>
+
+<p class="text-justify">La réception est plus simple :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">byte paquet[<span style="color: #666666">32</span>];
+
+<span style="color: #008000; font-weight: bold">while</span>(<span style="color: #666666">!</span>Mirf.dataReady()){ <span style="color: #408080; font-style: italic">// On attend de recevoir quelque chose</span>
+  <span style="color: #408080; font-style: italic">// On attend ...</span>
+}
+
+Mirf.getData(paquet); <span style="color: #408080; font-style: italic">// Réception du paquet</span>
+</pre></div>
+</td></tr></tbody></table></div>
+
+<ol type="1">
+<li><p class="text-justify">On prépare un tableau d'octets suffisamment grand pour recevoir un paquet de données.</p>
+</li>
+
+<li><p class="text-justify">On attend de recevoir un paquet avec une boucle autour de <code>Mirf.dataReady()</code>.</p>
+</li>
+
+<li><p class="text-justify">On copie les données du paquet reçu dans le tableau d'octets avec <code>Mirf.getData()</code>.</p>
+</li>
+
+</ol>
+
+<h3><a id="codes-dexemples">Codes d'exemples</a></h3>
+
+<p class="text-justify">Comme je sais que beaucoup d'entre vous doivent se poser des questions du style "mais comment j'envoie un long / int / char / float ?", "comment je peux faire pour allumer une LED à distance", etc. 
+Je vous propose quelques codes d'exemples qui devraient couvrir une grande majorité des cas d'usage classiques de la bibliothèque Mirf.
+</p>
+<h4><a id="ping-pong">Ping pong</a></h4>
+
+<p class="text-justify">Voici un code de test ultra simple : le client envoie un message que le serveur reçoit puis renvoie au client. 
+</p>
+<p class="text-justify">Le message n'est rien d'autre que le temps en millisecondes au moment de l'envoi du message, cela permet de savoir combien de temps il faut au message pour faire l'allez retour client-serveur.
+</p>
+<p class="text-justify">Ce code permet de tester trois points : 
+</p>
+<ul>
+<li><p class="text-justify">le bon fonctionnement du montage,</p>
+</li>
+
+<li><p class="text-justify">la qualité du signal (via le temps d'aller-retour),</p>
+</li>
+
+<li><p class="text-justify">la portée de l'antenne (simplement en regardant revenir les réponses).</p>
+</li>
+
+</ul>
+
+<p class="text-justify">Le client :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Client Ping Pong</span>
+<span style="color: #408080; font-style: italic"> */</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+   
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothèque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du canal de communication (128 canaux disponibles, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #B00040">long</span>); <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+   
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  <span style="color: #B00040">unsigned</span> <span style="color: #B00040">long</span> time_message <span style="color: #666666">=</span> millis(); <span style="color: #408080; font-style: italic">// On garde le temps actuel retourné par millis()</span>
+   
+  Serial.print(<span style="color: #BA2121">"Ping ... "</span>);
+  Mirf.send((byte <span style="color: #666666">*</span>) <span style="color: #666666">&amp;</span>time_message); <span style="color: #408080; font-style: italic">// On envoie le temps actuel en utilisant une astuce pour transformer le long en octets</span>
+  <span style="color: #008000; font-weight: bold">while</span>(Mirf.isSending()); <span style="color: #408080; font-style: italic">// On attend la fin de l'envoi</span>
+   
+  <span style="color: #408080; font-style: italic">// Attente de la réponse</span>
+  <span style="color: #008000; font-weight: bold">while</span>(<span style="color: #666666">!</span>Mirf.dataReady()) { <span style="color: #408080; font-style: italic">// On attend de recevoir quelque chose</span>
+    <span style="color: #008000; font-weight: bold">if</span> (millis() <span style="color: #666666">-</span> time_message <span style="color: #666666">&gt;</span> <span style="color: #666666">1000</span> ) { <span style="color: #408080; font-style: italic">// Si on attend depuis plus d'une seconde</span>
+      Serial.println(<span style="color: #BA2121">"Pas de pong"</span>); <span style="color: #408080; font-style: italic">// C'est le drame ...</span>
+      <span style="color: #008000; font-weight: bold">return</span>;
+    }
+  }
+  
+  <span style="color: #408080; font-style: italic">// La réponse est disponible</span>
+  Mirf.getData((byte <span style="color: #666666">*</span>) <span style="color: #666666">&amp;</span>time_message); <span style="color: #408080; font-style: italic">// On récupère la réponse</span>
+  
+  <span style="color: #408080; font-style: italic">// On affiche le temps de latence (sans division par deux)</span>
+  Serial.print(<span style="color: #BA2121">"Pong: "</span>);
+  Serial.print(millis() <span style="color: #666666">-</span> time_message); 
+  Serial.println(<span style="color: #BA2121">"ms"</span>);
+  
+  <span style="color: #408080; font-style: italic">// Pas besoin de tester plus d'une fois par seconde</span>
+  delay(<span style="color: #666666">1000</span>);
+} 
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/43/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<p class="text-justify">Le code de la fonction <code>setup()</code> permet d'initialiser le port série à une vitesse de 9600 bauds. 
+Ce code initialise aussi le module radio pour utiliser les broches <code>D9</code> et <code>D10</code>, ainsi que le port SPI matériel de la carte Arduino. 
+Le code est configuré pour utiliser le canal de fréquence n°1 et des paquets de la taille d'un long (nombre entier sur 4 octets).
+</p>
+<p class="text-justify">Le code de la fonction <code>loop()</code> récupère le temps courant en millisecondes, l'envoi à la carte Arduino distante et attend une réponse. 
+Si la réponse arrive en moins d'une seconde, le temps de l'allez retour est affiché. 
+Si la réponse met plus d'une seconde à arriver, un message d'erreur est affiché.
+</p>
+<p class="text-justify"><em>PS Certains auront remarqué cette étrange chose dans le programme : <code>(byte *) &amp;time_message</code>. 
+Il s'agit d'un cast de pointeur, sans entrer dans les détails, il s'agit d'une méthode pour dire au compilateur "oui je sais ce n'est pas un tableau d'octets, mais fait comme ci c'était le cas".</em>
+</p>
+<p class="text-justify">Le serveur :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Serveur Ping Pong</span>
+<span style="color: #408080; font-style: italic"> */</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothèque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du canal de communication (128 canaux disponibles, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #B00040">long</span>); <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  byte message[<span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #B00040">long</span>)];
+
+  <span style="color: #008000; font-weight: bold">if</span>(<span style="color: #666666">!</span>Mirf.isSending() <span style="color: #666666">&amp;&amp;</span> Mirf.dataReady()){
+    Serial.println(<span style="color: #BA2121">"Ping !"</span>);
+    Mirf.getData(message); <span style="color: #408080; font-style: italic">// Réception du paquet</span>
+    Mirf.send(message); <span style="color: #408080; font-style: italic">// Et on le renvoie tel quel</span>
+  }
+}
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/44/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<p class="text-justify">Du côté serveur, le code de la fonction <code>setup()</code> est quasiment identique à celui du client. Seules les adresses d'émission et de réception sont inversées.
+</p>
+<p class="text-justify">La fonction <code>loop()</code> par contre est complètement différente. 
+Elle attend un message en faisant attention de ne pas traiter un nouveau message pendant qu'un autre est en cours d'envoi, récupère le message et le renvoi à son expéditeur dans la foulée.
+</p>
+<p class="text-justify">Si l'on teste ce code avec le montage de démonstration, sans grande surprise, le montage marche et le ping-pong dure moins d'une milliseconde 
+(signe d'une très bonne qualité de signal, ce qui est normal vu que les cartes sont à moins de 10cm l'une de l'autre) :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Go !
+Ping ... Pong: 1ms
+Ping ... Pong: 1ms
+Ping ... Pong: 1ms
+Ping ... Pong: 1ms
+Ping ... Pong: 1ms
+Ping ... Pong: 1ms
+Ping ... Pong: 1ms
+Ping ... Pong: 1ms
+</pre></div>
+</td></tr></tbody></table></div>
+
+<h4><a id="envoi-de-texte">Envoi de texte</a></h4>
+
+<p class="text-justify">Deuxième code d'exemple, le but ici est d'envoyer et de recevoir une chaine de caractères de taille variable. 
+</p>
+<p class="text-justify">Le texte saisi dans le moniteur série du client se retrouve affiché dans le moniteur série du serveur. 
+La taille maximum du texte est limitée par la taille maximum d'un paquet, soit 32 octets.
+</p>
+<p class="text-justify">Le client (envoi) : 
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Client d'envoi de texte</span>
+<span style="color: #408080; font-style: italic"> */</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+   
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothèque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du canal de communication (128 canaux disponibles, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #666666">32</span>; <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+   
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  byte message[<span style="color: #666666">32</span>];
+  
+  <span style="color: #408080; font-style: italic">// Lit un message de maximum 32 caractères depuis le port série</span>
+  <span style="color: #B00040">int</span> len <span style="color: #666666">=</span> Serial.readBytesUntil(<span style="color: #BA2121">'\n'</span>, (<span style="color: #B00040">char</span><span style="color: #666666">*</span>) message, <span style="color: #666666">31</span>);
+  <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">!</span>len) {
+    <span style="color: #008000; font-weight: bold">return</span>; <span style="color: #408080; font-style: italic">// Pas de message</span>
+  }
+  message[len] <span style="color: #666666">=</span> <span style="color: #BA2121">'\0'</span>; <span style="color: #408080; font-style: italic">// Ferme la chaine de caractères</span>
+  
+  Mirf.send(message); <span style="color: #408080; font-style: italic">// On envoie le message</span>
+  <span style="color: #008000; font-weight: bold">while</span>(Mirf.isSending()); <span style="color: #408080; font-style: italic">// On attend la fin de l'envoi</span>
+} 
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/45/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<p class="text-justify">Le code de la fonction <code>setup()</code> est identique au code du client du code précédent. 
+La seule différence est la taille d'un paquet qui est fixé à 32 octets (le maximum).
+</p>
+<p class="text-justify">Le code de la fonction <code>loop()</code> fait trois choses :
+</p>
+<ul>
+<li><p class="text-justify">le code attend que l'utilisateur finisse de saisir une chaine de caractères dans le moniteur série.
+</p>
+<p class="text-justify"><em>N.B. La chaine de caractères est lue en mode octets, il est donc nécessaire de fermer cette chaine de caractère par un caractère vide <code>'\0'</code> en fin de chaine.</em>
+</p>
+</li>
+
+<li><p class="text-justify">le code envoie la chaine de caractères,</p>
+</li>
+
+<li><p class="text-justify">Pour finir, le code attend que la transmission se termine.</p>
+</li>
+
+</ul>
+
+<p class="text-justify">Le serveur (réception) :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Serveur d'envoi de texte</span>
+<span style="color: #408080; font-style: italic"> */</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothèque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du canal de communication (128 canaux disponibles, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #666666">32</span>; <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  byte message[<span style="color: #666666">32</span>];
+
+  <span style="color: #008000; font-weight: bold">if</span>(Mirf.dataReady()){
+    Mirf.getData(message); <span style="color: #408080; font-style: italic">// Réception du paquet</span>
+    Serial.println((<span style="color: #B00040">char</span><span style="color: #666666">*</span>) message); <span style="color: #408080; font-style: italic">// Affiche le message</span>
+  }
+}
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/46/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<p class="text-justify">Même code pour la fonction <code>setup()</code>, à l'exception de l'inverse des adresses d'émission et de réception.
+</p>
+<p class="text-justify">Pour le code de la fonction <code>loop()</code>, rien de bien extraordinaire. 
+Le code attend un paquet de données, le copie en mémoire avec <code>Mirf.getData()</code> et l'affiche sous forme de texte dans le moniteur série.
+</p>
+<h4><a id="envoi-de-variable">Envoi de variable</a></h4>
+
+<p class="text-justify">Pour ce code d'exemple, imaginons que l'on veut transmettre un nombre à virgule (un <code>float</code>) qui provient d'une mesure d'un capteur. 
+Le but est uniquement de transmettre ce <code>float</code>, rien d'autre.
+</p>
+<p class="text-justify"><em>N.B. J'utilise un <code>float</code> dans cet exemple, mais cela peut être n'importe quel type de variable.
+Cela inclut tous les types de base (<code>int</code>, <code>long</code>, <code>char</code>, etc.), les tableaux de valeurs, mais aussi les structures.</em>
+</p>
+<p class="text-justify">Le code du client : 
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Client d'envoi de variable</span>
+<span style="color: #408080; font-style: italic"> */</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+   
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothèque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du canal de communication (128 canaux disponibles, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #B00040">float</span>); <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+   
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  
+  <span style="color: #408080; font-style: italic">// Lit un nombre depuis le port série</span>
+  <span style="color: #B00040">float</span> valeur <span style="color: #666666">=</span> Serial.parseFloat();
+  
+  Mirf.send((byte <span style="color: #666666">*</span>) <span style="color: #666666">&amp;</span>valeur); <span style="color: #408080; font-style: italic">// On envoie le message</span>
+  <span style="color: #008000; font-weight: bold">while</span>(Mirf.isSending()); <span style="color: #408080; font-style: italic">// On attend la fin de l'envoi</span>
+} 
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/47/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<p class="text-justify">Dans la fonction <code>setup()</code>, on utilise la fonction <a href="https://fr.wikipedia.org/wiki/Sizeof">sizeof()</a> pour avoir un paquet de la bonne taille pour le type de variable que l'on souhaite transmettre.
+</p>
+<p class="text-justify">Dans la fonction <code>loop()</code>, on génère une valeur quelconque à transmettre, ici en lisant le port série, puis on envoi la valeur et on attend la fin de l'envoi.
+</p>
+<p class="text-justify">Pour envoyer une variable comme s'il s'agissait d'un tableau d'octets, il est nécessaire de faire un cast de pointeur (une façon de dire au compilateur que l'on sait ce que l'on fait). 
+Le <code>&amp;</code> permet d'avoir un pointeur sur la variable cible (pas besoin de faire cela si la variable est déjà un pointeur ou un tableau de valeurs). 
+On utilise ensuite un cast <code>(byte*)</code> pour ordonner au compilateur de traiter le pointeur fraichement obtenu comme un pointeur sur un tableau d'octets. 
+En mémoire, il n'y a que des octets, cette astuce permet donc d'obtenir une représentation sous forme de tableau d'octets de n'importe quelle variable.
+</p>
+<p class="text-justify"><em>N.B. Cette façon de faire est dépendante de l'architecture processeur. 
+Si vous tentez d'utiliser cette méthode pour transmettre un <code>float</code> ou un simple <code>int</code> entre deux cartes utilisant des processeurs d'architectures différentes, 
+vous aurez des erreurs d'interprétations à la réception.</em>
+</p>
+<p class="text-justify">Le code du serveur :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Serveur d'envoi de variable</span>
+<span style="color: #408080; font-style: italic"> */</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothèque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du canal de communication (128 canaux disponibles, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #B00040">float</span>); <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  <span style="color: #B00040">float</span> valeur;
+
+  <span style="color: #008000; font-weight: bold">if</span>(Mirf.dataReady()){
+    Mirf.getData((byte <span style="color: #666666">*</span>) <span style="color: #666666">&amp;</span>valeur); <span style="color: #408080; font-style: italic">// Réception du paquet</span>
+    Serial.println(valeur); <span style="color: #408080; font-style: italic">// Affiche le message</span>
+  }
+}
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/48/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<p class="text-justify">Du côté serveur, la fonction <code>loop()</code> utilise cette même astuce du cast pour faire passer la variable comme un tableau d'octets aux yeux de la fonction <code>Mirf.getData()</code>. 
+Une fois la valeur copiée par dans la variable par <code>Mirf.getData()</code>, il suffit d'utiliser la variable normalement.
+</p>
+<p class="text-justify">Afin d'être complet, sachez qu'il est aussi possible de copier une variable dans un tableau d'octets au moyen de la fonction <a href="http://www.cplusplus.com/reference/cstring/memcpy/">memcpy()</a>. 
+Cela n'apporte aucun avantage par rapport à la solution du cast, mais c'est parfois plus simple et plus lisible pour des débutants.
+</p>
+<p class="text-justify">Voilà ce que donnerait le code des fonctions <code>loop()</code> du client et du serveur en utilisant memcpy() :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  byte message[<span style="color: #666666">32</span>];
+  
+  <span style="color: #408080; font-style: italic">// Lit un nombre depuis le port série</span>
+  <span style="color: #B00040">float</span> valeur <span style="color: #666666">=</span> Serial.parseFloat();
+  
+  <span style="color: #408080; font-style: italic">// Copie le float dans le message</span>
+  memcpy(message, <span style="color: #666666">&amp;</span>valeur, <span style="color: #008000; font-weight: bold">sizeof</span>(valeur));
+  
+  Mirf.send(message); <span style="color: #408080; font-style: italic">// On envoie le message</span>
+  <span style="color: #008000; font-weight: bold">while</span>(Mirf.isSending()); <span style="color: #408080; font-style: italic">// On attend la fin de l'envoi</span>
+} 
+</pre></div>
+</td></tr></tbody></table></div>
+
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  byte message[<span style="color: #666666">32</span>];
+  <span style="color: #B00040">float</span> valeur;
+
+  <span style="color: #008000; font-weight: bold">if</span>(Mirf.dataReady()){
+    Mirf.getData(message); <span style="color: #408080; font-style: italic">// Réception du paquet</span>
+    
+    memcpy(<span style="color: #666666">&amp;</span>valeur, message, <span style="color: #008000; font-weight: bold">sizeof</span>(valeur));
+    Serial.println(valeur); <span style="color: #408080; font-style: italic">// Affiche le message</span>
+  }
+}
+</pre></div>
+</td></tr></tbody></table></div>
+
+<h4><a id="envoi-de-structure">Envoi de structure</a></h4>
+
+<p class="text-justify">Dans le chapitre précédent, j'ai précisé que l'astuce du cast fonctionne avec n'importe quel type de données. 
+Cela est aussi vrai pour les types de données complexes réalisés au moyen de structure de données.
+</p>
+<p class="text-justify">Exemple de code client :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Client d'envoi de structure</span>
+<span style="color: #408080; font-style: italic"> */</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+ 
+<span style="color: #008000; font-weight: bold">typedef</span> <span style="color: #008000; font-weight: bold">struct</span> {
+  <span style="color: #B00040">char</span> commande;
+  <span style="color: #B00040">int</span> valeur;
+} MaStructure;
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+   
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothèque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du canal de communication (128 canaux disponibles, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">sizeof</span>(MaStructure); <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+   
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  MaStructure message;
+  
+  <span style="color: #408080; font-style: italic">// Lit un nombre depuis le port série</span>
+  <span style="color: #008000; font-weight: bold">while</span>(<span style="color: #666666">!</span>Serial.available()); <span style="color: #408080; font-style: italic">// Attend un caractère</span>
+  message.commande <span style="color: #666666">=</span> Serial.read();
+  message.valeur <span style="color: #666666">=</span> Serial.parseInt();
+  
+  Mirf.send((byte<span style="color: #666666">*</span>) <span style="color: #666666">&amp;</span>message); <span style="color: #408080; font-style: italic">// On envoie le message</span>
+  <span style="color: #008000; font-weight: bold">while</span>(Mirf.isSending()); <span style="color: #408080; font-style: italic">// On attend la fin de l'envoi</span>
+} 
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/49/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<p class="text-justify">Et de code serveur :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Serveur d'envoi de structure</span>
+<span style="color: #408080; font-style: italic"> */</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+
+<span style="color: #008000; font-weight: bold">typedef</span> <span style="color: #008000; font-weight: bold">struct</span> {
+  <span style="color: #B00040">char</span> commande;
+  <span style="color: #B00040">int</span> valeur;
+} MaStructure;
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothèque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du canal de communication (128 canaux disponibles, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">sizeof</span>(MaStructure); <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  MaStructure message;
+
+  <span style="color: #008000; font-weight: bold">if</span>(Mirf.dataReady()){
+    Mirf.getData((byte<span style="color: #666666">*</span>) <span style="color: #666666">&amp;</span>message); <span style="color: #408080; font-style: italic">// Réception du paquet</span>
+    
+    Serial.print(<span style="color: #BA2121">"commande="</span>); <span style="color: #408080; font-style: italic">// Affiche le message</span>
+    Serial.print(message.commande);
+    Serial.print(<span style="color: #BA2121">" valeur="</span>);
+    Serial.println(message.valeur);
+  }
+}
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/50/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<p class="text-justify">Comme vous pouvez le voir, il est possible d'envoyer des données structurées assez facilement. 
+En utilisant une structure bien pensée, il est possible de transmettre à peu près n'importe quelle information ou commande.
+</p>
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-exclamation-triangle"></i> Les pointeurs mordent</h3>
+    </div>
+    <div class="panel-body">
+        <p class="text-justify">Attention aux pointeurs dans les structures, lors de l'envoi, seule l'adresse du pointeur est transmise et non la valeur pointée.
+</p>
+<p class="text-justify">Je vous invite à lire ma remarque sur ce sujet dans <a href="https://www.carnetdumaker.net/articles/stocker-des-donnees-en-memoire-eeprom-avec-une-carte-arduino-genuino/#bonus-lire-et-ecrire-des-donnees-structurees-en-memoire-eeprom">l'article sur le stockage de structure en mémoire EEPROM</a> pour plus de détails.
+</p>
+    </div>
+</div>
+
+<h4><a id="envoi-de-tableau-de-valeurs">Envoi de tableau de valeurs</a></h4>
+
+<p class="text-justify">Toujours dans le même esprit, l'astuce du cast fonctionne aussi avec des tableaux de valeurs, 
+comme par exemple un tableau de <code>float</code>, <code>int</code>, <code>char</code>, etc.
+</p>
+<p class="text-justify">Exemple de code client :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Client d'envoi de tableau de valeurs</span>
+<span style="color: #408080; font-style: italic"> */</span>
+
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+   
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothéque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du cannal de communication (128 canaux disponible, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #B00040">int</span>) <span style="color: #666666">*</span> <span style="color: #666666">6</span>; <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+   
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  <span style="color: #B00040">int</span> valeurs[<span style="color: #666666">6</span>];
+  
+  <span style="color: #408080; font-style: italic">// Lit les broches analogiques</span>
+  valeurs[<span style="color: #666666">0</span>] <span style="color: #666666">=</span> analogRead(<span style="color: #666666">0</span>);
+  valeurs[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> analogRead(<span style="color: #666666">1</span>);
+  valeurs[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> analogRead(<span style="color: #666666">2</span>);
+  valeurs[<span style="color: #666666">3</span>] <span style="color: #666666">=</span> analogRead(<span style="color: #666666">3</span>);
+  valeurs[<span style="color: #666666">4</span>] <span style="color: #666666">=</span> analogRead(<span style="color: #666666">4</span>);
+  valeurs[<span style="color: #666666">5</span>] <span style="color: #666666">=</span> analogRead(<span style="color: #666666">5</span>);
+  
+  Mirf.send((byte <span style="color: #666666">*</span>) <span style="color: #666666">&amp;</span>valeurs); <span style="color: #408080; font-style: italic">// On envoi le message</span>
+  <span style="color: #008000; font-weight: bold">while</span>(Mirf.isSending()); <span style="color: #408080; font-style: italic">// On attend la fin de l'envoi</span>
+  
+  delay(<span style="color: #666666">1000</span>);
+} 
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/53/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<p class="text-justify">Et de code serveur :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Serveur d'envoi de tableau de valeurs</span>
+<span style="color: #408080; font-style: italic"> */</span>
+
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothéque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du cannal de communication (128 canaux disponible, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">sizeof</span>(<span style="color: #B00040">int</span>) <span style="color: #666666">*</span> <span style="color: #666666">6</span>; <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  <span style="color: #B00040">int</span> valeurs[<span style="color: #666666">6</span>];
+
+  <span style="color: #008000; font-weight: bold">if</span>(Mirf.dataReady()){
+    Mirf.getData((byte <span style="color: #666666">*</span>) <span style="color: #666666">&amp;</span>valeurs); <span style="color: #408080; font-style: italic">// Réception du paquet</span>
+    
+    Serial.print(<span style="color: #BA2121">"valeurs[0]="</span>);
+    Serial.println(valeurs[<span style="color: #666666">0</span>]); <span style="color: #408080; font-style: italic">// Affiche le message</span>
+    Serial.print(<span style="color: #BA2121">"valeurs[1]="</span>);
+    Serial.println(valeurs[<span style="color: #666666">1</span>]); 
+    Serial.print(<span style="color: #BA2121">"valeurs[2]="</span>);
+    Serial.println(valeurs[<span style="color: #666666">2</span>]); 
+    Serial.print(<span style="color: #BA2121">"valeurs[3]="</span>);
+    Serial.println(valeurs[<span style="color: #666666">3</span>]); 
+    Serial.print(<span style="color: #BA2121">"valeurs[4]="</span>);
+    Serial.println(valeurs[<span style="color: #666666">4</span>]); 
+    Serial.print(<span style="color: #BA2121">"valeurs[5]="</span>);
+    Serial.println(valeurs[<span style="color: #666666">5</span>]);
+  }
+}
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/54/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<h4><a id="envoi-de-commande-simple">Envoi de commande simple</a></h4>
+
+<p class="text-justify">En modifiant quelques lignes du code d'exemple du serveur d'envoi de texte, il est possible de faire un système de commande à distance simpliste : 
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  byte message[<span style="color: #666666">32</span>];
+
+  <span style="color: #008000; font-weight: bold">if</span>(Mirf.dataReady()){
+    Mirf.getData(message); <span style="color: #408080; font-style: italic">// Réception du paquet</span>
+    
+    <span style="color: #008000; font-weight: bold">if</span> (strcmp((<span style="color: #B00040">char</span><span style="color: #666666">*</span>) message, <span style="color: #BA2121">"on"</span>) <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+      <span style="color: #408080; font-style: italic">// Fait quelque chose si le message est "on"</span>
+
+    } <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> (strcmp((<span style="color: #B00040">char</span><span style="color: #666666">*</span>) message, <span style="color: #BA2121">"off"</span>) <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+      <span style="color: #408080; font-style: italic">// Fait quelque chose d'autre si le message est "off"</span>
+    }
+  }
+}
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify">La fonction <a href="http://www.cplusplus.com/reference/cstring/strcmp/">strcmp()</a> retourne <code>0</code> quand deux chaines de caractères sont identiques. 
+Il suffit donc d'appeler <code>strcmp()</code> dans une série de <code>if()</code> pour tester la valeur de la commande et réaliser les actions nécessaires en conséquence.
+</p>
+<h4><a id="envoi-de-commandes-complexes">Envoi de commandes complexes</a></h4>
+
+<p class="text-justify">Dans le même principe que le chapitre précédent, en modifiant quelques lignes du code d'exemple du serveur d'envoi de structure, 
+il est possible de faire un système de commande à distance relativement complet, avec paramètres : 
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  MaStructure message;
+
+  <span style="color: #008000; font-weight: bold">if</span>(Mirf.dataReady()){
+    Mirf.getData((byte<span style="color: #666666">*</span>) <span style="color: #666666">&amp;</span>message); <span style="color: #408080; font-style: italic">// Réception du paquet</span>
+    
+    <span style="color: #008000; font-weight: bold">switch</span> (message.commande) {
+      <span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">'A'</span><span style="color: #666666">:</span>
+         <span style="color: #408080; font-style: italic">// Fait quelque chose</span>
+        <span style="color: #008000; font-weight: bold">break</span>;
+
+      <span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">'B'</span><span style="color: #666666">:</span>
+         <span style="color: #408080; font-style: italic">// Fait autre chose </span>
+        <span style="color: #008000; font-weight: bold">break</span>;
+
+      <span style="color: #408080; font-style: italic">// ...</span>
+
+      <span style="color: #008000; font-weight: bold">default</span><span style="color: #666666">:</span>
+          <span style="color: #408080; font-style: italic">// Fait quelque chose quand la commande n'est pas comprise</span>
+    } 
+  }
+}
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify">Dans le code d'exemple, j'avais utilisé une structure avec deux champs : <code>commande</code> (un caractère) et <code>valeur</code> (un nombre entier). 
+En utilisant un <a href="http://www.commentcamarche.net/contents/111-langage-c-les-structures-conditionnelles#l-instruction-bold-switch-bold">switch()</a> (équivalent à une série de <code>if()</code> sur des valeurs numériques), 
+il est possible de faire plusieurs actions avec un paramètre. Exemple : <code>A</code> = allumer, <code>a</code> = éteindre, avec <code>valeur</code> = le numéro de la broche à allumer / éteindre à distance.
+</p>
+<p class="text-justify">Libre à vous de faire la structure de données qui convient à votre projet <img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/wink.5c9123198072.png" alt=";)" class="emoticons">
+</p>
+<h3><a id="bonus-une-sonnette-diy">Bonus : une sonnette DIY</a></h3>
+
+<p class="text-justify">Pour terminer cet article en beauté, je vous propose de fabriquer une sonnette sans fil.
+</p>
+<p class="text-justify">Cet exemple pratique pourra servir de base pour des projets domotiques ou de télécommandes à distance <img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/wink.5c9123198072.png" alt=";)" class="emoticons">
+</p>
+<h4><a id="le-montage">Le montage</a></h4>
+
+<p class="text-center"></p><figure class="thumbnail">
+<p class="text-justify"><a href="https://www.carnetdumaker.net/images/montage-sonnette-diy-partie-bouton/"><img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/P1010076_recadre.jpg" alt="Montage sonnette DIY - partie bouton" width="640" height="495"></a>
+</p>
+<figcaption class="caption"><p class="text-center">Montage de l'émetteur</p>
+</figcaption>
+
+</figure>
+<p></p>
+
+<p class="text-center"></p><figure class="thumbnail">
+<p class="text-justify"><a href="https://www.carnetdumaker.net/images/montage-sonnette-diy-partie-haut-parleur/"><img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/P1010080_recadre.jpg" alt="Montage sonnette DIY - partie haut parleur" width="616" height="640"></a>
+</p>
+<figcaption class="caption"><p class="text-center">Montage du récepteur</p>
+</figcaption>
+
+</figure>
+<p></p>
+
+<p class="text-justify">Le montage est le même que celui en début d'article. 
+Seulement, sur une des cartes, un bouton poussoir est câblé sur la broche <code>D2</code>, alors que sur l'autre il s'agit d'un haut-parleur.
+</p>
+<p class="text-justify">Je vous renvoie vers mon article sur <a href="https://www.carnetdumaker.net/articles/utiliser-les-entrees-sorties-numeriques-dune-carte-arduino-genuino/">les entrées sorties numériques</a> pour le câblage du bouton poussoir 
+et vers mon article sur <a href="https://www.carnetdumaker.net/articles/jouer-des-notes-de-musiques-avec-une-carte-arduino-genuino/">comment faire de la musique en Arduino</a> pour le câblage du haut-parleur.
+</p>
+<h4><a id="le-code">Le code</a></h4>
+
+<p class="text-justify">Tout d'abord l'émetteur avec son bouton : 
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Sonnette DIY (émetteur)</span>
+<span style="color: #408080; font-style: italic"> */</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+ 
+<span style="color: #008000; font-weight: bold">const</span> byte PIN_BUTTON <span style="color: #666666">=</span> <span style="color: #666666">2</span>;
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+  
+  pinMode(PIN_BUTTON, INPUT_PULLUP);
+   
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothèque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du canal de communication (128 canaux disponibles, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #666666">8</span>; <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+   
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+ 
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  
+  <span style="color: #408080; font-style: italic">// Lit l'état du bouton</span>
+  <span style="color: #008000; font-weight: bold">if</span> (digitalRead(PIN_BUTTON) <span style="color: #666666">==</span> LOW) {
+    byte message[<span style="color: #666666">8</span>] <span style="color: #666666">=</span> <span style="color: #BA2121">"DRIIING"</span>;
+    Mirf.send(message); <span style="color: #408080; font-style: italic">// On envoie le message</span>
+    <span style="color: #008000; font-weight: bold">while</span>(Mirf.isSending()); <span style="color: #408080; font-style: italic">// On attend la fin de l'envoi</span>
+  }
+} 
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/51/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<p class="text-justify">Le code est à peu près le même que celui de l'exemple pour envoyer des chaines de caractères. 
+La seule différence est l'ajout du code pour le bouton poussoir en début de programme et dans <code>setup()</code>.
+</p>
+<p class="text-justify">Le code est configuré pour envoyer un message de huit octets contenant la chaine de caractères <code>"DRIIING"</code>
+(7 caractères + le caractère vide de fin de chaine) quand le bouton est appuyé (état <code>LOW</code>).
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/**</span>
+<span style="color: #408080; font-style: italic"> * Exemple de code pour la bibliothèque Mirf – Sonnette DIY (récepteur)</span>
+<span style="color: #408080; font-style: italic"> */</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;SPI.h&gt;      // Pour la communication via le port SPI</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;Mirf.h&gt;     // Pour la gestion de la communication</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;nRF24L01.h&gt; // Pour les définitions des registres du nRF24L01</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;MirfHardwareSpiDriver.h&gt; // Pour la communication SPI</span><span style="color: #BC7A00"></span>
+
+<span style="color: #008000; font-weight: bold">const</span> byte PIN_BUZZER <span style="color: #666666">=</span> <span style="color: #666666">2</span>;
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">setup</span>() {
+  Serial.begin(<span style="color: #666666">9600</span>);
+  
+  pinMode(PIN_BUZZER, OUTPUT);
+
+  Mirf.cePin <span style="color: #666666">=</span> <span style="color: #666666">9</span>; <span style="color: #408080; font-style: italic">// Broche CE sur D9</span>
+  Mirf.csnPin <span style="color: #666666">=</span> <span style="color: #666666">10</span>; <span style="color: #408080; font-style: italic">// Broche CSN sur D10</span>
+  Mirf.spi <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>MirfHardwareSpi; <span style="color: #408080; font-style: italic">// On veut utiliser le port SPI hardware</span>
+  Mirf.init(); <span style="color: #408080; font-style: italic">// Initialise la bibliothèque</span>
+
+  Mirf.channel <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// Choix du canal de communication (128 canaux disponibles, de 0 à 127)</span>
+  Mirf.payload <span style="color: #666666">=</span> <span style="color: #666666">8</span>; <span style="color: #408080; font-style: italic">// Taille d'un message (maximum 32 octets)</span>
+  Mirf.config(); <span style="color: #408080; font-style: italic">// Sauvegarde la configuration dans le module radio</span>
+
+  Mirf.setTADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf01"</span>); <span style="color: #408080; font-style: italic">// Adresse de transmission</span>
+  Mirf.setRADDR((byte <span style="color: #666666">*</span>) <span style="color: #BA2121">"nrf02"</span>); <span style="color: #408080; font-style: italic">// Adresse de réception</span>
+
+  Serial.println(<span style="color: #BA2121">"Go !"</span>); 
+}
+
+<span style="color: #B00040">void</span> <span style="color: #0000FF">loop</span>() {
+  byte message[<span style="color: #666666">8</span>];
+
+  <span style="color: #008000; font-weight: bold">if</span>(Mirf.dataReady()){
+    Mirf.getData(message); <span style="color: #408080; font-style: italic">// Réception du paquet</span>
+    
+    <span style="color: #008000; font-weight: bold">if</span> (strcmp((<span style="color: #B00040">char</span><span style="color: #666666">*</span>) message, <span style="color: #BA2121">"DRIIING"</span>) <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+      Serial.println(<span style="color: #BA2121">"Ding dong !"</span>);
+      tone(PIN_BUZZER, <span style="color: #666666">440</span>, <span style="color: #666666">1000</span>);
+    }
+  }
+}
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify"><em>L'extrait de code ci-dessus est disponible en téléchargement sur <a href="https://www.carnetdumaker.net/snippets/52/">cette page</a> (le lien de téléchargement en .zip contient le projet Arduino prêt à l'emploi).</em>
+</p>
+<p class="text-justify">Le code du récepteur est similaire au code de l'exemple de commande texte simple. 
+Quand la chaine de caractères <code>"DRIIING"</code> est reçue, le haut-parleur émet un bip pendant une seconde.
+</p>
+<h3><a id="bonus-diminuer-la-vitesse-de-communication-pour-augmenter-la-portee">Bonus : diminuer la vitesse de communication pour augmenter la portée</a></h3>
+
+<p class="text-justify">Pour les personnes qui voudraient sacrifier de la vitesse au profit d'une portée plus grande, 
+voici une petite ligne de code à mettre après <code>Mirf.config()</code> qui permet de passer le module radio à une vitesse de 250Kbps et une puissance de sortie de 0dBm (le maximum) :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Mirf.configRegister(RF_SETUP, <span style="color: #666666">0x26</span>); 
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify">Avec cette configuration et une antenne de qualité, il est normalement possible d'atteindre des distances relativement longues.
+</p>
+<p class="text-justify"><strong>N.B. Il est nécessaire d'ajouter cette ligne côté serveur et côté client(s).
+Si vous ajoutez cette ligne que d'un côté, la communication ne sera pas possible.</strong>
+</p>
+<p class="text-justify"><strong>Mise à jour importante concernant les amateurs d'eBay et autres fournisseurs chinois :</strong>
+</p>
+<p class="text-justify">Si votre module nRF24L01+ ne répond pas avec la ligne ci-dessus, essayez avec cette variante :
+</p>
+<div class="codetable"><table class="highlighttable"><tbody><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Mirf.configRegister(RF_SETUP, <span style="color: #666666">0x07</span>);
+</pre></div>
+</td></tr></tbody></table></div>
+
+<p class="text-justify">Si la communication fonctionne avec cette ligne et pas avec celle un peu plus haut, félicitation, vous venez de vous faire avoir en beauté <img src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/wink.5c9123198072.png" alt=";)" class="emoticons">
+</p>
+<p class="text-justify">Cette ligne ne fonctionne qu'avec les module nRF24L01 non "+" (ancienne génération).
+Je vous laisse relire ma remarque en début d'article concernant la différence entre la version "+" et non "+".
+</p>
+<h3><a id="conclusion">Conclusion</a></h3>
+
+<p class="text-justify">Ce tutoriel est désormais terminé.
+</p>
+<p class="text-justify">Si ce tutoriel vous a plu, n'hésitez pas à le commenter sur le forum, à le diffuser sur les réseaux sociaux et à soutenir le site si cela vous fait plaisir.</p>
+
+        
+
+        <!-- Article footnotes (HTML) -->
+        
+
+        <!-- Article foot notes -->
+        
+            
+        
+
+        <!-- Article image attachments (gallery like) -->
+        
+            
+        
+    </div>
+
+
+        </div>
+
+        <!-- Extra after content -->
+        <div class="row">
+            
+
+    <!-- Follow-up and related articles -->
+    <div class="col-md-12">
+
+        <!-- Forward follow-up -->
+        
+            
+        
+
+        <!-- Reverse follow-up -->
+        
+            
+        
+
+        <!-- Forward related articles -->
+        
+            
+                <div class="col-md-6">
+                    <h3><i class="fa fa-recycle"></i> Articles en relation avec celui-ci</h3>
+                    <ul>
+                        
+                            <li><a href="https://www.carnetdumaker.net/articles/jouer-des-notes-de-musiques-avec-une-carte-arduino-genuino/">Jouer des notes de musiques avec une carte Arduino / Genuino</a></li>
+                        
+                            <li><a href="https://www.carnetdumaker.net/articles/utiliser-les-entrees-sorties-numeriques-dune-carte-arduino-genuino/">Utiliser les entrées / sorties numériques d'une carte Arduino / Genuino</a></li>
+                        
+                    </ul>
+                </div>
+            
+        
+
+        <!-- Reverse related articles -->
+        
+            
+                <div class="col-md-6">
+                    <h3><i class="fa fa-lightbulb-o"></i> Articles pouvant vous intéresser</h3>
+                    <ul>
+                        
+                            <li><a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-en-433mhz-avec-la-bibliotheque-virtualwire-et-une-carte-arduino-genuino/">Communiquer sans fil en 433MHz avec la bibliothèque VirtualWire et une carte Arduino / Genuino</a></li>
+                        
+                    </ul>
+                </div>
+            
+        
+    </div>
+
+    <!-- Forum link -->
+    <div class="col-md-12">
+        <hr>
+        
+            <p class="text-center"><i class="fa fa-comments"></i> <a href="https://www.carnetdumaker.net/forum/topics/56-communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/">Cliquez ici pour accéder aux commentaires de l'article.</a></p>
+        
+    </div>
+
+        </div>
+
+        <!-- Back to top button -->
+        <a id="back-to-top" href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#" class="btn btn-primary btn-lg back-to-top" role="button" title="" data-toggle="tooltip" data-placement="left" data-original-title="Revenir en haut de page" aria-describedby="tooltip601686" style="display: inline;"><span class="glyphicon glyphicon-chevron-up"></span></a><div class="tooltip fade left in" role="tooltip" id="tooltip601686" style="top: 0px; left: -175px; display: block;"><div class="tooltip-arrow" style="top: 0%;"></div><div class="tooltip-inner">Revenir en haut de page</div></div>
+    </div>
+
+    <!-- Page footer -->
+    <div class="container container-narrow page-footer">
+
+        <!-- Footer links -->
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-sm-4">
+                    <ul class="list-unstyled text-center">
+                        <li><a href="https://www.carnetdumaker.net/pages/qui-sommes-nous/"><i class="fa fa-users"></i> Qui sommes-nous ?</a></li>
+                        <li><a href="https://www.carnetdumaker.net/pages/pourquoi-ce-site/"><i class="fa fa-rocket"></i> Pourquoi ce site ?</a></li>
+                        <li><a href="https://www.carnetdumaker.net/pages/nos-engagements/"><i class="fa fa-smile-o"></i> Nos engagements</a></li>
+                        <li><a href="https://www.carnetdumaker.net/pages/faq/"><i class="fa fa-comments"></i> Foire aux questions</a></li>
+                        <li><a href="https://www.carnetdumaker.net/pages/conditions-generales-d-utilisation/"><i class="fa fa-university"></i> Conditions générales d'utilisation</a></li>
+                        <li><a href="https://www.carnetdumaker.net/pages/plan-du-site/"><i class="fa fa-sitemap"></i> Plan du site</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <ul class="list-unstyled text-center">
+                        <li><a href="https://www.carnetdumaker.net/pages/nous-contacter/"><i class="fa fa-envelope-o"></i> Nous contacter</a></li>
+                        <li><a href="https://www.carnetdumaker.net/pages/mentions-legales/"><i class="fa fa-gavel"></i> Mentions légales</a></li>
+                        <li><a href="https://www.carnetdumaker.net/pages/cookies/"><i class="fa fa-eye-slash"></i> Utilisation des cookies</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <ul class="list-unstyled text-center">
+                        <li><a href="https://twitter.com/carnetdumaker"><i class="fa fa-twitter"></i> @CarnetDuMaker</a></li>
+                        <li><a href="https://plus.google.com/102700422941341090773/about"><i class="fa fa-google-plus"></i> +CarnetDuMaker</a></li>
+                        <li><a href="https://www.facebook.com/CarnetDuMaker/"><i class="fa fa-facebook-official"></i> Page CarnetDuMaker</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCAafmzWNcunTWO5d5cli2yw"><i class="fa fa-youtube"></i> Chaine CarnetDuMaker</a></li>
+                        <li><a href="https://github.com/TamiaLab"><i class="fa fa-github"></i> Github TamiaLab</a></li>
+                        <li><a href="https://www.carnetdumaker.net/articles/communiquer-sans-fil-avec-un-module-nrf24l01-la-bibliotheque-mirf-et-une-carte-arduino-genuino/#"><i class="fa fa-birthday-cake"></i> The cake is a lie</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row center-block">
+                <p class="text-center">© <a href="http://tamialab.fr/">TamiaLab</a> 2016</p>
+                <p class="text-center">Les codes sources présents sur Carnet du Maker sont la plupart du temps publiés sous <a href="http://www.gnu.org/licenses/gpl-3.0.fr.html">licence GPLv3</a>.
+                Mais, sauf mention contraire, tous les éléments du site (textes, images, codes sources, etc.), exception faite des contenus publiés sur le forum, sont la propriété exclusive de TamiaLab.
+                Toute reproduction totale ou partielle, sans autorisation préalable de l'auteur et de TamiaLab, sera succeptible d'entrainer des poursuites judiciaires.</p>
+                <p class="text-center">Motifs décoratifs réalisés par <a href="http://subtlepatterns.com/">Subtle Patterns</a> sous licence CC BY-SA 3.0.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/bootstrap.min.c5b5b2fa19bd.js"></script>
+    <script src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/jquery.backstretch.min.91d4cd427e3b.js"></script>
+    <script>
+        // Attach Backstrech to the body's background image
+        //$.backstretch("path/to/image.jpg", {fade: "normal"});
+        
+    </script>
+    <script src="./Communiquer sans fil avec un module nRF24L01, la bibliothèque Mirf et une carte Arduino _ Genuino _ Carnet du maker - L&#39;esprit Do It Yourself_files/main.7831ce876911.js"></script>
+
+    <!-- Extra scripts -->
+    
+
+
+</body></html>

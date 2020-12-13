@@ -1,0 +1,2870 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html -->
+<html class="v2" dir="ltr" lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/3416767676-css_bundle_v2.css" rel="stylesheet" type="text/css">
+<meta content="width=1100" name="viewport">
+
+<meta content="blogger" name="generator">
+<link href="https://riton-duino.blogspot.com/favicon.ico" rel="icon" type="image/x-icon">
+<link href="http://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="RitonDuino - Atom" href="https://riton-duino.blogspot.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="RitonDuino - RSS" href="https://riton-duino.blogspot.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="RitonDuino - Atom" href="https://www.blogger.com/feeds/4439416709970127506/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="RitonDuino - Atom" href="https://riton-duino.blogspot.com/feeds/204527447760443916/comments/default">
+<!--[if IE]><script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/3481486107-ieretrofit.js"></script>
+<![endif]-->
+<link href="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/16340-00.jpg" rel="image_src">
+<meta content="http://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html" property="og:url">
+<meta content="Alimenter un ARDUINO sur Pile ou Batterie" property="og:title">
+<meta content="   Alimenter un ARDUINO sur Pile ou Batterie   Cet article vise à examiner en profondeur la possibilité d&#39;alimenter un montage ARDUINO sur p..." property="og:description">
+<meta content="https://1.bp.blogspot.com/-DV5xFQaqNOM/XGqTR9OCMuI/AAAAAAAABUY/7aKpL70fm7QIo5mNgqRxXtSDldV2PKKIwCLcBGAs/w1200-h630-p-k-no-nu/16340-00.jpg" property="og:image">
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>RitonDuino: Alimenter un ARDUINO sur Pile ou Batterie</title>
+<style id="page-skin-1" type="text/css"><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Ethereal
+Designer: Jason Morrow
+URL:      jasonmorrow.etsy.com
+----------------------------------------------- */
+/* Content
+----------------------------------------------- */
+body {
+font: normal normal 13px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #666666;
+background: #fb5e53 url(//2.bp.blogspot.com/-DjL2FooQmgQ/XHz-yhKlw6I/AAAAAAAABmU/UTZMQ1yP4FcLKIkXVm9ZflBHhOwGtHgTACK4BGAYYCw/s0/multimeter.JPG) repeat scroll top left;
+}
+html body .content-outer {
+min-width: 0;
+max-width: 100%;
+width: 100%;
+}
+a:link {
+text-decoration: none;
+color: #2198a6;
+}
+a:visited {
+text-decoration: none;
+color: #4d469c;
+}
+a:hover {
+text-decoration: underline;
+color: #2198a6;
+}
+.main-inner {
+padding-top: 15px;
+}
+.body-fauxcolumn-outer {
+background: transparent none repeat-x scroll top center;
+}
+.content-fauxcolumns .fauxcolumn-inner {
+background: #ffffff url(https://resources.blogblog.com/blogblog/data/1kt/ethereal/bird-2toned-blue-fade.png) repeat-x scroll top left;
+border-left: 1px solid #fb5e53;
+border-right: 1px solid #fb5e53;
+}
+/* Flexible Background
+----------------------------------------------- */
+.content-fauxcolumn-outer .fauxborder-left {
+width: 100%;
+padding-left: 300px;
+margin-left: -300px;
+background-color: transparent;
+background-image: none;
+background-repeat: no-repeat;
+background-position: left top;
+}
+.content-fauxcolumn-outer .fauxborder-right {
+margin-right: -299px;
+width: 299px;
+background-color: transparent;
+background-image: none;
+background-repeat: no-repeat;
+background-position: right top;
+}
+/* Columns
+----------------------------------------------- */
+.content-inner {
+padding: 0;
+}
+/* Header
+----------------------------------------------- */
+.header-inner {
+padding: 27px 0 3px;
+}
+.header-inner .section {
+margin: 0 35px;
+}
+.Header h1 {
+font: normal normal 60px Times, 'Times New Roman', FreeSerif, serif;
+color: #ff8b8b;
+}
+.Header h1 a {
+color: #ff8b8b;
+}
+.Header .description {
+font-size: 115%;
+color: #666666;
+}
+.header-inner .Header .titlewrapper,
+.header-inner .Header .descriptionwrapper {
+padding-left: 0;
+padding-right: 0;
+margin-bottom: 0;
+}
+/* Tabs
+----------------------------------------------- */
+.tabs-outer {
+position: relative;
+background: transparent;
+}
+.tabs-cap-top, .tabs-cap-bottom {
+position: absolute;
+width: 100%;
+}
+.tabs-cap-bottom {
+bottom: 0;
+}
+.tabs-inner {
+padding: 0;
+}
+.tabs-inner .section {
+margin: 0 35px;
+}
+*+html body .tabs-inner .widget li {
+padding: 1px;
+}
+.PageList {
+border-bottom: 1px solid #fb5e53;
+}
+.tabs-inner .widget li.selected a,
+.tabs-inner .widget li a:hover {
+position: relative;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+-goog-ms-border-top-left-radius: 5px;
+-goog-ms-border-top-right-radius: 5px;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+background: #ffa183 none ;
+color: #ffffff;
+}
+.tabs-inner .widget li a {
+display: inline-block;
+margin: 0;
+margin-right: 1px;
+padding: .65em 1.5em;
+font: normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #666666;
+background-color: #ffdfc7;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+-goog-ms-border-top-left-radius: 5px;
+-goog-ms-border-top-right-radius: 5px;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+}
+/* Headings
+----------------------------------------------- */
+h2 {
+font: normal bold 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #666666;
+}
+/* Widgets
+----------------------------------------------- */
+.main-inner .column-left-inner {
+padding: 0 0 0 20px;
+}
+.main-inner .column-left-inner .section {
+margin-right: 0;
+}
+.main-inner .column-right-inner {
+padding: 0 20px 0 0;
+}
+.main-inner .column-right-inner .section {
+margin-left: 0;
+}
+.main-inner .section {
+padding: 0;
+}
+.main-inner .widget {
+padding: 0 0 15px;
+margin: 20px 0;
+border-bottom: 1px solid #dbdbdb;
+}
+.main-inner .widget h2 {
+margin: 0;
+padding: .6em 0 .5em;
+}
+.footer-inner .widget h2 {
+padding: 0 0 .4em;
+}
+.main-inner .widget h2 + div, .footer-inner .widget h2 + div {
+padding-top: 15px;
+}
+.main-inner .widget .widget-content {
+margin: 0;
+padding: 15px 0 0;
+}
+.main-inner .widget ul, .main-inner .widget #ArchiveList ul.flat {
+margin: -15px -15px -15px;
+padding: 0;
+list-style: none;
+}
+.main-inner .sidebar .widget h2 {
+border-bottom: 1px solid #dbdbdb;
+}
+.main-inner .widget #ArchiveList {
+margin: -15px 0 0;
+}
+.main-inner .widget ul li, .main-inner .widget #ArchiveList ul.flat li {
+padding: .5em 15px;
+text-indent: 0;
+}
+.main-inner .widget #ArchiveList ul li {
+padding-top: .25em;
+padding-bottom: .25em;
+}
+.main-inner .widget ul li:first-child, .main-inner .widget #ArchiveList ul.flat li:first-child {
+border-top: none;
+}
+.main-inner .widget ul li:last-child, .main-inner .widget #ArchiveList ul.flat li:last-child {
+border-bottom: none;
+}
+.main-inner .widget .post-body ul {
+padding: 0 2.5em;
+margin: .5em 0;
+list-style: disc;
+}
+.main-inner .widget .post-body ul li {
+padding: 0.25em 0;
+margin-bottom: .25em;
+color: #666666;
+border: none;
+}
+.footer-inner .widget ul {
+padding: 0;
+list-style: none;
+}
+.widget .zippy {
+color: #cccccc;
+}
+/* Posts
+----------------------------------------------- */
+.main.section {
+margin: 0 20px;
+}
+body .main-inner .Blog {
+padding: 0;
+background-color: transparent;
+border: none;
+}
+.main-inner .widget h2.date-header {
+border-bottom: 1px solid #dbdbdb;
+}
+.date-outer {
+position: relative;
+margin: 15px 0 20px;
+}
+.date-outer:first-child {
+margin-top: 0;
+}
+.date-posts {
+clear: both;
+}
+.post-outer, .inline-ad {
+border-bottom: 1px solid #dbdbdb;
+padding: 30px 0;
+}
+.post-outer {
+padding-bottom: 10px;
+}
+.post-outer:first-child {
+padding-top: 0;
+border-top: none;
+}
+.post-outer:last-child, .inline-ad:last-child {
+border-bottom: none;
+}
+.post-body img {
+padding: 8px;
+}
+h3.post-title, h4 {
+font: normal normal 24px Times, Times New Roman, serif;
+color: #2198a6;
+}
+h3.post-title a {
+font: normal normal 24px Times, Times New Roman, serif;
+color: #2198a6;
+text-decoration: none;
+}
+h3.post-title a:hover {
+color: #2198a6;
+text-decoration: underline;
+}
+.post-header {
+margin: 0 0 1.5em;
+}
+.post-body {
+line-height: 1.4;
+}
+.post-footer {
+margin: 1.5em 0 0;
+}
+#blog-pager {
+padding: 15px;
+}
+.blog-feeds, .post-feeds {
+margin: 1em 0;
+text-align: center;
+}
+.post-outer .comments {
+margin-top: 2em;
+}
+/* Comments
+----------------------------------------------- */
+.comments .comments-content .icon.blog-author {
+background-repeat: no-repeat;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEgAACxIB0t1+/AAAAAd0SU1FB9sLFwMeCjjhcOMAAAD+SURBVDjLtZSvTgNBEIe/WRRnm3U8RC1neQdsm1zSBIU9VVF1FkUguQQsD9ITmD7ECZIJSE4OZo9stoVjC/zc7ky+zH9hXwVwDpTAWWLrgS3QAe8AZgaAJI5zYAmc8r0G4AHYHQKVwII8PZrZFsBFkeRCABYiMh9BRUhnSkPTNCtVXYXURi1FpBDgArj8QU1eVXUzfnjv7yP7kwu1mYrkWlU33vs1QNu2qU8pwN0UpKoqokjWwCztrMuBhEhmh8bD5UDqur75asbcX0BGUB9/HAMB+r32hznJgXy2v0sGLBcyAJ1EK3LFcbo1s91JeLwAbwGYu7TP/3ZGfnXYPgAVNngtqatUNgAAAABJRU5ErkJggg==);
+}
+.comments .comments-content .loadmore a {
+background: #ffffff url(https://resources.blogblog.com/blogblog/data/1kt/ethereal/bird-2toned-blue-fade.png) repeat-x scroll top left;
+}
+.comments .comments-content .loadmore a {
+border-top: 1px solid #dbdbdb;
+border-bottom: 1px solid #dbdbdb;
+}
+.comments .comment-thread.inline-thread {
+background: #ffffff url(https://resources.blogblog.com/blogblog/data/1kt/ethereal/bird-2toned-blue-fade.png) repeat-x scroll top left;
+}
+.comments .continue {
+border-top: 2px solid #dbdbdb;
+}
+/* Footer
+----------------------------------------------- */
+.footer-inner {
+padding: 30px 0;
+overflow: hidden;
+}
+/* Mobile
+----------------------------------------------- */
+body.mobile  {
+background-size: auto
+}
+.mobile .body-fauxcolumn-outer {
+background: ;
+}
+.mobile .content-fauxcolumns .fauxcolumn-inner {
+opacity: 0.75;
+}
+.mobile .content-fauxcolumn-outer .fauxborder-right {
+margin-right: 0;
+}
+.mobile-link-button {
+background-color: #ffa183;
+}
+.mobile-link-button a:link, .mobile-link-button a:visited {
+color: #ffffff;
+}
+.mobile-index-contents {
+color: #444444;
+}
+.mobile .body-fauxcolumn-outer {
+background-size: 100% auto;
+}
+.mobile .mobile-date-outer {
+border-bottom: transparent;
+}
+.mobile .PageList {
+border-bottom: none;
+}
+.mobile .tabs-inner .section {
+margin: 0;
+}
+.mobile .tabs-inner .PageList .widget-content {
+background: #ffa183 none;
+color: #ffffff;
+}
+.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+border-left: 1px solid #ffffff;
+}
+.mobile .footer-inner {
+overflow: visible;
+}
+body.mobile .AdSense {
+margin: 0 -10px;
+}
+
+--></style>
+<style id="template-skin-1" type="text/css"><!--
+body {
+min-width: 930px;
+}
+.content-outer, .content-fauxcolumn-outer, .region-inner {
+min-width: 930px;
+max-width: 930px;
+_width: 930px;
+}
+.main-inner .columns {
+padding-left: 0;
+padding-right: 310px;
+}
+.main-inner .fauxcolumn-center-outer {
+left: 0;
+right: 310px;
+/* IE6 does not respect left and right together */
+_width: expression(this.parentNode.offsetWidth -
+parseInt("0") -
+parseInt("310px") + 'px');
+}
+.main-inner .fauxcolumn-left-outer {
+width: 0;
+}
+.main-inner .fauxcolumn-right-outer {
+width: 310px;
+}
+.main-inner .column-left-outer {
+width: 0;
+right: 100%;
+margin-left: -0;
+}
+.main-inner .column-right-outer {
+width: 310px;
+margin-right: -310px;
+}
+#layout {
+min-width: 0;
+}
+#layout .content-outer {
+min-width: 0;
+width: 800px;
+}
+#layout .region-inner {
+min-width: 0;
+width: auto;
+}
+body#layout div.add_widget {
+padding: 8px;
+}
+body#layout div.add_widget a {
+margin-left: 32px;
+}
+--></style>
+<style>
+    body {background-image:url(\/\/2.bp.blogspot.com\/-DjL2FooQmgQ\/XHz-yhKlw6I\/AAAAAAAABmU\/UTZMQ1yP4FcLKIkXVm9ZflBHhOwGtHgTACK4BGAYYCw\/s0\/multimeter.JPG);}
+    
+@media (max-width: 200px) { body {background-image:url(\/\/2.bp.blogspot.com\/-DjL2FooQmgQ\/XHz-yhKlw6I\/AAAAAAAABmU\/UTZMQ1yP4FcLKIkXVm9ZflBHhOwGtHgTACK4BGAYYCw\/w200\/multimeter.JPG);}}
+@media (max-width: 400px) and (min-width: 201px) { body {background-image:url(\/\/2.bp.blogspot.com\/-DjL2FooQmgQ\/XHz-yhKlw6I\/AAAAAAAABmU\/UTZMQ1yP4FcLKIkXVm9ZflBHhOwGtHgTACK4BGAYYCw\/w400\/multimeter.JPG);}}
+@media (max-width: 800px) and (min-width: 401px) { body {background-image:url(\/\/2.bp.blogspot.com\/-DjL2FooQmgQ\/XHz-yhKlw6I\/AAAAAAAABmU\/UTZMQ1yP4FcLKIkXVm9ZflBHhOwGtHgTACK4BGAYYCw\/w800\/multimeter.JPG);}}
+@media (max-width: 1200px) and (min-width: 801px) { body {background-image:url(\/\/2.bp.blogspot.com\/-DjL2FooQmgQ\/XHz-yhKlw6I\/AAAAAAAABmU\/UTZMQ1yP4FcLKIkXVm9ZflBHhOwGtHgTACK4BGAYYCw\/w1200\/multimeter.JPG);}}
+/* Last tag covers anything over one higher than the previous max-size cap. */
+@media (min-width: 1201px) { body {background-image:url(\/\/2.bp.blogspot.com\/-DjL2FooQmgQ\/XHz-yhKlw6I\/AAAAAAAABmU\/UTZMQ1yP4FcLKIkXVm9ZflBHhOwGtHgTACK4BGAYYCw\/w1600\/multimeter.JPG);}}
+  </style>
+<script src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/cb=gapi.loaded_3" async=""></script><script src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/cb=gapi.loaded_2" async=""></script><script src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/cb=gapi.loaded_1" async=""></script><script src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/cb=gapi(1).loaded_0" async=""></script><script async="" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/analytics.js"></script><script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-142311643-1', 'auto', 'blogger');
+        ga('blogger.send', 'pageview');
+      </script>
+<link href="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/authorization.css" media="all" onload="if(media!=&#39;all&#39;)media=&#39;all&#39;" rel="stylesheet"><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=4439416709970127506&amp;zx=57dfcb5f-f457-482f-a818-d626d7e8d1bc' rel='stylesheet'/></noscript>
+
+<script type="text/javascript" language="javascript">
+  // Supply ads personalization default for EEA readers
+  // See https://www.blogger.com/go/adspersonalization
+  adsbygoogle = window.adsbygoogle || [];
+  if (typeof adsbygoogle.requestNonPersonalizedAds === 'undefined') {
+    adsbygoogle.requestNonPersonalizedAds = 1;
+  }
+</script>
+
+
+<script type="text/javascript" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/f.txt"></script><style class="singleton-element" type="text/css">.cookie-choices-info { position:fixed;width:100%;background-color:#666;margin:0;left:0;top:0;padding:0;z-index:4000;text-align:center;color:#fff;line-height:140%;padding:10px 0;font-family:roboto,Arial; } .cookie-choices-info .cookie-choices-inner { position:relative;width:initial;margin:0;left:0;top:0; } .cookie-choices-info .cookie-choices-text { display:inline-block;vertical-align:middle;font-size:16px;margin:10px 20px;color:#ccc;max-width:800px;text-align:left; }.cookie-choices-info .cookie-choices-buttons { display:inline-block;vertical-align:middle;white-space:nowrap;margin:0 10px; } .cookie-choices-info .cookie-choices-button:hover {  color: #fff; } .cookie-choices-info .cookie-choices-button { font-weight:bold;text-transform:UPPERCASE;white-space:nowrap;color:#eee;margin-left:8px;padding:0 6px; text-decoration:none; }</style><style>.gc-bubbleDefault{table-layout:auto!important}.gc-bubbleDefault,.gc-reset{background-color:transparent!important;text-align:left;padding:0!important;margin:0!important;border:0!important}.pls-bubbleTop{border-bottom:1px solid #ccc!important}.pls-contentLeft,.pls-topTail,.pls-vertShimLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif)!important}.pls-topTail{background-repeat:repeat-x!important;background-position:bottom!important}.pls-vertShim{background-color:#fff!important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5!important}.pls-vertShimLeft{background-repeat:repeat-y!important;background-position:100%!important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2!important}.pls-contentWrap{background-color:#fff!important;position:relative!important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:100%;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png)!important;background-repeat:repeat-y!important}.pls-dropBL,.pls-dropBottom,.pls-dropRight,.pls-dropTR .pls-dropBR,.pls-tailleft,.pls-vert,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png)!important;background-repeat:repeat-x!important;width:100%}.pls-topLeft{text-align:right}.pls-topLeft,.pls-topRight{background:inherit!important;vertical-align:bottom}.pls-topRight{text-align:left}.pls-bottomLeft{background:inherit!important;text-align:right}.pls-bottomRight{background:inherit!important;text-align:left;vertical-align:top}.pls-tailbottom,.pls-tailleft,.pls-tailright,.pls-tailtop{display:none;position:relative}.pls-dropBL,.pls-dropBR,.pls-dropTR,.pls-tailbottom,.pls-tailleft,.pls-tailright,.pls-tailtop{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png)!important;background-repeat:no-repeat}.tbl-grey .pls-dropBL,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropTR,.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailleft,.tbl-grey .pls-tailright,.tbl-grey .pls-tailtop{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png)!important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-tailbottom,.pls-topLeft img,.pls-topRight img{vertical-align:bottom}.bubbleDropTR,.pls-bottomLeft,.pls-bottomLeft img,.pls-dropBottom img,.pls-dropBottomL img,.pls-dropBottomR img{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacerbottom,.pls-spacerleft,.pls-spacerright,.pls-spacertop{position:static!important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0}</style><script async="" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/lazy.min.js"></script></head>
+<body class=" variant-hummingBirds2">
+<div class="navbar section" id="navbar" name="Navbar"><div class="widget Navbar" data-version="1" id="Navbar1"><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="" tabindex="0" vspace="0" width="100%" id="navbar-iframe" name="navbar-iframe" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/navbar.html"></iframe></div>
+<script type="text/javascript" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d4439416709970127506\x26blogName\x3dRitonDuino\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dLIGHT\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://riton-duino.blogspot.com/search\x26blogLocale\x3dfr\x26v\x3d2\x26homepageUrl\x3dhttps://riton-duino.blogspot.com/\x26targetPostID\x3d204527447760443916\x26blogPostOrPageUrl\x3dhttps://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html\x26vt\x3d4344486405299601375',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div class="body-fauxcolumns">
+<div class="fauxcolumn-outer body-fauxcolumn-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<div class="content">
+<div class="content-fauxcolumns">
+<div class="fauxcolumn-outer content-fauxcolumn-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<div class="content-outer">
+<div class="content-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left content-fauxborder-left">
+<div class="fauxborder-right content-fauxborder-right"></div>
+<div class="content-inner">
+<header>
+<div class="header-outer">
+<div class="header-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left header-fauxborder-left">
+<div class="fauxborder-right header-fauxborder-right"></div>
+<div class="region-inner header-inner">
+<div class="header section" id="header" name="En-tête"><div class="widget Header" data-version="1" id="Header1">
+<div id="header-inner">
+<div class="titlewrapper">
+<h1 class="title">
+<a href="https://riton-duino.blogspot.com/">
+RitonDuino
+</a>
+</h1>
+</div>
+<div class="descriptionwrapper">
+<p class="description"><span>
+</span></p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="header-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</header>
+<div class="tabs-outer">
+<div class="tabs-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left tabs-fauxborder-left">
+<div class="fauxborder-right tabs-fauxborder-right"></div>
+<div class="region-inner tabs-inner">
+<div class="tabs section" id="crosscol" name="Toutes les colonnes"><div class="widget PageList" data-version="1" id="PageList2">
+<h2>Pages</h2>
+<div class="widget-content">
+<ul>
+<li>
+<a href="https://riton-duino.blogspot.com/">Accueil</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/p/table-des-matieres.html">Table des matières</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Actus">Actus</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/ARDUINO">ARDUINO</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/ESP8266">ESP8266</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/ESP32">ESP32</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/STM32">STM32</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Electronique">Electronique</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Alimentation">Alimentation</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Affichage">Affichage</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Batteries">Batteries</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Capteurs">Capteurs</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Modules">Modules</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Cartes">CartesPucesRfid</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Communication">Communication</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Moteurs">Moteurs</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Domotique">Domotique</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Labo%20et%20Atelier">Labo et Atelier</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/search/label/Mesure">Mesure</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/p/forums-et-blogs.html">Forums et Blogs</a>
+</li>
+<li>
+<a href="https://riton-duino.blogspot.com/p/migration-sous-bitbucket.html">Migration sous BITBUCKET</a>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=4439416709970127506&amp;widgetType=PageList&amp;widgetId=PageList2&amp;action=editWidget&amp;sectionId=crosscol" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;PageList2&quot;));" rel="nofollow" target="configPageList2" title="Modifier">
+<img alt="" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div></div>
+<div class="tabs no-items section" id="crosscol-overflow" name="Cross-Column 2"></div>
+</div>
+</div>
+<div class="tabs-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="main-outer">
+<div class="main-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left main-fauxborder-left">
+<div class="fauxborder-right main-fauxborder-right"></div>
+<div class="region-inner main-inner">
+<div class="columns fauxcolumns">
+<div class="fauxcolumn-outer fauxcolumn-center-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="fauxcolumn-outer fauxcolumn-left-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<div class="fauxcolumn-outer fauxcolumn-right-outer">
+<div class="cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left">
+<div class="fauxborder-right"></div>
+<div class="fauxcolumn-inner">
+</div>
+</div>
+<div class="cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<!-- corrects IE6 width calculation -->
+<div class="columns-inner">
+<div class="column-center-outer">
+<div class="column-center-inner">
+<div class="main section" id="main" name="Principal"><div class="widget Blog" data-version="1" id="Blog1">
+<div class="blog-posts hfeed">
+
+          <div class="date-outer">
+        
+<h2 class="date-header"><span>lundi 18 février 2019</span></h2>
+
+          <div class="date-posts">
+        
+<div class="post-outer">
+<div class="post hentry uncustomized-post-template" itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+<meta content="https://1.bp.blogspot.com/-DV5xFQaqNOM/XGqTR9OCMuI/AAAAAAAABUY/7aKpL70fm7QIo5mNgqRxXtSDldV2PKKIwCLcBGAs/s320/16340-00.jpg" itemprop="image_url">
+<meta content="4439416709970127506" itemprop="blogId">
+<meta content="204527447760443916" itemprop="postId">
+<a name="204527447760443916"></a>
+<h3 class="post-title entry-title" itemprop="name">
+Alimenter un ARDUINO sur Pile ou Batterie
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content" id="post-body-204527447760443916" itemprop="description articleBody">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-DV5xFQaqNOM/XGqTR9OCMuI/AAAAAAAABUY/7aKpL70fm7QIo5mNgqRxXtSDldV2PKKIwCLcBGAs/s1600/16340-00.jpg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="500" data-original-width="500" height="320" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/16340-00.jpg" width="320"></a></div>
+<h2 style="text-align: center;">
+Alimenter un ARDUINO sur Pile ou Batterie</h2>
+<br>
+Cet article vise à examiner en profondeur la possibilité d'alimenter un montage ARDUINO sur piles ou batteries.<br>
+<br>
+Sur certains forums il est courant de devoir répondre à des question naïves :<br>
+<br>
+<span style="color: purple;"><i>J'alimente mon ARDUINO UNO avec une pile 9V. Celle-ci est vide au bout de 3 heures. Comment se fait-il ?</i></span><br>
+<span style="color: purple;"><i><br></i></span>
+<span style="color: purple;"><i>Je voudrais alimenter une carte relais en 5V via une pile 9V. Que me faut-il comme régulateur ? </i></span><br>
+<span style="color: purple;"><i><br></i></span>
+<span style="color: purple;"><i>Sur ma carte UNO, j'ai un lecteur RFID et un servo-moteur sur le 5V. Tout fonctionne très bien en alimentant par le câble USB mais en alimentant avec une pile 9V, le moteur tremblote à peine.</i></span><br>
+<br>
+Afin de répondre immédiatement à ces questions : une pile 9V de 170mAH ne peut absolument pas fournir de courant important. De plus sa capacité vous garantit quelques heures de fonctionnement avec une carte ARDUINO UNO ou NANO sans moteur ni relais, et pas plus.<br>
+<br>
+Tous les processeurs actuels peuvent fonctionner dans deux modes :<br>
+<br>
+<b>Mode éveillé</b><br>
+Le processeur tourne à sa vitesse normale et consomme plusieurs mA. Faire fonctionner un processeur dans ce mode sur batterie pendant une longue période requiert une batterie énorme :<br>
+Par exemple une UNO consommant 25mA de manière permanente demande une énergie conséquente : 600mAH par jour, 18000mAH par mois.<br>
+<br>
+<b>Mode veille</b><br>
+Activer le mode veille du processeur permet de le faire fonctionner en basse vitesse. Le réveil du processeur peut être effectué soit par le timer RTC ou une interruption sur une pin digitale.<br>
+Certains composants sur la carte peuvent consommer aussi :<br>
+<ul>
+<li>LED power</li>
+<li>régulateur</li>
+<li>convertisseur USB / série</li>
+<li>etc.</li>
+</ul>
+Pour correctement aborder un projet basse consommation il faudra de préférence choisir une carte <a href="https://riton-duino.blogspot.com/2018/02/arduino-pro-mini-basse-consommation.html">ARDUINO PRO MINI modifiée</a>, une STM32 BLUE PILL ou une carte à base de STM32 M0.<br>
+Par exemple une PRO MINI en mode veille consommant 5µA de manière permanente demande une énergie ridicule : 0.12mAH par jour, 3.6mAH par mois, 44mAH par an.<br>
+<br>
+J'ai déjà écrit quelques articles sur la consommation des cartes ARDUINO et la PRO MINI :<br>
+<a href="https://riton-duino.blogspot.com/2018/12/consommation-dune-carte-arduino.html">https://riton-duino.blogspot.com/2018/12/consommation-dune-carte-arduino.html</a><br>
+<a href="https://riton-duino.blogspot.com/2018/02/arduino-pro-mini-basse-consommation.html">https://riton-duino.blogspot.com/2018/02/arduino-pro-mini-basse-consommation.html</a><br>
+<br>
+Je tiens à préciser que l'élaboration d'une solution basse consommation fonctionnant sur batterie requiert de bonnes connaissances aussi bien en matière d'électronique qu'en matière de logiciel.<br>
+Du matériel de mesure est souvent indispensable, tel un multimètre capable de mesurer des courants faibles de l'ordre du µA .<br>
+La suite de l'article n'est malheureusement pas accessible facilement au débutant.<br>
+<br>
+<h4>
+1. Piles ou batteries</h4>
+En dehors de fait que contrairement à une pile une batterie se recharge, il faut considérer les caractéristiques de chaque technologie, en particulier la tension nominale et maximale en fin de charge :<br>
+<br>
+<table align="center" border="1" style="width: 100%;"><tbody>
+<tr><th style="text-align: center;"><span style="font-weight: normal;">Technologie</span></th>
+    <th><span style="font-weight: normal;">Recharge</span></th>
+    <th><span style="font-weight: normal;">Tension nominale</span></th>
+    <th><span style="font-weight: normal;">Tension maximale</span></th>
+    <th><span style="font-weight: normal;">Tension minimale</span></th>
+  </tr>
+<tr>
+    <td>Plomb</td>
+    <td>Oui</td>
+    <td>2.1V</td>
+    <td>2.33V</td>
+    <td>1.8V (*)</td>
+  </tr>
+<tr>
+    <td>Alcaline</td>
+    <td>Non</td>
+    <td>1.5V</td>
+    <td><br></td>
+    <td><br></td>
+  </tr>
+<tr>
+    <td>Ni-MH</td>
+    <td>Oui</td>
+    <td>1.2V</td>
+    <td>1.4V</td>
+    <td>1.1V</td>
+  </tr>
+<tr>
+    <td>LITHIUM-ION</td>
+    <td>Oui</td>
+    <td>3.7V</td>
+    <td>4.2V</td>
+    <td>3V</td>
+  </tr>
+<tr>
+    <td>LIPO</td>
+    <td>Oui</td>
+    <td>3.7V</td>
+    <td>4.2V</td>
+    <td>3V</td>
+  </tr>
+<tr>
+    <td>LiFePO4</td>
+    <td>Oui</td>
+    <td>3.3V</td>
+    <td>3.6V</td>
+    <td>2.5V</td>
+  </tr>
+</tbody></table>
+<br>
+(*) certaines batteries cycliques acceptent de voir leur tension chuter à 1.6V.<br>
+<br>
+Afin de protéger les circuits alimentés la tension de fin de charge sera prise en compte. La tension nominale n'est qu'indicative.<br>
+<br>
+La tension minimale est celle en dessous de laquelle la batterie, si on la décharge trop profondément, subira des dommage souvent irréversibles.<br>
+<br>
+<h3>
+1.1. Le choix</h3>
+Le choix d'une pile ou d'une batterie devra tenir compte de certains paramètres :<br>
+<ul>
+<li>tension et courant de service</li>
+<li>environnement</li>
+<li>prix </li>
+<li>autonomie envisagée (périodicité de la recharge)</li>
+<li>disponibilité des chargeurs</li>
+</ul>
+<h3>
+1.2. Les technologies</h3>
+<b>Les piles</b><br>
+Les piles ont le gros inconvénient de ne pas être rechargeables ce qui les désavantage d'un point de vue écologique et financier.<br>
+<br>
+Elles ont par contre l'avantage d'un courant d'auto-décharge très faible.<br>
+<br>
+<b>Les batteries au plomb</b><br>
+Ces batteries ont un encombrement important et sont lourdes.<br>
+<br>
+Ces batteries sont peu utilisées pour alimenter des montages n'ayant pas besoin directement d'une tension de 12V.<br>
+<br>
+Elles sont cependant capables de fonctionner correctement par grand froid, ce qui les rend indispensables dans les applications censées fonctionner à l'extérieur.<br>
+<br>
+Les batteries au plomb du type cyclique (chariot élévateur, fauteuil roulant, alimentation solaire, onduleur, etc.) supportent d'être fortement déchargées.<br>
+Les batteries au plomb classiques (batteries de voiture) ne le supportent pas. <br>
+<br>
+<b>Les batteries NI-MH</b><br>
+Le principal défaut des batteries NI-MH est leur effet mémoire. Cela réduit leur utilisation à des systèmes autonomes où la recharge de la batterie intervient lorsque celle-ci est vide ou presque.<br>
+<br>
+Les nouvelles batteries NI-MH ont un taux d'auto-décharge faible. Il s'agit des batteries LSD (Low Self Discharge) :<br>
+<ul>
+<li>Duracell Stay Charged</li>
+<li>Varta Ready2Use</li>
+<li>Sanyo Eneloop</li>
+<li>Tenergy Centura</li>
+</ul>
+Elles sont vendues pré-chargées. <br>
+<br>
+Les chargeurs du commerce sont nombreux, mais les modules chargeurs à intégrer dans un montage sont rares. Il est cependant possible d'en fabriquer à l'aide de circuits intégrés :<br>
+<ul>
+<li><a href="https://www.analog.com/media/en/technical-documentation/data-sheets/4060f.pdf">LTC4060</a></li>
+<li><a href="https://datasheets.maximintegrated.com/en/ds/MAX712-MAX713.pdf">MAX712</a></li>
+</ul>
+Ces circuits peuvent être laissés branchés en permanence sur la batterie, le courant de fuite de leur broche de mesure de la tension batterie est très faible : 1 µA à 5µA.<br>
+<br>
+<ul>
+</ul>
+<b>Les batteries LIPO et LITHIUM-ION</b><br>
+Ces batteries disposent d'un rapport capacité / encombrement important.<br>
+<br>
+Les LIPO sont le plus souvent plates et peuvent se glisser facilement dans un boîtier.<br>
+<br>
+Les chargeurs du commerce sont nombreux, et le choix de modules chargeurs à intégrer dans un montage est large.<br>
+<br>
+<b>Les batteries LIFEPO4</b><br>
+Ces batteries disposent aussi d'un rapport capacité / encombrement important.<br>
+<br>
+Elles ont le gros avantage de fournir une tension maximale de 3.6V compatible avec un grand nombre de processeurs, circuits et modules du marché.<br>
+<br>
+<h4>
+2. Tension et courant de service</h4>
+Choisir une technologie passe par la connaissance des composants que l'on va devoir alimenter. Il faut étudier les datasheets de chacun d'eux afin de déterminer la tension optimale et les courants consommés.<br>
+<br>
+Je vous propose quelques exemples. Pour plus de précisions à propos des composants, suivre les liens :<br>
+<br>
+<br>
+<table align="center" border="1" style="width: 100%;"><tbody>
+<tr><th style="text-align: center;"><span style="font-weight: normal;">Module</span></th>
+    <th><span style="font-weight: normal;">Tension d'alimentation</span></th>
+    <th><span style="font-weight: normal;">Courant nominal</span></th>
+    <th><span style="font-weight: normal;">Courant de veille</span></th>
+  </tr>
+<tr>
+    <td><a href="https://riton-duino.blogspot.com/2018/12/consommation-dune-carte-arduino.html">ARDUINO UNO NANO</a></td>
+    <td>4V - 6V</td>
+    <td>25mA</td>
+    <td>6mA</td>
+  </tr>
+<tr>
+    <td><a href="https://riton-duino.blogspot.com/2018/12/consommation-dune-carte-arduino.html">ARDUINO PRO MINI</a></td>
+    <td>2.7V - 6V</td>
+    <td>5.5mA</td>
+    <td>1.4mA</td>
+  </tr>
+<tr>
+    <td><a href="https://riton-duino.blogspot.com/2018/02/arduino-pro-mini-basse-consommation.html">ARDUINO PRO MINI modifiée</a></td>
+    <td>2.7V - 6V</td>
+    <td>5.5mA</td>
+    <td>5µA</td>
+  </tr>
+<tr>
+    <td><a href="https://riton-duino.blogspot.com/2018/03/stm32f103c8t6-et-arduino.html">STM32 BLUE PILL</a></td>
+    <td>2V - 3.6V</td>
+    <td><span style="font-size: x-small;">15mA @ 16MHz</span><br>
+<span style="font-size: x-small;">50mA @ 72MHz</span></td>
+    <td>1.4µA</td>
+  </tr>
+<tr>
+    <td><a href="https://riton-duino.blogspot.com/2018/12/les-capteurs-de-temperature-humidite.html">Capteurs température et humidité</a></td>
+    <td>1.4V - 5V</td>
+    <td>10µA - 600µA</td>
+    <td>0.1µA - 50µA</td>
+  </tr>
+<tr>
+    <td><a href="https://riton-duino.blogspot.com/2018/08/le-hc-sr501-en-37v.html">Capteur de présence</a></td>
+    <td>3.3V - 12V</td>
+    <td>260µA</td>
+    <td>60µA</td>
+  </tr>
+<tr>
+    <td><a href="https://www.sparkfun.com/datasheets/Components/nRF24L01_prelim_prod_spec_1_2.pdf">NRF24L01</a> </td>
+    <td>1.9V - 3.6V</td>
+    <td>12mA</td>
+    <td>1µA</td>
+  </tr>
+<tr>
+    <td><a href="https://cdn.sparkfun.com/assets/learn_tutorials/8/0/4/RFM95_96_97_98W.pdf">RFM95</a></td>
+    <td>1.8V - 3.7V</td>
+    <td>120mA</td>
+    <td>1µA</td>
+  </tr>
+<tr>
+    <td><a href="http://www.electronicaestudio.com/docs/istd016A.pdf">HC-05</a></td>
+    <td>1.8V - 3.6V</td>
+    <td>40mA</td>
+    <td>8mA</td>
+  </tr>
+<tr>
+    <td><a href="https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf">ESP8266 (1)</a></td>
+    <td>2.5V - 3.6V</td>
+    <td>80 - 170mA</td>
+    <td>20µA (2)</td>
+  </tr>
+<tr>
+    <td><a href="https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf">ESP32 (1)</a></td>
+    <td>2.3V - 3.6V</td>
+    <td>80 - 240mA</td>
+    <td>5µA</td>
+  </tr>
+<tr>
+    <td><a href="http://www.microchip.ua/wireless/esp01.pdf">ESP01 (carte) </a></td>
+    <td>2.3V - 3.6V</td>
+    <td>80 - 240mA</td>
+    <td>30µA (3)</td>
+  </tr>
+</tbody></table>
+<br>
+(1) Il s'agit de la consommation du module seul :<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://4.bp.blogspot.com/-TzlyhLbXSZU/XG7I6wH8anI/AAAAAAAABVk/9zSHyxpPVwcod2tgrmR0TdLqjIydSc_AwCLcBGAs/s1600/ESP12-F.jpg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="220" data-original-width="220" height="200" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/ESP12-F.jpg" width="200"></a></div>
+Les cartes ESP8266 du genre NodeMCU consomment forcément plus.<br>
+Pour utiliser un module ESP8266 sur breadboard sans composants annexes, il existe des cartes nues :<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-VYaY8EzhXJU/XG80d0623RI/AAAAAAAABWM/ulYHGoyh23ozTjh2xKWh1U4nnY7WHSaAQCLcBGAs/s1600/ESP12-breakboard.jpg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="700" data-original-width="700" height="200" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/ESP12-breakboard.jpg" width="200"></a></div>
+<br>
+(2) La datasheet précise : 20µA à 2.5V, mais j'ai essayé un ESP-12E sous 3.3V qui avait une consommation de 19µA en deep-sleep.<br>
+<br>
+(3) Il s'agit d'un ESP01 sur lequel la LED rouge a été éliminée. Cela se fait très facilement en la faisant sauter avec l'ongle :<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://2.bp.blogspot.com/-SqHcRlBvH2w/XG7cI3xDlFI/AAAAAAAABVw/wDUQwLz43cwvnTMJurHXE0i2jGCs_sjNQCLcBGAs/s1600/esp-01-led.jpg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="466" data-original-width="466" height="200" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/esp-01-led.jpg" width="200"></a></div>
+Attention : pendant la phase de connexion au réseau WIFI, un ESP8266 ou ESP32 peut consommer jusqu'à plus de 400mA.<br>
+<br>
+<b>Choix de la batterie</b><br>
+La tension de service de la batterie devra être la plus proche possible de celle requise par le module le plus exigeant en matière de tension.<br>
+Si par exemple le besoin est d'alimenter un ARDUINO PRO MINI et un NRF24L01, la batterie devra fournir au minimum 2.7V et au maximum 3.6V.<br>
+<br>
+<b>1er choix possible : LITHIUM-ION (tension mini 3V, tension maxi 4.2V)</b><br>
+Le NRF24L01 ne supportera pas la tension maximale. Un régulateur 3.3V sera utilisé.<br>
+Comme l'ARDUINO PRO MINI peut se contenter de 3.3V, le régulateur pourra alimenter les deux composants.<br>
+Le NRF24L01 fonctionnera encore lorsque la batterie atteindra sa tension minimale de 3V, ainsi que l'ARDUINO.<br>
+<h4>
+</h4>
+<b>2ème choix possible : LifePo4 (tension mini 2.5V, tension maxi 3.6V)</b><br>
+L'ARDUINO et le NRF24L01 peuvent être alimentés sans danger avec cette batterie et ceci sans régulateur.<br>
+Le NRF24L01 fonctionnera encore lorsque la batterie atteindra sa tension minimale de 2.5V.&nbsp; L'ARDUINO décrochera à 2.7V.<br>
+Ce montage ne permet pas de profiter totalement de la capacité de la batterie. <br>
+On pourrait envisager de remplacer la PRO MINI par une STM32 BLUE PILL qui elle fonctionnera encore sous 2V. <br>
+<br>
+<b>3ème choix possible : 3 x NI-MH (tension mini 3.3V, tension maxi 4.2V)</b><br>
+Le NRF24L01 ne supportera pas la tension maximale. Un régulateur 3.3V sera utilisé.<br>
+Comme l'ARDUINO PRO MINI peut se contenter de 3.3V, le régulateur pourra alimenter les deux composants.<br>
+Le NRF24L01 fonctionnera encore lorsque la batterie atteindra sa tension minimale de 3.3, ainsi que l'ARDUINO.<br>
+<br>
+<b>4ème choix possible : 2 x NI-MH (tension mini 2.2V, tension maxi 2.8V)</b><br>
+<br>
+L'ARDUINO et le NRF24L01 peuvent être alimentés sans danger avec ces batteries et ceci sans régulateur.<br>
+Le NRF24L01 fonctionnera encore lorsque la batterie atteindra sa tension minimale de 2.2V. L'ARDUINO décrochera à 2.7V.<br>
+Ce montage ne permet absolument pas de profiter de la capacité de la batterie. <br>
+On pourrait envisager de remplacer la PRO MINI par une STM32 BLUE PILL qui elle fonctionnera encore sous 2V. <br>
+<br>
+<h4>
+3. Besoins en matière de régulation</h4>
+En fonction des composants et de la batterie choisis les besoins en matière de régulation peuvent être différents.<br>
+<br>
+Comme on le voit dans le tableau précédent, certains modules supportent au maximum 3.6V et il est hors de question de les alimenter en 5V ou directement par une batterie LITHIUM-ION qui fournira une tension de 4.2V à pleine charge.<br>
+<br>
+La batterie LiFePO4 peut être une solution intéressante.<br>
+<br>
+Si l'on utilise une LITHIUM-ION il faudra obligatoirement intercaler un régulateur entre celle-ci et les modules.<br>
+Vous trouverez un large choix ici:<br>
+<a href="https://riton-duino.blogspot.com/2018/11/les-regulateurs-ldo.html">https://riton-duino.blogspot.com/2018/11/les-regulateurs-ldo.html</a><br>
+<br>
+<h4>
+4. Environnement</h4>
+En fonction de l'environnement et surtout de la température, certains choix s'imposent :<br>
+Pratiquement, seules les batteries au plomb sont capables de fonctionner correctement par grand froid.<br>
+Il faudra bien étudier la datasheet de la batterie avant de faire son choix.<br>
+<br>
+<h4>
+5. Autonomie</h4>
+Avant tout, attention : les batteries LITHIUM-ION chez ALI-EXPRESS ou autre chinoiseries sont annoncées avec des capacités délirantes.<br>
+J'ai par exemple testé des batteries 18650 6000mAH qui font en réalité moins de 1000mAH.<br>
+Voir <a class="bbc_link" href="https://riton-duino.blogspot.com/2018/05/batteries-lithium-ion.html" target="_blank">ICI</a><br>
+<br>
+En fonction des choix effectués, le besoin en autonomie sera extrêmement variable.<br>
+Considérons 3 modes de fonctionnement possibles :<br>
+<ul>
+<li>mode autonome</li>
+<li>recharge périodique</li>
+<li>recharge permanente</li>
+</ul>
+<b>Mode autonome</b><br>
+Le montage est alimenté par une batterie et celle-ci est rechargée manuellement lorsque sa capacité atteint son minimum.<br>
+<br>
+En fonction des technologies, certains choix de batterie vont s'imposer :<br>
+<br>
+Une batterie au plomb classique sera inadaptée. Ces batteries ne supportant pas d'être déchargées en dessous de 1.8V par élément.<br>
+<br>
+Tous les autres types de batterie peuvent convenir.<br>
+<br>
+<b>Recharge périodique</b><br>
+Le montage est alimenté par une 
+batterie rechargée périodiquement, par exemple par un chargeur solaire.<br>
+<br>
+Là aussi, en fonction des technologies, certains choix de batterie seront à proscrire :<br>
+<br>
+Une
+ batterie NI-MH sera inadaptée. Ces batteries ne supportant
+ pas d'être rechargées si la capacité restante est trop élevée (effet mémoire). Une batterie au plomb classique peut convenir à condition que la tension ne descende pas en dessous de 1.8V par élément.<br>
+<br>
+Tous les autres types de batterie peuvent convenir.<br>
+<br>
+La durée de fonctionnement entre deux recharges sera déterminante pour le choix de la capacité de la batterie.<br>
+Dans le cas d'une recharge par panneau solaire, on prendra en compte :<br>
+<ul>
+<li>la durée maximale d'ensoleillement journalier (courte en hiver)</li>
+<li>la durée maximale d'ensoleillement réduit (temps couvert)</li>
+</ul>
+Pendant une période de temps couvert, un panneau solaire peut fort bien ne&nbsp; fournir que 10% de sa puissance nominale.<br>
+<br>
+<b>Recharge permanente</b><br>
+Le montage est alimenté par une 
+batterie rechargée en permanence, par exemple par un chargeur secteur.<br>
+Ce type d'alimentation convient dans le cas où l'on a besoin d'une alimentation de secours en cas de disparition de la tension secteur. La batterie sert de tampon.<br>
+<br>
+Pratiquement, seule une batterie au plomb peut convenir. On appelle ce type de charge "floating". Il est préférable d'investir dans une batterie cyclique si les coupures secteur envisagées sont de longue durée.<br>
+<br>
+Tous les autres types de batterie sont à éviter.<br>
+<br>
+On peut aussi utiliser une super-capacité comme réserve tampon. <br>
+<br>
+<h3>
+5.1. Mode veille ou non</h3>
+Quand le choix des composants est fait, il va falloir premièrement déterminer si le fonctionnement en mode veille est possible.<br>
+<br>
+Certains composants comme le HC-05 n'en possèdent pas.<br>
+<br>
+Certains autres composants comme le NRF24L01, le RFM95, les ESP8266 et ESP32 en possèdent un mais il est évidemment activable uniquement si le module est utilisé en mode client. En mode serveur, la réception est activée en permanence, donc le mode veille n'est pas activable.<br>
+<br>
+Pour développer une solution basse consommation, le mode veille du micro-contrôleur doit être activé, mais aussi celui des modules qui en possèdent un.<br>
+<br>
+Généralement on considère que si le mode veille n'est pas activable, 
+la possibilité d'alimenter un processeur à l'aide d'une batterie en mode autonome est 
+fortement compromise.<br>
+En effet si l'on considère qu'un ARDUINO 
+NANO consomme une trentaine de mA en étant éveillée en permanence, la 
+consommation d'énergie sera de :<br>
+<br>
+30 * 24 * 365 = 262800mAH par an<br>
+<br>
+Soit l'équivalent de 100 batteries 18650 de 2600mAH chacune.<br>
+<br>
+En faisant le calcul dans l'autre sens, une batterie de 2600mAH aura une autonomie égale à :<br>
+<br>
+2600 / 30 / 24 = 3.6 jours<br>
+<br>
+L'alimentation d'une carte de ce type sans mode veille est bien sûr envisageable mais pas de manière permanente.<br>
+<br>
+Mon <a href="https://riton-duino.blogspot.com/2018/11/usb-un-voltmetre-amperemetre.html">voltmètre / ampèremètre USB</a> peut être alimenté par deux batteries 18650, mais il est équipé d'un interrupteur marche / arrêt.<br>
+<br>
+<h3>
+5.2. Bilan des consommations</h3>
+Le bilan des consommations va directement permettre de déterminer la capacité de la batterie. Ce bilan se décompose ainsi :<br>
+<ul>
+<li>le courant en mode veille</li>
+<li>le courant en mode éveillé, qui est périodique</li>
+</ul>
+<b>Exemple N°1</b><br>
+Prenons comme exemple un capteur de température autonome alimenté par une batterie LITHIUM-ION.<br>
+<br>
+Le courant en mode éveillé sera équivalent à :<br>
+<ul>
+<li>ARDUINO PRO MINI modifié : 5.6mA</li>
+<li>capteur DS18B20 : 4mA</li>
+<li>module NRF24L01 : 12mA</li>
+<li>régulateur LM2936 : 15µA</li>
+</ul>
+La lecture de la température sur le DS18B20 et l'émission du résultat par le NRF24L01 ne se produiront pas simultanément. On peut donc dire que le courant maximal sera d'environ 18mA.<br>
+Le courant va varier énormément entre le moment où le processeur va se réveiller, mesurer la température et émettre le résultat. Sans un appareil de mesure adéquat, cela va être difficile à estimer.<br>
+<br>
+Après quelques mesures à l'aide d'un banc de mesure de consommation (voir paragraphe suivant) on peut estimer que la phase de réveil va durer un trentaine de ms et le courant moyen sera de 10mA.<br>
+L'émission a lieu 4 fois par heure pendant 30ms, donc 120ms au total, ce qui représente 1/500è d'heure.<br>
+La consommation en mode éveillé est donc de 10mAH / 500 = 20µAH.<br>
+<br>
+Le courant en mode veille sera équivalent à :<br>
+<ul>
+<li>ARDUINO PRO MINI modifié : 5µA</li>
+<li>capteur DS18B20 : 1µA</li>
+<li>module NRF24L01 : 1µA</li>
+<li>régulateur LM2936 : 15µA</li>
+</ul>
+La consommation en mode veille est donc de 22µA.<br>
+<br>
+Fixons-nous un objectif d'autonomie : 365 jours.<br>
+<br>
+Le bilan de consommation d'énergie sera le suivant :<br>
+Consommation d'énergie en mode veille : 22µAH x 24 x 365 = 192mAH<br>
+Consommation d'énergie en mode éveillé : 20µAH x 24 x 365 = 175mAH<br>
+Nous obtenons donc un total de 367mAH.<br>
+<br>
+En prenant en compte le fait qu'une batterie LITHIUM-ION a un léger courant d'auto-décharge, une batterie de 400mAH sera parfaitement à l'aise dans ce montage.<br>
+<br>
+Cela nous conduit à adopter une batterie au format 16340 (ou CR123), intéressante pour son faible encombrement, ou une petite LIPO.<br>
+<br>
+<b>Exemple N°2</b><br>
+Imaginons que nous remplacions la PRO MINI par une NANO. Nous ne pourrons pas l'alimenter par une batterie de 3.7V. Il en faudra 2 et alimenter par la broche VIN.<br>
+<br>
+Le courant en mode éveillé sera équivalent à :<br>
+<ul>
+<li>ARDUINO NANO : 32mA</li>
+<li>capteur DS18B20 : 4mA</li>
+<li>module NRF24L01 : 12mA</li>
+<li>régulateur LM2936 : 15µA</li>
+</ul>
+On estime que le courant moyen sera de 35mA. <br>
+<br>
+La consommation en mode éveillé est donc de 35mAH / 500 = 700µAH.<br>
+<br>
+Le courant en mode veille sera équivalent à :<br>
+<ul>
+<li>ARDUINO NANO : 12.5mA</li>
+<li>capteur DS18B20 : 1µA</li>
+<li>module NRF24L01 : 1µA</li>
+<li>régulateur LM2936 : 15µA</li>
+</ul>
+La consommation en mode veille est donc de 12.5mA.<br>
+<br>
+Pour un objectif d'autonomie de 365 jours le bilan de consommation d'énergie sera le suivant :<br>
+Consommation d'énergie en mode veille : 12.5mAH x 24 x 365 = 109000mAH<br>
+Consommation d'énergie en mode éveillé : 700µAH x 24 x 365 = 6132mAH<br>
+Nous obtenons donc un total de 115000mAH.<br>
+<br>
+Ce n'est pas la peine d'aller plus loin. Le fonctionnement en mode autonome pour ce genre de cas est inadapté. Autant adopter une alimentation secteur ou un rechargement par énergie solaire.<br>
+<br>
+<b>Exemple N°3</b><br>
+Un détecteur de passage autonome alimenté par une batterie LITHIUM-ION.<br>
+<br>
+Le capteur de présence HC-SR501 consomme 60µA en mode veille, ce qui est nettement supérieur au 1µA d'un DS18B20. On peut déjà dire que la batterie de ce montage devra avoir capacité supérieure si l'on veut disposer d'une autonomie d'un an.<br>
+<br>
+Le principe de calcul sera le même que pour l'exemple N°1, sauf qu'il va vous falloir estimer le nombre de passages dans la journée pour calculer la dépense d'énergie en mode éveillé. <br>
+<br>
+<h3>
+5.3. Le TPL5110</h3>
+Vous avez un montage à base d'ARDUINO classique 5V (UNO, NANO) et vous aimeriez l'alimenter par batterie.<br>
+Si ce montage effectue une tâche périodique et passe la majeure partie de son temps à ne rien faire, tout n'est pas perdu :<br>
+<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/tpl5110.jpg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="155" data-original-width="200" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/tpl5110.jpg"></a></div>
+<br>
+Le TPL5110 est un circuit temporisateur. Il permet d'alimenter un montage périodiquement, avec une période allant de 100ms jusqu'à deux heures. <br>
+<br>
+Ce module AdaFruit consomme 20µA.<br>
+Il embarque un MOSFET canal P DMG3415 pouvant délivrer 4A.<br>
+<br>
+<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-_nyWwZ5uqQo/XShHT509TrI/AAAAAAAACJY/4QFpVz6k288-gOLQxFdGMfPwVpkAXyrywCLcBGAs/s1600/tpl5110.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="418" data-original-width="689" height="388" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/tpl5110.png" width="640"></a></div>
+Ce schéma comporte 2 batteries 3.7V et un régulateur 5V pouvant délivrer 250mA. Ce régulateur consomme 4µA au repos.<br>
+Si vous avez besoin de plus ou moins de courant, il peut être remplacé par d'autres modèles :<br>
+<ul>
+<li>HT7150 : 30mA (2.5µA de courant de repos)</li>
+<li>HT7550 : 100mA (2.5µA de courant de repos)</li>
+<li>HT7850 : 250mA (4µA de courant de repos) </li>
+</ul>
+<br>
+Lorsque votre montage a terminé son travail, il n'a plus qu'à le signaler par la broche DONE (5V) pour couper l'alimentation.<br>
+<br>
+Cela implique une légère modification de votre montage :<br>
+- un petit fil à ajouter<br>
+- une petite modification du logiciel <br>
+<br>
+<h4>
+6. Vérification</h4>
+Après avoir élaboré le montage électronique et le code, il va falloir procéder à la vérification de la consommation.<br>
+<br>
+Quel moyen utiliser ?<br>
+<br>
+Un banc de mesure comme celui-ci est très appréciable :<br>
+<a href="https://riton-duino.blogspot.com/2018/07/banc-de-mesure-de-consommation.html">https://riton-duino.blogspot.com/2018/07/banc-de-mesure-de-consommation.html</a><br>
+Ou bien celui-ci :<br>
+<a href="https://riton-duino.blogspot.com/2018/11/usb-un-voltmetre-amperemetre.html">https://riton-duino.blogspot.com/2018/11/usb-un-voltmetre-amperemetre.html</a> <br>
+<br>
+Sinon, on peut utiliser un multimètre. Celui-ci ne sera pas capable cependant de tracer une courbe de consommation sur la durée, à moins d'investir dans un multimètre haut de gamme.<br>
+<br>
+Une recommandation :<br>
+On ne mesure jamais la consommation d'un processeur avec un multimètre sur le calibre µA.<br>
+La résistance du shunt est trop importante et empêche le processeur de démarrer et encore plus de démarrer le WIFI si c'est un ESP8266 ou un ESP32.<br>
+<br>
+Mon multimètre (20000 points) a une résistance (shunt) de 3Ω sur le calibre mA. Sur le calibre µA il passe à 100Ω.<br>
+Un ESP8266 qui démarre consomme au minimum 300 mA et jusqu'à plus de 400.<br>
+Avec un shunt de 100Ω en série il ne démarrera jamais.<br>
+Un
+ shunt de 3Ω produira une chute de 1V. Il n'est même pas sûr que le démarrage s'effectue (on peut peut-être améliorer la chose avec un gros condensateur en parallèle sur les 
+broche 5V et GND ?).<br>
+<br>
+Pour mesurer la consommation d'un processeur en mode veille, on peut placer un bouton-poussoir en parallèle sur le multimètre :<br>
+<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-YVIYWkOfJx4/XGszqPgSpJI/AAAAAAAABVY/SLJqNXiMZAERALb8ypqqKm-MTDMINZe_gCLcBGAs/s1600/%25C2%25B5amp-arduino.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="435" data-original-width="693" height="250" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/µamp-arduino.png" width="400"></a></div>
+Appuyer sur le bouton-poussoir pendant la phase de démarrage et le relâcher une fois que l'on est sûr que le processeur est en mode veille.<br>
+<br>
+<h4>
+7. Surveillance</h4>
+Une fois que le montage est en situation réelle, la surveillance de la tension batterie est vitale pour la durée de vie de celle-ci. Cette surveillance sera de préférence automatisée, c'est à dire que le micro-contrôleur devra mesurer la tension de la batterie périodiquement.<br>
+La tension de la batterie peut être utilisée afin de déterminer la capacité restante.<br>
+<br>
+Pour une batterie LITHIUM-ION :<br>
+<ul>
+<li>4.2V : 100%</li>
+<li>3.85V :&nbsp; 75%</li>
+<li>3.42V : 25%</li>
+<li>3.0V : 3%</li>
+</ul>
+Cette information peut être utilisée de différentes manières :<br>
+<ul>
+<li>faire clignoter une LED</li>
+<li>activer un buzzer</li>
+<li>remonter l'information à un serveur</li>
+<li>refuser d'assurer le fonctionnement</li>
+<li>etc.</li>
+</ul>
+Faire clignoter une LED ou faire retentir un buzzer est possible tant que le courant moyen consommé est faible. A partir du moment où la batterie a atteint son seuil critique de tension minimale admissible, il vaut mieux ne plus avertir, car cela entraînerait le décès de la batterie.<br>
+<br>
+<ul>
+</ul>
+<h3>
+7.1. Mesure</h3>
+La mesure de la tension de la batterie doit être effectuée à l'aide de l'ADC du micro-contrôleur. La mesure d'une tension batterie doit être précise. <br>
+Avec un ARDUINO, deux cas peuvent se présenter :<br>
+<br>
+<b>La tension d'alimentation est égale à la tension de la batterie</b><br>
+Ce cas est rare. Il correspond par exemple à l'utilisation de deux piles 1.5V ou une batterie de 3.7V pour alimenter un ARDUINO PRO MINI et des modules supportant cette tension, sans régulateur.<br>
+Dans ce cas, la tension d'alimentation peut être mesurée directement sans composant supplémentaire à l'aide de ce code (provenant d'<a href="https://www.carnetdumaker.net/articles/mesurer-la-tension-sur-la-broche-vin-dune-carte-arduino-genuino/">ICI</a>) : <br>
+<br>
+<span style="color: blue;"><span style="font-size: x-small;"><span style="color: blue;"><span style="font-size: x-small;">#define VREF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.1</span></span>&nbsp;</span></span><br>
+<span style="color: blue;"><span style="font-size: x-small;">unsigned int analogReadReference(void)<br>{<br>&nbsp; /* Elimine toutes charges résiduelles */<br>&nbsp; ADMUX = 0x4F;<br>&nbsp; delayMicroseconds(5);<br>&nbsp; /* Sélectionne la référence interne à 1.1 volts comme point de mesure */<br>&nbsp; ADMUX = 0x4E;<br>&nbsp; delayMicroseconds(200);<br>&nbsp; /* Active le convertisseur analogique -&gt; numérique */<br>&nbsp; ADCSRA |= (1 &lt;&lt; ADEN);<br>&nbsp; /* Lance une conversion analogique -&gt; numérique */<br>&nbsp; ADCSRA |= (1 &lt;&lt; ADSC);<br>&nbsp; /* Attend la fin de la conversion */<br>&nbsp; while(ADCSRA &amp; (1 &lt;&lt; ADSC));<br>&nbsp; /* Récupère le résultat de la conversion */<br>&nbsp; return ADCL | (ADCH &lt;&lt; 8);<br>}</span></span><br>
+<br>
+<span style="color: blue;"><span style="font-size: x-small;">void loop() {</span></span><br>
+<span style="color: blue;"><span style="font-size: x-small;">&nbsp; float voltage = (1023 * VREF) / analogReadReference();</span></span><br>
+<span style="color: blue;"><span style="font-size: x-small;">}</span></span><br>
+<br>
+La tension de la référence interne est peu précise (10%).<br>
+Celle-ci peut être mesurée sur la broche VREF de l'ARDUINO lorsque ce code s'exécute. On prendra soin de modifier la valeur de VREF dans le code afin d'obtenir une plus grande précision.<br>
+<br>
+<b>La tension d'alimentation est inférieure à la tension de la batterie</b><br>
+Dans ce cas, la tension d'alimentation doit être mesurée à l'aide d'un pont diviseur, car sinon, l'entrée de l'ADC sera saturée ou endommagée : <br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://2.bp.blogspot.com/-brJFXJxOaGE/XGrJFc9Wa6I/AAAAAAAABUk/KGBz0KG3hLwekNjrPYXEAfhD5CfUL4hnwCLcBGAs/s1600/mesure-batt.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="458" data-original-width="531" height="276" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/mesure-batt.png" width="320"></a></div><div>
+Il est possible et même conseillé d'utiliser des valeurs de résistance importantes afin de minimiser la consommation du pont diviseur.</div><div>Une valeur proche du MΩ aura une consommation de 3.3µA sous 3.3V, c'est à dire supérieure à celle du microcontrôleur.</div><div>Attention cependant : choisir une valeur très élevée (10MΩ par exemple) rendra la mesure très sensible aux perturbation électromagnétiques.<br></div>
+<br>
+La tension sur l'entrée analogique doit être inférieure à la tension de référence.<br>
+<br>
+Exemple :<br>
+On mesure une tension de batterie LITHIUM-ION  (3.7V nominaux mais 4.2V à pleine charge) :<br>
+<br>
+Ue = tension d'entrée<br>
+Us = tension de sortie<br>
+Sur le schéma :<br>
+R2 = 1MΩ<br>
+R3 = 330KΩ<br>
+Le rapport du pont diviseur est de 330000 / (1000000 + 330000) = 0.248<br>
+Us = Ue * R3 / (R2 + R3) = 4.2 * 330000 / (1000000 + 330000) = 1,042V<br>
+1.04V est en dessous de 1.1V -&gt; c'est OK<br>
+Le courant consommé par le pont diviseur sera de :<br>
+Courant = Ue / (R2 + R3) = 4.2V / (1000000 + 330000) = 3µA<br>
+<br>
+On mesurera la tension de la batterie comme ceci :<br>
+<br>
+<pre style="margin: 0px; padding: 0px;"><span style="font-size: x-small;"><code class="bbc_code" style="height: 200px; max-height: none;"><span style="color: blue;">#define VREF&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1.1&nbsp; // à mesurer au multimètre sur la broche VREF
+
+&nbsp; unsigned int adc = analogRead(0);
+&nbsp; // 0.248 = rapport du pont diviseur</span></code></span></pre>
+<pre style="margin: 0px; padding: 0px;"><span style="font-size: x-small;"><code class="bbc_code" style="height: 200px; max-height: none;"><span style="color: blue;">&nbsp; float v = adc * VREF / 1023 / 0.248;</span></code></span></pre>
+<br>
+<b>Influence de la température</b><br>
+La tension de la référence interne varie également en fonction de la température, et elle varie de façon non linéaire :<br>
+<a class="bbc_link" href="http://ww1.microchip.com/downloads/en/AppNotes/doc8060.pdf" target="_blank">http://ww1.microchip.com/downloads/en/AppNotes/doc8060.pdf</a><br>
+<br>
+Cela
+ ne va pas être facile d'obtenir une mesure fiable en extérieur, à moins
+ d'utiliser une tension de référence externe précise et variant peu en 
+fonction de la température.<br>
+<br>
+On peut utiliser un très bon régulateur comme source de tension d'alimentation et il peut servir en même temps de tension de référence.<br>
+La tension du régulateur HT7533-1 par exemple varie de 0.5mV par degré.<br>
+Entre -10° et 40° on obtiendra 25mV de variation, ce qui est acceptable.<br>
+<br>
+On pourrait l'utiliser comme référence pour l'ADC. Nous n'utilisons plus la référence interne 1.1V mais la référence par défaut : 3.3V.<br>
+La tension sur l'entrée analogique doit être inférieure à la tension de référence.<br>
+Il faut recalculer le pont diviseur :<br>
+<br>
+R2 = 390KΩ<br>
+R3 = 1MΩ<br>
+Le rapport du pont diviseur est de 1000000÷(390000+1000000) = 0.719<br>
+Us = Ue * R3 / (R2 + R3) = 4,2×1000000÷(390000+1000000) = 3.02V<br>
+3.02V est en dessous de 3.3V -&gt; C'est OK<br>
+<br>
+Éventuellement
+on peut mesurer la tension du régulateur au froid (frigo) et au chaud (radiateur) tout en 
+mesurant la température avec un thermomètre pour appliquer une petite correction dans le 
+logiciel.<br>
+<br>
+<b>Détermination de la capacité</b><br>
+<br>
+Le calcul de la capacité restante peut être effectué comme ceci, à l'aide d'une table. Le code inclut la mesure de la tension :<br>
+<br>
+<pre style="margin: 0px; padding: 0px;"><code class="bbc_code" style="height: 200px; max-height: none;"><span style="font-size: x-small;"><span style="color: blue;">#define VREF&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1.1&nbsp; // à mesurer au multimètre sur la broche VREF</span></span></code></pre>
+<pre style="margin: 0px; padding: 0px;"><code class="bbc_code" style="height: 200px; max-height: none;"><span style="font-size: x-small;"><span style="color: blue;">&nbsp;</span></span></code></pre>
+<span style="color: blue;"><span style="font-size: x-small;">struct batteryCapacity<br>{<br>&nbsp; float voltage;<br>&nbsp; int capacity;<br>};<br><br>const batteryCapacity remainingCapacity[] = {<br>&nbsp; 4.20,&nbsp;&nbsp; 100,<br>&nbsp; 4.10,&nbsp;&nbsp; 96,<br>&nbsp; 4.00,&nbsp;&nbsp; 92,<br>&nbsp; 3.96,&nbsp;&nbsp; 89,<br>&nbsp; 3.92,&nbsp;&nbsp; 85,<br>&nbsp; 3.89,&nbsp;&nbsp; 81,<br>&nbsp; 3.86,&nbsp;&nbsp; 77,<br>&nbsp; 3.83,&nbsp;&nbsp; 73,<br>&nbsp; 3.80,&nbsp;&nbsp; 69,<br>&nbsp; 3.77,&nbsp;&nbsp; 65,<br>&nbsp; 3.75,&nbsp;&nbsp; 62,<br>&nbsp; 3.72,&nbsp;&nbsp; 58,<br>&nbsp; 3.70,&nbsp;&nbsp; 55,<br>&nbsp; 3.66,&nbsp;&nbsp; 51,<br>&nbsp; 3.62,&nbsp;&nbsp; 47,<br>&nbsp; 3.58,&nbsp;&nbsp; 43,<br>&nbsp; 3.55,&nbsp;&nbsp; 40,<br>&nbsp; 3.51,&nbsp;&nbsp; 35,<br>&nbsp; 3.48,&nbsp;&nbsp; 32,<br>&nbsp; 3.44,&nbsp;&nbsp; 26,<br>&nbsp; 3.40,&nbsp;&nbsp; 24,<br>&nbsp; 3.37,&nbsp;&nbsp; 20,<br>&nbsp; 3.35,&nbsp;&nbsp; 17,<br>&nbsp; 3.27,&nbsp;&nbsp; 13,<br>&nbsp; 3.20,&nbsp;&nbsp; 9,<br>&nbsp; 3.1,&nbsp;&nbsp;&nbsp; 6,<br>&nbsp; 3.00,&nbsp;&nbsp; 3,<br>};<br><br>const int ncell = sizeof(remainingCapacity) / sizeof(struct batteryCapacity);</span></span><br>
+<br>
+<span style="color: blue;"><span style="font-size: x-small;">unsigned int getBatteryCapacity(void)<br>{</span></span><br>
+<span style="color: blue;"><span style="font-size: x-small;">&nbsp; analogReference(INTERNAL);<br>&nbsp; unsigned int adc = analogRead(0);<br>&nbsp; float voltage = adc * VREF / 1023 / 0.248;<br>&nbsp; for (int i = 0 ; i &lt; ncell ; i++){<br>&nbsp;&nbsp;&nbsp; if (voltage &gt; remainingCapacity[i].voltage) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return remainingCapacity[i].capacity;<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp; }<br>&nbsp; return 0;<br>}</span></span><br>
+<br>
+Si l'on utilise la première méthode de mesure sans pont diviseur, le code sera celui-ci :<br>
+<br>
+<span style="color: blue;"><span style="font-size: x-small;">unsigned int getBatteryCapacity(void)<br>{</span></span><br>
+<span style="color: blue;"><span style="font-size: x-small;">&nbsp; float voltage = (1023 * VREF) / analogReadReference();<br>&nbsp; for (int i = 0 ; i &lt; ncell ; i++){<br>&nbsp;&nbsp;&nbsp; if (voltage &gt; remainingCapacity[i].voltage) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return remainingCapacity[i].capacity;<br>&nbsp;&nbsp;&nbsp; }<br>&nbsp; }<br>&nbsp; return 0;<br>}</span></span><br>
+<span style="color: blue;"><span style="font-size: x-small;"><br></span></span>
+<br>
+<h4>
+8. Recharge</h4>
+Le choix d'un chargeur - surtout&nbsp; NI-MH - est critique. Il doit être 
+automatique et précis. Il ne s'agit pas de détruire les batteries mais 
+de les charger.<br>
+<br>
+La recharge de la batterie va pouvoir s'opérer de différentes manières :<br>
+<ul>
+<li>remplacement des batteries</li>
+<li>chargeur extérieur</li>
+<li>chargeur intégré</li>
+</ul>
+<h3>
+8.1. Remplacement des batteries</h3>
+Ce mode de recharge et bien adapté aux batteries NI-MH, LITHIUM-ION, LIPO ou LifePo4, en utilisation autonome.<br>
+<br>
+Les batteries vides sont remplacées par des batteries pleines. Cela suppose de pouvoir les démonter facilement, et le montage doit être équipé d'un support de batterie facilement accessible.<br>
+<br>
+On utilise un chargeur du commerce pour recharger les batteries vides.<br>
+<br>
+Un très bon chargeur NI-MH : le <a href="https://www.conrad.fr/p/chargeur-pour-piles-rondes-nimh-nicd-voltcraft-ipc-1l-201101">VoltCraft IPC-1-L</a> :<br>
+<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/voltcraft-ipc-1l.jpg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="80" data-original-width="78" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/voltcraft-ipc-1l.jpg"></a></div>
+<br>
+Deux très bons chargeurs LITHIUM-ION :<br>
+Le Xtar MC2 :<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/xtar-mc2-.jpg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="200" data-original-width="200" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/xtar-mc2-.jpg"></a></div>
+Le Xtar VC4 :<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/xtar-vc4.jpg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="200" data-original-width="200" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/xtar-vc4.jpg"></a></div>
+<h3>
+&nbsp;</h3>
+<h3>
+8.2. Chargeur extérieur</h3>
+Ce mode de recharge et adapté à tout types de batteries, en utilisation autonome ou recharge périodique.<br>
+<br>
+Un connecteur de recharge doit être prévu sur le montage où l'on vient brancher le chargeur en cas de besoin.<br>
+<br>
+Un très bon chargeur : le IMAX B6<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://2.bp.blogspot.com/-8eoE09YXIa8/W-d-8t_kDlI/AAAAAAAAAc8/Lg-mJVsWQ9cINdZeZHXspyHFZocI3pnxQCPcBGAYYCw/s1600/IMAX-B6-80-W-6A-Num-rique-RC-quilibre-de-La-Batterie-Chargeur-D-chargeur-50.jpg_640x640.jpg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="640" data-original-width="640" height="200" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/IMAX-B6-80-W-6A-Num-rique-RC-quilibre-de-La-Batterie-Chargeur-D-chargeur-50.jpg_640x640.jpg" width="200"></a></div>
+Il est capable de charger des batteries NI-MH, LITHIUM-ION et LIPO. <br>
+Il est pourvu de connecteurs d'équilibrage.<br>
+<br>
+Pour une batterie au plomb, choisir le chargeur en fonction de la capacité de la batterie. Il doit délivrer un courant équivalent au 1/10ème de la capacité de celle-ci.<br>
+Un chargeur de batterie au plomb doit être compensé en température car la tension de fin de charge varie en fonction de celle-ci.<br>
+<br>
+<h3>
+8.3. Chargeur intégré</h3>
+Ce mode de recharge et bien adapté aux batteries Plomb, LIPO et LITHIUM-ION, en utilisation autonome, recharge périodique ou permanente.<br>
+<br>
+Pour une batterie plomb utilisée en floating, on trouve facilement des chargeurs secteur adaptés.<br>
+<br>
+Les batteries NI-MH sont difficilement rechargeables par ce moyen. On ne trouve pas de modules adaptés ou très peu, et pour un seul élément. Il est cependant possible d'en fabriquer un à l'aide de circuits intégrés :<br>
+<ul>
+<li><a href="https://www.analog.com/media/en/technical-documentation/data-sheets/4060f.pdf">LTC4060</a></li>
+<li><a href="https://datasheets.maximintegrated.com/en/ds/MAX712-MAX713.pdf">MAX712</a></li>
+</ul>
+Pour les batteries LITHIUM-ION, on trouve d'excellents modules, par exemple à base de <a href="https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf">TP4056</a>, capable de fournir 1A :<br>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/tp4056.jpeg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="200" data-original-width="200" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/tp4056.jpeg"></a></div>
+Il peut facilement être intégré dans un montage ou soudé sur un PCB. Pour recharger la batterie on branche sur le connecteur USB un petit chargeur de téléphone mobile.<br>
+<br>
+Il est possible de charger des batteries 16340 de faible capacité avec ce chargeur, en utilisant une source 5V limitée en courant.<br>
+<br>
+Le module peut être laissé connecté en permanence sur la batterie car il consomme très peu sur celle-ci : quelques µA.<br>
+<br>
+On peut lui appliquer en entrée une tension maximale de 8V. Cette tension peut par exemple provenir d'un panneau solaire 5V.<br>
+<br>
+L'idéal avec les batteries LITHIUM est d'arriver à 20% de décharge avant d'enclencher la recharge.<br>
+Cela n'empêche pas que l'on puisse les décharger entièrement, sans descendre toutefois en dessous de la barre des 3V. Descendre en dessous peut être destructeur.<br>
+Laisser la batterie en charge permanente n'est pas très bon pour sa durée de vie. Mais normalement avec le TP4056 ce n'est pas le cas.<br>
+<br>
+<b>
+<a href="https://www.blogger.com/null" id="tp4056-test"></a>
+8.3.1. Le TP4056 en test</b><br>
+J'ai réalisé quelques essais :<br>
+<ul>
+<li>un TP4056</li>
+<li>une batterie 18650 sur la sortie BAT</li>
+<li>une résistance de 200KΩ sur la sortie OUT</li>
+<li>un voltmètre sur la sortie OUT</li>
+<li>recharge par USB avec ampèremètre en série</li>
+</ul>
+La résistance consomme 20µA, c'est à dire l'équivalent d'un ESP8266 en mode veille.<br>
+<br>
+En recharge :<br>
+La LED rouge du TP4056 est allumée. En fin de charge l'ampèremètre USB mesure un courant de 100mA.<br>
+Le TP4056 coupe la charge lorsque la tension arrive à 4.23V. La LED bleue s'allume.<br>
+La sortie OUT ne se coupe pas, en tous cas pas dans cette configuration.<br>
+<br>
+En décharge :<br>
+Une résistance de 10Ω est branchée sur la sortie OUT.<br>
+La LED rouge du TP4056 reste éteinte. L'ampèremètre USB mesure un courant de 0mA, ce qui prouve que la charge ne démarre pas.<br>
+Le TP4056 ré-enclenche la recharge lorsque la tension chute à 4.07V, ce qui correspond à 95% de capacité.<br>
+Ce n'est pas l'idéal, mais c'est mieux que rien.<br>
+<br>
+L'idéal serait d'imaginer un mécanisme à base de comparateur, qui autoriserait la recharge à partir du moment où il reste 80% de capacité, ce qui correspond grosso modo à 3.9V.<br>
+<br>
+Le TP4056 possède une patte CE (chip enable) qui met le chargeur hors service lorsqu'elle est à zéro.<br>
+<br>
+Malheureusement cette patte n'est pas accessible sur les <a href="https://www.electroschematics.com/wp-content/uploads/2014/07/tp4056-circuit.jpg">modules du commerce</a>. Elle est reliée au +5V.<br>
+Il devrait être possible de dessouder cette patte de la carte et d'y souder un petit fil que l'on piloterait par une sortie du microcontrôleur en fonction de la tension de la batterie.<br>
+<br>
+<h4>
+9. Attention : danger</h4>
+Une batterie est capable de délivrer des courants importants, plus de 20A pour une 18650 courante.<br>
+Lorsque l'on élabore un montage devant fonctionner sur batterie un court-circuit peut être particulièrement destructeur.<br>
+Le montage doit être vérifié avant d'être mis sous tension. On vérifiera en priorité l'absence de court-circuit entre les bornes de d'alimentation, surtout s'il s'agit d'un PCB que l'on a fabriqué soi-même.<br>
+<br>
+<h4>
+10. Conclusion</h4>
+Je vous ai exposé le fruit de pas mal d'années de pratique en matière d'électronique et de logiciel embarqué basse consommation. J'espère que cela vous sera utile.<br>
+<br>
+Quelques montages sur batterie sont proposés sur ce blog, ainsi que d'autres articles traitant de batteries :<br>
+<br>
+<a href="https://riton-duino.blogspot.com/2018/01/un-thermometre-mysensors-sur-batterie.html">https://riton-duino.blogspot.com/2018/01/un-thermometre-mysensors-sur-batterie.html</a><br>
+<a href="https://riton-duino.blogspot.com/2019/05/un-thermometre-hygrometre-mysensors-sur.html">https://riton-duino.blogspot.com/2019/05/un-thermometre-hygrometre-mysensors-sur.html</a><br>
+<a href="https://riton-duino.blogspot.com/2018/04/un-detecteur-de-mouvement-mysensors-sur.html">https://riton-duino.blogspot.com/2018/04/un-detecteur-de-mouvement-mysensors-sur.html</a><br>
+<a href="https://riton-duino.blogspot.com/2018/05/batteries-lithium-ion.html">https://riton-duino.blogspot.com/2018/05/batteries-lithium-ion.html</a><br>
+<a href="https://riton-duino.blogspot.com/2018/10/batteries-lithium-ion-recharge-en-serie.html">https://riton-duino.blogspot.com/2018/10/batteries-lithium-ion-recharge-en-serie.html</a><br>
+<br>
+Cordialement<br>
+Henri<br>
+<br>
+<h4>
+11. Mises à jour</h4>
+24/06/2019 :&nbsp; 8.3.1. Le TP4056 en test<br>
+12/07/2019 :&nbsp; 5.3. Le TPL5110<br>
+02/05/2020 :&nbsp; 9. Attention : danger<br>
+<br>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1">
+<span class="post-author vcard">
+</span>
+<span class="post-timestamp">
+à
+<meta content="http://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html" itemprop="url">
+<a class="timestamp-link" href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html" rel="bookmark" title="permanent link"><abbr class="published" itemprop="datePublished" title="2019-02-18T10:23:00-08:00">février 18, 2019</abbr></a>
+</span>
+<span class="reaction-buttons">
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+<span class="item-control blog-admin pid-901201129">
+<a href="https://www.blogger.com/post-edit.g?blogID=4439416709970127506&amp;postID=204527447760443916&amp;from=pencil" title="Modifier l&#39;article">
+<img alt="" class="icon-action" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_edit_allbkg.gif" width="18">
+</a>
+</span>
+</span>
+<div class="post-share-buttons goog-inline-block">
+<a class="goog-inline-block share-button sb-email" href="https://www.blogger.com/share-post.g?blogID=4439416709970127506&amp;postID=204527447760443916&amp;target=email" target="_blank" title="Envoyer par e-mail"><span class="share-button-link-text">Envoyer par e-mail</span></a><a class="goog-inline-block share-button sb-blog" href="https://www.blogger.com/share-post.g?blogID=4439416709970127506&amp;postID=204527447760443916&amp;target=blog" onclick="window.open(this.href, &quot;_blank&quot;, &quot;height=270,width=475&quot;); return false;" target="_blank" title="BlogThis!"><span class="share-button-link-text">BlogThis!</span></a><a class="goog-inline-block share-button sb-twitter" href="https://www.blogger.com/share-post.g?blogID=4439416709970127506&amp;postID=204527447760443916&amp;target=twitter" target="_blank" title="Partager sur Twitter"><span class="share-button-link-text">Partager sur Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="https://www.blogger.com/share-post.g?blogID=4439416709970127506&amp;postID=204527447760443916&amp;target=facebook" onclick="window.open(this.href, &quot;_blank&quot;, &quot;height=430,width=640&quot;); return false;" target="_blank" title="Partager sur Facebook"><span class="share-button-link-text">Partager sur Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="https://www.blogger.com/share-post.g?blogID=4439416709970127506&amp;postID=204527447760443916&amp;target=pinterest" target="_blank" title="Partager sur Pinterest"><span class="share-button-link-text">Partager sur Pinterest</span></a>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2">
+<span class="post-labels">
+Libellés :
+<a href="https://riton-duino.blogspot.com/search/label/Alimentation" rel="tag">Alimentation</a>,
+<a href="https://riton-duino.blogspot.com/search/label/ARDUINO" rel="tag">ARDUINO</a>,
+<a href="https://riton-duino.blogspot.com/search/label/Batteries" rel="tag">Batteries</a>,
+<a href="https://riton-duino.blogspot.com/search/label/ESP32" rel="tag">ESP32</a>,
+<a href="https://riton-duino.blogspot.com/search/label/ESP8266" rel="tag">ESP8266</a>,
+<a href="https://riton-duino.blogspot.com/search/label/index" rel="tag">index</a>
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3">
+<span class="post-location">
+</span>
+</div>
+</div>
+</div>
+<div class="comments" id="comments">
+<a name="comments"></a>
+<h4>9&nbsp;commentaires:</h4>
+<div class="comments-content">
+<script async="async" src="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html" type="text/javascript"></script>
+<script type="text/javascript">
+    (function() {
+      var items = null;
+      var msgs = null;
+      var config = {};
+
+// <![CDATA[
+      var cursor = null;
+      if (items && items.length > 0) {
+        cursor = parseInt(items[items.length - 1].timestamp) + 1;
+      }
+
+      var bodyFromEntry = function(entry) {
+        var text = (entry &&
+                    ((entry.content && entry.content.$t) ||
+                     (entry.summary && entry.summary.$t))) ||
+            '';
+        if (entry && entry.gd$extendedProperty) {
+          for (var k in entry.gd$extendedProperty) {
+            if (entry.gd$extendedProperty[k].name == 'blogger.contentRemoved') {
+              return '<span class="deleted-comment">' + text + '</span>';
+            }
+          }
+        }
+        return text;
+      }
+
+      var parse = function(data) {
+        cursor = null;
+        var comments = [];
+        if (data && data.feed && data.feed.entry) {
+          for (var i = 0, entry; entry = data.feed.entry[i]; i++) {
+            var comment = {};
+            // comment ID, parsed out of the original id format
+            var id = /blog-(\d+).post-(\d+)/.exec(entry.id.$t);
+            comment.id = id ? id[2] : null;
+            comment.body = bodyFromEntry(entry);
+            comment.timestamp = Date.parse(entry.published.$t) + '';
+            if (entry.author && entry.author.constructor === Array) {
+              var auth = entry.author[0];
+              if (auth) {
+                comment.author = {
+                  name: (auth.name ? auth.name.$t : undefined),
+                  profileUrl: (auth.uri ? auth.uri.$t : undefined),
+                  avatarUrl: (auth.gd$image ? auth.gd$image.src : undefined)
+                };
+              }
+            }
+            if (entry.link) {
+              if (entry.link[2]) {
+                comment.link = comment.permalink = entry.link[2].href;
+              }
+              if (entry.link[3]) {
+                var pid = /.*comments\/default\/(\d+)\?.*/.exec(entry.link[3].href);
+                if (pid && pid[1]) {
+                  comment.parentId = pid[1];
+                }
+              }
+            }
+            comment.deleteclass = 'item-control blog-admin';
+            if (entry.gd$extendedProperty) {
+              for (var k in entry.gd$extendedProperty) {
+                if (entry.gd$extendedProperty[k].name == 'blogger.itemClass') {
+                  comment.deleteclass += ' ' + entry.gd$extendedProperty[k].value;
+                } else if (entry.gd$extendedProperty[k].name == 'blogger.displayTime') {
+                  comment.displayTime = entry.gd$extendedProperty[k].value;
+                }
+              }
+            }
+            comments.push(comment);
+          }
+        }
+        return comments;
+      };
+
+      var paginator = function(callback) {
+        if (hasMore()) {
+          var url = config.feed + '?alt=json&v=2&orderby=published&reverse=false&max-results=50';
+          if (cursor) {
+            url += '&published-min=' + new Date(cursor).toISOString();
+          }
+          window.bloggercomments = function(data) {
+            var parsed = parse(data);
+            cursor = parsed.length < 50 ? null
+                : parseInt(parsed[parsed.length - 1].timestamp) + 1
+            callback(parsed);
+            window.bloggercomments = null;
+          }
+          url += '&callback=bloggercomments';
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = url;
+          document.getElementsByTagName('head')[0].appendChild(script);
+        }
+      };
+      var hasMore = function() {
+        return !!cursor;
+      };
+      var getMeta = function(key, comment) {
+        if ('iswriter' == key) {
+          var matches = !!comment.author
+              && comment.author.name == config.authorName
+              && comment.author.profileUrl == config.authorUrl;
+          return matches ? 'true' : '';
+        } else if ('deletelink' == key) {
+          return config.baseUri + '/delete-comment.g?blogID='
+               + config.blogId + '&postID=' + comment.id;
+        } else if ('deleteclass' == key) {
+          return comment.deleteclass;
+        }
+        return '';
+      };
+
+      var replybox = null;
+      var replyUrlParts = null;
+      var replyParent = undefined;
+
+      var onReply = function(commentId, domId) {
+        if (replybox == null) {
+          // lazily cache replybox, and adjust to suit this style:
+          replybox = document.getElementById('comment-editor');
+          if (replybox != null) {
+            replybox.height = '250px';
+            replybox.style.display = 'block';
+            replyUrlParts = replybox.src.split('#');
+          }
+        }
+        if (replybox && (commentId !== replyParent)) {
+          replybox.src = '';
+          document.getElementById(domId).insertBefore(replybox, null);
+          replybox.src = replyUrlParts[0]
+              + (commentId ? '&parentID=' + commentId : '')
+              + '#' + replyUrlParts[1];
+          replyParent = commentId;
+        }
+      };
+
+      var hash = (window.location.hash || '#').substring(1);
+      var startThread, targetComment;
+      if (/^comment-form_/.test(hash)) {
+        startThread = hash.substring('comment-form_'.length);
+      } else if (/^c[0-9]+$/.test(hash)) {
+        targetComment = hash.substring(1);
+      }
+
+      // Configure commenting API:
+      var configJso = {
+        'maxDepth': config.maxThreadDepth
+      };
+      var provider = {
+        'id': config.postId,
+        'data': items,
+        'loadNext': paginator,
+        'hasMore': hasMore,
+        'getMeta': getMeta,
+        'onReply': onReply,
+        'rendered': true,
+        'initComment': targetComment,
+        'initReplyThread': startThread,
+        'config': configJso,
+        'messages': msgs
+      };
+
+      var render = function() {
+        if (window.goog && window.goog.comments) {
+          var holder = document.getElementById('comment-holder');
+          window.goog.comments.render(holder, provider);
+        }
+      };
+
+      // render now, or queue to render when library loads:
+      if (window.goog && window.goog.comments) {
+        render();
+      } else {
+        window.goog = window.goog || {};
+        window.goog.comments = window.goog.comments || {};
+        window.goog.comments.loadQueue = window.goog.comments.loadQueue || [];
+        window.goog.comments.loadQueue.push(render);
+      }
+    })();
+// ]]>
+  </script>
+<div id="comment-holder">
+<div class="comment-thread toplevel-thread"><ol id="top-ra"><li class="comment" id="c4290445137850727891"><div class="avatar-image-container"><img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/unnamed.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/00774023998822576005" rel="nofollow">Anthony</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html?showComment=1557988765052#c4290445137850727891">15 mai 2019 à 23:39</a></span></div><p class="comment-content">Bonjour,<br><br>Sur l'Arduino pro mini, il y a une broche vref ? Ce serai celle qui est repéré RST ?<br>Merci de tes éclaircissements.<br>Cordialement,</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="4290445137850727891" href="javascript:;">Répondre</a><span class="item-control blog-admin blog-admin pid-1338497068"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=4439416709970127506&amp;postID=4290445137850727891">Supprimer</a></span></span></div><div class="comment-replies"><div id="c4290445137850727891-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Réponses</a></span></span><ol id="c4290445137850727891-ra" class="thread-chrome thread-expanded"><div></div><div id="c4290445137850727891-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="4290445137850727891" href="javascript:;">Répondre</a></div></ol></div></div><div class="comment-replybox-single" id="c4290445137850727891-ce"></div></li><li class="comment" id="c3780550705635104682"><div class="avatar-image-container"><img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/unnamed.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/05871691174644985326" rel="nofollow">Henri BACHETTI</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html?showComment=1558044414013#c3780550705635104682">16 mai 2019 à 15:06</a></span></div><p class="comment-content">Effectivement, je n'y avais jamais prêté attention. Sur mes cartes PRO MINI j'ai deux pins RST.<br>Entre ces deux pins je relève 0Ω, alors que sur une NANO je relève plusieurs MΩ entre RST et AREF.<br>J'aurais tendance à dire que la pin AREF n'est pas ressortie sur les connecteurs.<br>Ceci confirme : https://www.reddit.com/r/arduino/comments/57dadp/make_an_aref_pin_on_your_arduino_pro_mini_for/<br></p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="3780550705635104682" href="javascript:;">Répondre</a><span class="item-control blog-admin blog-admin pid-901201129"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=4439416709970127506&amp;postID=3780550705635104682">Supprimer</a></span></span></div><div class="comment-replies"><div id="c3780550705635104682-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Réponses</a></span></span><ol id="c3780550705635104682-ra" class="thread-chrome thread-expanded"><div></div><div id="c3780550705635104682-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="3780550705635104682" href="javascript:;">Répondre</a></div></ol></div></div><div class="comment-replybox-single" id="c3780550705635104682-ce"></div></li><li class="comment" id="c8796019323660327919"><div class="avatar-image-container"><img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/unnamed.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/00774023998822576005" rel="nofollow">Anthony</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html?showComment=1558193999603#c8796019323660327919">18 mai 2019 à 08:39</a></span></div><p class="comment-content">merci pour les précisions et le lien. Mais je ne vais pas tenter la modif </p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="8796019323660327919" href="javascript:;">Répondre</a><span class="item-control blog-admin blog-admin pid-1338497068"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=4439416709970127506&amp;postID=8796019323660327919">Supprimer</a></span></span></div><div class="comment-replies"><div id="c8796019323660327919-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Réponses</a></span></span><ol id="c8796019323660327919-ra" class="thread-chrome thread-expanded"><div></div><div id="c8796019323660327919-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="8796019323660327919" href="javascript:;">Répondre</a></div></ol></div></div><div class="comment-replybox-single" id="c8796019323660327919-ce"></div></li><li class="comment" id="c745725835095091542"><div class="avatar-image-container"><img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/blank.gif" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user">Damien</cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html?showComment=1571112495537#c745725835095091542">14 octobre 2019 à 21:08</a></span></div><p class="comment-content">Je ne commente que très rarement mais ici je tenais à dire que c'est vraiment un site de grande qualité que vous avez, merci pour toutes ces informations.</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="745725835095091542" href="javascript:;">Répondre</a><span class="item-control blog-admin blog-admin pid-2103713018"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=4439416709970127506&amp;postID=745725835095091542">Supprimer</a></span></span></div><div class="comment-replies"><div id="c745725835095091542-rt" class="comment-thread inline-thread"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Réponses</a></span></span><ol id="c745725835095091542-ra" class="thread-chrome thread-expanded"><div><li class="comment" id="c925921134810209212"><div class="avatar-image-container"><img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/unnamed.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/05871691174644985326" rel="nofollow">Henri BACHETTI</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html?showComment=1571391151168#c925921134810209212">18 octobre 2019 à 02:32</a></span></div><p class="comment-content">Merci à vous.</p><span class="comment-actions secondary-text"><span class="item-control blog-admin blog-admin pid-901201129"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=4439416709970127506&amp;postID=925921134810209212">Supprimer</a></span></span></div><div class="comment-replies"><div id="c925921134810209212-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Réponses</a></span></span><ol id="c925921134810209212-ra" class="thread-chrome thread-expanded"><div></div><div id="c925921134810209212-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="925921134810209212" href="javascript:;">Répondre</a></div></ol></div></div><div class="comment-replybox-single" id="c925921134810209212-ce"></div></li></div><div id="c745725835095091542-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="745725835095091542" href="javascript:;">Répondre</a></div></ol></div></div><div class="comment-replybox-single" id="c745725835095091542-ce"></div></li><li class="comment" id="c2118511112798488255"><div class="avatar-image-container"><img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/unnamed.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/14827252992945061891" rel="nofollow">Unknown</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html?showComment=1590530931812#c2118511112798488255">26 mai 2020 à 15:08</a></span></div><p class="comment-content">le code du programme svp !!!!!!!!!!!!!!<br></p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="2118511112798488255" href="javascript:;">Répondre</a><span class="item-control blog-admin blog-admin pid-1767200224"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=4439416709970127506&amp;postID=2118511112798488255">Supprimer</a></span></span></div><div class="comment-replies"><div id="c2118511112798488255-rt" class="comment-thread inline-thread"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Réponses</a></span></span><ol id="c2118511112798488255-ra" class="thread-chrome thread-expanded"><div><li class="comment" id="c3254396642226605906"><div class="avatar-image-container"><img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/unnamed.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/05871691174644985326" rel="nofollow">Henri BACHETTI</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html?showComment=1590659986783#c3254396642226605906">28 mai 2020 à 02:59</a></span></div><p class="comment-content">Pourriez-vous préciser de quel code vous parlez ?</p><span class="comment-actions secondary-text"><span class="item-control blog-admin blog-admin pid-901201129"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=4439416709970127506&amp;postID=3254396642226605906">Supprimer</a></span></span></div><div class="comment-replies"><div id="c3254396642226605906-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Réponses</a></span></span><ol id="c3254396642226605906-ra" class="thread-chrome thread-expanded"><div></div><div id="c3254396642226605906-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="3254396642226605906" href="javascript:;">Répondre</a></div></ol></div></div><div class="comment-replybox-single" id="c3254396642226605906-ce"></div></li></div><div id="c2118511112798488255-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="2118511112798488255" href="javascript:;">Répondre</a></div></ol></div></div><div class="comment-replybox-single" id="c2118511112798488255-ce"></div></li><li class="comment" id="c2874246349185239958"><div class="avatar-image-container"><img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/unnamed.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/13605162053402978090" rel="nofollow">Unknown</a></cite><span class="icon user "></span><span class="datetime secondary-text"><a rel="nofollow" href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html?showComment=1592354789264#c2874246349185239958">16 juin 2020 à 17:46</a></span></div><p class="comment-content">Pourrez-vous l'assisté pour un projet pris. C.a.d. un arduino qui sur demande externe (d'un téléphoné intelligent) celui-ci transmet son id et sa géo-localisation. L'unité sera équipée de piles (sans énergie branchée externe). Naturelle je m’attends a devoir assumer les coûts et les honoraires. Si pour vous se n'est pas possible, seriez-vous en mesure de référer à quelqu'un ou un autre. Merci</p><span class="comment-actions secondary-text"><a class="comment-reply" target="_self" data-comment-id="2874246349185239958" href="javascript:;">Répondre</a><span class="item-control blog-admin blog-admin pid-1098320327"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=4439416709970127506&amp;postID=2874246349185239958">Supprimer</a></span></span></div><div class="comment-replies"><div id="c2874246349185239958-rt" class="comment-thread inline-thread"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Réponses</a></span></span><ol id="c2874246349185239958-ra" class="thread-chrome thread-expanded"><div><li class="comment" id="c7567928161030699492"><div class="avatar-image-container"><img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/unnamed.png" alt=""></div><div class="comment-block"><div class="comment-header"><cite class="user"><a href="https://www.blogger.com/profile/05871691174644985326" rel="nofollow">Henri BACHETTI</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html?showComment=1593080428956#c7567928161030699492">25 juin 2020 à 03:20</a></span></div><p class="comment-content">Désolé mais je suis en retraite et je compte bien en profiter. Je ne suis pas intéressé.</p><span class="comment-actions secondary-text"><span class="item-control blog-admin blog-admin pid-901201129"><a target="_self" href="https://www.blogger.com/delete-comment.g?blogID=4439416709970127506&amp;postID=7567928161030699492">Supprimer</a></span></span></div><div class="comment-replies"><div id="c7567928161030699492-rt" class="comment-thread inline-thread hidden"><span class="thread-toggle thread-expanded"><span class="thread-arrow"></span><span class="thread-count"><a target="_self" href="javascript:;">Réponses</a></span></span><ol id="c7567928161030699492-ra" class="thread-chrome thread-expanded"><div></div><div id="c7567928161030699492-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="7567928161030699492" href="javascript:;">Répondre</a></div></ol></div></div><div class="comment-replybox-single" id="c7567928161030699492-ce"></div></li></div><div id="c2874246349185239958-continue" class="continue"><a class="comment-reply" target="_self" data-comment-id="2874246349185239958" href="javascript:;">Répondre</a></div></ol></div></div><div class="comment-replybox-single" id="c2874246349185239958-ce"></div></li></ol><div id="top-continue" class="continue hidden"><a class="comment-reply" target="_self" href="javascript:;">Ajouter un commentaire</a></div><div class="comment-replybox-thread" id="top-ce"><iframe allowtransparency="true" class="blogger-iframe-colorize blogger-comment-from-post" frameborder="0" height="194px" id="comment-editor" name="comment-editor" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/comment-iframe.html" width="100%" style="display: block;" data-resized="true"></iframe></div><div class="loadmore hidden" data-post-id="204527447760443916"><a target="_self">Charger la suite...</a></div></div>
+</div>
+</div>
+<p class="comment-footer">
+</p><div class="comment-form">
+<a name="comment-form"></a>
+<p>
+</p>
+<a href="https://www.blogger.com/comment-iframe.g?blogID=4439416709970127506&amp;postID=204527447760443916&amp;blogspotRpcToken=2014727" id="comment-editor-src"></a>
+
+<script src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/1068921344-comment_from_post_iframe.js" type="text/javascript"></script>
+<script type="text/javascript">
+      BLOG_CMT_createIframe('https://www.blogger.com/rpc_relay.html');
+    </script>
+</div>
+<p></p>
+<div id="backlinks-container">
+<div id="Blog1_backlinks-container">
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class="blog-pager" id="blog-pager">
+<span id="blog-pager-newer-link">
+<a class="blog-pager-newer-link" href="https://riton-duino.blogspot.com/2019/02/esp8266-sur-batterie.html" id="Blog1_blog-pager-newer-link" title="Article plus récent">Article plus récent</a>
+</span>
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="https://riton-duino.blogspot.com/2019/02/un-web-server-sur-ethernet.html" id="Blog1_blog-pager-older-link" title="Article plus ancien">Article plus ancien</a>
+</span>
+<a class="home-link" href="https://riton-duino.blogspot.com/">Accueil</a>
+</div>
+<div class="clear"></div>
+<div class="post-feeds">
+<div class="feed-links">
+Inscription à :
+<a class="feed-link" href="https://riton-duino.blogspot.com/feeds/204527447760443916/comments/default" target="_blank" type="application/atom+xml">Publier les commentaires (Atom)</a>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="column-left-outer">
+<div class="column-left-inner">
+<aside>
+</aside>
+</div>
+</div>
+<div class="column-right-outer">
+<div class="column-right-inner">
+<aside>
+<div class="sidebar section" id="sidebar-right-1"><div class="widget PageList" data-version="1" id="PageList1">
+<h2>Présentation</h2>
+<div class="widget-content">
+<ul>
+<li>
+<a href="https://riton-duino.blogspot.com/p/blog-page.html">RitonDuino : PRESENTATION</a>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=4439416709970127506&amp;widgetType=PageList&amp;widgetId=PageList1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;PageList1&quot;));" rel="nofollow" target="configPageList1" title="Modifier">
+<img alt="" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget BlogArchive" data-version="1" id="BlogArchive1">
+<h2>Archives du blog</h2>
+<div class="widget-content">
+<div id="ArchiveList">
+<div id="BlogArchive1_ArchiveList">
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2020/">
+2020
+</a>
+<span class="post-count" dir="ltr">(46)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2020/09/">
+septembre
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2020/08/">
+août
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2020/07/">
+juillet
+</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2020/06/">
+juin
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2020/05/">
+mai
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2020/04/">
+avril
+</a>
+<span class="post-count" dir="ltr">(8)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2020/03/">
+mars
+</a>
+<span class="post-count" dir="ltr">(11)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2020/02/">
+février
+</a>
+<span class="post-count" dir="ltr">(5)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2020/01/">
+janvier
+</a>
+<span class="post-count" dir="ltr">(5)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">
+
+        ▼&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/">
+2019
+</a>
+<span class="post-count" dir="ltr">(59)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/12/">
+décembre
+</a>
+<span class="post-count" dir="ltr">(7)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/11/">
+novembre
+</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/10/">
+octobre
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/09/">
+septembre
+</a>
+<span class="post-count" dir="ltr">(5)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/08/">
+août
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/07/">
+juillet
+</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/06/">
+juin
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/05/">
+mai
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/04/">
+avril
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/03/">
+mars
+</a>
+<span class="post-count" dir="ltr">(8)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">
+
+        ▼&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/02/">
+février
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+<ul class="posts">
+<li><a href="https://riton-duino.blogspot.com/2019/02/esp8266-sur-batterie.html">ESP8266 et ESP32 sur batterie</a></li>
+<li><a href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html">Alimenter un ARDUINO sur Pile ou Batterie</a></li>
+<li><a href="https://riton-duino.blogspot.com/2019/02/un-web-server-sur-ethernet.html">Un WEB server ARDUINO sur Ethernet (avec graphes H...</a></li>
+<li><a href="https://riton-duino.blogspot.com/2019/02/les-extensions-de-gpios-de-larduino.html">Les extensions de GPIOs de l'ARDUINO</a></li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2019/01/">
+janvier
+</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/">
+2018
+</a>
+<span class="post-count" dir="ltr">(29)</span>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/12/">
+décembre
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/11/">
+novembre
+</a>
+<span class="post-count" dir="ltr">(6)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/10/">
+octobre
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/09/">
+septembre
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/08/">
+août
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/07/">
+juillet
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/05/">
+mai
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/04/">
+avril
+</a>
+<span class="post-count" dir="ltr">(3)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/03/">
+mars
+</a>
+<span class="post-count" dir="ltr">(2)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/02/">
+février
+</a>
+<span class="post-count" dir="ltr">(4)</span>
+</li>
+</ul>
+<ul class="hierarchy">
+<li class="archivedate collapsed">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy">
+
+        ►&nbsp;
+      
+</span>
+</a>
+<a class="post-count-link" href="https://riton-duino.blogspot.com/2018/01/">
+janvier
+</a>
+<span class="post-count" dir="ltr">(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=4439416709970127506&amp;widgetType=BlogArchive&amp;widgetId=BlogArchive1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;BlogArchive1&quot;));" rel="nofollow" target="configBlogArchive1" title="Modifier">
+<img alt="" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget Label" data-version="1" id="Label1">
+<h2>Libellés</h2>
+<div class="widget-content list-label-widget-content">
+<ul>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Actus">Actus</a>
+<span dir="ltr">(15)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Affichage">Affichage</a>
+<span dir="ltr">(6)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Alimentation">Alimentation</a>
+<span dir="ltr">(20)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/ARDUINO">ARDUINO</a>
+<span dir="ltr">(63)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Batteries">Batteries</a>
+<span dir="ltr">(18)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Capteurs">Capteurs</a>
+<span dir="ltr">(10)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Cartes">Cartes</a>
+<span dir="ltr">(1)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Communication">Communication</a>
+<span dir="ltr">(16)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Domotique">Domotique</a>
+<span dir="ltr">(26)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Electronique">Electronique</a>
+<span dir="ltr">(22)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/ESP32">ESP32</a>
+<span dir="ltr">(20)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/ESP8266">ESP8266</a>
+<span dir="ltr">(21)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/index">index</a>
+<span dir="ltr">(131)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Labo%20et%20Atelier">Labo et Atelier</a>
+<span dir="ltr">(21)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Mesure">Mesure</a>
+<span dir="ltr">(12)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Modules">Modules</a>
+<span dir="ltr">(11)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/Moteurs">Moteurs</a>
+<span dir="ltr">(5)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/RASPBERRY">RASPBERRY</a>
+<span dir="ltr">(4)</span>
+</li>
+<li>
+<a dir="ltr" href="https://riton-duino.blogspot.com/search/label/STM32">STM32</a>
+<span dir="ltr">(8)</span>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=4439416709970127506&amp;widgetType=Label&amp;widgetId=Label1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Label1&quot;));" rel="nofollow" target="configLabel1" title="Modifier">
+<img alt="" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget BlogSearch" data-version="1" id="BlogSearch1">
+<h2 class="title">Rechercher dans ce blog</h2>
+<div class="widget-content">
+<div id="BlogSearch1_form">
+<form action="https://riton-duino.blogspot.com/search" class="gsc-search-box" target="_top">
+<table cellpadding="0" cellspacing="0" class="gsc-search-box">
+<tbody>
+<tr>
+<td class="gsc-input">
+<input autocomplete="off" class="gsc-input" name="q" size="10" title="search" type="text" value="">
+</td>
+<td class="gsc-search-button">
+<input class="gsc-search-button" title="search" type="submit" value="Rechercher">
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=4439416709970127506&amp;widgetType=BlogSearch&amp;widgetId=BlogSearch1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;BlogSearch1&quot;));" rel="nofollow" target="configBlogSearch1" title="Modifier">
+<img alt="" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+<div class="widget Profile" data-version="1" id="Profile1">
+<h2>Qui êtes-vous ?</h2>
+<div class="widget-content">
+<dl class="profile-datablock">
+<dt class="profile-data">
+<a class="profile-name-link g-profile" href="https://www.blogger.com/profile/05871691174644985326" rel="author" style="background-image: url(//www.blogger.com/img/logo-16.png);" data-gapiscan="true" data-onload="true" data-gapiattached="true">
+Henri BACHETTI
+</a>
+</dt>
+</dl>
+<a class="profile-link" href="https://www.blogger.com/profile/05871691174644985326" rel="author">Afficher mon profil complet</a>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=4439416709970127506&amp;widgetType=Profile&amp;widgetId=Profile1&amp;action=editWidget&amp;sectionId=sidebar-right-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Profile1&quot;));" rel="nofollow" target="configProfile1" title="Modifier">
+<img alt="" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div></div>
+<table border="0" cellpadding="0" cellspacing="0" class="section-columns columns-2">
+<tbody>
+<tr>
+<td class="first columns-cell">
+<div class="sidebar section" id="sidebar-right-2-1"><div class="widget Stats" data-version="1" id="Stats1">
+<h2>Nombre total de pages vues</h2>
+<div class="widget-content">
+<div id="Stats1_content" style="display: none;">
+<script src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/loader.js" type="text/javascript"></script>
+<span id="Stats1_sparklinespan" style="display:inline-block; width:75px; height:30px"></span>
+<span class="counter-wrapper text-counter-wrapper" id="Stats1_totalCount">
+</span>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=4439416709970127506&amp;widgetType=Stats&amp;widgetId=Stats1&amp;action=editWidget&amp;sectionId=sidebar-right-2-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Stats1&quot;));" rel="nofollow" target="configStats1" title="Modifier">
+<img alt="" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div>
+</div><div class="widget Subscribe" data-version="1" id="Subscribe1">
+<div style="white-space:nowrap">
+<h2 class="title">S’abonner à</h2>
+<div class="widget-content">
+<div class="subscribe-wrapper subscribe-type-POST">
+<div class="subscribe expanded subscribe-type-POST" id="SW_READER_LIST_Subscribe1POST" style="display:none;">
+<div class="top">
+<span class="inner" onclick="return(_SW_toggleReaderList(event, &quot;Subscribe1POST&quot;));">
+<img class="subscribe-dropdown-arrow" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/arrow_dropdown.gif">
+<img align="absmiddle" alt="" border="0" class="feed-icon" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon_feed12.png">
+Articles
+</span>
+<div class="feed-reader-links">
+<a class="feed-reader-link" href="https://www.netvibes.com/subscribe.php?url=https%3A%2F%2Friton-duino.blogspot.com%2Ffeeds%2Fposts%2Fdefault" target="_blank">
+<img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/subscribe-netvibes.png">
+</a>
+<a class="feed-reader-link" href="https://add.my.yahoo.com/content?url=https%3A%2F%2Friton-duino.blogspot.com%2Ffeeds%2Fposts%2Fdefault" target="_blank">
+<img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/subscribe-yahoo.png">
+</a>
+<a class="feed-reader-link" href="https://riton-duino.blogspot.com/feeds/posts/default" target="_blank">
+<img align="absmiddle" class="feed-icon" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon_feed12.png">
+                  Atom
+                </a>
+</div>
+</div>
+<div class="bottom"></div>
+</div>
+<div class="subscribe" id="SW_READER_LIST_CLOSED_Subscribe1POST" onclick="return(_SW_toggleReaderList(event, &quot;Subscribe1POST&quot;));">
+<div class="top">
+<span class="inner">
+<img class="subscribe-dropdown-arrow" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/arrow_dropdown.gif">
+<span onclick="return(_SW_toggleReaderList(event, &quot;Subscribe1POST&quot;));">
+<img align="absmiddle" alt="" border="0" class="feed-icon" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon_feed12.png">
+Articles
+</span>
+</span>
+</div>
+<div class="bottom"></div>
+</div>
+</div>
+<div class="subscribe-wrapper subscribe-type-PER_POST">
+<div class="subscribe expanded subscribe-type-PER_POST" id="SW_READER_LIST_Subscribe1PER_POST" style="display:none;">
+<div class="top">
+<span class="inner" onclick="return(_SW_toggleReaderList(event, &quot;Subscribe1PER_POST&quot;));">
+<img class="subscribe-dropdown-arrow" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/arrow_dropdown.gif">
+<img align="absmiddle" alt="" border="0" class="feed-icon" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon_feed12.png">
+Commentaires
+</span>
+<div class="feed-reader-links">
+<a class="feed-reader-link" href="https://www.netvibes.com/subscribe.php?url=https%3A%2F%2Friton-duino.blogspot.com%2Ffeeds%2F204527447760443916%2Fcomments%2Fdefault" target="_blank">
+<img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/subscribe-netvibes.png">
+</a>
+<a class="feed-reader-link" href="https://add.my.yahoo.com/content?url=https%3A%2F%2Friton-duino.blogspot.com%2Ffeeds%2F204527447760443916%2Fcomments%2Fdefault" target="_blank">
+<img src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/subscribe-yahoo.png">
+</a>
+<a class="feed-reader-link" href="https://riton-duino.blogspot.com/feeds/204527447760443916/comments/default" target="_blank">
+<img align="absmiddle" class="feed-icon" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon_feed12.png">
+                  Atom
+                </a>
+</div>
+</div>
+<div class="bottom"></div>
+</div>
+<div class="subscribe" id="SW_READER_LIST_CLOSED_Subscribe1PER_POST" onclick="return(_SW_toggleReaderList(event, &quot;Subscribe1PER_POST&quot;));">
+<div class="top">
+<span class="inner">
+<img class="subscribe-dropdown-arrow" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/arrow_dropdown.gif">
+<span onclick="return(_SW_toggleReaderList(event, &quot;Subscribe1PER_POST&quot;));">
+<img align="absmiddle" alt="" border="0" class="feed-icon" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon_feed12.png">
+Commentaires
+</span>
+</span>
+</div>
+<div class="bottom"></div>
+</div>
+</div>
+<div style="clear:both"></div>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=4439416709970127506&amp;widgetType=Subscribe&amp;widgetId=Subscribe1&amp;action=editWidget&amp;sectionId=sidebar-right-2-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Subscribe1&quot;));" rel="nofollow" target="configSubscribe1" title="Modifier">
+<img alt="" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div><div class="widget FollowByEmail" data-version="1" id="FollowByEmail2">
+<h2 class="title">Etre averti des modifications par Email</h2>
+<div class="widget-content">
+<div class="follow-by-email-inner">
+<form action="https://feedburner.google.com/fb/a/mailverify" method="post" onsubmit="window.open(&quot;https://feedburner.google.com/fb/a/mailverify?uri=Ritonduino&quot;, &quot;popupwindow&quot;, &quot;scrollbars=yes,width=550,height=520&quot;); return true" target="popupwindow">
+<table width="100%">
+<tbody><tr>
+<td>
+<input class="follow-by-email-address" name="email" placeholder="Email address..." type="text">
+</td>
+<td width="64px">
+<input class="follow-by-email-submit" type="submit" value="Submit">
+</td>
+</tr>
+</tbody></table>
+<input name="uri" type="hidden" value="Ritonduino">
+<input name="loc" type="hidden" value="en_US">
+</form>
+</div>
+</div>
+<span class="item-control blog-admin">
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=4439416709970127506&amp;widgetType=FollowByEmail&amp;widgetId=FollowByEmail2&amp;action=editWidget&amp;sectionId=sidebar-right-2-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;FollowByEmail2&quot;));" rel="nofollow" target="configFollowByEmail2" title="Modifier">
+<img alt="" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</span>
+</div><div class="widget PopularPosts" data-version="1" id="PopularPosts1">
+<h2>Articles les plus consultés</h2>
+<div class="widget-content popular-posts">
+<ul>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html" target="_blank">
+<img alt="" border="0" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/16340-00(1).jpg">
+</a>
+</div>
+<div class="item-title"><a href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html">Alimenter un ARDUINO sur Pile ou Batterie</a></div>
+<div class="item-snippet">   Alimenter un ARDUINO sur Pile ou Batterie   Cet article vise à examiner en profondeur la possibilité d'alimenter un montage ARDUINO s...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://riton-duino.blogspot.com/2018/03/stm32f103c8t6-et-arduino.html" target="_blank">
+<img alt="" border="0" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/STM32F103C8T6.jpg">
+</a>
+</div>
+<div class="item-title"><a href="https://riton-duino.blogspot.com/2018/03/stm32f103c8t6-et-arduino.html">STM32 et ARDUINO</a></div>
+<div class="item-snippet">   STM32 et ARDUINO   &nbsp;   J'avais récemment fait l'acquisition de quelques cartes STM32 dites "BLUE PILL"  dans le but de ...</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+<li>
+<div class="item-content">
+<div class="item-thumbnail">
+<a href="https://riton-duino.blogspot.com/2019/02/esp8266-sur-batterie.html" target="_blank">
+<img alt="" border="0" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/esp8266-battery.jpg">
+</a>
+</div>
+<div class="item-title"><a href="https://riton-duino.blogspot.com/2019/02/esp8266-sur-batterie.html">ESP8266 et ESP32 sur batterie</a></div>
+<div class="item-snippet">     ESP8266 et ESP32 sur batterie   Vous connaissez certainement ces petits modules WIFI et je ne vais pas vous les décrire une Nième fois....</div>
+</div>
+<div style="clear: both;"></div>
+</li>
+</ul>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=4439416709970127506&amp;widgetType=PopularPosts&amp;widgetId=PopularPosts1&amp;action=editWidget&amp;sectionId=sidebar-right-2-1" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;PopularPosts1&quot;));" rel="nofollow" target="configPopularPosts1" title="Modifier">
+<img alt="" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget ReportAbuse" data-version="1" id="ReportAbuse1">
+<h3 class="title">
+<a class="report_abuse" href="https://www.blogger.com/go/report-abuse" rel="noopener nofollow" target="_blank">
+Signaler un abus
+</a>
+</h3>
+</div></div>
+</td>
+<td class="columns-cell">
+<div class="sidebar no-items section" id="sidebar-right-2-2"></div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sidebar no-items section" id="sidebar-right-3"></div>
+</aside>
+</div>
+</div>
+</div>
+<div style="clear: both"></div>
+<!-- columns -->
+</div>
+<!-- main -->
+</div>
+</div>
+<div class="main-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+<footer>
+<div class="footer-outer">
+<div class="footer-cap-top cap-top">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+<div class="fauxborder-left footer-fauxborder-left">
+<div class="fauxborder-right footer-fauxborder-right"></div>
+<div class="region-inner footer-inner">
+<div class="foot no-items section" id="footer-1"></div>
+<table border="0" cellpadding="0" cellspacing="0" class="section-columns columns-2">
+<tbody>
+<tr>
+<td class="first columns-cell">
+<div class="foot no-items section" id="footer-2-1"></div>
+</td>
+<td class="columns-cell">
+<div class="foot no-items section" id="footer-2-2"></div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- outside of the include in order to lock Attribution widget -->
+<div class="foot section" id="footer-3" name="Pied de page"><div class="widget Attribution" data-version="1" id="Attribution1">
+<div class="widget-content" style="text-align: center;">
+Thème Éthéré. Fourni par <a href="https://www.blogger.com/" target="_blank">Blogger</a>.
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="https://www.blogger.com/rearrange?blogID=4439416709970127506&amp;widgetType=Attribution&amp;widgetId=Attribution1&amp;action=editWidget&amp;sectionId=footer-3" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Attribution1&quot;));" rel="nofollow" target="configAttribution1" title="Modifier">
+<img alt="" height="18" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+</div>
+</div>
+<div class="footer-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</footer>
+<!-- content -->
+</div>
+</div>
+<div class="content-cap-bottom cap-bottom">
+<div class="cap-left"></div>
+<div class="cap-right"></div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+    window.setTimeout(function() {
+        document.body.className = document.body.className.replace('loading', '');
+      }, 10);
+  </script>
+<script src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/plusone.js" type="text/javascript" gapi_processed="true"></script>
+<!--Il est de votre ressort d\x27informer les visiteurs \xe0 propos des cookies utilis\xe9s et des donn\xe9es collect\xe9es sur votre blog. Blogger met \xe0 votre disposition une notification standard que vous pouvez personnaliser, remplacer ou afficher telle quelle sur votre blog. Rendez-vous sur http://www.blogger.com/go/cookiechoices pour obtenir de plus amples informations.-->
+<script defer="" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/cookienotice.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+      window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
+          (window.cookieOptions && cookieOptions.msg) || 'Ce site utilise des cookies provenant de Google pour fournir ses services et analyser le trafic. Votre adresse\xa0IP et votre user-agent, ainsi que des statistiques relatives aux performances et \xe0 la s\xe9curit\xe9, sont transmis \xe0 Google afin d\x27assurer un service de qualit\xe9, de g\xe9n\xe9rer des statistiques d\x27utilisation, et de d\xe9tecter et de r\xe9soudre les probl\xe8mes d\x27abus.',
+          (window.cookieOptions && cookieOptions.close) || 'OK',
+          (window.cookieOptions && cookieOptions.learn) || 'En savoir plus',
+          (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies');
+    });
+  </script>
+
+<script type="text/javascript" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/1090762444-widgets.js"></script>
+<script type="text/javascript">
+window['__wavt'] = 'AOuZoY6fTsnbyN9HOq5GNTi6VE-vVqWc4w:1599950352819';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d4439416709970127506','//riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html','4439416709970127506');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '4439416709970127506', 'title': 'RitonDuino', 'url': 'https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html', 'canonicalUrl': 'http://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html', 'homepageUrl': 'https://riton-duino.blogspot.com/', 'searchUrl': 'https://riton-duino.blogspot.com/search', 'canonicalHomepageUrl': 'http://riton-duino.blogspot.com/', 'blogspotFaviconUrl': 'https://riton-duino.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': 'UA-142311643-1', 'encoding': 'UTF-8', 'locale': 'fr', 'localeUnderscoreDelimited': 'fr', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22RitonDuino - Atom\x22 href\x3d\x22https://riton-duino.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22RitonDuino - RSS\x22 href\x3d\x22https://riton-duino.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22RitonDuino - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/4439416709970127506/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22RitonDuino - Atom\x22 href\x3d\x22https://riton-duino.blogspot.com/feeds/204527447760443916/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'ieCssRetrofitLinks': '\x3c!--[if IE]\x3e\x3cscript type\x3d\x22text/javascript\x22 src\x3d\x22https://www.blogger.com/static/v1/jsbin/3481486107-ieretrofit.js\x22\x3e\x3c/script\x3e\n\x3c![endif]--\x3e', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/b226a9ecd45943f4', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'disableGComments': true, 'sharing': {'platforms': [{'name': 'Obtenir le lien', 'key': 'link', 'shareMessage': 'Obtenir le lien', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Partager sur Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Partager sur Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Partager sur Pinterest', 'target': 'pinterest'}, {'name': 'Adresse e-mail', 'key': 'email', 'shareMessage': 'Adresse e-mail', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 300, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27fr\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Lire la suite', 'pageType': 'item', 'postId': '204527447760443916', 'postImageThumbnailUrl': 'https://1.bp.blogspot.com/-DV5xFQaqNOM/XGqTR9OCMuI/AAAAAAAABUY/7aKpL70fm7QIo5mNgqRxXtSDldV2PKKIwCLcBGAs/s72-c/16340-00.jpg', 'postImageUrl': 'https://1.bp.blogspot.com/-DV5xFQaqNOM/XGqTR9OCMuI/AAAAAAAABUY/7aKpL70fm7QIo5mNgqRxXtSDldV2PKKIwCLcBGAs/s320/16340-00.jpg', 'pageName': 'Alimenter un ARDUINO sur Pile ou Batterie', 'pageTitle': 'RitonDuino: Alimenter un ARDUINO sur Pile ou Batterie'}}, {'name': 'features', 'data': {'sharing_get_link_dialog': 'true', 'sharing_native': 'false'}}, {'name': 'messages', 'data': {'edit': 'Modifier', 'linkCopiedToClipboard': 'Lien copié dans le presse-papiers&#160;!', 'ok': 'OK', 'postLink': 'Publier le lien'}}, {'name': 'template', 'data': {'name': 'Ethereal', 'localizedName': 'Éthéré', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': false, 'variant': 'hummingBirds2', 'variantId': 'hummingBirds2'}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Alimenter un ARDUINO sur Pile ou Batterie', 'description': '   Alimenter un ARDUINO sur Pile ou Batterie   Cet article vise à examiner en profondeur la possibilité d\x27alimenter un montage ARDUINO sur p...', 'featuredImage': 'https://1.bp.blogspot.com/-DV5xFQaqNOM/XGqTR9OCMuI/AAAAAAAABUY/7aKpL70fm7QIo5mNgqRxXtSDldV2PKKIwCLcBGAs/s320/16340-00.jpg', 'url': 'https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 204527447760443916}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_PageListView', new _WidgetInfo('PageList2', 'crosscol', document.getElementById('PageList2'), {'title': 'Pages', 'links': [{'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/', 'title': 'Accueil'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/p/table-des-matieres.html', 'id': '442213362813940810', 'title': 'Table des matières'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Actus', 'title': 'Actus'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/ARDUINO', 'title': 'ARDUINO'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/ESP8266', 'title': 'ESP8266'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/ESP32', 'title': 'ESP32'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/STM32', 'title': 'STM32'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Electronique', 'title': 'Electronique'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Alimentation', 'title': 'Alimentation'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Affichage', 'title': 'Affichage'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Batteries', 'title': 'Batteries'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Capteurs', 'title': 'Capteurs'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Modules', 'title': 'Modules'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Cartes', 'title': 'CartesPucesRfid'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Communication', 'title': 'Communication'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Moteurs', 'title': 'Moteurs'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Domotique', 'title': 'Domotique'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Labo et Atelier', 'title': 'Labo et Atelier'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/search/label/Mesure', 'title': 'Mesure'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/p/forums-et-blogs.html', 'id': '8482176307301432889', 'title': 'Forums et Blogs'}, {'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/p/migration-sous-bitbucket.html', 'id': '1976646405258887028', 'title': 'Migration sous BITBUCKET'}], 'mobile': false}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/2487064710-lbx__fr.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/368954415-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_PageListView', new _WidgetInfo('PageList1', 'sidebar-right-1', document.getElementById('PageList1'), {'title': 'Présentation', 'links': [{'isCurrentPage': false, 'href': 'https://riton-duino.blogspot.com/p/blog-page.html', 'id': '3834177161316849083', 'title': 'RitonDuino : PRESENTATION'}], 'mobile': false}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar-right-1', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Chargement\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label1', 'sidebar-right-1', document.getElementById('Label1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogSearchView', new _WidgetInfo('BlogSearch1', 'sidebar-right-1', document.getElementById('BlogSearch1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_ProfileView', new _WidgetInfo('Profile1', 'sidebar-right-1', document.getElementById('Profile1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_StatsView', new _WidgetInfo('Stats1', 'sidebar-right-2-1', document.getElementById('Stats1'), {'title': 'Nombre total de pages vues', 'showGraphicalCounter': false, 'showAnimatedCounter': false, 'showSparkline': true, 'statsUrl': '//riton-duino.blogspot.com/b/stats?style\x3dBLACK_TRANSPARENT\x26timeRange\x3dALL_TIME\x26token\x3dAPq4FmBxjQ27pnYtHsiEuHRRQW8rTd-TbycSerxJ9W9hfp5dl_pGD8lxpJ-qHB4V70uc9nxxZnpHObnv3xENrICZQRlFT2ypaA'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_SubscribeView', new _WidgetInfo('Subscribe1', 'sidebar-right-2-1', document.getElementById('Subscribe1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_FollowByEmailView', new _WidgetInfo('FollowByEmail2', 'sidebar-right-2-1', document.getElementById('FollowByEmail2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_PopularPostsView', new _WidgetInfo('PopularPosts1', 'sidebar-right-2-1', document.getElementById('PopularPosts1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_ReportAbuseView', new _WidgetInfo('ReportAbuse1', 'sidebar-right-2-1', document.getElementById('ReportAbuse1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AttributionView', new _WidgetInfo('Attribution1', 'footer-3', document.getElementById('Attribution1'), {}, 'displayModeFull'));
+</script>
+
+<div id="cookieChoiceInfo" class="cookie-choices-info singleton-element"><div class="cookie-choices-inner"><span class="cookie-choices-text">Ce site utilise des cookies provenant de Google pour fournir ses services et analyser le trafic. Votre adresse&nbsp;IP et votre user-agent, ainsi que des statistiques relatives aux performances et à la sécurité, sont transmis à Google afin d'assurer un service de qualité, de générer des statistiques d'utilisation, et de détecter et de résoudre les problèmes d'abus.</span><span class="cookie-choices-buttons"><a href="https://www.blogger.com/go/blogspot-cookies" target="_blank" class="cookie-choices-button">En savoir plus</a><a id="cookieChoiceDismiss" href="https://riton-duino.blogspot.com/2019/02/alimenter-un-arduino-sur-pile-ou.html#" class="cookie-choices-button">OK</a></span></div></div><link type="text/css" rel="stylesheet" href="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/368954415-lightbox_bundle.css"><script type="text/javascript" src="./RitonDuino_ Alimenter un ARDUINO sur Pile ou Batterie_files/2487064710-lbx__fr.js"></script></body></html>
