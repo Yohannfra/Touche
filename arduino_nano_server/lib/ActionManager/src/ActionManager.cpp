@@ -36,11 +36,6 @@ void ActionManager::hit(player_index_e index)
     }
 }
 
-void ActionManager::ground(player_index_e index)
-{
-    // TODO
-}
-
 hit_type_e ActionManager::getHitStatus() const
 {
     if (_player_actions[PLAYER_1] == ACTION_HIT && _player_actions[PLAYER_2] == ACTION_HIT)

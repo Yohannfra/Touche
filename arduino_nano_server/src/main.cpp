@@ -35,7 +35,7 @@ void setup()
 
 void resetValues()
 {
-    DEBUG_LOG("resetting values");
+    DEBUG_LOG_LN("resetting values");
     action_manager.reset();
     led_ring.turn_off();
     buzzer.stop();
@@ -69,10 +69,6 @@ void loop()
         case HIT:
             DEBUG_LOG_LN("HIT");
             action_manager.hit(player_index);
-            break;
-        case GND:
-            DEBUG_LOG_LN("GROUND");
-            action_manager.ground(player_index);
             break;
         case CALIBRATION_STARTING:
             DEBUG_LOG_LN("CALIBRATION STARTED");

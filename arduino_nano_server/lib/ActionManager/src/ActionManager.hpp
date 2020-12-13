@@ -15,7 +15,6 @@ class ActionManager
 {
     typedef enum {
         ACTION_HIT,
-        ACTION_GND,
         NO_ACTION,
     } action_type_e;
 
@@ -27,7 +26,6 @@ class ActionManager
         ActionManager();
         void reset();
         void hit(player_index_e index);
-        void ground(player_index_e index);
         bool isResetTime() const;
         hit_type_e getHitStatus() const;
 };
