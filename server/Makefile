@@ -1,9 +1,30 @@
-PROJECT_NAME := wsff-server
+#defaults
+all: debug
+flash: flash_debug
+clean: clean_debug
 
-SERVER_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
-# Fixme for LTS but ok for now
-CPPFLAGS += -iquote $(SERVER_DIR)/../shared/ \
-			-iquote $(SERVER_DIR)/include
+# debug config
+debug:
+	@pio run -e debug
 
-include $(IDF_PATH)/make/project.mk
+flash_debug:
+	@pio run -e debug --target upload
+
+clean_debug:
+	@pio run -e debug --target clean
+
+# release config
+release:
+	@pio run -e release
+
+flash_release:
+	@pio run -e release --target upload
+
+clean_release:
+	@pio run -e release --target clean
+
+# common
+clean_all: clean_debug clean_release
+
+.PHONY: all flash clean debug flash_debug clean_debug release flash_release clean_release clean_all
