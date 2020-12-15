@@ -1,0 +1,6 @@
+.clangd/
+build/
+.vimproject/
+.vscode/
+.idea
+neopixel-idf/
