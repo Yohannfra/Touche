@@ -10609,11 +10609,11 @@ Comments, suggestions and bug reports please send to: &lt;b&gt;&lt;a href="mailt
 <attribute name="VALUE" x="93.98" y="60.96" size="1.778" layer="96"/>
 </instance>
 <instance part="NP_VCC" gate="G$1" x="-5.08" y="76.2" smashed="yes">
-<attribute name="NAME" x="-16.51" y="84.455" size="1.778" layer="95"/>
+<attribute name="NAME" x="-11.43" y="79.375" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-11.43" y="71.12" size="1.778" layer="96"/>
 </instance>
 <instance part="NP_GND" gate="G$1" x="-5.08" y="58.42" smashed="yes">
-<attribute name="NAME" x="-19.05" y="64.135" size="1.778" layer="95"/>
+<attribute name="NAME" x="-11.43" y="61.595" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-11.43" y="53.34" size="1.778" layer="96"/>
 </instance>
 <instance part="NP_DIN" gate="G$1" x="-5.08" y="43.18" smashed="yes">
@@ -10811,13 +10811,7 @@ Comments, suggestions and bug reports please send to: &lt;b&gt;&lt;a href="mailt
 <approved hash="208,1,88.9,35.56,VCC,out,,,,"/>
 <approved hash="208,1,109.22,38.1,VCC,sup,,,,"/>
 <approved hash="208,1,48.26,114.3,VCC,sup,,,,"/>
-<approved hash="113,1,68.58,48.0272,ARDUINO_NANO1,,,,,"/>
-<approved hash="113,1,-4.84293,108.176,GND,,,,,"/>
-<approved hash="113,1,-4.84293,118.336,VCC,,,,,"/>
-<approved hash="113,1,19.05,10.4817,LED1,,,,,"/>
-<approved hash="113,1,0.985866,70.0126,CON_CAPTOUCH,,,,,"/>
-<approved hash="113,1,-0.677331,44.6126,CON_BTN1,,,,,"/>
-<approved hash="113,1,-0.677331,34.4526,CON_BTN2,,,,,"/>
+<approved hash="208,1,5.08,76.2,VCC,sup,,,,"/>
 </errors>
 </schematic>
 </drawing>

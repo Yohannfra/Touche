@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="no" altdistance="1" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -157,18 +157,21 @@
 <layer number="255" name="routoute" color="7" fill="1" visible="yes" active="yes"/>
 </layers>
 <board>
-<fusionsync huburn="a.YnVzaW5lc3M6ZXBpdGVjaDQw" projecturn="a.YnVzaW5lc3M6ZXBpdGVjaDQwI0QyMDIwMDMxMDI3MzUwNDYwMQ" f3durn="urn:adsk.wipprod:dm.lineage:smIWb7I_QH2r5atMStTLYg" pcbguid="" lastpulledtime="" lastsyncedchangeguid="" latestrevisionid="9e3c73c2-d581-4510-a2eb-30fbacaf7552" lastsyncedrevisionid="9e3c73c2-d581-4510-a2eb-30fbacaf7552" lastboardhashguid="ab5e6a2c-8e40-022e-9127-97815b74cb21" lastpushedtime="2020-12-15T17:08:11Z" linktopcb3d="true"/>
+<fusionsync huburn="a.YnVzaW5lc3M6ZXBpdGVjaDQw" projecturn="a.YnVzaW5lc3M6ZXBpdGVjaDQwI0QyMDIwMDMxMDI3MzUwNDYwMQ" f3durn="urn:adsk.wipprod:dm.lineage:Yh6YGJO4SySBV2_jDXAEDA" pcbguid="" lastpulledtime="" lastsyncedchangeguid="" latestrevisionid="c87566ff-4033-4582-93f0-68581ff8fdde" lastsyncedrevisionid="c87566ff-4033-4582-93f0-68581ff8fdde" lastboardhashguid="a795fa09-f9a9-ff44-fd32-69ca809550d8" lastpushedtime="2020-12-21T22:25:38Z" linktopcb3d="true"/>
 <plain>
-<hole x="52.72" y="36.56" drill="1.397"/>
-<hole x="1.27" y="1.08" drill="1.397"/>
-<hole x="1.27" y="36.56" drill="1.397"/>
-<hole x="52.72" y="1.08" drill="1.397"/>
-<wire x1="0" y1="0" x2="0" y2="38" width="0.1524" layer="20"/>
-<wire x1="0" y1="38" x2="54" y2="38" width="0.1524" layer="20"/>
-<wire x1="54" y1="38" x2="54" y2="0" width="0.1524" layer="20"/>
-<wire x1="54" y1="0" x2="0" y2="0" width="0.1524" layer="20"/>
-<dimension x1="54" y1="0" x2="0" y2="0" x3="27" y3="-3" textsize="1.778" layer="20"/>
-<dimension x1="0" y1="0" x2="0" y2="38" x3="-2" y3="19" textsize="1.778" layer="20"/>
+<hole x="42" y="50" drill="1.397"/>
+<hole x="2" y="2" drill="1.397"/>
+<hole x="2" y="50" drill="1.5"/>
+<hole x="42" y="2" drill="1.397"/>
+<wire x1="0" y1="0" x2="0" y2="52" width="0.1524" layer="20"/>
+<wire x1="0" y1="52" x2="44" y2="52" width="0.1524" layer="20"/>
+<wire x1="44" y1="52" x2="44" y2="0" width="0.1524" layer="20"/>
+<wire x1="44" y1="0" x2="0" y2="0" width="0.1524" layer="20"/>
+<dimension x1="44" y1="0" x2="0" y2="0" x3="22" y3="-3" textsize="1.778" layer="20"/>
+<dimension x1="0" y1="0" x2="0" y2="52" x3="-5" y3="26" textsize="1.778" layer="20"/>
+<text x="30" y="2" size="0.8128" layer="21">WSFF Server v1.0
+Assouline Yohann
+21/12/2020</text>
 </plain>
 <libraries>
 <library name="ArduinoNanoV30">
@@ -1615,50 +1618,50 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="ARDUINO_NANO1" library="ArduinoNanoV30" package="ARDUINO_NANO" value="" x="25.67" y="12.24" smashed="yes">
-<attribute name="VALUE" x="7.89" y="9.7" size="1.27" layer="21" font="vector"/>
+<element name="ARDUINO_NANO1" library="ArduinoNanoV30" package="ARDUINO_NANO" value="" x="15" y="21" smashed="yes" rot="R270">
+<attribute name="VALUE" x="12.46" y="38.78" size="1.27" layer="21" font="vector" rot="R270"/>
 </element>
-<element name="GND" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="4.81" y="35.29" smashed="yes">
-<attribute name="NAME" x="3.9238" y="32.0388" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="64" x="32.75" y="13.7" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="3.54" y="32.115" size="1.27" layer="27"/>
+<element name="GND" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="2" y="46" smashed="yes">
+<attribute name="NAME" x="1.1138" y="43.7488" size="0.5" layer="25" ratio="10"/>
+<attribute name="POPULARITY" value="64" x="29.94" y="24.41" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="0.73" y="42.825" size="1.27" layer="27"/>
 </element>
-<element name="VCC" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="9.18" y="35.29" smashed="yes">
-<attribute name="NAME" x="9.5638" y="32.0388" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="64" x="42.2" y="13.7" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="7.91" y="32.115" size="1.27" layer="27"/>
+<element name="VCC" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="2" y="38" smashed="yes">
+<attribute name="NAME" x="1.3838" y="35.7488" size="0.5" layer="25" ratio="10"/>
+<attribute name="POPULARITY" value="64" x="35.02" y="16.41" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="0.73" y="34.825" size="1.27" layer="27"/>
 </element>
-<element name="NRF24L01" library="diy-modules" package="WIRELESS-NRF24L01" value="WIRELESS-NRF24L01" x="34.86" y="29.02" smashed="yes">
-<attribute name="NAME" x="34.86" y="34.1" size="1.27" layer="25" align="bottom-center"/>
+<element name="NRF24L01" library="diy-modules" package="WIRELESS-NRF24L01" value="WIRELESS-NRF24L01" x="34" y="21" smashed="yes" rot="R270">
+<attribute name="NAME" x="39.08" y="21" size="1.27" layer="25" rot="R270" align="bottom-center"/>
 </element>
-<element name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="E2-5" package3d_urn="urn:adsk.eagle:package:23346/2" value="10uF" x="12.64" y="27.94" smashed="yes" rot="R180">
-<attribute name="POPULARITY" value="7" x="12.64" y="27.94" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="SPICEPREFIX" value="C" x="12.64" y="27.94" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="E2-5" package3d_urn="urn:adsk.eagle:package:23346/2" value="10uF" x="32" y="43" smashed="yes" rot="R180">
+<attribute name="POPULARITY" value="7" x="32" y="43" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="SPICEPREFIX" value="C" x="32" y="43" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="NP_VCC" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="48.26" y="17.78" smashed="yes">
-<attribute name="NAME" x="45.6438" y="19.6088" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="64" x="48.26" y="17.78" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="46.99" y="14.605" size="1.27" layer="27"/>
+<element name="NP_VCC" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="24" y="50" smashed="yes">
+<attribute name="NAME" x="22.3838" y="47.8288" size="0.5" layer="25" ratio="10"/>
+<attribute name="POPULARITY" value="64" x="24" y="50" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="22.73" y="46.825" size="1.27" layer="27"/>
 </element>
-<element name="NP_GND" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="48.26" y="12.7" smashed="yes">
-<attribute name="NAME" x="45.6438" y="14.5288" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="64" x="48.26" y="12.7" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="46.99" y="9.525" size="1.27" layer="27"/>
+<element name="NP_GND" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="8" y="50" smashed="yes">
+<attribute name="NAME" x="6.3838" y="47.8288" size="0.5" layer="25" ratio="10"/>
+<attribute name="POPULARITY" value="64" x="8" y="50" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="6.73" y="46.825" size="1.27" layer="27"/>
 </element>
-<element name="NP_DIN" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="48.26" y="7.62" smashed="yes">
-<attribute name="NAME" x="45.6438" y="9.4488" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="64" x="48.26" y="7.62" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="46.99" y="4.445" size="1.27" layer="27"/>
+<element name="NP_DIN" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="16" y="50" smashed="yes">
+<attribute name="NAME" x="14.3838" y="47.8288" size="0.5" layer="25" ratio="10"/>
+<attribute name="POPULARITY" value="64" x="16" y="50" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="14.73" y="46.825" size="1.27" layer="27"/>
 </element>
-<element name="BZR_GND" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="2.54" y="29.21" smashed="yes">
-<attribute name="NAME" x="1.1938" y="31.0388" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="64" x="2.54" y="29.21" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="1.27" y="26.035" size="1.27" layer="27"/>
+<element name="BZR_GND" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="42" y="47" smashed="yes">
+<attribute name="NAME" x="39.6538" y="44.8288" size="0.5" layer="25" ratio="10" rot="R90"/>
+<attribute name="POPULARITY" value="64" x="42" y="47" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="40.73" y="43.825" size="1.27" layer="27"/>
 </element>
-<element name="BZR_VCC" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="2.54" y="25.4" smashed="yes">
-<attribute name="NAME" x="1.1938" y="27.2288" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="64" x="2.54" y="25.4" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="1.27" y="22.225" size="1.27" layer="27"/>
+<element name="BZR_VCC" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X01" package3d_urn="urn:adsk.eagle:package:22485/2" value="" x="42" y="41" smashed="yes">
+<attribute name="NAME" x="39.6538" y="39.8288" size="0.5" layer="25" ratio="10" rot="R90"/>
+<attribute name="POPULARITY" value="64" x="42" y="41" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="40.73" y="37.825" size="1.27" layer="27"/>
 </element>
 </elements>
 <signals>
@@ -1668,38 +1671,40 @@ design rules under a new name.</description>
 <contactref element="GND" pad="1"/>
 <contactref element="ARDUINO_NANO1" pad="19"/>
 <contactref element="ARDUINO_NANO1" pad="14"/>
-<wire x1="11.5" y1="32.25" x2="11.5" y2="31" width="0.2" layer="1"/>
-<wire x1="11.5" y1="31" x2="11.5" y2="30.48" width="0.2" layer="1"/>
-<wire x1="11.5" y1="30.48" x2="11.5" y2="28" width="0.2" layer="1"/>
-<wire x1="11.5" y1="28" x2="11.624" y2="27.94" width="0.2" layer="1"/>
-<wire x1="11.5" y1="32.25" x2="6.87666875" y2="33.22333125" width="0.2" layer="1"/>
-<wire x1="6.87666875" y1="33.22333125" x2="4.81" y2="35.29" width="0.2" layer="1"/>
-<wire x1="15.75" y1="35.25" x2="22" y2="35.25" width="0.2" layer="1"/>
-<wire x1="11.5" y1="31" x2="15.75" y2="35.25" width="0.2" layer="1"/>
-<wire x1="22" y1="35.25" x2="22.16" y2="35.37" width="0.2" layer="1"/>
-<wire x1="37" y1="4.5" x2="37.25" y2="4.5" width="0.2" layer="1"/>
-<wire x1="37.25" y1="4.5" x2="38.25" y2="4.5" width="0.2" layer="1"/>
-<wire x1="34.75" y1="2.25" x2="37" y2="4.5" width="0.2" layer="1"/>
-<wire x1="31.75" y1="2.25" x2="34.75" y2="2.25" width="0.2" layer="1"/>
-<wire x1="38.25" y1="4.5" x2="38.37" y2="4.62" width="0.2" layer="1"/>
-<wire x1="33.5" y1="8.25" x2="33.5" y2="19.75" width="0.2" layer="1"/>
-<wire x1="37.25" y1="4.5" x2="33.5" y2="8.25" width="0.2" layer="1"/>
-<wire x1="33.5" y1="19.75" x2="33.29" y2="19.86" width="0.2" layer="1"/>
-<wire x1="23.25" y1="35.25" x2="22.25" y2="35.25" width="0.2" layer="1"/>
-<wire x1="24.5" y1="34" x2="23.25" y2="35.25" width="0.2" layer="1"/>
-<wire x1="25" y1="34" x2="24.5" y2="34" width="0.2" layer="1"/>
-<wire x1="33.25" y1="25.75" x2="25" y2="34" width="0.2" layer="1"/>
-<wire x1="33.25" y1="20" x2="33.25" y2="25.75" width="0.2" layer="1"/>
-<wire x1="22.25" y1="35.25" x2="22.16" y2="35.37" width="0.2" layer="1"/>
-<wire x1="33.25" y1="20" x2="33.29" y2="19.86" width="0.2" layer="1"/>
 <contactref element="NP_GND" pad="1"/>
-<wire x1="44.45" y1="8.89" x2="48.26" y2="12.7" width="0.1524" layer="16"/>
-<wire x1="38.37" y1="4.62" x2="35.56" y2="7.43" width="0.1524" layer="16"/>
-<wire x1="35.56" y1="7.43" x2="37.02" y2="8.89" width="0.1524" layer="16"/>
-<wire x1="37.02" y1="8.89" x2="44.45" y2="8.89" width="0.1524" layer="16"/>
 <contactref element="BZR_GND" pad="1"/>
-<wire x1="11.5" y1="30.48" x2="10.23" y2="29.21" width="0.1524" layer="1"/>
-<wire x1="10.23" y1="29.21" x2="2.54" y2="29.21" width="0.1524" layer="1"/>
+<wire x1="42" y1="47" x2="40" y2="45" width="0.2" layer="1"/>
+<wire x1="40" y1="45" x2="40" y2="34.05" width="0.2" layer="1"/>
+<wire x1="40" y1="34.05" x2="40.35" y2="33.7" width="0.2" layer="1"/>
+<wire x1="32.984" y1="45" x2="30.984" y2="43" width="0.2" layer="1"/>
+<wire x1="40" y1="45" x2="32.984" y2="45" width="0.2" layer="1"/>
+<wire x1="40.35" y1="33.7" x2="38.9926" y2="32.1426" width="0.2" layer="1"/>
+<wire x1="22.62" y1="13.38" x2="17.54" y2="8.3" width="0.2" layer="1"/>
+<wire x1="17.54" y1="8.3" x2="7.38" y2="8.3" width="0.2" layer="1"/>
+<wire x1="38.9926" y1="29.5526" x2="38.9926" y2="32.1426" width="0.2" layer="1"/>
+<wire x1="22.62" y1="13.38" x2="38.9926" y2="29.5526" width="0.2" layer="1"/>
+<wire x1="2" y1="46" x2="6" y2="50" width="0.2" layer="1"/>
+<wire x1="6" y1="50" x2="8" y2="50" width="0.2" layer="1"/>
+<wire x1="8" y1="50" x2="8" y2="49" width="0.2" layer="16"/>
+<wire x1="8" y1="49" x2="5" y2="46" width="0.2" layer="16"/>
+<wire x1="5" y1="46" x2="5" y2="10.68" width="0.2" layer="16"/>
+<wire x1="5" y1="10.68" x2="7.38" y2="8.3" width="0.2" layer="16"/>
+<polygon width="0.1524" layer="16">
+<vertex x="0" y="0"/>
+<vertex x="0" y="52"/>
+<vertex x="44" y="52"/>
+<vertex x="44" y="0"/>
+</polygon>
+<polygon width="0.1524" layer="1">
+<vertex x="0" y="0"/>
+<vertex x="0" y="52"/>
+<vertex x="44" y="52"/>
+<vertex x="44" y="0"/>
+</polygon>
+<via x="32" y="21" extent="1-16" drill="0.35"/>
+<via x="36" y="40" extent="1-16" drill="0.35"/>
+<via x="8" y="47" extent="1-16" drill="0.35"/>
+<via x="13" y="28" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="5V">
 <contactref element="ARDUINO_NANO1" pad="12"/>
@@ -1707,99 +1712,77 @@ design rules under a new name.</description>
 <signal name="VCC_IN">
 <contactref element="ARDUINO_NANO1" pad="15"/>
 <contactref element="VCC" pad="1"/>
-<wire x1="39.75" y1="22.75" x2="39.75" y2="5.5625" width="0.2" layer="1"/>
-<wire x1="26" y1="36.5" x2="39.75" y2="22.75" width="0.2" layer="1"/>
-<wire x1="11.25" y1="36.5" x2="26" y2="36.5" width="0.2" layer="1"/>
-<wire x1="39.75" y1="5.5625" x2="40.91" y2="4.62" width="0.2" layer="1"/>
-<wire x1="11.25" y1="36.5" x2="9.96" y2="36.07" width="0.2" layer="1"/>
-<wire x1="9.18" y1="35.29" x2="9.96" y2="36.07" width="0.2" layer="1"/>
+<wire x1="7.38" y1="5.76" x2="2" y2="11.14" width="0.2" layer="1"/>
+<wire x1="2" y1="11.14" x2="2" y2="38" width="0.2" layer="1"/>
 </signal>
 <signal name="CE_NRF">
 <contactref element="NRF24L01" pad="3"/>
 <contactref element="ARDUINO_NANO1" pad="25"/>
-<wire x1="18.25" y1="29" x2="18.25" y2="20" width="0.2" layer="16"/>
-<wire x1="22" y1="32.75" x2="18.25" y2="29" width="0.2" layer="16"/>
-<wire x1="18.25" y1="20" x2="18.05" y2="19.86" width="0.2" layer="16"/>
-<wire x1="22" y1="32.75" x2="22.16" y2="32.83" width="0.2" layer="16"/>
+<wire x1="35.67700625" y1="32.5" x2="35.95960625" y2="32.5" width="0.2" layer="16"/>
+<wire x1="22.62" y1="28.62" x2="26.7174" y2="32.5174" width="0.2" layer="16"/>
+<wire x1="26.7174" y1="32.5174" x2="35.67700625" y2="32.5" width="0.2" layer="16"/>
+<wire x1="37.11" y1="33" x2="37.81" y2="33.7" width="0.2" layer="16"/>
+<wire x1="35.95960625" y1="32.5" x2="37.11" y2="33" width="0.2" layer="16"/>
 </signal>
 <signal name="CSN_NRF">
 <contactref element="NRF24L01" pad="4"/>
 <contactref element="ARDUINO_NANO1" pad="26"/>
-<wire x1="16.75" y1="20" x2="15.75" y2="20" width="0.2" layer="1"/>
-<wire x1="21.5" y1="24.75" x2="16.75" y2="20" width="0.2" layer="1"/>
-<wire x1="23.333565625" y1="24.75" x2="21.5" y2="24.75" width="0.2" layer="1"/>
-<wire x1="25.75" y1="27.166434375" x2="23.333565625" y2="24.75" width="0.2" layer="1"/>
-<wire x1="25.75" y1="31.75" x2="25.75" y2="27.166434375" width="0.2" layer="1"/>
-<wire x1="24.75" y1="32.75" x2="25.75" y2="31.75" width="0.2" layer="1"/>
-<wire x1="15.75" y1="20" x2="15.51" y2="19.86" width="0.2" layer="1"/>
-<wire x1="24.75" y1="32.75" x2="24.7" y2="32.83" width="0.2" layer="1"/>
+<wire x1="22.62" y1="31.16" x2="28.84" y2="31.16" width="0.2" layer="1"/>
+<wire x1="28.84" y1="31.16" x2="31" y2="29" width="0.2" layer="1"/>
+<wire x1="31" y1="29" x2="35.65" y2="29" width="0.2" layer="1"/>
+<wire x1="35.65" y1="29" x2="37.81" y2="31.16" width="0.2" layer="1"/>
 </signal>
 <signal name="SCK_NRF">
 <contactref element="NRF24L01" pad="5"/>
 <contactref element="ARDUINO_NANO1" pad="1"/>
-<wire x1="19.5" y1="17.75" x2="13" y2="11.25" width="0.2" layer="1"/>
-<wire x1="19.5" y1="27.75" x2="19.5" y2="17.75" width="0.2" layer="16"/>
-<wire x1="22" y1="30.25" x2="19.5" y2="27.75" width="0.2" layer="16"/>
-<wire x1="13" y1="11.25" x2="5.35" y2="4.62" width="0.2" layer="1"/>
-<wire x1="22" y1="30.25" x2="22.16" y2="30.29" width="0.2" layer="16"/>
-<via x="19.5" y="17.75" extent="1-16" drill="0.35"/>
+<wire x1="7.38" y1="41.32" x2="6" y2="39.94" width="0.2" layer="16"/>
+<wire x1="6" y1="36.3718125" x2="7.1718125" y2="35" width="0.2" layer="16"/>
+<wire x1="33.97" y1="35" x2="35.27" y2="33.7" width="0.2" layer="16"/>
+<wire x1="6" y1="39.94" x2="6" y2="36.3718125" width="0.2" layer="16"/>
+<wire x1="7.1718125" y1="35" x2="33.97" y2="35" width="0.2" layer="16"/>
 </signal>
 <signal name="MOSI_NRF">
 <contactref element="NRF24L01" pad="6"/>
 <contactref element="ARDUINO_NANO1" pad="29"/>
-<wire x1="9.25" y1="20" x2="8" y2="20" width="0.2" layer="1"/>
-<wire x1="14.75" y1="25.5" x2="9.25" y2="20" width="0.2" layer="1"/>
-<wire x1="21.5" y1="25.5" x2="14.75" y2="25.5" width="0.2" layer="1"/>
-<wire x1="23.5" y1="27.5" x2="21.5" y2="25.5" width="0.2" layer="1"/>
-<wire x1="23.5" y1="29.25" x2="23.5" y2="27.5" width="0.2" layer="1"/>
-<wire x1="24.5" y1="30.25" x2="23.5" y2="29.25" width="0.2" layer="1"/>
-<wire x1="8" y1="20" x2="7.89" y2="19.86" width="0.2" layer="1"/>
-<wire x1="24.5" y1="30.25" x2="24.7" y2="30.29" width="0.2" layer="1"/>
+<wire x1="34.11960625" y1="31.16" x2="35.27" y2="31.16" width="0.2" layer="1"/>
+<wire x1="33.33700625" y1="32.3426" x2="34.11960625" y2="31.16" width="0.2" layer="1"/>
+<wire x1="22.62" y1="38.78" x2="29.2574" y2="32.3426" width="0.2" layer="1"/>
+<wire x1="29.2574" y1="32.3426" x2="33.33700625" y2="32.3426" width="0.2" layer="1"/>
 </signal>
 <signal name="MISO_NRF">
 <contactref element="NRF24L01" pad="7"/>
 <contactref element="ARDUINO_NANO1" pad="30"/>
-<wire x1="5.35" y1="19.86" x2="5.35" y2="20.6" width="0.2" layer="1"/>
-<wire x1="11.75" y1="27" x2="5.35" y2="20.6" width="0.2" layer="1"/>
-<wire x1="21.25" y1="27" x2="11.75" y2="27" width="0.2" layer="1"/>
-<wire x1="22" y1="27.75" x2="21.25" y2="27" width="0.2" layer="1"/>
-<wire x1="22" y1="27.75" x2="22.16" y2="27.75" width="0.2" layer="1"/>
+<wire x1="22.62" y1="41.32" x2="25.11" y2="41.32" width="0.2" layer="1"/>
+<wire x1="25.11" y1="41.32" x2="32.73" y2="33.7" width="0.2" layer="1"/>
 </signal>
 <signal name="VCC">
 <contactref element="ARDUINO_NANO1" pad="2"/>
 <contactref element="NRF24L01" pad="2"/>
 <contactref element="C1" pad="+"/>
-<wire x1="8" y1="16" x2="8" y2="4.75" width="0.2" layer="16"/>
-<wire x1="12" y1="20" x2="8" y2="16" width="0.2" layer="16"/>
-<wire x1="12" y1="26.25" x2="12" y2="20" width="0.2" layer="16"/>
-<wire x1="13.5" y1="27.75" x2="12" y2="26.25" width="0.2" layer="16"/>
-<wire x1="8" y1="4.75" x2="7.89" y2="4.62" width="0.2" layer="16"/>
-<wire x1="13.5" y1="27.75" x2="13.656" y2="27.94" width="0.2" layer="16"/>
-<wire x1="24" y1="35.25" x2="24.5" y2="35.25" width="0.2" layer="16"/>
-<wire x1="22.75" y1="34" x2="24" y2="35.25" width="0.2" layer="16"/>
-<wire x1="19.75" y1="34" x2="22.75" y2="34" width="0.2" layer="16"/>
-<wire x1="13.75" y1="28" x2="19.75" y2="34" width="0.2" layer="16"/>
-<wire x1="24.5" y1="35.25" x2="24.7" y2="35.37" width="0.2" layer="16"/>
-<wire x1="13.75" y1="28" x2="13.656" y2="27.94" width="0.2" layer="16"/>
 <contactref element="NP_VCC" pad="1"/>
-<wire x1="7.89" y1="4.62" x2="21.05" y2="17.78" width="0.1524" layer="16"/>
-<wire x1="21.05" y1="17.78" x2="48.26" y2="17.78" width="0.1524" layer="16"/>
+<wire x1="24" y1="50" x2="29" y2="45" width="0.2" layer="1"/>
+<wire x1="29" y1="45" x2="29" y2="40" width="0.2" layer="1"/>
+<wire x1="29" y1="40" x2="30.016" y2="40" width="0.2" layer="1"/>
+<wire x1="30.016" y1="40" x2="33.016" y2="43" width="0.2" layer="1"/>
+<wire x1="24" y1="50" x2="12.78" y2="38.78" width="0.2" layer="16"/>
+<wire x1="12.78" y1="38.78" x2="7.38" y2="38.78" width="0.2" layer="16"/>
+<wire x1="40.35" y1="31.16" x2="38.9926" y2="32.7174" width="0.2" layer="16"/>
+<wire x1="38.9926" y1="32.7174" x2="38.9926" y2="34.10700625" width="0.2" layer="16"/>
+<wire x1="33.716" y1="39.88360625" x2="33.016" y2="43" width="0.2" layer="16"/>
+<wire x1="38.9926" y1="34.10700625" x2="33.716" y2="39.88360625" width="0.2" layer="16"/>
 </signal>
 <signal name="NEOPIXEL_DIN">
 <contactref element="NP_DIN" pad="1"/>
 <contactref element="ARDUINO_NANO1" pad="21"/>
-<wire x1="48.26" y1="7.62" x2="50.8" y2="7.62" width="0.1524" layer="16"/>
-<wire x1="50.8" y1="7.62" x2="50.8" y2="20.32" width="0.1524" layer="16"/>
-<wire x1="50.8" y1="20.32" x2="45.79184375" y2="20.32" width="0.1524" layer="16"/>
-<wire x1="45.79184375" y1="20.32" x2="44.27064375" y2="21.8412" width="0.1524" layer="16"/>
-<wire x1="44.27064375" y1="21.8412" x2="30.1912" y2="21.8412" width="0.1524" layer="16"/>
-<wire x1="30.1912" y1="21.8412" x2="28.21" y2="19.86" width="0.1524" layer="16"/>
+<wire x1="16" y1="50" x2="16" y2="25.08" width="0.2" layer="1"/>
+<wire x1="16" y1="25.08" x2="22.62" y2="18.46" width="0.2" layer="1"/>
 </signal>
 <signal name="BZR_DIN">
 <contactref element="BZR_VCC" pad="1"/>
 <contactref element="ARDUINO_NANO1" pad="28"/>
-<wire x1="10.43" y1="19.86" x2="4.89" y2="25.4" width="0.1524" layer="16"/>
-<wire x1="4.89" y1="25.4" x2="2.54" y2="25.4" width="0.1524" layer="16"/>
+<wire x1="22.62" y1="36.24" x2="32.38" y2="46" width="0.2" layer="16"/>
+<wire x1="37" y1="46" x2="42" y2="41" width="0.2" layer="16"/>
+<wire x1="32.38" y1="46" x2="37" y2="46" width="0.2" layer="16"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
@@ -1810,18 +1793,22 @@ design rules under a new name.</description>
 <mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
 </mfgpreviewcolors>
 <errors>
-<approved hash="4,1,75295de2aef478e2"/>
-<approved hash="4,1,75592b48db1e78e2"/>
-<approved hash="4,1,b4ccb400fb2e060f"/>
-<approved hash="4,1,c39d4abfd1e6a419"/>
-<approved hash="4,16,75295de2aef478e2"/>
-<approved hash="4,16,75592b48db1e78e2"/>
-<approved hash="4,16,b4ccb400fb2e060f"/>
-<approved hash="4,16,c39d4abfd1e6a419"/>
+<approved hash="4,1,65335a90b38a49d7"/>
+<approved hash="4,1,65373adb15c5a7d2"/>
+<approved hash="4,1,7ae7fd2d09bb4b8f"/>
+<approved hash="4,1,a995e8396f52e305"/>
+<approved hash="4,16,7ae7fd2d09bb4b8f"/>
+<approved hash="4,16,a995e8396f52e305"/>
+<approved hash="4,16,65335a90b38a49d7"/>
+<approved hash="4,16,65373adb15c5a7d2"/>
 </errors>
 </board>
 </drawing>
 <compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
 <note version="8.2" severity="warning">
 Since Version 8.2, EAGLE supports online libraries. The ids
 of those online libraries will not be understood (or retained)
