@@ -1,20 +1,19 @@
+/**
+ * @file EpeeButton.cpp
+ * @brief epee button class
+ * @author Assouline Yohann
+ * @date 2020-12-24
+ */
+
 #include "EpeeButton.hpp"
 
-/*
-    The button pin is 3 (PD3)
-    Using this method to make it faster
-*/
-
-#define BUTTON_PIN (3)
-#define BUTTON_PIN_BM (1 << BUTTON_PIN) // PD3
-
-EpeeButton::EpeeButton()
+EpeeButton::EpeeButton(uint8_t pin)
 {
-    DDRD &= ~BUTTON_PIN_BM; // set pin 3 as input
-    PORTD |= BUTTON_PIN_BM; // enable INPUT_PULLUP on pin 3
+    _pin = pin;
+    pinMode(_pin, INPUT_PULLUP);
 }
 
 bool EpeeButton::isPressed() const
 {
-    return !(PIND & BUTTON_PIN_BM); // is inversed becaused of INPUT_PULLUP
+    return !digitalRead(_pin); // is inversed becaused of INPUT_PULLUP
 }

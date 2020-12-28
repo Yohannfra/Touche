@@ -1,3 +1,10 @@
+/**
+ * @file main.cpp
+ * @brief wsff main file
+ * @author Assouline Yohann
+ * @date 2020-12-24
+ */
+
 #include <Arduino.h>
 
 #include "Captouch.hpp"
@@ -14,8 +21,8 @@
 
 static Captouch captouch(4, 2);
 static RadioModule radio_module(7, 8);
-static EpeeButton epee_button;
-static Led led;
+static EpeeButton epee_button(3);
+static Led led(5);
 static Timer timerHit;
 static Timer timerButtonMaintened;
 static Timer timerForSleep;
@@ -27,6 +34,9 @@ static device_id_t device_id;
 
 #define TIME_BEFORE_SLEEP (5000UL * 60UL) // 5000 * 60 = 5 minutes
 
+/**
+ * @brief Arduino setup function
+ */
 void setup()
 {
 #ifdef DEBUG
@@ -47,6 +57,9 @@ void setup()
     timerForSleep.start();
 }
 
+/**
+ * @brief do the calibration process.
+ */
 void run_calibration_process()
 {
     DEBUG_LOG_LN("Starting calibration");
@@ -65,6 +78,9 @@ void run_calibration_process()
     radio_module.sendMsg(device_id, CALIBRATION_END);
 }
 
+/**
+ * @brief Arduino loop function
+ */
 void loop()
 {
     if (epee_button.isPressed()) {

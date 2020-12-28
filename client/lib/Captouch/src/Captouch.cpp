@@ -1,6 +1,17 @@
+/**
+ * @file Captouch.cpp
+ * @brief captouch class
+ * @author Assouline Yohann
+ * @date 2020-12-24
+ */
+
 #include "Captouch.hpp"
 #include <CapacitiveSensor.h>
 #include "DebugLog.hpp"
+
+#define MAX_CALIBRATIONS_SAMPLES 200
+
+#define CAPTOUCH_ERROR_MARGIN 2000
 
 Captouch::Captouch(uint8_t pin_out, uint8_t pin_in) : capacitive_sensor(pin_out, pin_in)
 {
