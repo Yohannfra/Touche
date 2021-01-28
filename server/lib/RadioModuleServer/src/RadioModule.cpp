@@ -26,9 +26,8 @@ void RadioModule::init()
     my_nrf24.openReadingPipe(1,pipe);
     my_nrf24.openWritingPipe(pipe);
     my_nrf24.setDataRate(RF24_250KBPS);
-    my_nrf24.setPALevel(RF24_PA_MIN);
+    my_nrf24.setPALevel(RF24_PA_MAX);
     my_nrf24.startListening();
-    DEBUG_LOG_VAL("Selected Power Level: ", my_nrf24.getPALevel() );
     DEBUG_LOG_LN("initialised");
 }
 
