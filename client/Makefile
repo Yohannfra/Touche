@@ -24,6 +24,17 @@ flash_release:
 clean_release:
 	@pio run -e release --target clean
 
+# write id config
+write_id:
+	@pio run -e write_id
+
+flash_write_id:
+	@pio run -e write_id --target upload
+
+clean_write_id:
+	@pio run -e write_id --target clean
+
+
 # common
 clean_all: clean_debug clean_release
 

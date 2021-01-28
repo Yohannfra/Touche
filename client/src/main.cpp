@@ -34,6 +34,10 @@ static device_id_t device_id;
 
 #define TIME_BEFORE_SLEEP (5000UL * 60UL) // 5000 * 60 = 5 minutes
 
+#ifdef WRITE_ID_TO_EEPROM
+#define ID_TO_WRITE -1 // change value and add it to board_id.h
+#endif
+
 /**
  * @brief Arduino setup function
  */
@@ -45,6 +49,14 @@ void setup()
         // wait for serial
     }
     utils::print_board_infos();
+#endif
+
+#ifdef WRITE_ID_TO_EEPROM
+#if (ID_TO_WRITE < 0)
+#error "You must set id to a positive number"
+#endif
+    DEBUG_LOG_LN("Writing board id to eeprom");
+    writeIdToEEPROM(ID_TO_WRITE);
 #endif
 
     device_id = getBoardId();
