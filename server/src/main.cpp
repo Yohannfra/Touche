@@ -8,7 +8,6 @@
 #include "protocol.h"
 #include "fencingConstants.h"
 #include "DebugLog.hpp"
-#include "utils.hpp"
 
 #define BUZZER_PIN 10
 #define LED_RING_PIN 3
@@ -27,7 +26,6 @@ void setup()
     while (!Serial) {
         ; // wait for serial
     }
-    utils::print_board_infos();
 #endif
     radio_module.init();
     led_ring.init();
