@@ -1,5 +1,8 @@
 ## Wireless System For Fencing (WSFF)
 
+![](https://github.com/Yohannfra/WSFF/workflows/Build/badge.svg)
+
+
 ---
 
 A wireless scoring system for fencing based on **arduino** and **nrf24l01**.
