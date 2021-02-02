@@ -21,7 +21,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install --upgrade platformio
-    - name: build client
+    - name: build client debug
       run: make -C client
-    - name: build server
+    - name: build client release
+      run: make -C client release
+    - name: build client write_id
+      run: make -C client write_id
+    - name: build server debug
       run: make -C server
+    - name: build server release
+      run: make -C server release
