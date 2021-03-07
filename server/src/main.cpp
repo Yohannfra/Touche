@@ -1,3 +1,4 @@
+
 #include "Buzzer.hpp"
 #include "LedRing.hpp"
 #include "RadioModule.hpp"
@@ -9,12 +10,11 @@
 #include "fencingConstants.h"
 #include "DebugLog.hpp"
 
-#define BUZZER_PIN 10
-#define LED_RING_PIN 3
+#include "server_pinout.h"
 
 Buzzer buzzer(BUZZER_PIN);
 LedRing led_ring(LED_RING_PIN);
-RadioModule radio_module;
+RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
 PlayerManager player_manager;
 ActionManager action_manager;
 
@@ -22,10 +22,6 @@ void setup()
 {
 #ifdef DEBUG
     Serial.begin(9600);
-
-    while (!Serial) {
-        ; // wait for serial
-    }
 #endif
     radio_module.init();
     led_ring.init();

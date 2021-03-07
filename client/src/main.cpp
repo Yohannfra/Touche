@@ -19,10 +19,12 @@
 #include "Timer.hpp"
 #include "SleepManager.hpp"
 
-static VirtualGround virtualGround(4, 2);
-static RadioModule radio_module(7, 8);
-static EpeeButton epee_button(3);
-static Led led(5);
+#include "client_pinout.h"
+
+static VirtualGround virtualGround(VIRTUAL_PIN_OUT, VIRTUAL_PIN_IN);
+static RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
+static EpeeButton epee_button(EPEE_BUTTON_PIN);
+static Led led(LED_PIN);
 static Timer timerHit;
 static Timer timerButtonMaintened;
 static Timer timerForSleep;
