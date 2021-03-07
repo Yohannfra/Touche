@@ -1,12 +1,10 @@
 #include "RadioModule.hpp"
-
+#include "protocol.h"
 #include <nRF24L01.h>
 #include <RF24_config.h>
 #include <SPI.h>
 #include "utils.hpp"
 #include "DebugLog.hpp"
-
-static const uint64_t pipe = 0xE8E8F0F0E1LL;
 
 RadioModule::RadioModule(uint16_t cePin, uint16_t csPin) : _radio(cePin, csPin)
 {
@@ -21,8 +19,8 @@ void RadioModule::init()
     } else {
         DEBUG_LOG_LN("Connection Error");
     }
-    _radio.openWritingPipe(pipe);
-    _radio.openReadingPipe(1, pipe);
+    _radio.openWritingPipe(NRF24_WSFF_PIPE);
+    _radio.openReadingPipe(1, NRF24_WSFF_PIPE);
     _radio.setPALevel(RF24_PA_MAX);
     _radio.setDataRate(RF24_250KBPS);
 }

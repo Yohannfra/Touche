@@ -1,11 +1,11 @@
 /**
- * @file Captouch.cpp
- * @brief captouch class
+ * @file VirtualGround.cpp
+ * @brief virtual ground class
  * @author Assouline Yohann
  * @date 2020-12-24
  */
 
-#include "Captouch.hpp"
+#include "VirtualGround.hpp"
 #include <CapacitiveSensor.h>
 #include "DebugLog.hpp"
 
@@ -13,7 +13,7 @@
 
 #define CAPTOUCH_ERROR_MARGIN 2000
 
-Captouch::Captouch(uint8_t pin_out, uint8_t pin_in) : capacitive_sensor(pin_out, pin_in)
+VirtualGround::VirtualGround(uint8_t pin_out, uint8_t pin_in) : capacitive_sensor(pin_out, pin_in)
 {
     this->pin_out = pin_out;
     this->pin_in = pin_in;
@@ -23,7 +23,7 @@ Captouch::Captouch(uint8_t pin_out, uint8_t pin_in) : capacitive_sensor(pin_out,
     _threshold = 0;
 }
 
-long Captouch::get_value()
+long VirtualGround::get_value()
 {
     long touchval = this->capacitive_sensor.capacitiveSensorRaw(40);
 
@@ -31,19 +31,19 @@ long Captouch::get_value()
     return touchval;
 }
 
-bool Captouch::trigger_ground()
+bool VirtualGround::trigger_ground()
 {
     if (_threshold == 0)
         return false;
 
     long val = this->get_value();
-    DEBUG_LOG_VAL("Captouch value: ", val);
+    DEBUG_LOG_VAL("VirtualGround value: ", val);
     if (_threshold - CAPTOUCH_ERROR_MARGIN < val && val < _threshold + CAPTOUCH_ERROR_MARGIN)
         return true;
     return false;
 }
 
-bool Captouch::calibrate()
+bool VirtualGround::calibrate()
 {
     _calibrationSum += this->get_value();
     _calibrationIndex += 1;
@@ -51,7 +51,7 @@ bool Captouch::calibrate()
     return _calibrationIndex == MAX_CALIBRATIONS_SAMPLES - 1;
 }
 
-void Captouch::end_calibration(bool success)
+void VirtualGround::end_calibration(bool success)
 {
     if (success && _calibrationIndex > 0 /* to avoid div by 0 */) {
         _threshold = _calibrationSum / _calibrationIndex;

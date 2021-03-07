@@ -7,7 +7,7 @@
 
 #include <Arduino.h>
 
-#include "Captouch.hpp"
+#include "VirtualGround.hpp"
 #include "RadioModule.hpp"
 #include "EpeeButton.hpp"
 #include "Led.hpp"
@@ -19,7 +19,7 @@
 #include "Timer.hpp"
 #include "SleepManager.hpp"
 
-static Captouch captouch(4, 2);
+static VirtualGround virtualGround(4, 2);
 static RadioModule radio_module(7, 8);
 static EpeeButton epee_button(3);
 static Led led(5);
@@ -45,9 +45,6 @@ void setup()
 {
 #ifdef DEBUG
     Serial.begin(9600);
-    while (!Serial) {
-        // wait for serial
-    }
     utils::print_board_infos();
 #endif
 
@@ -77,16 +74,16 @@ void run_calibration_process()
     DEBUG_LOG_LN("Starting calibration");
     radio_module.sendMsg(device_id, CALIBRATION_STARTING);
 
-    while (captouch.calibrate() == false) {
+    while (virtualGround.calibrate() == false) {
         if (epee_button.isPressed() == false) {
             DEBUG_LOG_LN("Button released during calibration");
             radio_module.sendMsg(device_id, CALIBRATION_FAILED);
-            captouch.end_calibration(false);
+            virtualGround.end_calibration(false);
             return;
         }
     }
     DEBUG_LOG_LN("Calibration Done");
-    captouch.end_calibration(true);
+    virtualGround.end_calibration(true);
     radio_module.sendMsg(device_id, CALIBRATION_END);
 }
 
@@ -102,7 +99,7 @@ void loop()
             timerButtonMaintened.start();
         }
 
-        if (!timerHit.isRunning() && !captouch.trigger_ground()) { // hit
+        if (!timerHit.isRunning() && !virtualGround.trigger_ground()) { // hit
             timerHit.start();
             led.turnOn();
             DEBUG_LOG_LN("Sending Hit");

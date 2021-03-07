@@ -1,10 +1,3 @@
-/**
- * @file Captouch.hpp
- * @brief captouch class header
- * @author Assouline Yohann
- * @date 2020-12-24
- */
-
 #ifndef CAPTOUCH_HPP
 #define CAPTOUCH_HPP
 
@@ -13,7 +6,7 @@
 /**
  * @brief A wrapper arround CapacitiveSensor lib
  */
-class Captouch
+class VirtualGround
 {
     private:
         /**
@@ -53,7 +46,7 @@ class Captouch
          * @param pin_out
          * @param pin_in
          */
-        Captouch(uint8_t pin_out, uint8_t pin_in);
+        VirtualGround(uint8_t pin_out, uint8_t pin_in);
 
         /**
          * @brief
