@@ -15,8 +15,10 @@ class PlayerManager
 {
 private:
     int8_t _knowns_ids[2];
+    uint8_t _player_count;
 public:
     PlayerManager();
+    uint8_t getPlayerCount() const;
     player_index_e getPlayerFromID(int8_t id) const;
     player_index_e registerPlayer(int8_t id);
 };

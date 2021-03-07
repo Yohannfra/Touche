@@ -13,6 +13,7 @@ public:
     RadioModule();
     void init();
     packet_t receiveMsg();
+    void clearReceiver();
 };
 
 #endif /* RADIOMODULE_HPP */

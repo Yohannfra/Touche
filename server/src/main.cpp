@@ -54,10 +54,11 @@ void loop()
         DEBUG_LOG_VAL("id: ", player_id);
         DEBUG_LOG_VAL("index: ", player_index);
 
-        if (player_index == NOT_A_PLAYER) {
+        if (player_index == NOT_A_PLAYER && player_manager.getPlayerCount() < 2) {
             player_index_e index = player_manager.registerPlayer(player_id);
-            if (index != NOT_A_PLAYER) { // to prevent more than to clients
+            if (index != NOT_A_PLAYER) {
                 led_ring.blink(COLOR_CODE[index], 200);
+                radio_module.clearReceiver();
             }
             return; // no hit on register
         }
