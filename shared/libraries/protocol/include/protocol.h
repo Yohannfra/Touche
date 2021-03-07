@@ -3,6 +3,10 @@
 
 #include <stdint.h>
 
+
+// Pipe used in nrf24l01 config
+#define NRF24_WSFF_PIPE (0xE8E8F0F0E1LL)
+
 /*
     A packet is 16 bits
 
