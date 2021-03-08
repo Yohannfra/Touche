@@ -1,10 +1,3 @@
-/**
- * @file Timer.hpp
- * @brief timer class header
- * @author Assouline Yohann
- * @date 2020-12-24
- */
-
 #ifndef TIMER_HPP
 #define TIMER_HPP
 

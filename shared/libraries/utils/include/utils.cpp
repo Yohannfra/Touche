@@ -3,6 +3,7 @@
 #include "board_id.h"
 
 #ifdef DEBUG
+
 void utils::print_bin(const char *name, uint8_t n)
 {
     char buff[9] = "00000000";

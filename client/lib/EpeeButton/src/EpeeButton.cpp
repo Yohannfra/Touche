@@ -1,10 +1,3 @@
-/**
- * @file EpeeButton.cpp
- * @brief epee button class
- * @author Assouline Yohann
- * @date 2020-12-24
- */
-
 #include "EpeeButton.hpp"
 
 EpeeButton::EpeeButton(uint8_t pin)

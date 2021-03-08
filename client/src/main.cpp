@@ -1,10 +1,3 @@
-/**
- * @file main.cpp
- * @brief wsff main file
- * @author Assouline Yohann
- * @date 2020-12-24
- */
-
 #include <Arduino.h>
 
 #include "VirtualGround.hpp"
@@ -28,7 +21,6 @@ static Led led(LED_PIN);
 static Timer timerHit;
 static Timer timerButtonMaintened;
 static Timer timerForSleep;
-static SleepManager sleepManager;
 
 static device_id_t device_id;
 
@@ -126,7 +118,7 @@ void loop()
     // if unused for more than 5 mins go to sleep
     if (timerForSleep.isRunning() && timerForSleep.getTimeElapsed() > TIME_BEFORE_SLEEP) {
         led.turnOff();
-        sleepManager.sleep();
+        SleepManager::sleep();
         timerForSleep.start();
     }
 }

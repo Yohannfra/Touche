@@ -1,10 +1,3 @@
-/**
- * @file EpeeButton.hpp
- * @brief epee button header
- * @author Assouline Yohann
- * @date 2020-12-24
- */
-
 #ifndef EPEEBUTTON_HPP
 #define EPEEBUTTON_HPP
 
@@ -23,7 +16,9 @@ class EpeeButton
 
     public:
         /**
-         * @brief default constructor
+         * @brief Construct a new Epee Button object
+         *
+         * @param pin button bin
          */
         EpeeButton(uint8_t pin);
 

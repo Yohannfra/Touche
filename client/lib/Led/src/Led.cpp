@@ -1,10 +1,3 @@
-/**
- * @file Led.cpp
- * @brief led class
- * @author Assouline Yohann
- * @date 2020-12-24
- */
-
 #include "Led.hpp"
 
 Led::Led(uint8_t pin)

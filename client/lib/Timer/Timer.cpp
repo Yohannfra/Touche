@@ -1,10 +1,3 @@
-/**
- * @file Timer.cpp
- * @brief timer class
- * @author Assouline Yohann
- * @date 2020-12-24
- */
-
 #include "Timer.hpp"
 
 Timer::Timer()

@@ -1,10 +1,3 @@
-/**
- * @file Led.hpp
- * @brief led class header
- * @author Assouline Yohann
- * @date 2020-12-24
- */
-
 #ifndef LED_HPP
 #define LED_HPP
 
@@ -25,7 +18,9 @@ class Led
 
     public:
         /**
-         * @brief default constructor
+         * @brief Construct a new Led object
+         *
+         * @param pin led pin
          */
         Led(uint8_t pin);
 
@@ -37,12 +32,12 @@ class Led
         bool getState() const;
 
         /**
-         * @brief turn led on
+         * @brief turn the led on
          */
         void turnOn();
 
         /**
-         * @brief turn led off
+         * @brief turn the led off
          */
         void turnOff();
 

@@ -1,23 +1,16 @@
-/**
- * @file VirtualGround.cpp
- * @brief virtual ground class
- * @author Assouline Yohann
- * @date 2020-12-24
- */
-
 #include "VirtualGround.hpp"
 #include <CapacitiveSensor.h>
 #include "DebugLog.hpp"
 
-#define MAX_CALIBRATIONS_SAMPLES 200
+#define MAX_CALIBRATIONS_SAMPLES 200 // adjust me
 
-#define CAPTOUCH_ERROR_MARGIN 2000
+#define CAPTOUCH_ERROR_MARGIN 2000 // adjust me
 
-VirtualGround::VirtualGround(uint8_t pin_out, uint8_t pin_in) : capacitive_sensor(pin_out, pin_in)
+VirtualGround::VirtualGround(uint8_t pin_out, uint8_t pin_in) : _capacitive_sensor(pin_out, pin_in)
 {
-    this->pin_out = pin_out;
-    this->pin_in = pin_in;
-    this->capacitive_sensor.set_CS_AutocaL_Millis(0xFFFFFFFF); // turn off autocalibrate
+    this->_pin_out = pin_out;
+    this->_pin_in = pin_in;
+    this->_capacitive_sensor.set_CS_AutocaL_Millis(0xFFFFFFFF); // turn off autocalibrate
     _calibrationSum = 0;
     _calibrationIndex = 0;
     _threshold = 0;
@@ -25,9 +18,7 @@ VirtualGround::VirtualGround(uint8_t pin_out, uint8_t pin_in) : capacitive_senso
 
 long VirtualGround::get_value()
 {
-    long touchval = this->capacitive_sensor.capacitiveSensorRaw(40);
-
-    // DEBUG_LOG_LN(touchval); // Fait tout bug wtf
+    long touchval = this->_capacitive_sensor.capacitiveSensorRaw(40); // adjust the value
     return touchval;
 }
 
