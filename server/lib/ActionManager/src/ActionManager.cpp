@@ -5,9 +5,7 @@
 
 ActionManager::ActionManager()
 {
-    _time_last_hit = 0;
-    _player_actions[PLAYER_1] = NO_ACTION;
-    _player_actions[PLAYER_2] = NO_ACTION;
+    this->reset();
 }
 
 void ActionManager::reset()
