@@ -82,8 +82,9 @@ class LedRing
          * @param color color to blink
          * @param time_ms blinking delay
          * @param nb_blinks number of blink to do
+         * @param index index of the first neopixel
          */
-        void blink(color_t color, int time_ms, size_t nb_blinks = 3);
+        void blink(color_t color, int time_ms, size_t nb_blinks = 3, uint8_t index = 0);
 
         /**
          * @brief Do a nice circular annimation

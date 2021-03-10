@@ -41,10 +41,10 @@ void LedRing::do_circle_annimation(color_t color)
     this->turn_off();
 }
 
-void LedRing::blink(color_t color, int time_ms, size_t nb_blinks)
+void LedRing::blink(color_t color, int time_ms, size_t nb_blinks, uint8_t index)
 {
     for (size_t i = 0; i < nb_blinks; i++) {
-        set_color(color);
+        set_color(color, index);
         delay(time_ms);
         turn_off();
         delay(time_ms);

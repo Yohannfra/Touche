@@ -53,7 +53,8 @@ void loop()
         if (player_index == NOT_A_PLAYER && player_manager.getPlayerCount() < 2) {
             player_index_e index = player_manager.registerPlayer(player_id);
             if (index != NOT_A_PLAYER) {
-                led_ring.blink((index == PLAYER_1 ? RED_RGB : GREEN_RGB), 200);
+                led_ring.blink((index == PLAYER_1 ? RED_RGB : GREEN_RGB), 200, 3,
+                    (player_manager.getPlayerCount() - 1) * NEOPIXEL_RING_SIZE);
                 radio_module.clearReceiver();
             }
             return; // no hit on register
