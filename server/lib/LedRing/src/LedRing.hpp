@@ -66,7 +66,7 @@ class LedRing
          * @param color the color as rgb
          * @param index index of the first neopixel
          */
-        void set_color(color_t color, uint8_t index = 0);
+        void set_color(color_t color, uint8_t start = 0, uint8_t end = NEOPIXEL_RING_SIZE);
 
         /**
          * @brief Set one color for half of the pixels and one for the other half
