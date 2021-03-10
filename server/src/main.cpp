@@ -10,7 +10,7 @@
 #include "fencingConstants.h"
 #include "DebugLog.hpp"
 
-#include "server_pinout.h"
+#include "server_config.h"
 
 Buzzer buzzer(BUZZER_PIN);
 LedRing led_ring(LED_RING_PIN);
@@ -53,7 +53,7 @@ void loop()
         if (player_index == NOT_A_PLAYER && player_manager.getPlayerCount() < 2) {
             player_index_e index = player_manager.registerPlayer(player_id);
             if (index != NOT_A_PLAYER) {
-                led_ring.blink(COLOR_CODE[index], 200);
+                led_ring.blink((index == PLAYER_1 ? RED_RGB : GREEN_RGB), 200);
                 radio_module.clearReceiver();
             }
             return; // no hit on register
@@ -86,13 +86,7 @@ void loop()
 
     if (hit_type != NO_HIT) {
         buzzer.play();
-        if (hit_type == DOUBLE_HIT) {
-            led_ring.set_half_colors(RED_RGB, GREEN_RGB);
-        } else if (hit_type == HIT_PLAYER_1) {
-            led_ring.set_color(RED_RGB);
-        } else if (hit_type == HIT_PLAYER_2) {
-            led_ring.set_color(GREEN_RGB);
-        }
+        led_ring.show_hits(hit_type);
     }
     if (action_manager.isResetTime()) {
         resetValues();

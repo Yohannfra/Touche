@@ -21,11 +21,9 @@ void RadioModule::init()
     }
 
 #if defined(WSFF_CLIENT)
-        // _nrf24.openReadingPipe(1, NRF24_WSFF_PIPE);
         _nrf24.openWritingPipe(NRF24_WSFF_PIPE);
 #elif defined(WSFF_SERVER)
         _nrf24.openReadingPipe(1, NRF24_WSFF_PIPE);
-        // _nrf24.openWritingPipe(NRF24_WSFF_PIPE);
 #endif
 
     _nrf24.setDataRate(RF24_250KBPS);

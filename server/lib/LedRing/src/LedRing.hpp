@@ -3,14 +3,23 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
+#include "../../../include/server_config.h"
+#include "../../ActionManager/src/ActionManager.hpp"
 
-#define RED_RGB 0xFF, 0, 0
-#define GREEN_RGB 0, 0xFF, 0
-#define ORANGE_RGB 0xFF, 0xA5, 0
+typedef struct {
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
+} color_t;
 
-static const uint8_t COLOR_CODE[2][3] = {{RED_RGB}, {GREEN_RGB}};
+#define RED_RGB (color_t){0xFF, 0, 0}
+#define GREEN_RGB (color_t){0, 0xFF, 0}
+#define ORANGE_RGB (color_t){0xFF, 0xA5, 0}
 
-#define NB_NEOPIXEL 12
+#define NEOPIXEL_RING_SIZE 12
+
+#define NB_NEOPIXEL NEOPIXEL_RING_SIZE * NB_NEOPIXEL_RING
+
 
 /**
  * @brief class to abstract neopixel ring usage
@@ -54,52 +63,37 @@ class LedRing
         /**
          * @brief Set the color of all neopixels
          *
-         * @param r red
-         * @param g green
-         * @param b blue
+         * @param color the color as rgb
+         * @param index index of the first neopixel
          */
-        void set_color(byte r, byte g, byte b);
+        void set_color(color_t color, uint8_t index = 0);
 
         /**
          * @brief Set one color for half of the pixels and one for the other half
          *
-         * @param r red for color 1
-         * @param g green for color 1
-         * @param b blue for color 1
-         * @param r2 red for color 2
-         * @param g2 green for color 2
-         * @param b2 blue for color 2
+         * @param color_1 color for first half
+         * @param color_2 color for second half
          */
-        void set_half_colors(byte r, byte g, byte b,
-                        byte r2, byte g2, byte b2);
-        /**
-         * @brief blink all pixels
-         *
-         * @param r red
-         * @param g green
-         * @param b blue
-         * @param time_ms blinking delay
-         * @param nb_blinks number of blink to do
-         */
-        void blink(byte r, byte g, byte b, int time_ms, size_t nb_blinks = 3);
+        void set_half_colors(color_t color_1, color_t color_2);
 
         /**
          * @brief blink all pixels
          *
-         * @param rgb red/green/blue
+         * @param color color to blink
          * @param time_ms blinking delay
          * @param nb_blinks number of blink to do
          */
-        void blink(const uint8_t rgb[3], int time_ms, size_t nb_blinks = 3);
+        void blink(color_t color, int time_ms, size_t nb_blinks = 3);
 
         /**
          * @brief Do a nice circular annimation
          *
-         * @param r red
-         * @param g green
-         * @param b blue
+         * @param color color of the annimation
          */
-        void do_circle_annimation(byte r, byte g, byte b);
+        void do_circle_annimation(color_t color);
+
+
+        void show_hits(hit_type_e hit_type);
 };
 
 #endif /* LEDRING_HPP */
