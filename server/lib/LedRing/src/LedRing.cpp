@@ -26,19 +26,30 @@ void LedRing::set_color(color_t color, uint8_t start, uint8_t end)
     this->strip.show();
 }
 
-void LedRing::do_circle_annimation(color_t color)
+void LedRing::do_circle_annimation(color_t color, uint8_t step)
 {
-    for (size_t i = 0; i < NB_NEOPIXEL; i++) {
-        this->strip.setPixelColor(i, color.r, color.g, color.b);
-        this->strip.show();
-        delay(100);
+    uint8_t index = step % NB_NEOPIXEL;
+
+    if (this->strip.getPixelColor(index) != 0) {
+        this->strip.setPixelColor(index, 0, 0, 0);
+    } else {
+        this->strip.setPixelColor(index, color.r, color.g, color.b);
     }
-    for (size_t i = 0; i < NB_NEOPIXEL; i++) {
-        this->strip.setPixelColor(i, 0, 0, 0);
-        this->strip.show();
-        delay(100);
-    }
-    this->turn_off();
+    this->strip.show();
+    delay(100);
+
+    // for (size_t i = 0; i < NB_NEOPIXEL; i++) {
+    //     this->strip.setPixelColor(i, color.r, color.g, color.b);
+    //     this->strip.getPixelColor()
+    //     this->strip.show();
+    //     delay(100);
+    // }
+    // for (size_t i = 0; i < NB_NEOPIXEL; i++) {
+    //     this->strip.setPixelColor(i, 0, 0, 0);
+    //     this->strip.show();
+    //     delay(100);
+    // }
+    // this->turn_off();
 }
 
 void LedRing::blink(color_t color, int time_ms, size_t nb_blinks, uint8_t index)

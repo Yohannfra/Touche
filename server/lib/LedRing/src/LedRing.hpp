@@ -90,8 +90,9 @@ class LedRing
          * @brief Do a nice circular annimation
          *
          * @param color color of the annimation
+         * @param step current step in the annimation
          */
-        void do_circle_annimation(color_t color);
+        void do_circle_annimation(color_t color, uint8_t step);
 
 
         void show_hits(hit_type_e hit_type);
