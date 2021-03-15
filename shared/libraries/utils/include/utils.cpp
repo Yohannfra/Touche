@@ -14,25 +14,28 @@ void utils::print_bin(const char *name, uint8_t n)
     }
     Serial.print(name);
     Serial.print(" : ");
-    Serial.println(buff);
+    Serial.print(buff);
 }
 
 void utils::print_packet(packet_t packet)
 {
     static int index = 0;
 
-    DEBUG_LOG_LN("===================================");
-    DEBUG_LOG_VAL("Packet: ", index);
+    Serial.println("===================================");
+    Serial.print("Packet: ");
+    Serial.println(index);
 
-    DEBUG_LOG_VAL("Received: ", packet);
+    Serial.print("Received: ");
+    Serial.println(packet);
     utils::print_bin("As binary", packet);
 
     wsff_role_e player_role = (wsff_role_e)GET_ROLE(packet);
     payload_type_e payload = (payload_type_e)packet;
 
-    DEBUG_LOG_VAL("Role: ", player_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
+    Serial.print("Role: ");
+    Serial.println(player_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
     utils::print_bin("Payload", payload);
-    DEBUG_LOG_LN("===================================");
+    Serial.println("===================================");
 
     index += 1;
 }
