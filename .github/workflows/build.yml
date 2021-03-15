@@ -1,12 +1,10 @@
 name: Build
 
-on : [push]
-
-# on:
-#   push:
-#     branches: [ master, dev ]
-#   pull_request:
-#     branches: [ master, dev ]
+on:
+  push:
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master, dev ]
 
 jobs:
   build:
@@ -25,6 +23,8 @@ jobs:
       run: make -C client
     - name: build client release
       run: make -C client release
+    - name: build client write_role
+      run: make -C client write_role
     - name: build server debug
       run: make -C server
     - name: build server release

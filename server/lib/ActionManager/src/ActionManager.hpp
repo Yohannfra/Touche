@@ -2,7 +2,7 @@
 #define ACTIONMANAGER_HPP
 
 #include <stdint.h>
-#include "PlayerManager.hpp"
+#include "protocol.h"
 
 /**
  * @brief All possible type of hits
@@ -48,7 +48,7 @@ class ActionManager
          *
          * @param index Index of the player hitting
          */
-        void hit(player_index_e index);
+        void hit(wsff_role_e role);
 
         /**
          * @brief Check if the time elapsed since the last hit is

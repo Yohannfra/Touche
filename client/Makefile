@@ -25,8 +25,8 @@ clean_release:
 	@pio run -e release --target clean
 
 # write id config
-write_id:
-	@pio run -e write_id
+write_role:
+	@pio run -e write_role
 
 flash_write_id:
 	@pio run -e write_id --target upload

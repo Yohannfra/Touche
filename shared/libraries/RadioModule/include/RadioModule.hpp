@@ -22,8 +22,9 @@ class RadioModule
         /**
          * @brief initialize the RF module
          *
+         * @param role device role enum
          */
-        void init();
+        void init(wsff_role_e role);
 
         /**
          * @brief check if a message is available and reads it
@@ -49,10 +50,10 @@ class RadioModule
         /**
          * @brief send a message in a packet_t
          *
-         * @param id wsff id of the board
+         * @param role device role enum
          * @param payload payload to send
          */
-        void sendMsg(int8_t id, payload_type_e payload);
+        void sendMsg(wsff_role_e role, payload_type_e payload);
 };
 
 #endif /* RADIOMODULE_HPP */

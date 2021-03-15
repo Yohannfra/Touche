@@ -2,6 +2,7 @@
 #define UTILS_HPP
 
 #include <stdint.h>
+#include "protocol.h"
 
 namespace utils {
 
@@ -17,5 +18,12 @@ namespace utils {
      * @brief print a few infos about the arduino
      */
     void print_board_infos();
+
+    /**
+     * @brief print a packet_t
+     *
+     * @param packet the packet to print
+     */
+    void print_packet(packet_t packet);
 }
 #endif // UTILS_HPP

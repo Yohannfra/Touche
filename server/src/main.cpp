@@ -2,7 +2,6 @@
 #include "Buzzer.hpp"
 #include "LedRing.hpp"
 #include "RadioModule.hpp"
-#include "PlayerManager.hpp"
 #include "ActionManager.hpp"
 #include <Arduino.h>
 
@@ -12,19 +11,24 @@
 
 #include "server_config.h"
 
+#include "utils.hpp"
+
 Buzzer buzzer(BUZZER_PIN);
 LedRing led_ring(LED_RING_PIN);
 RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
-PlayerManager player_manager;
 ActionManager action_manager;
+
+static const wsff_role_e BOARD_ROLE = SERVER;
 
 void setup()
 {
 #ifdef DEBUG
     Serial.begin(9600);
 #endif
-    radio_module.init();
+    radio_module.init(BOARD_ROLE);
     led_ring.init();
+
+    led_ring.blink(ORANGE_RGB, 200, 1);
 }
 
 void resetValues()
@@ -40,46 +44,30 @@ void loop()
     packet_t packet = radio_module.receiveMsg();
 
     if (packet) {
+        utils::print_packet(packet);
 
-        DEBUG_LOG_VAL("Received: ", packet);
+        wsff_role_e player_role = (wsff_role_e)GET_ROLE(packet);
+        payload_type_e payload = (payload_type_e)packet;
 
-        device_id_t player_id = GET_ID(packet);
-        player_index_e player_index = player_manager.getPlayerFromID(player_id);
-        payload_type_e payload = (payload_type_e)((uint8_t)packet);
-
-        DEBUG_LOG_VAL("id: ", player_id);
-        DEBUG_LOG_VAL("index: ", player_index);
-
-        if (player_index == NOT_A_PLAYER && player_manager.getPlayerCount() < 2) {
-            player_index_e index = player_manager.registerPlayer(player_id);
-            if (index != NOT_A_PLAYER) {
-                led_ring.blink((index == PLAYER_1 ? RED_RGB : GREEN_RGB), 200, 3,
-                    (player_manager.getPlayerCount() - 1) * NEOPIXEL_RING_SIZE);
-                radio_module.clearReceiver();
-            }
-            return; // no hit on register
-        }
-
-        switch (payload)
-        {
-        case HIT:
+        if (payload & HIT) {
             DEBUG_LOG_LN("HIT");
-            action_manager.hit(player_index);
-            break;
-        case CALIBRATION_STARTING:
+            action_manager.hit(player_role);
+        } else if (payload & CALIBRATION_STARTING) {
             DEBUG_LOG_LN("CALIBRATION STARTED");
-            led_ring.do_circle_annimation(ORANGE_RGB);
-            break;
-        case CALIBRATION_END:
+            for (size_t i = 0; i < NB_NEOPIXEL * 4; i++) {
+                led_ring.do_circle_annimation(ORANGE_RGB, i);
+                packet_t p = radio_module.receiveMsg();
+                if (p) {
+                    break;
+                }
+            }
+            led_ring.turn_off();
+        } else if (payload & CALIBRATION_END) {
             DEBUG_LOG_LN("CALIBRATION END");
-            led_ring.blink(GREEN_RGB, 100, 5);
-            break;
-        case CALIBRATION_FAILED:
+            led_ring.blink(GREEN_RGB, 100, 3);
+        } else if (payload & CALIBRATION_FAILED) {
             DEBUG_LOG_LN("CALIBRATION FAILED");
-            led_ring.blink(RED_RGB, 100, 5);
-            break;
-        default:
-            break;
+            led_ring.blink(RED_RGB, 100, 3);
         }
     }
 

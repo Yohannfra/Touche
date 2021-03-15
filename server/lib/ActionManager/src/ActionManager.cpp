@@ -20,16 +20,16 @@ bool ActionManager::isResetTime() const
     return _time_last_hit && millis() - _time_last_hit > FENCING_BLINKING_TIME;
 }
 
-void ActionManager::hit(player_index_e index)
+void ActionManager::hit(wsff_role_e role)
 {
     int64_t current_time = millis();
 
     if (_time_last_hit == 0) { // first hit
         _time_last_hit = millis();
-        _player_actions[index] = ACTION_HIT;
+        _player_actions[role] = ACTION_HIT;
     } else { // maybe double hit
         if (current_time - _time_last_hit <= FENCING_LAPS_DOUBLE_TOUCH) {
-            _player_actions[index] = ACTION_HIT;
+            _player_actions[role] = ACTION_HIT;
         }
     }
 }

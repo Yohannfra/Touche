@@ -1,7 +1,7 @@
 #include "DebugLog.hpp"
 #include "SleepManager.hpp"
 #include <avr/sleep.h>
-#include "../../../include/client_pinout.h"
+#include "../../../include/client_config.h"
 
 /**
  * @brief Wakeup callback

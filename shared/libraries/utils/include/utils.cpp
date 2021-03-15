@@ -1,8 +1,6 @@
 #include <Arduino.h>
 #include "utils.hpp"
-#include "board_id.h"
-
-#ifdef DEBUG
+#include "DebugLog.hpp"
 
 void utils::print_bin(const char *name, uint8_t n)
 {
@@ -19,14 +17,22 @@ void utils::print_bin(const char *name, uint8_t n)
     Serial.println(buff);
 }
 
-void utils::print_board_infos()
+void utils::print_packet(packet_t packet)
 {
-    Serial.println("=========== Board infos ===========");
-    Serial.print("Arduino ID: ");
-    printArduinoUniqueID();
-    Serial.print("WSFF ID: ");
-    Serial.println(getBoardId());
-    Serial.println("===========     End     ===========");
-}
+    static int index = 0;
 
-#endif
+    DEBUG_LOG_LN("===================================");
+    DEBUG_LOG_VAL("Packet: ", index);
+
+    DEBUG_LOG_VAL("Received: ", packet);
+    utils::print_bin("As binary", packet);
+
+    wsff_role_e player_role = (wsff_role_e)GET_ROLE(packet);
+    payload_type_e payload = (payload_type_e)packet;
+
+    DEBUG_LOG_VAL("Role: ", player_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
+    utils::print_bin("Payload", payload);
+    DEBUG_LOG_LN("===================================");
+
+    index += 1;
+}

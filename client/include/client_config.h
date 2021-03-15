@@ -1,5 +1,5 @@
-#ifndef CLIENT_PINOUT_H
-#define CLIENT_PINOUT_H
+#ifndef CLIENT_CONFIG_H
+#define CLIENT_CONFIG_H
 
 #define LED_PIN 5
 
@@ -13,4 +13,4 @@
 
 #define VIRTUAL_PIN_OUT 4
 
-#endif // CLIENT_PINOUT_H
+#endif // CLIENT_CONFIG_H
