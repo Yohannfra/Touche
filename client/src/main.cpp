@@ -10,7 +10,6 @@
 #include "DebugLog.hpp"
 #include "utils.hpp"
 #include "Timer.hpp"
-#include "SleepManager.hpp"
 
 #include "client_config.h"
 
@@ -20,7 +19,6 @@ static EpeeButton epee_button(EPEE_BUTTON_PIN);
 static Led led(LED_PIN);
 static Timer timerHit;
 static Timer timerButtonMaintened;
-static Timer timerForSleep;
 
 static wsff_role_e BOARD_ROLE;
 
@@ -56,7 +54,6 @@ void setup()
     BOARD_ROLE = getBoardRole();
     radio_module.init(BOARD_ROLE);
     led.blink(500);
-    timerForSleep.start();
 }
 
 /**
@@ -86,8 +83,6 @@ void run_calibration_process()
 void loop()
 {
     if (epee_button.isPressed()) {
-        timerForSleep.start();
-
         if (!timerButtonMaintened.isRunning()) {
             timerButtonMaintened.start();
         }
@@ -112,12 +107,5 @@ void loop()
             led.turnOff();
             timerHit.reset();
         }
-    }
-
-    // if unused for more than 5 mins go to sleep
-    if (timerForSleep.isRunning() && timerForSleep.getTimeElapsed() > TIME_BEFORE_SLEEP) {
-        led.turnOff();
-        SleepManager::sleep();
-        timerForSleep.start();
     }
 }
