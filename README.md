@@ -7,11 +7,11 @@
 
 A wireless scoring system for fencing based on **arduino** and **nrf24l01**.
 
-It works for **epee** and **foil** support is in the roadmap.
+It works for **epee** and **foil** (but I didn't try anything for sabre so maybe it's possible to make it work too).
 
 ---
 
-This project is composed of parts : the client and the server
+This project is divised in two parts : the client and the server
 - The client is the board that each player will use and plug their weapons to
 - The server is the scoring system, it turn on lights and play sounds if a player hits
 
