@@ -28,7 +28,3 @@ Each directory has it's own README.md to explain this with more details.
 ├── server      # source code of the server
 └── shared      # source code that is used in both client and server
 ```
-
-## Licence
-
-This project is licensed under the terms of the MIT license.
