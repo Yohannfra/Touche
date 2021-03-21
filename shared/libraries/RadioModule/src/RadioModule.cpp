@@ -1,5 +1,5 @@
 #include "RadioModule.hpp"
-#include "DebugLog.hpp"
+#include "DebugLog.h"
 #include "protocol.h"
 
 #include <nRF24L01.h>

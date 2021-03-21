@@ -6,8 +6,8 @@
 #include <Arduino.h>
 
 #include "protocol.h"
-#include "fencingConstants.h"
-#include "DebugLog.hpp"
+#include "wsff.h"
+#include "DebugLog.h"
 
 #include "server_config.h"
 

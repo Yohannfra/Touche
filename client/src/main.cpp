@@ -5,9 +5,9 @@
 #include "EpeeButton.hpp"
 #include "Led.hpp"
 #include "protocol.h"
-#include "fencingConstants.h"
+#include "wsff.h"
 #include "ClientRole.hpp"
-#include "DebugLog.hpp"
+#include "DebugLog.h"
 #include "utils.hpp"
 #include "Timer.hpp"
 

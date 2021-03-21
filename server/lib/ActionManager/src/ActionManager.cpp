@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "ActionManager.hpp"
-#include "fencingConstants.h"
-#include "DebugLog.hpp"
+#include "wsff.h"
+#include "DebugLog.h"
 
 ActionManager::ActionManager()
 {

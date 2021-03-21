@@ -1,6 +1,6 @@
 #include "VirtualGround.hpp"
 #include <CapacitiveSensor.h>
-#include "DebugLog.hpp"
+#include "DebugLog.h"
 
 #define MAX_CALIBRATIONS_SAMPLES 200 // adjust me
 

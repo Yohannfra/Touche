@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include "utils.hpp"
-#include "DebugLog.hpp"
+#include "DebugLog.h"
 
 void utils::print_bin(const char *name, uint8_t n)
 {
