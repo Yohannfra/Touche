@@ -26,8 +26,7 @@ Each directory has it's own README.md to explain this with more details.
 ├── client      # source code of the client
 ├── demo        # videos/demos of the system
 ├── server      # source code of the server
-├── shared      # source code that is used in both client and server
-└── tools       # a bunch of usefull scripts/programms I made for this project
+└── shared      # source code that is used in both client and server
 ```
 
 ## Licence
