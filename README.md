@@ -11,9 +11,9 @@ It works for **epee** and **foil** (but I didn't try anything for sabre so maybe
 
 ---
 
-This project is divised in two parts : the client and the server
-- The client is the board that each player will use and plug their weapons to
-- The server is the scoring system, it turn on lights and play sounds if a player hits
+This project is divised in two parts : the **client** and the **server**
+- The **client** is the board that each player will use and plug their weapons to
+- The **server** is the scoring system, it turn on lights and play sounds if a player hits
 
 ---
 
