@@ -18,13 +18,14 @@ This project is divised in two parts : the client and the server
 ---
 
 ## About the directory structure
-Each directory has it's own README.md to explain this with more details.
 ```
 .
 ├── Archive     # some old versions of the project
-├── Documents   # pcb sources, fritzing schematics and datasheets of the components
+├── Documents   # pcb sources, fritzing schematics, and stl files
 ├── client      # source code of the client
 ├── demo        # videos/demos of the system
 ├── server      # source code of the server
 └── shared      # source code that is used in both client and server
 ```
+
+Each directory has it's own README.md to explain this with more details.
