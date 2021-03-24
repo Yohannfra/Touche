@@ -23,7 +23,7 @@ class EpeeButton
         EpeeButton(uint8_t pin);
 
         /**
-         * @brief get if button is pressed
+         * @brief get if button is pressed and is for more than 2 ms (see why in wsff.h)
          *
          * @return boolean with the state of the button
          */

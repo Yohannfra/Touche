@@ -42,6 +42,11 @@ class VirtualGround
          */
         long _threshold;
 
+        /**
+         * @brief Tolerance that is applied to check if guard is hit is set to 10% of the _treshold
+         */
+        long _tolerance;
+
     public:
         /**
          * @brief default constructor

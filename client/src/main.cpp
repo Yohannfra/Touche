@@ -22,17 +22,6 @@ static Timer timerButtonMaintened;
 
 static wsff_role_e BOARD_ROLE;
 
-#define TIME_TO_ACTIVATE_CALIBRATION 3000
-
-#define TIME_BEFORE_SLEEP (5000UL * 60UL) // 5000 * 60 = 5 minutes
-
-#ifdef WRITE_ROLE_TO_EEPROM
-#define ROLE_TO_WRITE PLAYER_2 // change value and add it to board_id.h
-#endif
-
-/**
- * @brief Arduino setup function
- */
 void setup()
 {
 #ifdef DEBUG
@@ -69,12 +58,14 @@ void run_calibration_process()
             DEBUG_LOG_LN("Button released during calibration");
             radio_module.sendMsg(BOARD_ROLE, CALIBRATION_FAILED);
             virtualGround.end_calibration(false);
+            delay(500);
             return;
         }
     }
     DEBUG_LOG_LN("Calibration Done");
     virtualGround.end_calibration(true);
     radio_module.sendMsg(BOARD_ROLE, CALIBRATION_END);
+    delay(500);
 }
 
 /**
@@ -87,11 +78,18 @@ void loop()
             timerButtonMaintened.start();
         }
 
-        if (!timerHit.isRunning() && !virtualGround.trigger_ground()) { // hit
-            timerHit.start();
-            led.turnOn();
-            DEBUG_LOG_LN("Sending Hit");
-            radio_module.sendMsg(BOARD_ROLE, HIT);
+        if (!timerHit.isRunning()) {
+            bool is_virtual_ground_triggered = virtualGround.trigger_ground();
+
+            if (is_virtual_ground_triggered == false) { // hit
+                timerHit.start();
+                led.turnOn();
+                DEBUG_LOG_LN("== Sending Hit ==");
+                radio_module.sendMsg(BOARD_ROLE, HIT);
+            } else if (is_virtual_ground_triggered == true) {
+                DEBUG_LOG_LN("== Virtual ground triggered ==");
+                delay(100);
+            }
         }
 
         if (timerButtonMaintened.isRunning() &&
@@ -106,6 +104,7 @@ void loop()
         if (timerHit.isRunning() && timerHit.getTimeElapsed() > FENCING_BLINKING_TIME) { // reset
             led.turnOff();
             timerHit.reset();
+            DEBUG_LOG_LN("Reset");
         }
     }
 }

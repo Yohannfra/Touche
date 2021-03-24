@@ -1,4 +1,6 @@
+#include "DebugLog.h"
 #include "EpeeButton.hpp"
+#include "wsff.h"
 
 EpeeButton::EpeeButton(uint8_t pin)
 {
@@ -8,5 +10,17 @@ EpeeButton::EpeeButton(uint8_t pin)
 
 bool EpeeButton::isPressed() const
 {
-    return !digitalRead(_pin); // is inversed becaused of INPUT_PULLUP
+    bool state = !digitalRead(_pin);
+
+    if (state) {
+        unsigned long t1 = millis();
+
+        while (!digitalRead(_pin) == state) {
+            if (millis() - t1 > FENCING_MINIMUM_TIME_VALID_HIT) {
+                // DEBUG_LOG_LN("EPEE BTN PRESSED");
+                return true;
+            }
+        }
+    }
+    return false;
 }
