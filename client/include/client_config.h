@@ -2,7 +2,7 @@
 #define CLIENT_CONFIG_H
 
 #ifdef WRITE_ROLE_TO_EEPROM
-#define ROLE_TO_WRITE PLAYER_ // change value to PLAYER_1 or PLAYER_2
+#define ROLE_TO_WRITE PLAYER_1 // change value to PLAYER_1 or PLAYER_2
 #endif
 
 /**
