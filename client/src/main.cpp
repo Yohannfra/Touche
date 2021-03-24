@@ -2,7 +2,7 @@
 
 #include "VirtualGround.hpp"
 #include "RadioModule.hpp"
-#include "EpeeButton.hpp"
+#include "WeaponButton.hpp"
 #include "Led.hpp"
 #include "protocol.h"
 #include "wsff.h"
@@ -15,7 +15,7 @@
 
 static VirtualGround virtualGround(VIRTUAL_PIN_OUT, VIRTUAL_PIN_IN);
 static RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
-static EpeeButton epee_button(EPEE_BUTTON_PIN);
+static WeaponButton weapon_button(EPEE_BUTTON_PIN);
 static Led led(LED_PIN);
 static Timer timerHit;
 static Timer timerButtonMaintened;
@@ -54,7 +54,7 @@ void run_calibration_process()
     radio_module.sendMsg(BOARD_ROLE, CALIBRATION_STARTING);
 
     while (virtualGround.calibrate() == false) {
-        if (epee_button.isPressed() == false) {
+        if (weapon_button.isPressed() == false) {
             DEBUG_LOG_LN("Button released during calibration");
             radio_module.sendMsg(BOARD_ROLE, CALIBRATION_FAILED);
             virtualGround.end_calibration(false);
@@ -73,7 +73,7 @@ void run_calibration_process()
  */
 void loop()
 {
-    if (epee_button.isPressed()) {
+    if (weapon_button.isPressed()) {
         if (!timerButtonMaintened.isRunning()) {
             timerButtonMaintened.start();
         }

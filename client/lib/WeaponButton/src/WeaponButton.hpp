@@ -6,7 +6,7 @@
 /**
  * @brief A wrapper for a button
  */
-class EpeeButton
+class WeaponButton
 {
     private:
         /**
@@ -20,7 +20,7 @@ class EpeeButton
          *
          * @param pin button bin
          */
-        EpeeButton(uint8_t pin);
+        WeaponButton(uint8_t pin);
 
         /**
          * @brief get if button is pressed and is for more than 2 ms (see why in wsff.h)

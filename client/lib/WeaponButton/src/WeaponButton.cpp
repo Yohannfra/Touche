@@ -1,14 +1,14 @@
 #include "DebugLog.h"
-#include "EpeeButton.hpp"
+#include "WeaponButton.hpp"
 #include "wsff.h"
 
-EpeeButton::EpeeButton(uint8_t pin)
+WeaponButton::WeaponButton(uint8_t pin)
 {
     _pin = pin;
     pinMode(_pin, INPUT_PULLUP);
 }
 
-bool EpeeButton::isPressed() const
+bool WeaponButton::isPressed() const
 {
     bool state = !digitalRead(_pin);
 
