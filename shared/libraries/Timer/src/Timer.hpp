@@ -16,9 +16,11 @@ class Timer
 
     public:
         /**
-         * @brief default timer constructor
+         * @brief Construct a new Timer object
+         *
+         * @param startDirectly if true starts the timer
          */
-        Timer();
+        Timer(bool startDirectly = false);
 
         /**
          * @brief start the timer

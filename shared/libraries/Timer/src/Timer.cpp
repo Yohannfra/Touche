@@ -1,8 +1,11 @@
 #include "Timer.hpp"
 
-Timer::Timer()
+Timer::Timer(bool startDirectly)
 {
     this->reset();
+    if (startDirectly) {
+        this->start();
+    }
 }
 
 void Timer::start()

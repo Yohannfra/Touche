@@ -28,11 +28,11 @@ clean_release:
 write_role:
 	@pio run -e write_role
 
-flash_write_id:
-	@pio run -e write_id --target upload
+flash_write_role:
+	@pio run -e write_role --target upload
 
-clean_write_id:
-	@pio run -e write_id --target clean
+clean_write_role:
+	@pio run -e write_role --target clean
 
 
 # common
