@@ -14,7 +14,7 @@ void utils::print_bin(const char *name, uint8_t n)
     }
     Serial.print(name);
     Serial.print(" : ");
-    Serial.print(buff);
+    Serial.println(buff);
 }
 
 void utils::print_packet(packet_t packet)
@@ -25,12 +25,12 @@ void utils::print_packet(packet_t packet)
     Serial.print("Packet: ");
     Serial.println(index);
 
-    Serial.print("Received: ");
+    Serial.print("As decimal: ");
     Serial.println(packet);
     utils::print_bin("As binary", packet);
 
-    wsff_role_e player_role = (wsff_role_e)GET_ROLE(packet);
-    payload_type_e payload = (payload_type_e)packet;
+    wsff_role_e player_role = static_cast<wsff_role_e>(GET_ROLE(packet));
+    payload_type_e payload = static_cast<payload_type_e>(GET_PAYLOAD(packet));
 
     Serial.print("Role: ");
     Serial.println(player_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");

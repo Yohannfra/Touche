@@ -62,7 +62,10 @@ both sides of the apparatus'
 typedef enum {
     EPEE,
     FOIL,
-    // SABRE // maybe one day :)
+    // SABRE // maybe one day
 } weapon_mode_e;
+
+// default weapon is epee because it's the best weapon :) but you can easily change that value
+static const weapon_mode_e DEFAULT_WEAPON_MODE = EPEE;
 
 #endif // WSFF_H
