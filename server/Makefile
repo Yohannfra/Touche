@@ -27,4 +27,10 @@ clean_release:
 # common
 clean_all: clean_debug clean_release
 
-.PHONY: all flash clean debug flash_debug clean_debug release flash_release clean_release clean_all
+fclean:
+	$(RM) -r .pio
+
+re: fclean all
+
+.PHONY: all flash clean debug flash_debug clean_debug release \
+		flash_release clean_release clean_all fclean re
