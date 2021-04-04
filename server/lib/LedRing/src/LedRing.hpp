@@ -18,9 +18,6 @@ typedef struct {
 
 #define NEOPIXEL_RING_SIZE 12
 
-#define NB_NEOPIXEL NEOPIXEL_RING_SIZE * NB_NEOPIXEL_RING
-
-
 /**
  * @brief class to abstract neopixel ring usage
  *
@@ -39,6 +36,10 @@ class LedRing
          *
          */
         Adafruit_NeoPixel strip;
+
+        color_t _colorPlayer1;
+
+        color_t _colorPlayer2;
 
     public:
         /**
@@ -86,6 +87,11 @@ class LedRing
          */
         void blink(color_t color, int time_ms, size_t nb_blinks = 3, uint8_t index = 0);
 
+
+        void blinkBoth(color_t color, color_t color2, int time_ms, size_t nb_blinks = 3);
+
+
+
         /**
          * @brief Do a nice circular annimation
          *
@@ -96,6 +102,11 @@ class LedRing
 
 
         void show_hits(hit_type_e hit_type);
+
+        void switchColors();
+
+        color_t getPlayerColor(wsff_role_e player);
+
 };
 
 #endif /* LEDRING_HPP */

@@ -1,8 +1,10 @@
 #include "LedRing.hpp"
 
-LedRing::LedRing(byte pin) : strip(NB_NEOPIXEL, pin, NEO_GRB + NEO_KHZ800)
+LedRing::LedRing(byte pin) : strip(2 * NEOPIXEL_RING_SIZE, pin, NEO_GRB + NEO_KHZ800)
 {
     this->pin = pin;
+    _colorPlayer1 = RED_RGB;
+    _colorPlayer2 = GREEN_RGB;
 }
 
 void LedRing::init()
@@ -28,39 +30,29 @@ void LedRing::set_color(color_t color, uint8_t start, uint8_t end)
 
 void LedRing::do_circle_annimation(color_t color, uint8_t step)
 {
-    uint8_t index = step % NB_NEOPIXEL;
+    uint8_t index = step % (2 * NEOPIXEL_RING_SIZE);
 
-    if (this->strip.getPixelColor(index) != 0) {
-        this->strip.setPixelColor(index, 0, 0, 0);
-    } else {
-        this->strip.setPixelColor(index, color.r, color.g, color.b);
-    }
+    this->strip.clear();
+    this->strip.setPixelColor(index, color.r, color.g, color.b);
     this->strip.show();
-    delay(100);
-
-    // for (size_t i = 0; i < NB_NEOPIXEL; i++) {
-    //     this->strip.setPixelColor(i, color.r, color.g, color.b);
-    //     this->strip.getPixelColor()
-    //     this->strip.show();
-    //     delay(100);
-    // }
-    // for (size_t i = 0; i < NB_NEOPIXEL; i++) {
-    //     this->strip.setPixelColor(i, 0, 0, 0);
-    //     this->strip.show();
-    //     delay(100);
-    // }
-    // this->turn_off();
+    // delay(100);
 }
 
 void LedRing::blink(color_t color, int time_ms, size_t nb_blinks, uint8_t index)
 {
     for (size_t i = 0; i < nb_blinks; i++) {
-#if NB_NEOPIXEL_RING == 1
-        (void)index;
-        set_color(color, 0, NEOPIXEL_RING_SIZE);
-#else
         set_color(color, index, NEOPIXEL_RING_SIZE * 2);
-#endif
+        delay(time_ms);
+        turn_off();
+        delay(time_ms);
+    }
+}
+
+void LedRing::blinkBoth(color_t color, color_t color2, int time_ms, size_t nb_blinks)
+{
+    for (size_t i = 0; i < nb_blinks; i++) {
+        set_color(color, 0, NEOPIXEL_RING_SIZE);
+        this->set_color(color2, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
         delay(time_ms);
         turn_off();
         delay(time_ms);
@@ -69,7 +61,7 @@ void LedRing::blink(color_t color, int time_ms, size_t nb_blinks, uint8_t index)
 
 void LedRing::set_half_colors(color_t color_1, color_t color_2)
 {
-    for (size_t i = 0; i < NB_NEOPIXEL; i++) {
+    for (size_t i = 0; i < 2; i++) {
         if (i % 2)
             this->strip.setPixelColor(i, color_1.r, color_1.g, color_1.b);
         else
@@ -80,22 +72,26 @@ void LedRing::set_half_colors(color_t color_1, color_t color_2)
 
 void LedRing::show_hits(hit_type_e hit_type)
 {
-#if NB_NEOPIXEL_RING == 1
     if (hit_type == HIT_PLAYER_1) {
-        this->set_color(RED_RGB);
+        this->set_color(_colorPlayer1);
     } else if (hit_type == HIT_PLAYER_2) {
-        this->set_color(GREEN_RGB);
+        this->set_color(_colorPlayer2, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
     } else {
-        this->set_half_colors(RED_RGB, GREEN_RGB);
+        this->set_color(_colorPlayer1);
+        this->set_color(_colorPlayer2, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
     }
-#else
-    if (hit_type == HIT_PLAYER_1) {
-        this->set_color(RED_RGB);
-    } else if (hit_type == HIT_PLAYER_2) {
-        this->set_color(GREEN_RGB, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
-    } else {
-        this->set_color(RED_RGB);
-        this->set_color(GREEN_RGB, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
-    }
-#endif
+}
+
+void LedRing::switchColors()
+{
+    color_t tmp;
+
+    memcpy(&tmp, &_colorPlayer1, sizeof(color_t));
+    memcpy(&_colorPlayer1, &_colorPlayer2, sizeof(color_t));
+    memcpy(&_colorPlayer2, &tmp, sizeof(color_t));
+}
+
+color_t LedRing::getPlayerColor(wsff_role_e player)
+{
+    return player == PLAYER_1 ? _colorPlayer1 : _colorPlayer2;
 }
