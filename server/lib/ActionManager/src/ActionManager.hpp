@@ -8,11 +8,11 @@
  * @brief All possible type of hits
  *
  */
-typedef enum {
-    HIT_PLAYER_1,
-    HIT_PLAYER_2,
-    DOUBLE_HIT,
-    NO_HIT
+typedef enum : uint8_t {
+    HIT_PLAYER_1 = 0,
+    HIT_PLAYER_2 = 1,
+    DOUBLE_HIT = 2,
+    NO_HIT = 3
 } hit_type_e;
 
 /**
@@ -26,9 +26,9 @@ class ActionManager
          * @brief hit action or no action
          *
          */
-        typedef enum {
-            ACTION_HIT,
-            NO_ACTION,
+        typedef enum : uint8_t {
+            ACTION_HIT = 0,
+            NO_ACTION = 1,
         } action_type_e;
 
         /**

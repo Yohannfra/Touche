@@ -1,6 +1,8 @@
 #ifndef WSFF_H
 #define WSFF_H
 
+#include <stdint.h>
+
 // This file contains all important fencing constants that must be known across the project
 
 /* See this document : https://static.fie.org/uploads/25/126156-book%20m%20ang.pdf
@@ -59,7 +61,7 @@ both sides of the apparatus'
  * @brief The weapon mode to use, can be changed on runtime.
  * Mode is change by the push button on the server
  */
-typedef enum {
+typedef enum : uint8_t {
     EPEE,
     FOIL,
     // SABRE // maybe one day
