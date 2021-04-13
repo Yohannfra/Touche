@@ -21,10 +21,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install --upgrade platformio
     - name: build client debug
-      run: make -C client
+      run: make -C code/client
     - name: build client release
-      run: make -C client release
+      run: make -C code/client release
     - name: build server debug
-      run: make -C server
+      run: make -C code/server
     - name: build server release
-      run: make -C server release
+      run: make -C code/server release
