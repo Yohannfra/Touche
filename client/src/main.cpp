@@ -25,7 +25,7 @@ static PlayerConfig playerConfig(PLAYER_ROLE, DEFAULT_WEAPON_MODE);
 // Config variables
 static wsff_role_e board_role;
 static weapon_mode_e weapon_mode;
-static bool pisteMode = false;
+/* static bool pisteMode = false; */
 
 void change_weapon_loop()
 {
