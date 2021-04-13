@@ -42,18 +42,14 @@ class RadioModule
         bool checkMsgAvailable();
 
         /**
-         * @brief clear the message queue
-         *
-         */
-        void clearReceiver();
-
-        /**
          * @brief send a message in a packet_t
          *
          * @param role device role enum
          * @param payload payload to send
+         *
+         * @return If an ACK was received
          */
-        void sendMsg(wsff_role_e role, payload_type_e payload);
+        bool sendMsg(wsff_role_e role, payload_type_e payload);
 };
 
 #endif /* RADIOMODULE_HPP */

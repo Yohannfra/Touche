@@ -8,7 +8,31 @@
 #define RGB_LED_COLOR_GREEN 0b010
 #define RGB_LED_COLOR_BLUE 0b001
 #define RGB_LED_COLOR_MAGENTA 0b101
+#define RGB_LED_COLOR_AQUA 0b011
 #define RGB_LED_COLOR_YELLOW 0b110
+
+// Listen to server color
+#define COLOR_LISTEN_TO_SERVER_MODE RGB_LED_COLOR_AQUA
+
+// weapons color
+#define COLOR_EPEE_MODE RGB_LED_COLOR_MAGENTA
+#define COLOR_FOIL_MODE RGB_LED_COLOR_BLUE
+#define COLOR_SABRE_MODE RGB_LED_COLOR_YELLOW
+
+// epee
+#define COLOR_EPEE_HIT RGB_LED_COLOR_GREEN
+
+// foil
+#define COLOR_FOIL_VALID_HIT RGB_LED_COLOR_GREEN
+#define COLOR_FOIL_INVALID_HIT RGB_LED_COLOR_RED
+
+// sabre
+#define COLOR_SABRE_HIT RGB_LED_COLOR_GREEN
+
+// Usefull define to get color from weapon mode
+#define WEAPON_MODE_TO_COLOR(mode) (mode == EPEE ? COLOR_EPEE_MODE : \
+                                        mode == FOIL ? COLOR_FOIL_MODE : \
+                                        COLOR_SABRE_MODE)
 
 /**
  * @brief A class to abstract the use of a RGB led

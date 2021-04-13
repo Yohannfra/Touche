@@ -1,33 +1,41 @@
+#include <Arduino.h>
 
 #include "Buzzer.hpp"
 #include "LedRing.hpp"
 #include "RadioModule.hpp"
 #include "ActionManager.hpp"
-#include <Arduino.h>
-
+#include "Button.hpp"
 #include "protocol.h"
 #include "wsff.h"
 #include "DebugLog.h"
-
-#include "server_config.h"
-
+#include "config.h"
 #include "utils.hpp"
+#include "ServerConfig.hpp"
 
-Buzzer buzzer(BUZZER_PIN);
-LedRing led_ring(LED_RING_PIN);
-RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
-ActionManager action_manager;
+static Buzzer buzzer(BUZZER_PIN);
+static LedRing led_ring(LED_RING_PIN);
+static RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
+static ActionManager action_manager;
 
-static const wsff_role_e BOARD_ROLE = SERVER;
+static Button buttonPisteMode(PIN_BUTTON_PISTE_MODE);
+static Button buttonSwitchPlayer(PIN_BUTTON_SWITCH_PLAYERS);
+static Button buttonChangeWeapon(PIN_BUTTON_CHANGE_WEAPON);
+static ServerConfig serverConfig(DEFAULT_WEAPON_MODE);
+
+static bool pisteMode = false;
+static weapon_mode_e weapon_mode;
 
 void setup()
 {
-#ifdef DEBUG
-    Serial.begin(9600);
-#endif
-    radio_module.init(BOARD_ROLE);
-    led_ring.init();
+    #ifdef DEBUG
+        Serial.begin(9600);
+    #endif
 
+    weapon_mode = serverConfig.getWeapon();
+    DEBUG_LOG_LN(weapon_mode == EPEE ? "EPEE": "FOIL");
+
+    radio_module.init(SERVER);
+    led_ring.init();
     led_ring.blink(ORANGE_RGB, 200, 1);
 }
 
@@ -39,22 +47,45 @@ void resetValues()
     buzzer.stop();
 }
 
+void checkButtonsPressed()
+{
+    if (buttonPisteMode.isPressed()) {
+        DEBUG_LOG_LN("Button piste pressed !");
+        pisteMode = !pisteMode;
+        radio_module.sendMsg(SERVER, pisteMode ? ENABLE_PISTE_MODE : DISABLE_PISTE_MODE);
+    }
+
+    if (buttonSwitchPlayer.isPressed()) {
+        DEBUG_LOG_LN("Button switch pressed !");
+        led_ring.switchColors();
+        led_ring.blinkBoth(led_ring.getPlayerColor(PLAYER_1), led_ring.getPlayerColor(PLAYER_2), 400, 2);
+    }
+
+    if (buttonChangeWeapon.isPressed()) {
+        DEBUG_LOG_LN("Button change weapon pressed !");
+        // TODO
+        // change weapons
+    }
+}
+
 void loop()
 {
     packet_t packet = radio_module.receiveMsg();
 
+    checkButtonsPressed();
+
     if (packet) {
         utils::print_packet(packet);
 
-        wsff_role_e player_role = (wsff_role_e)GET_ROLE(packet);
-        payload_type_e payload = (payload_type_e)packet;
+        wsff_role_e player_role = static_cast<wsff_role_e>(GET_ROLE(packet));
+        payload_type_e payload = static_cast<payload_type_e>(GET_PAYLOAD(packet));
 
         if (payload & HIT) {
             DEBUG_LOG_LN("HIT");
             action_manager.hit(player_role);
         } else if (payload & CALIBRATION_STARTING) {
             DEBUG_LOG_LN("CALIBRATION STARTED");
-            for (size_t i = 0; i < NB_NEOPIXEL * 4; i++) {
+            for (size_t i = 0; i < 2 * 4; i++) {
                 led_ring.do_circle_annimation(ORANGE_RGB, i);
                 packet_t p = radio_module.receiveMsg();
                 if (p) {

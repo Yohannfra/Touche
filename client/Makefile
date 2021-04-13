@@ -24,16 +24,6 @@ flash_release:
 clean_release:
 	@pio run -e release --target clean
 
-# write id config
-write_role:
-	@pio run -e write_role
-
-flash_write_role:
-	@pio run -e write_role --target upload
-
-clean_write_role:
-	@pio run -e write_role --target clean
-
 # common
 clean_all: clean_debug clean_release
 

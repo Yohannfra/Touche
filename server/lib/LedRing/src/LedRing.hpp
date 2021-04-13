@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
-#include "../../../include/server_config.h"
+#include "../../../include/config.h"
 #include "../../ActionManager/src/ActionManager.hpp"
 
 typedef struct {

@@ -1,21 +1,22 @@
-#ifndef CLIENT_CONFIG_H
-#define CLIENT_CONFIG_H
+#ifndef CONFIG_H
+#define CONFIG_H
 
-#ifdef WRITE_ROLE_TO_EEPROM
-#define ROLE_TO_WRITE PLAYER_1 // change value to PLAYER_1 or PLAYER_2
-#endif
+// ------ Config ------------
 
-/**
- * @brief How long the button must be pressed (and maintened) to start calibration
- */
-#define TIME_TO_ACTIVATE_CALIBRATION 2000 // 2 seconds
+// Change that to 1 if you want to change a board from PLAYER_1 to PLAYER_2
+// but reflash with 0 after doing so (to preserve EEPROM)
+#define FORCE_WRITE_PLAYER_ROLE 0
+
+#define PLAYER_ROLE PLAYER_1 // change value to PLAYER_1 or PLAYER_2
+
+// ------ Pinout ------------
 
 /**
  * @brief Arduino pin used for the led
  */
 #define LED_PIN_RED 10
-#define LED_PIN_GREEN 6
-#define LED_PIN_BLUE 9
+#define LED_PIN_GREEN 9
+#define LED_PIN_BLUE 6
 
 /**
  * @brief Arduino pin for the button of the weapon
@@ -42,4 +43,4 @@
  */
 #define VIRTUAL_PIN_OUT 4
 
-#endif // CLIENT_CONFIG_H
+#endif // CONFIG_H

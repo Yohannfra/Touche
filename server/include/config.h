@@ -1,5 +1,5 @@
-#ifndef SERVER_PINOUT_H
-#define SERVER_PINOUT_H
+#ifndef CONFIG_H
+#define CONFIG_H
 
 /**
  * @brief Arduino pin used for the buzzer
@@ -31,4 +31,4 @@
  */
 #define NRF24L01_CS_PIN 8
 
-#endif /* SERVER_PINOUT_H */
+#endif /* CONFIG_H */

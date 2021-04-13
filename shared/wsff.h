@@ -67,7 +67,7 @@ typedef enum : uint8_t {
     // SABRE // maybe one day
 } weapon_mode_e;
 
-// default weapon is epee because it's the best weapon :) but you can easily change that value
-static const weapon_mode_e DEFAULT_WEAPON_MODE = EPEE;
+// default weapon is epee because it's the best weapon :) but you can easily change this value
+#define DEFAULT_WEAPON_MODE EPEE
 
 #endif // WSFF_H

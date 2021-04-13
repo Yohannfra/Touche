@@ -17,14 +17,13 @@ jobs:
       uses: actions/setup-python@v2
     - name: Install PlatformIO
       run: |
+        apt-get update && apt-get install make
         python -m pip install --upgrade pip
         pip install --upgrade platformio
     - name: build client debug
       run: make -C client
     - name: build client release
       run: make -C client release
-    - name: build client write_role
-      run: make -C client write_role
     - name: build server debug
       run: make -C server
     - name: build server release
