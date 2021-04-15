@@ -14,6 +14,7 @@ VirtualGround::VirtualGround(uint8_t pin_out, uint8_t pin_in) : _capacitive_sens
     _calibrationIndex = 0;
     _threshold = 0;
     _tolerance = 0;
+    _pisteEnabled = false;
 }
 
 long VirtualGround::get_value()
@@ -36,9 +37,16 @@ bool VirtualGround::trigger_ground()
         sum += val;
     }
     sum = sum / NB_OF_TIME_TO_SAMPLE;
+
     DEBUG_LOG_VAL("trigger_ground final: ", sum);
-    if (_threshold - _tolerance <= sum && sum <= _threshold + _tolerance)
+
+    if (_pisteEnabled && sum > _threshold) { // hit the piste
         return true;
+    }
+
+    if (_threshold - _tolerance <= sum && sum <= _threshold + _tolerance) {
+        return true;
+    }
     return false;
 }
 
@@ -68,4 +76,9 @@ void VirtualGround::end_calibration(bool success)
     }
     _calibrationIndex = 0;
     _calibrationSum = 0;
+}
+
+void VirtualGround::setPisteEnabled(bool state)
+{
+    _pisteEnabled = state;
 }

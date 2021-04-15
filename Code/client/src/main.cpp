@@ -27,7 +27,7 @@ static wsff_role_e board_role;
 static weapon_mode_e weapon_mode;
 /* static bool pisteMode = false; */
 
-void change_weapon_loop()
+void wait_for_server_instructions()
 {
     led.setColor(COLOR_LISTEN_TO_SERVER_MODE);
     delay(1000);
@@ -57,9 +57,8 @@ void setup()
     radio_module.init(board_role);
 
     if (weapon_button.isPressed()) {
-        change_weapon_loop();
+        wait_for_server_instructions();
     }
-
     led.blink(WEAPON_MODE_TO_COLOR(weapon_mode), 1000, 1);
 }
 

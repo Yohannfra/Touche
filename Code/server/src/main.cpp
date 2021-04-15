@@ -49,22 +49,24 @@ void resetValues()
 
 void checkButtonsPressed()
 {
+    // Piste mode
     if (buttonPisteMode.isPressed()) {
         DEBUG_LOG_LN("Button piste pressed !");
         pisteMode = !pisteMode;
         radio_module.sendMsg(SERVER, pisteMode ? ENABLE_PISTE_MODE : DISABLE_PISTE_MODE);
     }
 
+    // switch players
     if (buttonSwitchPlayer.isPressed()) {
         DEBUG_LOG_LN("Button switch pressed !");
         led_ring.switchColors();
         led_ring.blinkBoth(led_ring.getPlayerColor(PLAYER_1), led_ring.getPlayerColor(PLAYER_2), 400, 2);
     }
 
+    // change weapon
     if (buttonChangeWeapon.isPressed()) {
         DEBUG_LOG_LN("Button change weapon pressed !");
-        // TODO
-        // change weapons
+        weapon_mode = weapon_mode == EPEE ? FOIL : EPEE;
     }
 }
 
@@ -72,7 +74,6 @@ void loop()
 {
     packet_t packet = radio_module.receiveMsg();
 
-    checkButtonsPressed();
 
     if (packet) {
         utils::print_packet(packet);
@@ -107,8 +108,11 @@ void loop()
     if (hit_type != NO_HIT) {
         buzzer.play();
         led_ring.show_hits(hit_type);
-    }
-    if (action_manager.isResetTime()) {
-        resetValues();
+
+        if (action_manager.isResetTime()) {
+            resetValues();
+        }
+    } else { // Check buttons only if no hit is occuring
+        checkButtonsPressed();
     }
 }

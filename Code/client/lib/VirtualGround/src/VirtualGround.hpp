@@ -47,6 +47,12 @@ class VirtualGround
          */
         long _tolerance;
 
+
+        /**
+         * @brief Enable/disable metalic piste detection
+         */
+        bool _pisteEnabled;
+
     public:
         /**
          * @brief default constructor
@@ -85,6 +91,14 @@ class VirtualGround
          * @param success if the calibration process was a sucess.
          */
         void end_calibration(bool success);
+
+
+        /**
+         * @brief Enable/disable piste mode
+         *
+         * @param state state of the piste mode
+         */
+        void setPisteEnabled(bool state);
 };
 
 #endif /* CAPTOUCH_HPP */
