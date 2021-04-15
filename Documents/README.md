@@ -1,11 +1,10 @@
 # Documents
 
-This directory contains all documents that are not related to code.
+This directory contains all CAD files, 3D files (stl) and PCB files.
 
 ````
 .
-├── CAD       # stl files for 3D printing
-├── Fritzing  # Fritzing schematics
+├── CAD       # CAD and stl files for 3D printing
 └── PCB       # PCB sources and gerber files
 ```
 
