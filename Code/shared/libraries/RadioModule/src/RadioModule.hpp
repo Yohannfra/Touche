@@ -5,10 +5,16 @@
 #include "protocol.h"
 #include <RF24.h>
 
+typedef enum : uint8_t {
+    RECEIVER,
+    SENDER
+} radio_module_mode_e;
+
 class RadioModule
 {
     private:
         RF24 _nrf24;
+        radio_module_mode_e _mode;
 
     public:
         /**
@@ -50,6 +56,8 @@ class RadioModule
          * @return If an ACK was received
          */
         bool sendMsg(wsff_role_e role, payload_type_e payload);
+
+        void setMode(radio_module_mode_e mode);
 };
 
 #endif /* RADIOMODULE_HPP */

@@ -7,21 +7,22 @@ typedef uint8_t packet_t;
 
 typedef enum : uint8_t {
     // hit
-    HIT                      = 1,
+    HIT = 1,
+    INVALID_HIT,
 
     // Calibration
-    CALIBRATION_STARTING     = 2,
-    CALIBRATION_END          = 3,
-    CALIBRATION_FAILED       = 4,
+    CALIBRATION_STARTING,
+    CALIBRATION_END,
+    CALIBRATION_FAILED,
 
     // changing weapon
-    CHANGING_TO_EPEE         = 5,
-    CHANGING_TO_FOIL         = 6,
-    CHANGING_TO_SABRE        = 7,
+    CHANGING_TO_EPEE,
+    CHANGING_TO_FOIL,
+    CHANGING_TO_SABRE,
 
     // piste mode
-    ENABLE_PISTE_MODE        = 8,
-    DISABLE_PISTE_MODE       = 9,
+    ENABLE_PISTE_MODE,
+    DISABLE_PISTE_MODE,
 } payload_type_e;
 
 #define GET_PAYLOAD(n) (n & 0b00111111)
