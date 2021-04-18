@@ -55,5 +55,5 @@ Each directory has it's own README.md to explain this with more details.
 
 ## License
 
-All the code, CAD files, PCB files and everything within this repository is licensed under the terms of the [GNU GPL3 license](./LICENSE).
+All the code, CAD files, PCB files and everything within this repository is licensed under the terms of the [GNU General Public License](./LICENSE).
 
