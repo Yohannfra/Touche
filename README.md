@@ -2,12 +2,8 @@
 
 ![](https://github.com/Yohannfra/WSFF/workflows/Build/badge.svg)
 
----
 
 ![](.github/full_set.jpg)
-
-
-
 
 
 ## Overview
