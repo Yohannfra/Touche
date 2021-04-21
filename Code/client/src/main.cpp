@@ -1,3 +1,21 @@
+/*
+WSFF Project
+Copyright (C) 2021 Assouline Yohann
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include <Arduino.h>
 
 #include "VirtualGround.hpp"
@@ -25,21 +43,51 @@ static PlayerConfig playerConfig(PLAYER_ROLE, DEFAULT_WEAPON_MODE);
 // Config variables
 static wsff_role_e board_role;
 static weapon_mode_e weapon_mode;
-/* static bool pisteMode = false; */
+static bool pisteMode = false;
 
-void wait_for_server_instructions()
+void listenServerInstructions()
 {
+    DEBUG_LOG_LN("Listening for server instruction...");
     led.setColor(COLOR_LISTEN_TO_SERVER_MODE);
     delay(1000);
 
-    // init nrf ...
+    radio_module.setMode(RECEIVER);
     while (1) {
         if (weapon_button.isPressed()) {
-            break;
+            break; // exit receive mode
+        }
+
+        packet_t packet = radio_module.receiveMsg();
+        if (packet) {
+            payload_type_e payload =
+                static_cast<payload_type_e>(GET_PAYLOAD(packet));
+
+            switch (payload) {
+                case ENABLE_PISTE_MODE:
+                    pisteMode = true;
+                    break;
+                case DISABLE_PISTE_MODE:
+                    pisteMode = false;
+                    break;
+                case CHANGING_TO_EPEE:
+                    playerConfig.setWeapon(EPEE);
+                    weapon_mode = playerConfig.getWeapon();
+                    break;
+                case CHANGING_TO_FOIL:
+                    playerConfig.setWeapon(FOIL);
+                    weapon_mode = playerConfig.getWeapon();
+                    break;
+                case CHANGING_TO_SABRE:
+                    DEBUG_LOG_LN("SET WEAPON SABRE NOT IMPLEMENTED");
+                    break;
+                default:
+                    break;
+            }
+            DEBUG_LOG_LN("RECEIVED MESSAGEEEEE");
         }
     }
+    radio_module.setMode(SENDER);
     led.turnOff();
-    // deinit nrf ...
 }
 
 void setup()
@@ -57,7 +105,7 @@ void setup()
     radio_module.init(board_role);
 
     if (weapon_button.isPressed()) {
-        wait_for_server_instructions();
+        listenServerInstructions();
     }
     led.blink(WEAPON_MODE_TO_COLOR(weapon_mode), 1000, 1);
 }

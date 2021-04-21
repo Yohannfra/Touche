@@ -1,3 +1,21 @@
+/*
+WSFF Project
+Copyright (C) 2021 Assouline Yohann
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include <Arduino.h>
 
 #include "Buzzer.hpp"
@@ -54,6 +72,7 @@ void checkButtonsPressed()
         DEBUG_LOG_LN("Button piste pressed !");
         pisteMode = !pisteMode;
         radio_module.sendMsg(SERVER, pisteMode ? ENABLE_PISTE_MODE : DISABLE_PISTE_MODE);
+        delay(1000);
     }
 
     // switch players
@@ -61,12 +80,20 @@ void checkButtonsPressed()
         DEBUG_LOG_LN("Button switch pressed !");
         led_ring.switchColors();
         led_ring.blinkBoth(led_ring.getPlayerColor(PLAYER_1), led_ring.getPlayerColor(PLAYER_2), 400, 2);
+        delay(1000);
     }
 
     // change weapon
     if (buttonChangeWeapon.isPressed()) {
         DEBUG_LOG_LN("Button change weapon pressed !");
         weapon_mode = weapon_mode == EPEE ? FOIL : EPEE;
+        DEBUG_LOG_VAL("weapon is now:", weapon_mode == EPEE ? "EPEE": "FOIL");
+
+        radio_module.setMode(SENDER);
+        radio_module.sendMsg(SERVER, CHANGING_TO_EPEE);
+        radio_module.setMode(RECEIVER);
+
+        delay(1000);
     }
 }
 

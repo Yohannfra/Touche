@@ -59,4 +59,7 @@ Each directory has it's own README.md to explain this with more details.
 - Get rid arduio nano and nrf24L01 make a single pcb containing everything
 - Support sabre
 
-# Licence
+## License
+
+All the code, CAD files, PCB files and everything within this repository is licensed under the terms of the [GNU General Public License](./LICENSE).
+
