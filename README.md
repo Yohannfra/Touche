@@ -4,6 +4,12 @@
 
 ---
 
+![](.github/full_set.jpg)
+
+
+
+
+
 ## Overview
 
 WSFF is a wireless scoring system for fencing based on **arduino** and **nrf24l01**.
