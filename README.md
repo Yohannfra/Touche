@@ -51,9 +51,9 @@ Each directory has it's own README.md to explain this with more details.
 
 ## Roadmap
 
+- Support sabre
 - Move to rechargable 3.7v batteries
 - Get rid arduio nano and nrf24L01 make a single pcb containing everything
-- Support sabre
 
 ## License
 
