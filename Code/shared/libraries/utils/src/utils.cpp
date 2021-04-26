@@ -16,9 +16,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <Arduino.h>
 #include "utils.hpp"
+
 #include "DebugLog.h"
+
+#include <Arduino.h>
 
 void utils::print_bin(const char *name, uint8_t n)
 {
@@ -30,30 +32,25 @@ void utils::print_bin(const char *name, uint8_t n)
         }
         n >>= 1;
     }
-    Serial.print(name);
-    Serial.print(" : ");
-    Serial.println(buff);
+    DEBUG_LOG_VAL(name, buff);
 }
 
 void utils::print_packet(packet_t packet)
 {
     static int index = 0;
 
-    Serial.println("===================================");
-    Serial.print("Packet: ");
-    Serial.println(index);
+    DEBUG_LOG_LN("===================================");
+    DEBUG_LOG_VAL("Packet: ", index);
 
-    Serial.print("As decimal: ");
-    Serial.println(packet);
-    utils::print_bin("As binary", packet);
+    DEBUG_LOG_VAL("As decimal: ", packet);
+    utils::print_bin("As binary: ", packet);
 
     wsff_role_e player_role = static_cast<wsff_role_e>(GET_ROLE(packet));
     payload_type_e payload = static_cast<payload_type_e>(GET_PAYLOAD(packet));
 
-    Serial.print("Role: ");
-    Serial.println(player_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
-    utils::print_bin("Payload", payload);
-    Serial.println("===================================");
+    DEBUG_LOG_VAL("Role: ", (player_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2"));
+    utils::print_bin("Payload: ", payload);
+    DEBUG_LOG_LN("===================================");
 
     index += 1;
 }

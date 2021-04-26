@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "ServerConfig.hpp"
+
 #include <EEPROM.h>
 
 // Addresses in EEPROM
@@ -24,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define WEAPON_ADDR_IN_EEPROM 0x00
 
 #if (DEFAULT_WEAPON_MODE != EPEE && DEFAULT_WEAPON_MODE != FOIL)
-    #if (DEFAULT_WEAPON_MODE === "SABRE")
+    #if (DEFAULT_WEAPON_MODE == "SABRE")
         #error "Sabre weapon not implemente yet"
     #endif
 

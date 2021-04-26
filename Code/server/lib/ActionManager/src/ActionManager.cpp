@@ -16,10 +16,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <Arduino.h>
 #include "ActionManager.hpp"
-#include "wsff.h"
+
 #include "DebugLog.h"
+#include "wsff.h"
+
+#include <Arduino.h>
 
 ActionManager::ActionManager()
 {
@@ -42,10 +44,10 @@ void ActionManager::hit(wsff_role_e role)
 {
     int64_t current_time = millis();
 
-    if (_time_last_hit == 0) { // first hit
+    if (_time_last_hit == 0) {  // first hit
         _time_last_hit = millis();
         _player_actions[role] = ACTION_HIT;
-    } else { // maybe double hit
+    } else {  // maybe double hit
         if (current_time - _time_last_hit <= FENCING_LAPS_DOUBLE_TOUCH) {
             _player_actions[role] = ACTION_HIT;
         }

@@ -16,20 +16,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <Arduino.h>
-
-#include "VirtualGround.hpp"
-#include "RadioModule.hpp"
-#include "WeaponButton.hpp"
-#include "RGBLed.hpp"
-#include "protocol.h"
-#include "wsff.h"
 #include "DebugLog.h"
-#include "utils.hpp"
-#include "Timer.hpp"
 #include "PlayerConfig.hpp"
-
+#include "RGBLed.hpp"
+#include "RadioModule.hpp"
+#include "Timer.hpp"
+#include "VirtualGround.hpp"
+#include "WeaponButton.hpp"
 #include "config.h"
+#include "protocol.h"
+#include "utils.hpp"
+#include "wsff.h"
+
+#include <Arduino.h>
 
 // Global classes
 static VirtualGround virtualGround(VIRTUAL_PIN_OUT, VIRTUAL_PIN_IN);
@@ -45,68 +44,20 @@ static wsff_role_e board_role;
 static weapon_mode_e weapon_mode;
 static bool pisteMode = false;
 
-void listenServerInstructions()
-{
-    DEBUG_LOG_LN("Listening for server instruction...");
-    led.setColor(COLOR_LISTEN_TO_SERVER_MODE);
-    delay(1000);
-
-    radio_module.setMode(RECEIVER);
-    while (1) {
-        if (weapon_button.isPressed()) {
-            break; // exit receive mode
-        }
-
-        packet_t packet = radio_module.receiveMsg();
-        if (packet) {
-            payload_type_e payload =
-                static_cast<payload_type_e>(GET_PAYLOAD(packet));
-
-            switch (payload) {
-                case ENABLE_PISTE_MODE:
-                    pisteMode = true;
-                    break;
-                case DISABLE_PISTE_MODE:
-                    pisteMode = false;
-                    break;
-                case CHANGING_TO_EPEE:
-                    playerConfig.setWeapon(EPEE);
-                    weapon_mode = playerConfig.getWeapon();
-                    break;
-                case CHANGING_TO_FOIL:
-                    playerConfig.setWeapon(FOIL);
-                    weapon_mode = playerConfig.getWeapon();
-                    break;
-                case CHANGING_TO_SABRE:
-                    DEBUG_LOG_LN("SET WEAPON SABRE NOT IMPLEMENTED");
-                    break;
-                default:
-                    break;
-            }
-            DEBUG_LOG_LN("RECEIVED MESSAGEEEEE");
-        }
-    }
-    radio_module.setMode(SENDER);
-    led.turnOff();
-}
-
 void setup()
 {
-    #ifdef DEBUG
-        Serial.begin(9600);
-    #endif
+#ifdef DEBUG
+    Serial.begin(9600);
+#endif
 
     board_role = playerConfig.getRole();
     weapon_mode = playerConfig.getWeapon();
 
     DEBUG_LOG_LN(board_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
-    DEBUG_LOG_LN(weapon_mode == EPEE ? "EPEE": "FOIL");
+    DEBUG_LOG_LN(weapon_mode == EPEE ? "EPEE" : "FOIL");
 
     radio_module.init(board_role);
 
-    if (weapon_button.isPressed()) {
-        listenServerInstructions();
-    }
     led.blink(WEAPON_MODE_TO_COLOR(weapon_mode), 1000, 1);
 }
 
@@ -116,12 +67,12 @@ void setup()
 void run_calibration_process()
 {
     DEBUG_LOG_LN("Starting calibration");
-    radio_module.sendMsg(board_role, CALIBRATION_STARTING);
+    radio_module.sendMsg(CALIBRATION_STARTING, SERVER);
 
     while (virtualGround.calibrate() == false) {
         if (weapon_button.isPressed() == false) {
             DEBUG_LOG_LN("Button released during calibration");
-            radio_module.sendMsg(board_role, CALIBRATION_FAILED);
+            radio_module.sendMsg(CALIBRATION_FAILED, SERVER);
             virtualGround.end_calibration(false);
             delay(500);
             return;
@@ -129,13 +80,24 @@ void run_calibration_process()
     }
     DEBUG_LOG_LN("Calibration Done");
     virtualGround.end_calibration(true);
-    radio_module.sendMsg(board_role, CALIBRATION_END);
+    radio_module.sendMsg(CALIBRATION_END, SERVER);
     delay(500);
 }
 
-/**
- * @brief Arduino loop function
- */
+void applyAckSettings(ack_payload_t ack)
+{
+    pisteMode = ack & ACK_PISTE_MODE;
+
+    if (ack & ACK_EPEE) {
+        weapon_mode = EPEE;
+    } else if (ack & ACK_FOIL) {
+        weapon_mode = FOIL;
+    } else if (ack & ACK_SABRE) {
+        // TODO
+        // weapon_mode = SABRE;
+    }
+}
+
 void loop()
 {
     if (weapon_button.isPressed()) {
@@ -146,11 +108,12 @@ void loop()
         if (!timerHit.isRunning()) {
             bool is_virtual_ground_triggered = virtualGround.trigger_ground();
 
-            if (is_virtual_ground_triggered == false) { // hit
+            if (is_virtual_ground_triggered == false) {  // hit
                 timerHit.start();
                 led.setColor(RGB_LED_COLOR_GREEN);
                 DEBUG_LOG_LN("== Sending Hit ==");
-                radio_module.sendMsg(board_role, HIT);
+                ack_payload_t ack = radio_module.sendMsg(HIT, SERVER);
+                applyAckSettings(ack);
             } else if (is_virtual_ground_triggered == true) {
                 DEBUG_LOG_LN("== Virtual ground triggered ==");
                 delay(100);
@@ -158,15 +121,15 @@ void loop()
         }
 
         if (timerButtonMaintened.isRunning() &&
-                timerButtonMaintened.getTimeElapsed() > 2000 /* 2 secs */) { // calibration
+            timerButtonMaintened.getTimeElapsed() > 2000 /* 2 secs */) {  // calibration
             run_calibration_process();
             led.turnOff();
             timerButtonMaintened.reset();
         }
-    } else { // button not pressed
+    } else {  // button not pressed
         timerButtonMaintened.reset();
 
-        if (timerHit.isRunning() && timerHit.getTimeElapsed() > FENCING_BLINKING_TIME) { // reset
+        if (timerHit.isRunning() && timerHit.getTimeElapsed() > FENCING_BLINKING_TIME) {  // reset
             led.turnOff();
             timerHit.reset();
             DEBUG_LOG_LN("Reset");

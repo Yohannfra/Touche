@@ -48,60 +48,58 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COLOR_SABRE_HIT RGB_LED_COLOR_GREEN
 
 // Usefull define to get color from weapon mode
-#define WEAPON_MODE_TO_COLOR(mode) (mode == EPEE ? COLOR_EPEE_MODE : \
-                                        mode == FOIL ? COLOR_FOIL_MODE : \
-                                        COLOR_SABRE_MODE)
+#define WEAPON_MODE_TO_COLOR(mode) (mode == EPEE ? COLOR_EPEE_MODE : mode == FOIL ? COLOR_FOIL_MODE : COLOR_SABRE_MODE)
 
 /**
  * @brief A class to abstract the use of a RGB led
  */
 class RGBLed {
-    public:
-       /**
-        * @brief Construct a new RGBLed object
-        *
-        * @param pinR arduino pin connected to the red
-        * @param pinG arduino pin connected to the green
-        * @param pinB arduino pin connected to the blue
-        */
-        RGBLed(uint8_t pinR, uint8_t pinG, uint8_t pinB);
+  public:
+    /**
+    * @brief Construct a new RGBLed object
+    *
+    * @param pinR arduino pin connected to the red
+    * @param pinG arduino pin connected to the green
+    * @param pinB arduino pin connected to the blue
+    */
+    RGBLed(uint8_t pinR, uint8_t pinG, uint8_t pinB);
 
-        /**
-         * @brief Set the color of the led
-         *
-         * @param color the color to set
-         */
-        void setColor(uint8_t color);
+    /**
+    * @brief Set the color of the led
+    *
+    * @param color the color to set
+    */
+    void setColor(uint8_t color);
 
-        /**
-         * @brief Turn off the led
-         */
-        void turnOff();
+    /**
+    * @brief Turn off the led
+    */
+    void turnOff();
 
-        /**
-         * @brief blink the led
-         *
-         * @param color the color to use
-         * @param delayMs blinking delay
-         * @param nbBlinks number of times to blink
-         */
-        void blink(uint8_t color, int delayMs, int nbBlinks = 3);
+    /**
+    * @brief blink the led
+    *
+    * @param color the color to use
+    * @param delayMs blinking delay
+    * @param nbBlinks number of times to blink
+    */
+    void blink(uint8_t color, int delayMs, int nbBlinks = 3);
 
-    private:
-        /**
-         * @brief arduino pin connected to the red
-         */
-        uint8_t _pinR;
+  private:
+    /**
+    * @brief arduino pin connected to the red
+    */
+    uint8_t _pinR;
 
-        /**
-         * @brief arduino pin connected to the green
-         */
-        uint8_t _pinG;
+    /**
+    * @brief arduino pin connected to the green
+    */
+    uint8_t _pinG;
 
-        /**
-         * @brief arduino pin connected to the blue
-         */
-        uint8_t _pinB;
+    /**
+    * @brief arduino pin connected to the blue
+    */
+    uint8_t _pinB;
 };
 
 #endif  // RGBLED_HPP

@@ -62,30 +62,29 @@ both sides of the apparatus'
 /**
  * @brief How long the led and buzzer signal lasts (ms)
  */
-#define FENCING_BLINKING_TIME (2000UL) // 2 secs
+#define FENCING_BLINKING_TIME (2000UL)  // 2 secs
 
 /**
  * @brief How long between two hits for it to be a double hit (ms)
  */
-#define FENCING_LAPS_DOUBLE_TOUCH (50) // 50 ms
+#define FENCING_LAPS_DOUBLE_TOUCH (50)  // 50 ms
 
 /**
  * @brief Minimum time a hit must last to be valid (ms)
  */
-#define FENCING_MINIMUM_TIME_VALID_HIT (2) // 2 ms
-
+#define FENCING_MINIMUM_TIME_VALID_HIT (2)  // 2 ms
 
 /**
  * @brief The weapon mode to use, can be changed on runtime.
  * Mode is change by the push button on the server
  */
 typedef enum : uint8_t {
-    EPEE,
-    FOIL,
+    EPEE = 0,
+    FOIL = 1,
     // SABRE // maybe one day
 } weapon_mode_e;
 
 // default weapon is epee because it's the best weapon :) but you can easily change this value
 #define DEFAULT_WEAPON_MODE EPEE
 
-#endif // WSFF_H
+#endif  // WSFF_H

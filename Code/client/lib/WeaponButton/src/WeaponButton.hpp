@@ -24,28 +24,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /**
  * @brief A wrapper for a button
  */
-class WeaponButton
-{
-    private:
-        /**
-         * @brief button's pin
-         */
-        uint8_t _pin;
+class WeaponButton {
+  private:
+    /**
+    * @brief button's pin
+    */
+    uint8_t _pin;
 
-    public:
-        /**
-         * @brief Construct a new Epee Button object
-         *
-         * @param pin button bin
-         */
-        WeaponButton(uint8_t pin);
+  public:
+    /**
+    * @brief Construct a new Epee Button object
+    *
+    * @param pin button bin
+    */
+    WeaponButton(uint8_t pin);
 
-        /**
-         * @brief get if button is pressed and is for more than 2 ms (see why in wsff.h)
-         *
-         * @return boolean with the state of the button
-         */
-        bool isPressed() const;
+    /**
+    * @brief get if button is pressed and is for more than 2 ms (see why in wsff.h)
+    *
+    * @return boolean with the state of the button
+    */
+    bool isPressed() const;
 };
 
 #endif /* EPEEBUTTON_HPP */

@@ -18,8 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "RGBLed.hpp"
 
-RGBLed::RGBLed(uint8_t pinR, uint8_t pinG, uint8_t pinB) :
-    _pinR(pinR), _pinG(pinG), _pinB(pinB)
+RGBLed::RGBLed(uint8_t pinR, uint8_t pinG, uint8_t pinB) : _pinR(pinR), _pinG(pinG), _pinB(pinB)
 {
     pinMode(pinR, OUTPUT);
     pinMode(pinG, OUTPUT);
