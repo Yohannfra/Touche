@@ -2,7 +2,9 @@
 
 ![](https://github.com/Yohannfra/WSFF/workflows/Build/badge.svg)
 
----
+
+![](.github/full_set.jpg)
+
 
 ## Overview
 
@@ -43,17 +45,17 @@ This repository contains all the **sources**, **3d files** and **pcb files** nee
 ├── Archive      # some old versions of the project
 ├── Documents    # pcb sources, and stl files
 ├── Code         # source code
-├── Instructable # step by step tutorial to diy
+├── DIY_Guide/   # step by step tutorial to diy
 ```
 Each directory has it's own README.md to explain this with more details.
 
 ## Roadmap
 
+- Support sabre
 - Move to rechargable 3.7v batteries
 - Get rid arduio nano and nrf24L01 make a single pcb containing everything
-- Support sabre
 
 ## License
 
-All the code, CAD files, PCB files and everything within this repository is licensed under the terms of the [GNU General Public License](./LICENSE).
+All the code, CAD files, PCB files and everything within this repository is licensed under the terms of the [GNU General Public License V3.0](./LICENSE).
 
