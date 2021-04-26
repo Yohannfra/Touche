@@ -41,7 +41,7 @@ static PlayerConfig playerConfig(PLAYER_ROLE, DEFAULT_WEAPON_MODE);
 
 // Config variables
 static wsff_role_e board_role;
-static weapon_mode_e weapon_mode;
+static weapon_mode_e current_weapon;
 static bool pisteMode = false;
 
 void setup()
@@ -51,14 +51,14 @@ void setup()
 #endif
 
     board_role = playerConfig.getRole();
-    weapon_mode = playerConfig.getWeapon();
+    current_weapon = playerConfig.getWeapon();
 
     DEBUG_LOG_LN(board_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
-    DEBUG_LOG_LN(weapon_mode == EPEE ? "EPEE" : "FOIL");
+    DEBUG_LOG_LN(current_weapon == EPEE ? "EPEE" : "FOIL");
 
     radio_module.init(board_role);
 
-    led.blink(WEAPON_MODE_TO_COLOR(weapon_mode), 1000, 1);
+    led.blink(WEAPON_MODE_TO_COLOR(current_weapon), 1000, 1);
 }
 
 /**
@@ -89,12 +89,12 @@ void applyAckSettings(ack_payload_t ack)
     pisteMode = ack & ACK_PISTE_MODE;
 
     if (ack & ACK_EPEE) {
-        weapon_mode = EPEE;
+        current_weapon = EPEE;
     } else if (ack & ACK_FOIL) {
-        weapon_mode = FOIL;
+        current_weapon = FOIL;
     } else if (ack & ACK_SABRE) {
         // TODO
-        // weapon_mode = SABRE;
+        // current_weapon = SABRE;
     }
 }
 

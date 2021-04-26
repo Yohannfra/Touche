@@ -41,7 +41,7 @@ static Button buttonChangeWeapon(PIN_BUTTON_CHANGE_WEAPON);
 static ServerConfig serverConfig(DEFAULT_WEAPON_MODE);
 
 static bool pisteMode = false;
-static weapon_mode_e weapon_mode;
+static weapon_mode_e current_weapon;
 
 void setup()
 {
@@ -49,14 +49,14 @@ void setup()
     Serial.begin(9600);
 #endif
 
-    weapon_mode = serverConfig.getWeapon();
-    DEBUG_LOG_LN(weapon_mode == EPEE ? "EPEE" : "FOIL");
+    current_weapon = serverConfig.getWeapon();
+    DEBUG_LOG_LN(current_weapon == EPEE ? "EPEE" : "FOIL");
 
     radio_module.init(SERVER);
     led_ring.init();
     led_ring.blink(ORANGE_RGB, 200, 1);
 
-    radio_module.setAckPayload(CREATE_ACK_PAYLOAD(false, weapon_mode));
+    radio_module.setAckPayload(CREATE_ACK_PAYLOAD(false, current_weapon));
 }
 
 void resetValues()
@@ -89,10 +89,10 @@ void checkButtonsPressed()  // TODO
     // change weapon
     if (buttonChangeWeapon.isPressed()) {
         const weapon_mode_e weapons[3] = {EPEE, FOIL /*, SABRE */};
-        weapon_mode = weapons[(weapon_mode + 1) % 2];  // shift to next weapon
+        current_weapon = weapons[(current_weapon + 1) % 2];  // shift to next weapon
 
         DEBUG_LOG_LN("Button change weapon pressed !");
-        DEBUG_LOG_VAL("weapon is now:", weapon_mode == EPEE ? "EPEE" : "FOIL");
+        DEBUG_LOG_VAL("weapon is now:", current_weapon == EPEE ? "EPEE" : "FOIL");
 
         delay(1000);
     }
