@@ -1,4 +1,4 @@
-## Wireless System For Fencing (WSFF)
+# Touché
 
 ![](https://github.com/Yohannfra/WSFF/workflows/Build/badge.svg)
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-WSFF is a wireless scoring system for fencing based on **arduino** and **nrf24l01**.
+Touché is a wireless scoring system for fencing based on **arduino** and **nrf24l01**.
 
 The goal is to make an **affordable**, **open source** and **open hardware** system.
 
@@ -16,7 +16,7 @@ It currently works for **epee** and **foil**, sabre support is in the roadmap.
 
 This project is divised in two main parts : the **client** and the **server**
 - The **client** is the box that each player will use and plug their weapons to
-- The **server** is the scoring system, it turn on lights and play sounds if a player hits
+- The **server** is the scoring system, it turn lights on and play sounds if a player hits
 
 
 ## Getting started

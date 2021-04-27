@@ -23,6 +23,6 @@ I designed these PCB with Eagle.
 
 The Arduino nano and NRF24L01 parts come from here : https://www.diymodules.org/
 
-I learned PCB making with this project so they may not be perfect.
+I learned PCB with this project so they may not be perfect.
 
 Please open an issue if you spot any design error.
