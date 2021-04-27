@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -21,17 +21,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../../../include/config.h"
 #include "protocol.h"
-#include "wsff.h"
+#include "touche.h"
 
 class ServerConfig {
-    public:
-        ServerConfig(weapon_mode_e weapon);
+  public:
+    ServerConfig(weapon_mode_e weapon);
 
-        void setWeapon(weapon_mode_e weapon);
-        weapon_mode_e getWeapon() const;
+    void setWeapon(weapon_mode_e weapon);
+    weapon_mode_e getWeapon() const;
 
-    private:
-        weapon_mode_e _weapon;
+  private:
+    weapon_mode_e _weapon;
 };
 
 #endif /* SERVERCONFIG_HPP */

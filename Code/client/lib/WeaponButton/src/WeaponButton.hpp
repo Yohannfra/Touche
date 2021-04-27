@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ class WeaponButton {
     WeaponButton(uint8_t pin);
 
     /**
-    * @brief get if button is pressed and is for more than 2 ms (see why in wsff.h)
+    * @brief get if button is pressed and is for more than 2 ms (see why in touche.h)
     *
     * @return boolean with the state of the button
     */

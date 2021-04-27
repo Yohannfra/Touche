@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef WSFF_H
-#define WSFF_H
+#ifndef TOUCHE_H
+#define TOUCHE_H
 
 #include <stdint.h>
 
@@ -87,4 +87,4 @@ typedef enum : uint8_t {
 // default weapon is epee because it's the best weapon :) but you can easily change this value
 #define DEFAULT_WEAPON_MODE EPEE
 
-#endif  // WSFF_H
+#endif  // TOUCHE_H

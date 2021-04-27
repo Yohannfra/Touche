@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class RadioModule {
   private:
     RF24 _nrf24;
-    wsff_role_e _role;
+    touche_role_e _role;
     uint8_t _ackPayload;
 
   public:
@@ -44,7 +44,7 @@ class RadioModule {
     *
     * @param role device role enum
     */
-    void init(wsff_role_e role);
+    void init(touche_role_e role);
 
     /**
     * @brief check if a message is available and reads it
@@ -71,7 +71,7 @@ class RadioModule {
     *
     * @return the ACK received
     */
-    uint8_t sendMsg(payload_type_e payload, wsff_role_e dest);
+    uint8_t sendMsg(payload_type_e payload, touche_role_e dest);
 
     void setAckPayload(uint8_t newAck);
 };

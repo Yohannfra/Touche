@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ServerConfig.hpp"
 #include "config.h"
 #include "protocol.h"
+#include "touche.h"
 #include "utils.hpp"
-#include "wsff.h"
 
 #include <Arduino.h>
 
@@ -105,7 +105,7 @@ void loop()
     if (packet) {
         utils::print_packet(packet);
 
-        wsff_role_e player_role = GET_ROLE(packet);
+        touche_role_e player_role = GET_ROLE(packet);
         payload_type_e payload = GET_PAYLOAD(packet);
 
         if (payload & HIT) {

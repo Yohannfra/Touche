@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ RadioModule::RadioModule(uint16_t cePin, uint16_t csPin) : _nrf24(cePin, csPin)
     _ackPayload = 0;  // default ack payload
 }
 
-void RadioModule::init(wsff_role_e role)
+void RadioModule::init(touche_role_e role)
 {
     _nrf24.begin();
     _role = role;
@@ -95,7 +95,7 @@ packet_t RadioModule::receiveMsg(uint8_t ack)
     return 0;
 }
 
-uint8_t RadioModule::sendMsg(payload_type_e payload, wsff_role_e dest)
+uint8_t RadioModule::sendMsg(payload_type_e payload, touche_role_e dest)
 {
     packet_t packet = CREATE_PACKET(_role, payload);
 

@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
-#include "wsff.h"
+#include "touche.h"
 
 #include <stdint.h>
 
@@ -27,7 +27,7 @@ typedef enum : uint8_t {
     PLAYER_1 = 0,
     PLAYER_2 = 1,
     SERVER = 2,
-} wsff_role_e;
+} touche_role_e;
 
 /* --------------------- Packet -------------------------------- */
 
@@ -58,12 +58,12 @@ static inline payload_type_e GET_PAYLOAD(packet_t p)
     return static_cast<payload_type_e>(p & 0b00111111);
 }
 
-static inline wsff_role_e GET_ROLE(packet_t p)
+static inline touche_role_e GET_ROLE(packet_t p)
 {
-    return static_cast<wsff_role_e>(p >> 6);
+    return static_cast<touche_role_e>(p >> 6);
 }
 
-static inline packet_t CREATE_PACKET(wsff_role_e role, payload_type_e payload)
+static inline packet_t CREATE_PACKET(touche_role_e role, payload_type_e payload)
 {
     return static_cast<packet_t>(payload | (role << 6));
 }

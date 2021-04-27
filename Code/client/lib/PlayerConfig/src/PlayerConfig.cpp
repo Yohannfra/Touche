@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -38,9 +38,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #error "DEFAULT_WEAPON_MODE must be EPEE or FOIL"
 #endif
 
-PlayerConfig::PlayerConfig(wsff_role_e role, weapon_mode_e weapon)
+PlayerConfig::PlayerConfig(touche_role_e role, weapon_mode_e weapon)
 {
-    wsff_role_e role_in_mem = static_cast<wsff_role_e>(EEPROM.read(ROLE_ADDR_IN_EEPROM));
+    touche_role_e role_in_mem = static_cast<touche_role_e>(EEPROM.read(ROLE_ADDR_IN_EEPROM));
     weapon_mode_e weapon_in_mem = static_cast<weapon_mode_e>(EEPROM.read(WEAPON_ADDR_IN_EEPROM));
 
     if ((role_in_mem != PLAYER_1 && role_in_mem != PLAYER_2) || FORCE_WRITE_PLAYER_ROLE) {  // to avoid overwriting
@@ -70,7 +70,7 @@ weapon_mode_e PlayerConfig::getWeapon() const
     return _weapon;
 }
 
-wsff_role_e PlayerConfig::getRole() const
+touche_role_e PlayerConfig::getRole() const
 {
     return _role;
 }

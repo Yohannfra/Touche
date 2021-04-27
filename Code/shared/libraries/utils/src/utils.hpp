@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -19,8 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
-#include <stdint.h>
 #include "protocol.h"
+
+#include <stdint.h>
 
 namespace utils {
 
@@ -43,5 +44,5 @@ namespace utils {
      * @param packet the packet to print
      */
     void print_packet(packet_t packet);
-}
-#endif // UTILS_HPP
+}  // namespace utils
+#endif  // UTILS_HPP

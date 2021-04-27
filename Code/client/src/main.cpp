@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "WeaponButton.hpp"
 #include "config.h"
 #include "protocol.h"
+#include "touche.h"
 #include "utils.hpp"
-#include "wsff.h"
 
 #include <Arduino.h>
 
@@ -40,7 +40,7 @@ static Timer timerButtonMaintened;
 static PlayerConfig playerConfig(PLAYER_ROLE, DEFAULT_WEAPON_MODE);
 
 // Config variables
-static wsff_role_e board_role;
+static touche_role_e board_role;
 static weapon_mode_e current_weapon;
 static bool pisteMode = false;
 

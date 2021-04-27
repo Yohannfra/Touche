@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ActionManager.hpp"
 
 #include "DebugLog.h"
-#include "wsff.h"
+#include "touche.h"
 
 #include <Arduino.h>
 
@@ -40,7 +40,7 @@ bool ActionManager::isResetTime() const
     return _time_last_hit && millis() - _time_last_hit > FENCING_BLINKING_TIME;
 }
 
-void ActionManager::hit(wsff_role_e role)
+void ActionManager::hit(touche_role_e role)
 {
     int64_t current_time = millis();
 

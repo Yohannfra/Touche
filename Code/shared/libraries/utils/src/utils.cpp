@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ void utils::print_packet(packet_t packet)
     DEBUG_LOG_VAL("As decimal: ", packet);
     utils::print_bin("As binary: ", packet);
 
-    wsff_role_e player_role = static_cast<wsff_role_e>(GET_ROLE(packet));
+    touche_role_e player_role = static_cast<touche_role_e>(GET_ROLE(packet));
     payload_type_e payload = static_cast<payload_type_e>(GET_PAYLOAD(packet));
 
     DEBUG_LOG_VAL("Role: ", (player_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2"));

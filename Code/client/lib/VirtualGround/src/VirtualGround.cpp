@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -17,8 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "VirtualGround.hpp"
-#include <CapacitiveSensor.h>
+
 #include "DebugLog.h"
+
+#include <CapacitiveSensor.h>
 
 #define MAX_CALIBRATIONS_SAMPLES 100
 
@@ -26,7 +28,7 @@ VirtualGround::VirtualGround(uint8_t pin_out, uint8_t pin_in) : _capacitive_sens
 {
     this->_pin_out = pin_out;
     this->_pin_in = pin_in;
-    this->_capacitive_sensor.set_CS_AutocaL_Millis(0xFFFFFFFF); // turn off autocalibrate
+    this->_capacitive_sensor.set_CS_AutocaL_Millis(0xFFFFFFFF);  // turn off autocalibrate
     this->_capacitive_sensor.set_CS_Timeout_Millis(2500);
     _calibrationSum = 0;
     _calibrationIndex = 0;
@@ -58,7 +60,7 @@ bool VirtualGround::trigger_ground()
 
     DEBUG_LOG_VAL("trigger_ground final: ", sum);
 
-    if (_pisteEnabled && sum > _threshold) { // hit the piste
+    if (_pisteEnabled && sum > _threshold) {  // hit the piste
         return true;
     }
 
@@ -73,22 +75,22 @@ bool VirtualGround::calibrate()
     long val = this->get_value();
     DEBUG_LOG_VAL("calibration val: ", val);
 
-    if (val < 0) { // an error occured, -2 can occure sometimes
+    if (val < 0) {  // an error occured, -2 can occure sometimes
         goto ret;
     }
 
     _calibrationSum += val;
     _calibrationIndex += 1;
 
-    ret:
-        return _calibrationIndex == MAX_CALIBRATIONS_SAMPLES;
+ret:
+    return _calibrationIndex == MAX_CALIBRATIONS_SAMPLES;
 }
 
 void VirtualGround::end_calibration(bool success)
 {
     if (success && _calibrationIndex > 0 /* to avoid div by 0 */) {
         _threshold = _calibrationSum / _calibrationIndex;
-        _tolerance = (float)_threshold / 6.66f; //  ~ 15% of the _treshold
+        _tolerance = (float)_threshold / 6.66f;  //  ~ 15% of the _treshold
         DEBUG_LOG_VAL("Treshold is now: ", _threshold);
         DEBUG_LOG_VAL("Tolerance is now: ", _tolerance);
     }

@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -109,7 +109,7 @@ void LedRing::switchColors()
     memcpy(&_colorPlayer2, &tmp, sizeof(color_t));
 }
 
-color_t LedRing::getPlayerColor(wsff_role_e player)
+color_t LedRing::getPlayerColor(touche_role_e player)
 {
     return player == PLAYER_1 ? _colorPlayer1 : _colorPlayer2;
 }

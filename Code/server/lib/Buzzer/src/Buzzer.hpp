@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -25,34 +25,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @brief Abstract buzzer usage
  *
  */
-class Buzzer
-{
-    private:
-        /**
-         * @brief Pin attached to the buzzer
-         *
-         */
-        byte pin;
+class Buzzer {
+  private:
+    /**
+    * @brief Pin attached to the buzzer
+    *
+    */
+    byte pin;
 
-    public:
-        /**
-         * @brief Construct a new Buzzer object
-         *
-         * @param pin Pin attached to the buzzer
-         */
-        Buzzer(byte pin);
+  public:
+    /**
+    * @brief Construct a new Buzzer object
+    *
+    * @param pin Pin attached to the buzzer
+    */
+    Buzzer(byte pin);
 
-        /**
-         * @brief Start buzzer
-         *
-         */
-        void play();
+    /**
+    * @brief Start buzzer
+    *
+    */
+    void play();
 
-        /**
-         * @brief Stop buzzer
-         *
-         */
-        void stop();
+    /**
+    * @brief Stop buzzer
+    *
+    */
+    void stop();
 };
 
 #endif /* BUZZER_HPP */

@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -21,20 +21,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../../../include/config.h"
 #include "protocol.h"
-#include "wsff.h"
+#include "touche.h"
 
 class PlayerConfig {
   public:
-    PlayerConfig(wsff_role_e role, weapon_mode_e weapon);
+    PlayerConfig(touche_role_e role, weapon_mode_e weapon);
 
     void setWeapon(weapon_mode_e weapon);
     weapon_mode_e getWeapon() const;
 
-    wsff_role_e getRole() const;
+    touche_role_e getRole() const;
 
   private:
     weapon_mode_e _weapon;
-    wsff_role_e _role;
+    touche_role_e _role;
 };
 
 #endif /* PLAYERCONFIG_HPP */

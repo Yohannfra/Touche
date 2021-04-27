@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -66,7 +66,7 @@ class ActionManager {
     *
     * @param index Index of the player hitting
     */
-    void hit(wsff_role_e role);
+    void hit(touche_role_e role);
 
     /**
     * @brief Check if the time elapsed since the last hit is

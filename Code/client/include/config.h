@@ -1,5 +1,5 @@
 /*
-WSFF Project
+Touché Project
 Copyright (C) 2021 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // but reflash with 0 after doing so (to preserve EEPROM)
 #define FORCE_WRITE_PLAYER_ROLE 0
 
-#define PLAYER_ROLE PLAYER_1 // change value to PLAYER_1 or PLAYER_2
+#define PLAYER_ROLE PLAYER_1  // change value to PLAYER_1 or PLAYER_2
 
 // ------ Pinout ------------
 
@@ -61,4 +61,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #define VIRTUAL_PIN_OUT 4
 
-#endif // CONFIG_H
+#endif  // CONFIG_H
