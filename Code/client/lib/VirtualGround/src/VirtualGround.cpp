@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "VirtualGround.hpp"
 
+#include "ArduinoLog.h"
 #include "DebugLog.h"
 
 #include <CapacitiveSensor.h>
@@ -53,12 +54,12 @@ bool VirtualGround::trigger_ground()
 
     for (uint8_t i = 0; i < NB_OF_TIME_TO_SAMPLE; i++) {
         long val = this->get_value();
-        DEBUG_LOG_VAL("trigger_ground value: ", val);
+        Log.trace("trigger_ground value: %l", val);
         sum += val;
     }
     sum = sum / NB_OF_TIME_TO_SAMPLE;
 
-    DEBUG_LOG_VAL("trigger_ground final: ", sum);
+    Log.trace("trigger_ground final: %l", sum);
 
     if (_pisteEnabled && sum > _threshold) {  // hit the piste
         return true;
@@ -73,7 +74,7 @@ bool VirtualGround::trigger_ground()
 bool VirtualGround::calibrate()
 {
     long val = this->get_value();
-    DEBUG_LOG_VAL("calibration val: ", val);
+    Log.trace("calibration val: %l", val);
 
     if (val < 0) {  // an error occured, -2 can occure sometimes
         goto ret;

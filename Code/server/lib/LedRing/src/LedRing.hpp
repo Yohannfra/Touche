@@ -42,23 +42,6 @@ static const color_t ORANGE_RGB = {0xFF, 0xA5, 0};
  *
  */
 class LedRing {
-  private:
-    /**
-    * @brief Pin attached to neopixel's data pin
-    *
-    */
-    byte pin;
-
-    /**
-    * @brief Adafruit_NeoPixel class instance
-    *
-    */
-    Adafruit_NeoPixel strip;
-
-    color_t _colorPlayer1;
-
-    color_t _colorPlayer2;
-
   public:
     /**
     * @brief Construct a new Led Ring object
@@ -120,6 +103,23 @@ class LedRing {
     void switchColors();
 
     color_t getPlayerColor(touche_role_e player);
+
+  private:
+    /**
+    * @brief Pin attached to neopixel's data pin
+    *
+    */
+    byte pin;
+
+    /**
+    * @brief Adafruit_NeoPixel class instance
+    *
+    */
+    Adafruit_NeoPixel strip;
+
+    color_t _colorPlayer1;
+
+    color_t _colorPlayer2;
 };
 
 #endif /* LEDRING_HPP */

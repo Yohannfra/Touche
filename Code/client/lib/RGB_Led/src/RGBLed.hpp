@@ -19,42 +19,37 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef RGBLED_HPP
 #define RGBLED_HPP
 
+#include "touche.h"
+
 #include <Arduino.h>
-
-// A few colors definitions to use for the led
-#define RGB_LED_COLOR_RED 0b100
-#define RGB_LED_COLOR_GREEN 0b010
-#define RGB_LED_COLOR_BLUE 0b001
-#define RGB_LED_COLOR_MAGENTA 0b101
-#define RGB_LED_COLOR_AQUA 0b011
-#define RGB_LED_COLOR_YELLOW 0b110
-
-// Listen to server color
-#define COLOR_LISTEN_TO_SERVER_MODE RGB_LED_COLOR_AQUA
-
-// weapons color
-#define COLOR_EPEE_MODE RGB_LED_COLOR_MAGENTA
-#define COLOR_FOIL_MODE RGB_LED_COLOR_BLUE
-#define COLOR_SABRE_MODE RGB_LED_COLOR_YELLOW
-
-// epee
-#define COLOR_EPEE_HIT RGB_LED_COLOR_GREEN
-
-// foil
-#define COLOR_FOIL_VALID_HIT RGB_LED_COLOR_GREEN
-#define COLOR_FOIL_INVALID_HIT RGB_LED_COLOR_RED
-
-// sabre
-#define COLOR_SABRE_HIT RGB_LED_COLOR_GREEN
-
-// Usefull define to get color from weapon mode
-#define WEAPON_MODE_TO_COLOR(mode) (mode == EPEE ? COLOR_EPEE_MODE : mode == FOIL ? COLOR_FOIL_MODE : COLOR_SABRE_MODE)
 
 /**
  * @brief A class to abstract the use of a RGB led
  */
 class RGBLed {
   public:
+    // A few colors definitions to use for the led
+    typedef enum {
+        RED = 0b100,
+        GREEN = 0b010,
+        BLUE = 0b001,
+        MAGENTA = 0b101,
+        AQUA = 0b011,
+        YELLOW = 0b110,
+        NONE = 0b000,
+    } color_e;
+
+    /**
+     * @brief A quick function to switch from weapon to color
+     *
+     * @param weapon weapon weapon
+     * @return RGBLed::color_e color corresponding to the weapon
+     */
+    static inline RGBLed::color_e WEAPON_MODE_TO_COLOR(weapon_mode_e weapon)
+    {
+        return weapon == EPEE ? RGBLed::RED : weapon == FOIL ? RGBLed::BLUE : RGBLed::GREEN;
+    }
+
     /**
     * @brief Construct a new RGBLed object
     *
@@ -69,7 +64,7 @@ class RGBLed {
     *
     * @param color the color to set
     */
-    void setColor(uint8_t color);
+    void setColor(RGBLed::color_e color);
 
     /**
     * @brief Turn off the led
@@ -83,7 +78,7 @@ class RGBLed {
     * @param delayMs blinking delay
     * @param nbBlinks number of times to blink
     */
-    void blink(uint8_t color, int delayMs, int nbBlinks = 3);
+    void blink(RGBLed::color_e color, int delayMs, int nbBlinks = 3);
 
   private:
     /**

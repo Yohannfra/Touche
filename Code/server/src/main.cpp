@@ -15,8 +15,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 #include "ActionManager.hpp"
+#include "ArduinoLog.h"
 #include "Button.hpp"
 #include "Buzzer.hpp"
 #include "DebugLog.h"
@@ -45,8 +45,19 @@ static weapon_mode_e current_weapon;
 
 void setup()
 {
-#ifdef DEBUG
+#ifndef DISABLE_LOGGING
     Serial.begin(9600);
+
+    /* set log level
+    * 0 - LOG_LEVEL_SILENT     no output
+    * 1 - LOG_LEVEL_FATAL      fatal errors
+    * 2 - LOG_LEVEL_ERROR      all errors
+    * 3 - LOG_LEVEL_WARNING    errors, and warnings
+    * 4 - LOG_LEVEL_NOTICE     errors, warnings and notices
+    * 5 - LOG_LEVEL_TRACE      errors, warnings, notices & traces
+    * 6 - LOG_LEVEL_VERBOSE    all
+    */
+    Log.begin(LOG_LEVEL_ERROR, &Serial, true);
 #endif
 
     current_weapon = serverConfig.getWeapon();
@@ -57,14 +68,6 @@ void setup()
     led_ring.blink(ORANGE_RGB, 200, 1);
 
     radio_module.setAckPayload(CREATE_ACK_PAYLOAD(false, current_weapon));
-}
-
-void resetValues()
-{
-    DEBUG_LOG_LN("resetting values");
-    action_manager.reset();
-    led_ring.turn_off();
-    buzzer.stop();
 }
 
 void checkButtonsPressed()  // TODO
@@ -137,7 +140,10 @@ void loop()
         led_ring.show_hits(hit_type);
 
         if (action_manager.isResetTime()) {
-            resetValues();
+            DEBUG_LOG_LN("resetting values");
+            action_manager.reset();
+            led_ring.turn_off();
+            buzzer.stop();
         }
     } else {  // Check buttons only if no hit is occuring
         checkButtonsPressed();

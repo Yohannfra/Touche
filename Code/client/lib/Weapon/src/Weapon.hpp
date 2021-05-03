@@ -16,35 +16,49 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef EPEEBUTTON_HPP
-#define EPEEBUTTON_HPP
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
+
+#include "VirtualGround.hpp"
+#include "touche.h"
 
 #include <Arduino.h>
 
 /**
  * @brief A wrapper for a button
  */
-class WeaponButton {
-  private:
-    /**
-    * @brief button's pin
-    */
-    uint8_t _pin;
-
+class Weapon {
   public:
+    typedef enum {
+        VALID,
+        INVALID,
+        NONE,
+    } hit_status_e;
+
     /**
     * @brief Construct a new Epee Button object
     *
     * @param pin button bin
     */
-    WeaponButton(uint8_t pin);
+    Weapon(uint8_t pinButton, VirtualGround &virtualGround);
 
     /**
     * @brief get if button is pressed and is for more than 2 ms (see why in touche.h)
     *
     * @return boolean with the state of the button
     */
-    bool isPressed() const;
+    hit_status_e isHitting(weapon_mode_e weapon, bool checkVirtualGround = true);
+
+  private:
+    /**
+     * @brief virtualGroud instance
+     */
+    VirtualGround &_virtualGround;
+
+    /**
+    * @brief button's pin
+    */
+    uint8_t _pin;
 };
 
-#endif /* EPEEBUTTON_HPP */
+#endif /* WEAPON_HPP */

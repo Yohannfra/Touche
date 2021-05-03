@@ -25,7 +25,7 @@ RGBLed::RGBLed(uint8_t pinR, uint8_t pinG, uint8_t pinB) : _pinR(pinR), _pinG(pi
     pinMode(pinB, OUTPUT);
 }
 
-void RGBLed::setColor(uint8_t color)
+void RGBLed::setColor(RGBLed::color_e color)
 {
     digitalWrite(_pinR, bitRead(color, 2));
     digitalWrite(_pinG, bitRead(color, 1));
@@ -34,10 +34,10 @@ void RGBLed::setColor(uint8_t color)
 
 void RGBLed::turnOff()
 {
-    this->setColor(0);
+    this->setColor(NONE);
 }
 
-void RGBLed::blink(uint8_t color, int delayMs, int nbBlinks)
+void RGBLed::blink(RGBLed::color_e color, int delayMs, int nbBlinks)
 {
     for (int i = 0; i < nbBlinks; i++) {
         this->setColor(color);

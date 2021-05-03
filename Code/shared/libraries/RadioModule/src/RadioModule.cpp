@@ -109,7 +109,7 @@ uint8_t RadioModule::sendMsg(payload_type_e payload, touche_role_e dest)
         _nrf24.openWritingPipe(PIPES_ADDRESSES[_role]);
     }
 
-    const bool tx_sent = _nrf24.write(&packet, sizeof(packet));
+    bool tx_sent = _nrf24.write(&packet, sizeof(packet));
     DEBUG_LOG_LN(tx_sent ? "radio.write OK" : "radio.write KO");
 
     // read ack payload

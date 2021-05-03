@@ -38,6 +38,9 @@ void Timer::reset()
 
 unsigned long Timer::getTimeElapsed()
 {
+    if (!isRunning()) {
+        return 0;
+    }
     return millis() - _time;
 }
 
