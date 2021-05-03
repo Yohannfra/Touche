@@ -45,7 +45,7 @@ This repository contains all the **sources**, **3d files** and **pcb files** nee
 ├── Archive      # some old versions of the project
 ├── Documents    # pcb sources, and stl files
 ├── Code         # source code
-├── DIY_Guide/   # step by step tutorial to diy
+├── Assembly_Guide/   # step by step tutorial to diy
 ```
 Each directory has it's own README.md to explain this with more details.
 

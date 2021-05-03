@@ -1,10 +1,8 @@
-# DIY guide
+# Assembly guide
 
 In this document I will go trough all the steps and explain everything needed to make a complete Touché system.
 
 The total cost of the system sits somewhere around **50 euros** but since most parts are sold in batch you might pay a little more and end up with unused parts at the end of the assembly.
-
-
 
 #### Table of Contents
 
@@ -70,6 +68,24 @@ The total cost of the system sits somewhere around **50 euros** but since most p
 <a name="p2"/>
 
 ### 2. PCB
+
+Ordering the PCBS is quite simple and cheap nowadays. I will show how to do it with [JLCPCB](https://jlcpcb.com/) but it should be similar on [PCBWay](https://www.pcbway.com/) or any similar website.
+
+1. Go to https://jlcpcb.com/
+
+2. ![jlcpcb_home_quote](./pictures/jlcpcb_home_quote.png)
+
+  Leave all the defaults settings and click on 'Quote now'
+
+3. ![jlcpcb_import_gerber](/Users/yohannassouline/Desktop/Perso/Projets/Touche/Assembly_Guide/pictures/jlcpcb_import_gerber.png)
+
+   ​				Import the client's gerber file (it the .zip in [this](https://github.com/Yohannfra/Touche/tree/master/Documents/PCB/client) directory)
+
+4. ![jlcpcb_save_to_cart](/Users/yohannassouline/Desktop/Perso/Projets/Touche/Assembly_Guide/pictures/jlcpcb_save_to_cart.png)
+
+   Save to cart and repeat this process for the server's gerber file ([here](https://github.com/Yohannfra/Touche/tree/master/Documents/PCB/server))
+
+5. Pay and order.
 
 <a name="p3"/>
 
