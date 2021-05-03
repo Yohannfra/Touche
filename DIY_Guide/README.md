@@ -53,17 +53,17 @@ The total cost of the system sits somewhere around **50 euros** but since most p
 
 - Hot glue gun
 
-- Screwdriver 
+- Screwdriver
 
 - Wire cutting pliers
 
-  
+
 
 ##### Additional material
 
 - Hot glue
 - Solder wire
-- A few wires (I have [those](amazon.com/TUOFENG-Wire-Solid-different-colored-spools/dp/B07TX6BX47/ref=sr_1_5?dchild=1&keywords=wires&qid=1620082408&sr=8-5))
+- A few wires (I have [those](https://www.amazon.com/TUOFENG-Wire-Solid-different-colored-spools/dp/B07TX6BX47/ref=sr_1_5?dchild=1&keywords=wires&qid=1620082408&sr=8-5))
 
 
 
