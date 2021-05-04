@@ -84,7 +84,7 @@ Ordering the PCBS is quite simple and cheap nowadays. I will show how to do it w
 
     ![jlcpcb_import_gerber](./pictures/jlcpcb_import_gerber.png)
 
-4. Save to cart and *repeat this process for the server's gerber file* ([here](https://github.com/Yohannfra/Touche/tree/master/Documents/PCB/server))
+4. Save to cart and **repeat this process for the server's gerber file** ([here](https://github.com/Yohannfra/Touche/tree/master/Documents/PCB/server))
 
 
     ![jlcpcb_save_to_cart](./pictures/jlcpcb_save_to_cart.png)
