@@ -73,17 +73,16 @@ Ordering the PCBS is quite simple and cheap nowadays. I will show how to do it w
 
 1. Go to https://jlcpcb.com/
 
-2. ![jlcpcb_home_quote](./pictures/jlcpcb_home_quote.png)
+2. Leave all the defaults settings and click on 'Quote now'
+    ![jlcpcb_home_quote](./pictures/jlcpcb_home_quote.png)
 
-  Leave all the defaults settings and click on 'Quote now'
 
-3. ![jlcpcb_import_gerber](/Users/yohannassouline/Desktop/Perso/Projets/Touche/Assembly_Guide/pictures/jlcpcb_import_gerber.png)
+3. Import the client's gerber file (it the .zip in [this](https://github.com/Yohannfra/Touche/tree/master/Documents/PCB/client) directory)
+    ![jlcpcb_import_gerber](./pictures/jlcpcb_import_gerber.png)
 
-   ​				Import the client's gerber file (it the .zip in [this](https://github.com/Yohannfra/Touche/tree/master/Documents/PCB/client) directory)
+4. Save to cart and repeat this process for the server's gerber file ([here](https://github.com/Yohannfra/Touche/tree/master/Documents/PCB/server))
+    ![jlcpcb_save_to_cart](./pictures/jlcpcb_save_to_cart.png)
 
-4. ![jlcpcb_save_to_cart](/Users/yohannassouline/Desktop/Perso/Projets/Touche/Assembly_Guide/pictures/jlcpcb_save_to_cart.png)
-
-   Save to cart and repeat this process for the server's gerber file ([here](https://github.com/Yohannfra/Touche/tree/master/Documents/PCB/server))
 
 5. Pay and order.
 
