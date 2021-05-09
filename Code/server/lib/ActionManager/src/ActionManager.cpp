@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ActionManager.hpp"
 
-#include "DebugLog.h"
 #include "touche.h"
 
 #include <Arduino.h>

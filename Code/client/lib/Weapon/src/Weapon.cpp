@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Weapon.hpp"
 
-#include "DebugLog.h"
+#include "ArduinoLog.h"
 #include "touche.h"
 
 Weapon::Weapon(uint8_t pinButton, VirtualGround &virtualGround) : _virtualGround(virtualGround), _pin(pinButton)
@@ -35,7 +35,7 @@ Weapon::hit_status_e Weapon::isHitting(weapon_mode_e weapon, bool checkVirtualGr
 
                 while (!digitalRead(_pin) == true) {
                     if (millis() - t1 > FENCING_MINIMUM_TIME_VALID_HIT) {
-                        // DEBUG_LOG_LN("EPEE BUTTON PRESSED");
+                        Log.trace("Epee button pressed");
                         if (checkVirtualGround) {
                             return _virtualGround.trigger_ground() ? INVALID : VALID;
                         } else {
@@ -52,7 +52,7 @@ Weapon::hit_status_e Weapon::isHitting(weapon_mode_e weapon, bool checkVirtualGr
 
                 while (!digitalRead(_pin) == true) {
                     if (millis() - t1 > FENCING_MINIMUM_TIME_VALID_HIT) {
-                        // DEBUG_LOG_LN("FOIL BUTTON PRESSED");
+                        Log.trace("Foil button pressed");
                         if (checkVirtualGround) {
                             return _virtualGround.trigger_ground() ? VALID : INVALID;
                         } else {
