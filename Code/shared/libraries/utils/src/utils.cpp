@@ -32,7 +32,7 @@ void utils::print_bin(const char *name, uint8_t n)
         }
         n >>= 1;
     }
-    Log.notice(name, buff);
+    Log.notice("%s %s", name, buff);
 }
 
 void utils::print_packet(packet_t packet)
@@ -53,4 +53,11 @@ void utils::print_packet(packet_t packet)
     Log.notice("===================================");
 
     index += 1;
+}
+
+void utils::print_ack_payload(ack_payload_t payload)
+{
+    Log.notice("Ack payload :");
+    Log.notice("Piste enabled : %s", (payload & ACK_PISTE_MODE) ? "True" : "False");
+    Log.notice("Weapon : %s", payload & ACK_EPEE ? "EPEE" : payload & ACK_FOIL ? "FOIL" : "SABRE");
 }

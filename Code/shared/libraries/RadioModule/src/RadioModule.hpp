@@ -53,7 +53,7 @@ class RadioModule {
     *
     * @return packet_t a packet_t structure if a message has been read or 0
     */
-    packet_t receiveMsg(uint8_t ack = 0);
+    packet_t receiveMsg();
 
     /**
     * @brief check if a message is available

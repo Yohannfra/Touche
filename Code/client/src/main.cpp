@@ -125,6 +125,7 @@ void loop()
             led.setColor(RGBLed::GREEN);
             Log.notice("== Valid hit ==");
             ack_payload_t ack = radio_module.sendMsg(HIT, SERVER);
+            utils::print_ack_payload(ack);
             applyAckSettings(ack);
             timerInvalidHit.reset();
         } else if (!timerInvalidHit.isRunning() && !timerValidHit.isRunning()) {  // INVALID HIT

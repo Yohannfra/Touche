@@ -44,5 +44,12 @@ namespace utils {
      * @param packet the packet to print
      */
     void print_packet(packet_t packet);
+
+    /**
+     * @brief print a payload
+     *
+     * @param payload the payload to print
+     */
+    void print_ack_payload(ack_payload_t payload);
 }  // namespace utils
 #endif  // UTILS_HPP

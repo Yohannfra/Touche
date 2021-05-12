@@ -78,14 +78,14 @@ bool RadioModule::checkMsgAvailable()
     return _nrf24.available();
 }
 
-packet_t RadioModule::receiveMsg(uint8_t ack)
+packet_t RadioModule::receiveMsg()
 {
     packet_t packet;
 
     uint8_t pipe = 0;
     if (_nrf24.available(&pipe)) {
         // send ack
-        uint8_t ackPayload = ack;
+        uint8_t ackPayload = _ackPayload;
         _nrf24.writeAckPayload(pipe, &ackPayload, sizeof(ackPayload));
 
         // read data

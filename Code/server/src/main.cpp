@@ -102,7 +102,7 @@ void checkButtonsPressed()  // TODO
 
 void loop()
 {
-    packet_t packet = radio_module.receiveMsg(0);  // TODO add config in ack
+    packet_t packet = radio_module.receiveMsg();
 
     if (packet) {
         utils::print_packet(packet);
