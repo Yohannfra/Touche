@@ -57,6 +57,8 @@ void setup()
     Log.setSuffix(printLineEnding);
 #endif
 
+    Log.notice(CRLF "==== Booting ====");
+
     current_weapon = serverConfig.getWeapon();
     Log.notice("%s", current_weapon == EPEE ? "EPEE" : "FOIL");
 
