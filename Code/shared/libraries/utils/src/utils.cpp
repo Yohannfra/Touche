@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "utils.hpp"
 
-#include "DebugLog.h"
+#include "ArduinoLog.h"
 
 #include <Arduino.h>
 
@@ -32,25 +32,25 @@ void utils::print_bin(const char *name, uint8_t n)
         }
         n >>= 1;
     }
-    DEBUG_LOG_VAL(name, buff);
+    Log.notice(name, buff);
 }
 
 void utils::print_packet(packet_t packet)
 {
     static int index = 0;
 
-    DEBUG_LOG_LN("===================================");
-    DEBUG_LOG_VAL("Packet: ", index);
+    Log.notice("===================================");
+    Log.notice("Packet: %d", index);
 
-    DEBUG_LOG_VAL("As decimal: ", packet);
+    Log.notice("As decimal: %d", static_cast<int>(packet));
     utils::print_bin("As binary: ", packet);
 
     touche_role_e player_role = static_cast<touche_role_e>(GET_ROLE(packet));
     payload_type_e payload = static_cast<payload_type_e>(GET_PAYLOAD(packet));
 
-    DEBUG_LOG_VAL("Role: ", (player_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2"));
+    Log.notice("Role: %s", (player_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2"));
     utils::print_bin("Payload: ", payload);
-    DEBUG_LOG_LN("===================================");
+    Log.notice("===================================");
 
     index += 1;
 }

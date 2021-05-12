@@ -19,7 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ArduinoLog.h"
 #include "Button.hpp"
 #include "Buzzer.hpp"
-#include "DebugLog.h"
 #include "LedRing.hpp"
 #include "RadioModule.hpp"
 #include "ServerConfig.hpp"
@@ -43,25 +42,25 @@ static ServerConfig serverConfig(DEFAULT_WEAPON_MODE);
 static bool pisteMode = false;
 static weapon_mode_e current_weapon;
 
+static void printLineEnding(Print *_logOutput)
+{
+    _logOutput->print(CRLF);
+}
+
 void setup()
 {
 #ifndef DISABLE_LOGGING
     Serial.begin(9600);
 
-    /* set log level
-    * 0 - LOG_LEVEL_SILENT     no output
-    * 1 - LOG_LEVEL_FATAL      fatal errors
-    * 2 - LOG_LEVEL_ERROR      all errors
-    * 3 - LOG_LEVEL_WARNING    errors, and warnings
-    * 4 - LOG_LEVEL_NOTICE     errors, warnings and notices
-    * 5 - LOG_LEVEL_TRACE      errors, warnings, notices & traces
-    * 6 - LOG_LEVEL_VERBOSE    all
-    */
-    Log.begin(LOG_LEVEL_ERROR, &Serial, true);
+    // view available log level here : https://github.com/Yohannfra/Arduino-Log
+    Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
+    Log.setSuffix(printLineEnding);
 #endif
 
+    Log.notice(CRLF "==== Booting ====");
+
     current_weapon = serverConfig.getWeapon();
-    DEBUG_LOG_LN(current_weapon == EPEE ? "EPEE" : "FOIL");
+    Log.notice("%s", current_weapon == EPEE ? "EPEE" : "FOIL");
 
     radio_module.init(SERVER);
     led_ring.init();
@@ -74,7 +73,7 @@ void checkButtonsPressed()  // TODO
 {
     // Piste mode
     if (buttonPisteMode.isPressed()) {
-        DEBUG_LOG_LN("Button piste pressed !");
+        Log.notice("Button piste pressed !");
         pisteMode = !pisteMode;
         radio_module.sendMsg(pisteMode ? ENABLE_PISTE_MODE : DISABLE_PISTE_MODE, PLAYER_1);
         radio_module.sendMsg(pisteMode ? ENABLE_PISTE_MODE : DISABLE_PISTE_MODE, PLAYER_2);
@@ -83,7 +82,7 @@ void checkButtonsPressed()  // TODO
 
     // switch players
     if (buttonSwitchPlayer.isPressed()) {
-        DEBUG_LOG_LN("Button switch pressed !");
+        Log.notice("Button switch pressed !");
         led_ring.switchColors();
         led_ring.blinkBoth(led_ring.getPlayerColor(PLAYER_1), led_ring.getPlayerColor(PLAYER_2), 400, 2);
         delay(1000);
@@ -94,8 +93,8 @@ void checkButtonsPressed()  // TODO
         const weapon_mode_e weapons[3] = {EPEE, FOIL /*, SABRE */};
         current_weapon = weapons[(current_weapon + 1) % 2];  // shift to next weapon
 
-        DEBUG_LOG_LN("Button change weapon pressed !");
-        DEBUG_LOG_VAL("weapon is now:", current_weapon == EPEE ? "EPEE" : "FOIL");
+        Log.notice("Button change weapon pressed !");
+        Log.notice("weapon is now: %s", current_weapon == EPEE ? "EPEE" : "FOIL");
 
         delay(1000);
     }
@@ -112,10 +111,10 @@ void loop()
         payload_type_e payload = GET_PAYLOAD(packet);
 
         if (payload & HIT) {
-            DEBUG_LOG_LN("HIT");
+            Log.notice("HIT");
             action_manager.hit(player_role);
         } else if (payload & CALIBRATION_STARTING) {
-            DEBUG_LOG_LN("CALIBRATION STARTED");
+            Log.notice("CALIBRATION STARTED");
             for (size_t i = 0; i < 2 * 4; i++) {
                 led_ring.do_circle_annimation(ORANGE_RGB, i);
                 packet_t p = radio_module.receiveMsg();
@@ -125,10 +124,10 @@ void loop()
             }
             led_ring.turn_off();
         } else if (payload & CALIBRATION_END) {
-            DEBUG_LOG_LN("CALIBRATION END");
+            Log.notice("CALIBRATION END");
             led_ring.blink(GREEN_RGB, 100, 3);
         } else if (payload & CALIBRATION_FAILED) {
-            DEBUG_LOG_LN("CALIBRATION FAILED");
+            Log.warning("CALIBRATION FAILED");
             led_ring.blink(RED_RGB, 100, 3);
         }
     }
@@ -140,7 +139,7 @@ void loop()
         led_ring.show_hits(hit_type);
 
         if (action_manager.isResetTime()) {
-            DEBUG_LOG_LN("resetting values");
+            Log.notice("resetting values");
             action_manager.reset();
             led_ring.turn_off();
             buzzer.stop();

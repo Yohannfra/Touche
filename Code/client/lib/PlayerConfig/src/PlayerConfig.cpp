@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "PlayerConfig.hpp"
 
-#include "DebugLog.h"
+#include "ArduinoLog.h"
 
 #include <EEPROM.h>
 
@@ -44,8 +44,8 @@ PlayerConfig::PlayerConfig(touche_role_e role, weapon_mode_e weapon)
     weapon_mode_e weapon_in_mem = static_cast<weapon_mode_e>(EEPROM.read(WEAPON_ADDR_IN_EEPROM));
 
     if ((role_in_mem != PLAYER_1 && role_in_mem != PLAYER_2) || FORCE_WRITE_PLAYER_ROLE) {  // to avoid overwriting
-        DEBUG_LOG_VAL("Overwriting player role from : ", role_in_mem == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
-        DEBUG_LOG_VAL("To : ", role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
+        Log.notice("Overwriting player role from : %s to %s", role_in_mem == PLAYER_1 ? "PLAYER_1" : "PLAYER_2",
+            role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
         EEPROM.update(ROLE_ADDR_IN_EEPROM, static_cast<uint8_t>(role));
         _role = role;
     } else {

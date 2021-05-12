@@ -16,7 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "ArduinoLog.h"
-#include "DebugLog.h"
 #include "PlayerConfig.hpp"
 #include "RGBLed.hpp"
 #include "RadioModule.hpp"
@@ -45,28 +44,28 @@ static touche_role_e board_role;
 static weapon_mode_e current_weapon;
 static bool pisteMode = false;
 
+static void printLineEnding(Print *_logOutput)
+{
+    _logOutput->print(CRLF);
+}
+
 void setup()
 {
 #ifndef DISABLE_LOGGING
     Serial.begin(9600);
 
-    /* set log level
-    * 0 - LOG_LEVEL_SILENT     no output
-    * 1 - LOG_LEVEL_FATAL      fatal errors
-    * 2 - LOG_LEVEL_ERROR      all errors
-    * 3 - LOG_LEVEL_WARNING    errors, and warnings
-    * 4 - LOG_LEVEL_NOTICE     errors, warnings and notices
-    * 5 - LOG_LEVEL_TRACE      errors, warnings, notices & traces
-    * 6 - LOG_LEVEL_VERBOSE    all
-    */
+    // view available log level here : https://github.com/Yohannfra/Arduino-Log
     Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
+    Log.setSuffix(printLineEnding);
 #endif
+
+    Log.notice(CRLF "==== Booting ====");
 
     board_role = playerConfig.getRole();
     current_weapon = playerConfig.getWeapon();
 
-    Log.notice("Role: %s\r\n", board_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
-    Log.notice("Weapon: %s\r\n", current_weapon == EPEE ? "EPEE" : "FOIL");
+    Log.notice("Role: %s", board_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
+    Log.notice("Weapon: %s", current_weapon == EPEE ? "EPEE" : "FOIL");
 
     radio_module.init(board_role);
 
@@ -78,19 +77,19 @@ void setup()
  */
 void run_calibration_process()
 {
-    DEBUG_LOG_LN("== Starting calibration ==");
+    Log.notice("== Starting calibration ==");
     radio_module.sendMsg(CALIBRATION_STARTING, SERVER);
 
     while (virtualGround.calibrate() == false) {
         if (weapon.isHitting(current_weapon) == Weapon::NONE) {
-            DEBUG_LOG_LN("Button released during calibration");
+            Log.warning("Button released during calibration");
             radio_module.sendMsg(CALIBRATION_FAILED, SERVER);
             virtualGround.end_calibration(false);
             delay(500);
             return;
         }
     }
-    DEBUG_LOG_LN("== Calibration Done ==");
+    Log.notice("== Calibration Done ==");
     virtualGround.end_calibration(true);
     radio_module.sendMsg(CALIBRATION_END, SERVER);
     delay(500);
@@ -108,8 +107,8 @@ void applyAckSettings(ack_payload_t ack)
         // TODO
         // current_weapon = SABRE;
     }
-    DEBUG_LOG_VAL("Weapon is : ", current_weapon == FOIL ? "FOIL" : "EPEE");
-    DEBUG_LOG_VAL("Piste is : ", pisteMode ? "Enabled" : "Disabled");
+    Log.notice("Weapon is : %s", current_weapon == FOIL ? "FOIL" : "EPEE");
+    Log.notice("Piste is : %s", pisteMode ? "Enabled" : "Disabled");
 }
 
 void loop()
@@ -124,12 +123,12 @@ void loop()
         if (hit_status == Weapon::VALID && !timerValidHit.isRunning()) {
             timerValidHit.start();
             led.setColor(RGBLed::GREEN);
-            DEBUG_LOG_LN("== Valid hit ==");
+            Log.notice("== Valid hit ==");
             ack_payload_t ack = radio_module.sendMsg(HIT, SERVER);
             applyAckSettings(ack);
             timerInvalidHit.reset();
         } else if (!timerInvalidHit.isRunning() && !timerValidHit.isRunning()) {  // INVALID HIT
-            DEBUG_LOG_LN("== Invalid hit ==");
+            Log.notice("== Invalid hit ==");
             led.setColor(RGBLed::RED);
         }
 
@@ -143,7 +142,7 @@ void loop()
 
         if (timerValidHit.getTimeElapsed() > FENCING_BLINKING_TIME ||
             timerInvalidHit.getTimeElapsed() > FENCING_BLINKING_TIME) {  // reset all
-            DEBUG_LOG_LN("Reset");
+            Log.notice("Reset");
             led.turnOff();
             timerValidHit.reset();
             timerInvalidHit.reset();

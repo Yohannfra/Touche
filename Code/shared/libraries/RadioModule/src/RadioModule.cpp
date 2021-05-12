@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "RadioModule.hpp"
 
-#include "DebugLog.h"
+#include "ArduinoLog.h"
 #include "protocol.h"
 #include "radioPipes.h"
 #include "utils.hpp"
@@ -41,9 +41,9 @@ void RadioModule::init(touche_role_e role)
     _role = role;
 
     if (_nrf24.isChipConnected()) {
-        DEBUG_LOG_LN("Connected to NRF24L01");
+        Log.notice("Connected to NRF24L01");
     } else {
-        DEBUG_LOG_LN("Error connecting to NRF24L01");
+        Log.error("Error connecting to NRF24L01");
     }
 
     // Low data rate and maximum PALevel for best range possible
@@ -70,7 +70,7 @@ void RadioModule::init(touche_role_e role)
         _nrf24.startListening();  // put in RX
     }
 
-    DEBUG_LOG_LN("NRF24l01 Initialized");
+    Log.notice("NRF24l01 Initialized");
 }
 
 bool RadioModule::checkMsgAvailable()
@@ -110,7 +110,9 @@ uint8_t RadioModule::sendMsg(payload_type_e payload, touche_role_e dest)
     }
 
     bool tx_sent = _nrf24.write(&packet, sizeof(packet));
-    DEBUG_LOG_LN(tx_sent ? "radio.write OK" : "radio.write KO");
+    if (!tx_sent) {
+        Log.error("%s", "radio.write failed");
+    }
 
     // read ack payload
     uint8_t ack = 0;
