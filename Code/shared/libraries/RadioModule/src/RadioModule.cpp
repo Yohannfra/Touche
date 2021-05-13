@@ -97,19 +97,13 @@ packet_t RadioModule::receiveMsg()
     return 0;
 }
 
-ack_payload_t RadioModule::sendMsg(payload_type_e payload, touche_role_e dest)
+ack_payload_t RadioModule::sendMsg(payload_type_e payload)
 {
     packet_t packet = CREATE_PACKET(_role, payload);
 
 #if 0
         utils::print_packet(packet);
 #endif
-
-    if (dest == PLAYER_1 || dest == PLAYER_2) {  // server -> client
-        _nrf24.openWritingPipe(PIPES_ADDRESSES[dest]);
-    } else {  // client -> server
-        _nrf24.openWritingPipe(PIPES_ADDRESSES[_role]);
-    }
 
     _nrf24.write(&packet, sizeof(packet));
 

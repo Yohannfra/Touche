@@ -78,12 +78,12 @@ void setup()
 void run_calibration_process()
 {
     Log.notice("== Starting calibration ==");
-    radio_module.sendMsg(CALIBRATION_STARTING, SERVER);
+    radio_module.sendMsg(CALIBRATION_STARTING);
 
     while (virtualGround.calibrate() == false) {
         if (weapon.isHitting(current_weapon) == Weapon::NONE) {
             Log.warning("Button released during calibration");
-            radio_module.sendMsg(CALIBRATION_FAILED, SERVER);
+            radio_module.sendMsg(CALIBRATION_FAILED);
             virtualGround.end_calibration(false);
             delay(500);
             return;
@@ -91,7 +91,7 @@ void run_calibration_process()
     }
     Log.notice("== Calibration Done ==");
     virtualGround.end_calibration(true);
-    radio_module.sendMsg(CALIBRATION_END, SERVER);
+    radio_module.sendMsg(CALIBRATION_END);
     delay(500);
 }
 
@@ -131,7 +131,7 @@ void loop()
             Log.notice("== Valid hit ==");
             timerValidHit.start();
             led.setColor(RGBLed::GREEN);
-            ack_payload_t ack = radio_module.sendMsg(HIT, SERVER);
+            ack_payload_t ack = radio_module.sendMsg(HIT);
             applyAckSettings(ack);
             timerInvalidHit.reset();
         } else if (!timerInvalidHit.isRunning() && !timerValidHit.isRunning()) {  // INVALID HIT

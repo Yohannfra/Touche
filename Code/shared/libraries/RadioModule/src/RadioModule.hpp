@@ -67,11 +67,10 @@ class RadioModule {
     * @brief send a message in a packet_t
     *
     * @param payload payload to send
-    * @param dest where to send the message
     *
     * @return the ACK received
     */
-    ack_payload_t sendMsg(payload_type_e payload, touche_role_e dest);
+    ack_payload_t sendMsg(payload_type_e payload);
 
     void setAckPayload(uint8_t newAck);
 };

@@ -76,8 +76,8 @@ void checkButtonsPressed()  // TODO
     if (buttonPisteMode.isPressed()) {
         Log.notice("Button piste pressed !");
         pisteMode = !pisteMode;
-        radio_module.sendMsg(pisteMode ? ENABLE_PISTE_MODE : DISABLE_PISTE_MODE, PLAYER_1);
-        radio_module.sendMsg(pisteMode ? ENABLE_PISTE_MODE : DISABLE_PISTE_MODE, PLAYER_2);
+        // radio_module.sendMsg(pisteMode ? ENABLE_PISTE_MODE : DISABLE_PISTE_MODE, PLAYER_1);
+        // radio_module.sendMsg(pisteMode ? ENABLE_PISTE_MODE : DISABLE_PISTE_MODE, PLAYER_2);
         delay(1000);
     }
 
