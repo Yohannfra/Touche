@@ -59,7 +59,7 @@ void setup()
     Log.setSuffix(printLineEnding);
 #endif
 
-    Log.notice(CRLF "==== Booting ====");
+    Log.trace(CRLF "==== Booting client ====" CRLF);
 
     board_role = playerConfig.getRole();
     current_weapon = playerConfig.getWeapon();
@@ -97,6 +97,13 @@ void run_calibration_process()
 
 void applyAckSettings(ack_payload_t ack)
 {
+    if (ack == ACK_ERROR) {
+        Log.warning("ack is ACK_ERROR");
+        return;
+    }
+
+    utils::print_ack_payload(ack);
+
     pisteMode = ack & ACK_PISTE_MODE;
 
     if (ack & ACK_EPEE) {
@@ -107,8 +114,8 @@ void applyAckSettings(ack_payload_t ack)
         // TODO
         // current_weapon = SABRE;
     }
-    Log.notice("Weapon is : %s", current_weapon == FOIL ? "FOIL" : "EPEE");
-    Log.notice("Piste is : %s", pisteMode ? "Enabled" : "Disabled");
+    Log.notice("Weapon is now : %s", current_weapon == FOIL ? "FOIL" : "EPEE");
+    Log.notice("Piste is now : %s", pisteMode ? "Enabled" : "Disabled");
 }
 
 void loop()
@@ -121,15 +128,15 @@ void loop()
         }
 
         if (hit_status == Weapon::VALID && !timerValidHit.isRunning()) {
+            Log.notice("== Valid hit ==");
             timerValidHit.start();
             led.setColor(RGBLed::GREEN);
-            Log.notice("== Valid hit ==");
             ack_payload_t ack = radio_module.sendMsg(HIT, SERVER);
-            utils::print_ack_payload(ack);
             applyAckSettings(ack);
             timerInvalidHit.reset();
         } else if (!timerInvalidHit.isRunning() && !timerValidHit.isRunning()) {  // INVALID HIT
             Log.notice("== Invalid hit ==");
+            timerInvalidHit.start();
             led.setColor(RGBLed::RED);
         }
 

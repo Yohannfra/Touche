@@ -56,6 +56,8 @@ void RadioModule::init(touche_role_e role)
     _nrf24.setRetries(3 + (_role == PLAYER_2), 15);
 
     // enable custom ack payload
+    // to use ACK payloads, we need to enable dynamic payload lengths
+    _nrf24.enableDynamicPayloads();
     _nrf24.enableAckPayload();
 
     if (_role == PLAYER_1 || _role == PLAYER_2) {
@@ -85,8 +87,8 @@ packet_t RadioModule::receiveMsg()
     uint8_t pipe = 0;
     if (_nrf24.available(&pipe)) {
         // send ack
-        uint8_t ackPayload = _ackPayload;
-        _nrf24.writeAckPayload(pipe, &ackPayload, sizeof(ackPayload));
+        ack_payload_t ackPayload = _ackPayload;
+        _nrf24.writeAckPayload(pipe, &ackPayload, sizeof(ack_payload_t));
 
         // read data
         _nrf24.read(&packet, sizeof(packet_t));
@@ -95,7 +97,7 @@ packet_t RadioModule::receiveMsg()
     return 0;
 }
 
-uint8_t RadioModule::sendMsg(payload_type_e payload, touche_role_e dest)
+ack_payload_t RadioModule::sendMsg(payload_type_e payload, touche_role_e dest)
 {
     packet_t packet = CREATE_PACKET(_role, payload);
 
@@ -109,16 +111,13 @@ uint8_t RadioModule::sendMsg(payload_type_e payload, touche_role_e dest)
         _nrf24.openWritingPipe(PIPES_ADDRESSES[_role]);
     }
 
-    bool tx_sent = _nrf24.write(&packet, sizeof(packet));
-    if (!tx_sent) {
-        Log.error("%s", "radio.write failed");
-    }
+    _nrf24.write(&packet, sizeof(packet));
 
     // read ack payload
-    uint8_t ack = 0;
-
-    if (_nrf24.isAckPayloadAvailable()) {
-        _nrf24.read(&ack, sizeof(ack));
+    ack_payload_t ack = ACK_ERROR;
+    if (_nrf24.available()) {
+        Log.notice("Reading ack....");
+        _nrf24.read(&ack, sizeof(ack_payload_t));
     }
 
     return ack;
@@ -127,4 +126,6 @@ uint8_t RadioModule::sendMsg(payload_type_e payload, touche_role_e dest)
 void RadioModule::setAckPayload(uint8_t newAck)
 {
     _ackPayload = newAck;
+    Log.notice("New ack payload set:");
+    utils::print_ack_payload(_ackPayload);
 }

@@ -28,7 +28,7 @@ class RadioModule {
   private:
     RF24 _nrf24;
     touche_role_e _role;
-    uint8_t _ackPayload;
+    ack_payload_t _ackPayload;
 
   public:
     /**
@@ -71,7 +71,7 @@ class RadioModule {
     *
     * @return the ACK received
     */
-    uint8_t sendMsg(payload_type_e payload, touche_role_e dest);
+    ack_payload_t sendMsg(payload_type_e payload, touche_role_e dest);
 
     void setAckPayload(uint8_t newAck);
 };

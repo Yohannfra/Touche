@@ -39,7 +39,7 @@ void utils::print_packet(packet_t packet)
 {
     static int index = 0;
 
-    Log.notice("===================================");
+    Log.trace("===================================");
     Log.notice("Packet: %d", index);
 
     Log.notice("As decimal: %d", static_cast<int>(packet));
@@ -50,7 +50,7 @@ void utils::print_packet(packet_t packet)
 
     Log.notice("Role: %s", (player_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2"));
     utils::print_bin("Payload: ", payload);
-    Log.notice("===================================");
+    Log.trace("===================================");
 
     index += 1;
 }
@@ -58,6 +58,13 @@ void utils::print_packet(packet_t packet)
 void utils::print_ack_payload(ack_payload_t payload)
 {
     Log.notice("Ack payload :");
+
+    if (payload == ACK_ERROR) {
+        Log.warning("ack is ACK_ERROR");
+        return;
+    }
+
+    utils::print_bin("As binary: ", payload);
     Log.notice("Piste enabled : %s", (payload & ACK_PISTE_MODE) ? "True" : "False");
     Log.notice("Weapon : %s", payload & ACK_EPEE ? "EPEE" : payload & ACK_FOIL ? "FOIL" : "SABRE");
 }

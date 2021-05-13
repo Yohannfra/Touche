@@ -94,6 +94,7 @@ typedef enum : uint8_t {
     ACK_SABRE = (1 << 2),
     ACK_FOIL = (1 << 1),
     ACK_EPEE = (1 << 0),
+    ACK_ERROR = 0xFF,
 } ack_payload_type_e;
 
 static inline ack_payload_t CREATE_ACK_PAYLOAD(bool pisteEnabled, weapon_mode_e weapon)

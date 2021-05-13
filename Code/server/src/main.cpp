@@ -15,6 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 #include "ActionManager.hpp"
 #include "ArduinoLog.h"
 #include "Button.hpp"
@@ -57,7 +58,7 @@ void setup()
     Log.setSuffix(printLineEnding);
 #endif
 
-    Log.notice(CRLF "==== Booting ====");
+    Log.trace(CRLF "==== Booting server ====" CRLF);
 
     current_weapon = serverConfig.getWeapon();
     Log.notice("%s", current_weapon == EPEE ? "EPEE" : "FOIL");
@@ -99,6 +100,20 @@ void checkButtonsPressed()  // TODO
         delay(1000);
     }
 }
+static bool is_calibrating = false;
+uint32_t t1 = 0;
+
+static void do_calib()
+{
+    static unsigned int index = 0;
+
+    led_ring.do_circle_annimation(ORANGE_RGB, index % 24);
+    index++;
+
+    if (index > 24) {
+        index = 0;
+    }
+}
 
 void loop()
 {
@@ -114,17 +129,19 @@ void loop()
             Log.notice("HIT");
             action_manager.hit(player_role);
         } else if (payload & CALIBRATION_STARTING) {
-            Log.notice("CALIBRATION STARTED");
-            for (size_t i = 0; i < 2 * 4; i++) {
-                led_ring.do_circle_annimation(ORANGE_RGB, i);
-                packet_t p = radio_module.receiveMsg();
-                if (p) {
-                    break;
+            if (!is_calibrating) {
+                Log.notice("CALIBRATION STARTED");
+                t1 = millis();
+                is_calibrating = true;
+            } else {
+                if (millis() - t1 > 200) {
+                    do_calib();
+                    t1 = millis();
                 }
             }
-            led_ring.turn_off();
         } else if (payload & CALIBRATION_END) {
             Log.notice("CALIBRATION END");
+            led_ring.turn_off();
             led_ring.blink(GREEN_RGB, 100, 3);
         } else if (payload & CALIBRATION_FAILED) {
             Log.warning("CALIBRATION FAILED");

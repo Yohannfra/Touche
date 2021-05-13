@@ -91,8 +91,8 @@ void VirtualGround::end_calibration(bool success)
     if (success && _calibrationIndex > 0 /* to avoid div by 0 */) {
         _threshold = _calibrationSum / _calibrationIndex;
         _tolerance = (float)_threshold / 6.66f;  //  ~ 15% of the _treshold
-        Log.notice("Treshold is now: ", _threshold);
-        Log.notice("Tolerance is now: ", _tolerance);
+        Log.notice("Treshold is now: %l", _threshold);
+        Log.notice("Tolerance is now: %l", _tolerance);
     }
     _calibrationIndex = 0;
     _calibrationSum = 0;
