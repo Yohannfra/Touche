@@ -97,6 +97,8 @@ void run_calibration_process()
 
 void applyAckSettings(ack_payload_t ack)
 {
+    weapon_mode_e tmp = current_weapon;
+
     if (ack == ACK_ERROR) {
         Log.warning("ack is ACK_ERROR");
         return;
@@ -111,8 +113,11 @@ void applyAckSettings(ack_payload_t ack)
     } else if (ack & ACK_FOIL) {
         current_weapon = FOIL;
     } else if (ack & ACK_SABRE) {
-        // TODO
         // current_weapon = SABRE;
+    }
+
+    if (tmp != current_weapon) {  // weapon changed, write it to EEPROM
+        playerConfig.setWeapon(current_weapon);
     }
     Log.notice("Weapon is now : %s", current_weapon == FOIL ? "FOIL" : "EPEE");
     Log.notice("Piste is now : %s", pisteMode ? "Enabled" : "Disabled");
