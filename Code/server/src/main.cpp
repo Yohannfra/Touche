@@ -67,37 +67,45 @@ void setup()
     led_ring.init();
     led_ring.blink(ORANGE_RGB, 200, 1);
 
-    radio_module.setAckPayload(CREATE_ACK_PAYLOAD(false, current_weapon));
+    radio_module.setAckPayload(CREATE_ACK_PAYLOAD(pisteMode, current_weapon));
 }
 
-void checkButtonsPressed()  // TODO
+void checkButtonsPressed()
 {
     // Piste mode
     if (buttonPisteMode.isPressed()) {
         Log.notice("Button piste pressed !");
         pisteMode = !pisteMode;
-        // radio_module.sendMsg(pisteMode ? ENABLE_PISTE_MODE : DISABLE_PISTE_MODE, PLAYER_1);
-        // radio_module.sendMsg(pisteMode ? ENABLE_PISTE_MODE : DISABLE_PISTE_MODE, PLAYER_2);
-        delay(1000);
+        radio_module.setAckPayload(CREATE_ACK_PAYLOAD(pisteMode, current_weapon));
+        buzzer.play();
+        led_ring.blink(ORANGE_RGB, 100, 3);
+        buzzer.stop();
     }
 
     // switch players
     if (buttonSwitchPlayer.isPressed()) {
         Log.notice("Button switch pressed !");
         led_ring.switchColors();
+        buzzer.play();
         led_ring.blinkBoth(led_ring.getPlayerColor(PLAYER_1), led_ring.getPlayerColor(PLAYER_2), 400, 2);
-        delay(1000);
+        buzzer.stop();
     }
 
     // change weapon
     if (buttonChangeWeapon.isPressed()) {
-        const weapon_mode_e weapons[3] = {EPEE, FOIL /*, SABRE */};
-        current_weapon = weapons[(current_weapon + 1) % 2];  // shift to next weapon
-
         Log.notice("Button change weapon pressed !");
+
+        constexpr uint8_t NB_WEAPONS = 2;
+        const weapon_mode_e weapons[NB_WEAPONS] = {EPEE, FOIL /*, SABRE */};
+        current_weapon = weapons[(current_weapon + 1) % NB_WEAPONS];  // shift to next weapon
+        radio_module.setAckPayload(CREATE_ACK_PAYLOAD(pisteMode, current_weapon));
+
+        serverConfig.setWeapon(current_weapon);
         Log.notice("weapon is now: %s", current_weapon == EPEE ? "EPEE" : "FOIL");
 
-        delay(1000);
+        buzzer.play();
+        led_ring.blink(ORANGE_RGB, 100, 3);
+        buzzer.stop();
     }
 }
 static bool is_calibrating = false;
