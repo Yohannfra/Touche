@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #error "DEFAULT_WEAPON_MODE must be EPEE or FOIL"
 #endif
 
-PlayerConfig::PlayerConfig(touche_role_e role, weapon_mode_e weapon)
+PlayerConfig::PlayerConfig(touche_role_e role, weapon_mode_e weapon) : _pisteMode(false)
 {
     touche_role_e role_in_mem = static_cast<touche_role_e>(EEPROM.read(ROLE_ADDR_IN_EEPROM));
     weapon_mode_e weapon_in_mem = static_cast<weapon_mode_e>(EEPROM.read(WEAPON_ADDR_IN_EEPROM));
@@ -73,4 +73,14 @@ weapon_mode_e PlayerConfig::getWeapon() const
 touche_role_e PlayerConfig::getRole() const
 {
     return _role;
+}
+
+void PlayerConfig::setPisteMode(bool mode)
+{
+    _pisteMode = mode;
+}
+
+bool PlayerConfig::getPisteMode() const
+{
+    return _pisteMode;
 }

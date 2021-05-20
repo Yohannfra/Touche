@@ -32,9 +32,13 @@ class PlayerConfig {
 
     touche_role_e getRole() const;
 
+    void setPisteMode(bool mode);
+    bool getPisteMode() const;
+
   private:
     weapon_mode_e _weapon;
     touche_role_e _role;
+    bool _pisteMode;
 };
 
 #endif /* PLAYERCONFIG_HPP */

@@ -32,17 +32,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Global classes
 VirtualGround virtualGround(VIRTUAL_PIN_OUT, VIRTUAL_PIN_IN);
 RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
-static Weapon weapon(EPEE_BUTTON_PIN, virtualGround);
+Weapon weapon(EPEE_BUTTON_PIN, virtualGround);
 static RGBLed led(LED_PIN_RED, LED_PIN_GREEN, LED_PIN_BLUE);
 static Timer timerValidHit;
 static Timer timerInvalidHit;
 static Timer timerButtonMaintened;
-static PlayerConfig playerConfig(PLAYER_ROLE, DEFAULT_WEAPON_MODE);
-
-// Config variables
-static touche_role_e board_role;
-static weapon_mode_e current_weapon;
-static bool pisteMode = false;
+PlayerConfig config(PLAYER_ROLE, DEFAULT_WEAPON_MODE);
 
 void run_calibration_process();
 
@@ -66,20 +61,17 @@ void setup()
 
     Log.trace(CRLF "==== Booting client ====" CRLF);
 
-    board_role = playerConfig.getRole();
-    current_weapon = playerConfig.getWeapon();
+    Log.notice("Role: %s", config.getRole() == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
+    Log.notice("Weapon: %s", config.getWeapon() == EPEE ? "EPEE" : "FOIL");
 
-    Log.notice("Role: %s", board_role == PLAYER_1 ? "PLAYER_1" : "PLAYER_2");
-    Log.notice("Weapon: %s", current_weapon == EPEE ? "EPEE" : "FOIL");
+    radio_module.init(config.getRole());
 
-    radio_module.init(board_role);
-
-    led.blink(RGBLed::WEAPON_MODE_TO_COLOR(current_weapon), 1000, 1);
+    led.blink(RGBLed::WEAPON_MODE_TO_COLOR(config.getWeapon()), 1000, 1);
 }
 
 static void applyAckSettings(ack_payload_t ack)
 {
-    weapon_mode_e tmp = current_weapon;
+    weapon_mode_e tmp = config.getWeapon();
 
     if (ack == ACK_ERROR) {
         Log.warning("ack is ACK_ERROR");
@@ -88,26 +80,26 @@ static void applyAckSettings(ack_payload_t ack)
 
     utils::print_ack_payload(ack);
 
-    pisteMode = ack & ACK_PISTE_MODE;
+    config.setPisteMode(ack & ACK_PISTE_MODE);
 
     if (ack & ACK_EPEE) {
-        current_weapon = EPEE;
+        config.setWeapon(EPEE);
     } else if (ack & ACK_FOIL) {
-        current_weapon = FOIL;
+        config.setWeapon(FOIL);
     } else if (ack & ACK_SABRE) {
-        // current_weapon = SABRE;
+        // config.setWeapon(SABRE);
     }
 
-    if (tmp != current_weapon) {  // weapon changed, write it to EEPROM
-        playerConfig.setWeapon(current_weapon);
+    if (tmp != config.getWeapon()) {  // weapon changed, write it to EEPROM
+        config.setWeapon(config.getWeapon());
     }
-    Log.notice("Weapon is now : %s", current_weapon == FOIL ? "FOIL" : "EPEE");
-    Log.notice("Piste is now : %s", pisteMode ? "Enabled" : "Disabled");
+    Log.notice("Weapon is now : %s", config.getWeapon() == FOIL ? "FOIL" : "EPEE");
+    Log.notice("Piste is now : %s", config.getPisteMode() ? "Enabled" : "Disabled");
 }
 
 void loop()
 {
-    Weapon::hit_status_e hit_status = weapon.isHitting(current_weapon);
+    Weapon::hit_status_e hit_status = weapon.isHitting(config.getWeapon());
 
     if (hit_status != Weapon::NONE) {
         if (!timerButtonMaintened.isRunning()) {

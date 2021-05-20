@@ -17,8 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "ArduinoLog.h"
+#include "PlayerConfig.hpp"
 #include "RadioModule.hpp"
 #include "VirtualGround.hpp"
+#include "Weapon.hpp"
 #include "protocol.h"
 #include "touche.h"
 #include "utils.hpp"
@@ -27,6 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 extern VirtualGround virtualGround;
 extern RadioModule radio_module;
+extern PlayerConfig config;
+extern Weapon weapon;
 
 void run_calibration_process()
 {
@@ -34,7 +38,7 @@ void run_calibration_process()
     radio_module.sendMsg(CALIBRATION_STARTING);
 
     while (virtualGround.calibrate() == false) {
-        if (weapon.isHitting(current_weapon) == Weapon::NONE) {
+        if (weapon.isHitting(config.getWeapon()) == Weapon::NONE) {
             Log.warning("Button released during calibration");
             radio_module.sendMsg(CALIBRATION_FAILED);
             virtualGround.end_calibration(false);
