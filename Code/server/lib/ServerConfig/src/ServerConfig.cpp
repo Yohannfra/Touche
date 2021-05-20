@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #error "DEFAULT_WEAPON_MODE must be EPEE or FOIL"
 #endif
 
-ServerConfig::ServerConfig(weapon_mode_e weapon)
+ServerConfig::ServerConfig(weapon_mode_e weapon) : _pisteMode(false)
 {
     weapon_mode_e weapon_in_mem = static_cast<weapon_mode_e>(EEPROM.read(WEAPON_ADDR_IN_EEPROM));
 
@@ -52,4 +52,15 @@ void ServerConfig::setWeapon(weapon_mode_e weapon)
 weapon_mode_e ServerConfig::getWeapon() const
 {
     return _weapon;
+}
+
+void ServerConfig::setPisteMode(bool mode)
+{
+    _pisteMode = mode;
+    // pisteMode is not written to EEPROM
+}
+
+bool ServerConfig::getPisteMode() const
+{
+    return _pisteMode;
 }

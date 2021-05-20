@@ -29,9 +29,12 @@ class ServerConfig {
 
     void setWeapon(weapon_mode_e weapon);
     weapon_mode_e getWeapon() const;
+    void setPisteMode(bool mode);
+    bool getPisteMode() const;
 
   private:
     weapon_mode_e _weapon;
+    bool _pisteMode;
 };
 
 #endif /* SERVERCONFIG_HPP */
