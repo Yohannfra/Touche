@@ -30,8 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Arduino.h>
 
 // Global classes
-static VirtualGround virtualGround(VIRTUAL_PIN_OUT, VIRTUAL_PIN_IN);
-static RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
+VirtualGround virtualGround(VIRTUAL_PIN_OUT, VIRTUAL_PIN_IN);
+RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
 static Weapon weapon(EPEE_BUTTON_PIN, virtualGround);
 static RGBLed led(LED_PIN_RED, LED_PIN_GREEN, LED_PIN_BLUE);
 static Timer timerValidHit;
@@ -44,6 +44,11 @@ static touche_role_e board_role;
 static weapon_mode_e current_weapon;
 static bool pisteMode = false;
 
+void run_calibration_process();
+
+/**
+ * @brief callback needed for arduino-log
+ */
 static void printLineEnding(Print *_logOutput)
 {
     _logOutput->print(CRLF);
@@ -72,30 +77,7 @@ void setup()
     led.blink(RGBLed::WEAPON_MODE_TO_COLOR(current_weapon), 1000, 1);
 }
 
-/**
- * @brief do the calibration process.
- */
-void run_calibration_process()
-{
-    Log.notice("== Starting calibration ==");
-    radio_module.sendMsg(CALIBRATION_STARTING);
-
-    while (virtualGround.calibrate() == false) {
-        if (weapon.isHitting(current_weapon) == Weapon::NONE) {
-            Log.warning("Button released during calibration");
-            radio_module.sendMsg(CALIBRATION_FAILED);
-            virtualGround.end_calibration(false);
-            delay(500);
-            return;
-        }
-    }
-    Log.notice("== Calibration Done ==");
-    virtualGround.end_calibration(true);
-    radio_module.sendMsg(CALIBRATION_END);
-    delay(500);
-}
-
-void applyAckSettings(ack_payload_t ack)
+static void applyAckSettings(ack_payload_t ack)
 {
     weapon_mode_e tmp = current_weapon;
 

@@ -30,19 +30,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <Arduino.h>
 
-static Buzzer buzzer(BUZZER_PIN);
-static LedRing led_ring(LED_RING_PIN);
-static RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
+Buzzer buzzer(BUZZER_PIN);
+LedRing led_ring(LED_RING_PIN);
+RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
+ServerConfig config(DEFAULT_WEAPON_MODE);
 static ActionManager action_manager;
 
-static Button buttonPisteMode(PIN_BUTTON_PISTE_MODE);
-static Button buttonSwitchPlayer(PIN_BUTTON_SWITCH_PLAYERS);
-static Button buttonChangeWeapon(PIN_BUTTON_CHANGE_WEAPON);
-static ServerConfig serverConfig(DEFAULT_WEAPON_MODE);
+void checkButtonsPressed();
 
-static bool pisteMode = false;
-static weapon_mode_e current_weapon;
-
+/**
+ * @brief callback needed for arduino-log
+ */
 static void printLineEnding(Print *_logOutput)
 {
     _logOutput->print(CRLF);
@@ -60,54 +58,15 @@ void setup()
 
     Log.trace(CRLF "==== Booting server ====" CRLF);
 
-    current_weapon = serverConfig.getWeapon();
-    Log.notice("%s", current_weapon == EPEE ? "EPEE" : "FOIL");
+    Log.notice("%s", config.getWeapon() == EPEE ? "EPEE" : "FOIL");
 
     radio_module.init(SERVER);
     led_ring.init();
     led_ring.blink(ORANGE_RGB, 200, 1);
 
-    radio_module.setAckPayload(CREATE_ACK_PAYLOAD(pisteMode, current_weapon));
+    radio_module.setAckPayload(CREATE_ACK_PAYLOAD(config.getPisteMode(), config.getWeapon()));
 }
 
-void checkButtonsPressed()
-{
-    // Piste mode
-    if (buttonPisteMode.isPressed()) {
-        Log.notice("Button piste pressed !");
-        pisteMode = !pisteMode;
-        radio_module.setAckPayload(CREATE_ACK_PAYLOAD(pisteMode, current_weapon));
-        buzzer.play();
-        led_ring.blink(ORANGE_RGB, 100, 3);
-        buzzer.stop();
-    }
-
-    // switch players
-    if (buttonSwitchPlayer.isPressed()) {
-        Log.notice("Button switch pressed !");
-        led_ring.switchColors();
-        buzzer.play();
-        led_ring.blinkBoth(led_ring.getPlayerColor(PLAYER_1), led_ring.getPlayerColor(PLAYER_2), 400, 2);
-        buzzer.stop();
-    }
-
-    // change weapon
-    if (buttonChangeWeapon.isPressed()) {
-        Log.notice("Button change weapon pressed !");
-
-        constexpr uint8_t NB_WEAPONS = 2;
-        const weapon_mode_e weapons[NB_WEAPONS] = {EPEE, FOIL /*, SABRE */};
-        current_weapon = weapons[(current_weapon + 1) % NB_WEAPONS];  // shift to next weapon
-        radio_module.setAckPayload(CREATE_ACK_PAYLOAD(pisteMode, current_weapon));
-
-        serverConfig.setWeapon(current_weapon);
-        Log.notice("weapon is now: %s", current_weapon == EPEE ? "EPEE" : "FOIL");
-
-        buzzer.play();
-        led_ring.blink(ORANGE_RGB, 100, 3);
-        buzzer.stop();
-    }
-}
 static bool is_calibrating = false;
 uint32_t t1 = 0;
 
