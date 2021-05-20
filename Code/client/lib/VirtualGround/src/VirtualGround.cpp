@@ -45,8 +45,9 @@ long VirtualGround::get_value()
 
 bool VirtualGround::trigger_ground()
 {
-    if (_threshold == 0)
+    if (_threshold == 0) {
         return false;
+    }
 
     const uint8_t NB_OF_TIME_TO_SAMPLE = 5;
     long sum = 0;
@@ -75,14 +76,13 @@ bool VirtualGround::calibrate()
     long val = this->get_value();
     Log.trace("calibration val: %l", val);
 
-    if (val < 0) {  // an error occured, -2 can occure sometimes
-        goto ret;
+    if (val >= 0) {
+        _calibrationSum += val;
+        _calibrationIndex += 1;
+    } else {
+        Log.warning("Invalid value :%l ,skipping it", val);
     }
 
-    _calibrationSum += val;
-    _calibrationIndex += 1;
-
-ret:
     return _calibrationIndex == MAX_CALIBRATIONS_SAMPLES;
 }
 
