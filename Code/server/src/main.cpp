@@ -37,6 +37,7 @@ ServerConfig config(DEFAULT_WEAPON_MODE);
 static ActionManager action_manager;
 
 void checkButtonsPressed();
+void do_calib();
 
 /**
  * @brief callback needed for arduino-log
@@ -69,18 +70,6 @@ void setup()
 
 static bool is_calibrating = false;
 uint32_t t1 = 0;
-
-static void do_calib()
-{
-    static unsigned int index = 0;
-
-    led_ring.do_circle_annimation(ORANGE_RGB, index % 24);
-    index++;
-
-    if (index > 24) {
-        index = 0;
-    }
-}
 
 void loop()
 {
