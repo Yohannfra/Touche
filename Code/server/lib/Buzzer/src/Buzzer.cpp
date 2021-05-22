@@ -20,16 +20,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Buzzer::Buzzer(byte pin)
 {
-    this->pin = pin;
-    pinMode(this->pin, OUTPUT);
+    _pin = pin;
+    pinMode(_pin, OUTPUT);
 }
 
 void Buzzer::play()
 {
-    digitalWrite(this->pin, HIGH);
+    digitalWrite(_pin, HIGH);
 }
 
 void Buzzer::stop()
 {
-    digitalWrite(this->pin, LOW);
+    digitalWrite(_pin, LOW);
 }

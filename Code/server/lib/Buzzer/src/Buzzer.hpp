@@ -31,7 +31,7 @@ class Buzzer {
     * @brief Pin attached to the buzzer
     *
     */
-    byte pin;
+    byte _pin;
 
   public:
     /**
