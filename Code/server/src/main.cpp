@@ -50,6 +50,7 @@ static void printLineEnding(Print *_logOutput)
 void setup()
 {
 #ifndef DISABLE_LOGGING
+    Serial.flush();
     Serial.begin(9600);
 
     // view available log level here : https://github.com/Yohannfra/Arduino-Log
