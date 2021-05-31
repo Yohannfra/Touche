@@ -31,6 +31,7 @@ typedef struct {
     uint8_t b;
 } color_t;
 
+static const color_t NONE_RGB = {0, 0, 0};
 static const color_t RED_RGB = {0xFF, 0, 0};
 static const color_t GREEN_RGB = {0, 0xFF, 0};
 static const color_t ORANGE_RGB = {0xFF, 0xA5, 0};
@@ -96,7 +97,7 @@ class LedRing {
     * @param color color of the annimation
     * @param step current step in the annimation
     */
-    void do_circle_annimation(color_t color, uint8_t step);
+    void do_circle_annimation(color_t color);
 
     void show_hits(hit_type_e hit_type);
 
@@ -105,12 +106,6 @@ class LedRing {
     color_t getPlayerColor(touche_role_e player);
 
   private:
-    /**
-    * @brief Pin attached to neopixel's data pin
-    *
-    */
-    byte pin;
-
     /**
     * @brief Adafruit_NeoPixel class instance
     *
