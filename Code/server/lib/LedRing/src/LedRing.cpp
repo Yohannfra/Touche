@@ -98,7 +98,6 @@ void LedRing::set_half_colors(color_t color_1, color_t color_2)
 void LedRing::show_hits(hit_type_e hit_type)
 {
     if (hit_type == HIT_PLAYER_1) {
-        this->set_color(_colorPlayer1);
         set_color(_colorPlayer1);
     } else if (hit_type == HIT_PLAYER_2) {
         set_color(_colorPlayer2, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
