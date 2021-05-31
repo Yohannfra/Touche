@@ -24,14 +24,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 extern LedRing led_ring;
 
-void do_calib()
+void runCalibrationProcess()
 {
-    static unsigned int index = 0;
+    static uint32_t t1 = 0;
 
-    led_ring.do_circle_annimation(ORANGE_RGB, index % 24);
-    index++;
-
-    if (index > 24) {
-        index = 0;
+    if (millis() - t1 > 100) {
+        led_ring.do_circle_annimation(ORANGE_RGB);
+        t1 = millis();
     }
 }
