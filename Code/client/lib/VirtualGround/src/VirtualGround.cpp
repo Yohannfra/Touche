@@ -24,16 +24,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define MAX_CALIBRATIONS_SAMPLES 100
 
-VirtualGround::VirtualGround(uint8_t pin_out, uint8_t pin_in) : _capacitive_sensor(pin_out, pin_in)
 VirtualGround::VirtualGround(uint8_t pin_out, uint8_t pin_in) : 
     _pin_out(pin_out),
     _pin_in(pin_in),
     _capacitive_sensor(_pin_out, _pin_in)
 {
-    this->_pin_out = pin_out;
-    this->_pin_in = pin_in;
-    this->_capacitive_sensor.set_CS_AutocaL_Millis(0xFFFFFFFF);  // turn off autocalibrate
-    this->_capacitive_sensor.set_CS_Timeout_Millis(2500);
     _capacitive_sensor.set_CS_AutocaL_Millis(0xFFFFFFFF);  // turn off autocalibrate
     _capacitive_sensor.set_CS_Timeout_Millis(2500);
     _calibrationSum = 0;
