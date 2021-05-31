@@ -38,7 +38,7 @@ void run_calibration_process()
     radio_module.sendMsg(CALIBRATION_STARTING);
 
     while (virtualGround.calibrate() == false) {
-        if (weapon.isHitting(config.getWeapon()) == Weapon::NONE) {
+        if (weapon.isHitting(config.getWeapon(), false) == Weapon::NONE) {
             Log.warning("Button released during calibration");
             radio_module.sendMsg(CALIBRATION_FAILED);
             virtualGround.end_calibration(false);

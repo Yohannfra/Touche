@@ -22,12 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <CapacitiveSensor.h>
 
-#define MAX_CALIBRATIONS_SAMPLES 100
+static const int MAX_CALIBRATIONS_SAMPLES = 100;
 
-VirtualGround::VirtualGround(uint8_t pin_out, uint8_t pin_in) : 
-    _pin_out(pin_out),
-    _pin_in(pin_in),
-    _capacitive_sensor(_pin_out, _pin_in)
+VirtualGround::VirtualGround(uint8_t pin_out, uint8_t pin_in) :
+    _pin_out(pin_out), _pin_in(pin_in), _capacitive_sensor(_pin_out, _pin_in)
 {
     _capacitive_sensor.set_CS_AutocaL_Millis(0xFFFFFFFF);  // turn off autocalibrate
     _capacitive_sensor.set_CS_Timeout_Millis(2500);

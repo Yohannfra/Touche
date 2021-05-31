@@ -35,7 +35,7 @@ Weapon::hit_status_e Weapon::isHitting(weapon_mode_e weapon, bool checkVirtualGr
 
                 while (!digitalRead(_pin) == true) {
                     if (millis() - t1 > FENCING_MINIMUM_TIME_VALID_HIT) {
-                        Log.trace("Epee button pressed");
+                        // Log.trace("Epee button pressed");
                         if (checkVirtualGround) {
                             return _virtualGround.trigger_ground() ? INVALID : VALID;
                         } else {
