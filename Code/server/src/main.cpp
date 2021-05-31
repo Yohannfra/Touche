@@ -37,7 +37,9 @@ ServerConfig config(DEFAULT_WEAPON_MODE);
 static ActionManager action_manager;
 
 void checkButtonsPressed();
-void do_calib();
+void runCalibrationProcess();
+
+static bool is_calibrating = false;
 
 /**
  * @brief callback needed for arduino-log
@@ -69,9 +71,6 @@ void setup()
     radio_module.setAckPayload(CREATE_ACK_PAYLOAD(config.getPisteMode(), config.getWeapon()));
 }
 
-static bool is_calibrating = false;
-uint32_t t1 = 0;
-
 void loop()
 {
     packet_t packet = radio_module.receiveMsg();
@@ -82,27 +81,25 @@ void loop()
         touche_role_e player_role = GET_ROLE(packet);
         payload_type_e payload = GET_PAYLOAD(packet);
 
-        if (payload & HIT) {
+        if (payload == HIT) {
             Log.notice("HIT");
             action_manager.hit(player_role);
-        } else if (payload & CALIBRATION_STARTING) {
-            if (!is_calibrating) {
-                Log.notice("CALIBRATION STARTED");
-                t1 = millis();
-                is_calibrating = true;
-            } else {
-                if (millis() - t1 > 200) {
-                    do_calib();
-                    t1 = millis();
-                }
-            }
-        } else if (payload & CALIBRATION_END) {
+        } else if (payload == CALIBRATION_STARTING) {
+            Log.notice("CALIBRATION STARTED");
+            is_calibrating = true;
+            runCalibrationProcess();
+        }
+
+        if (payload == CALIBRATION_END) {
             Log.notice("CALIBRATION END");
-            led_ring.turn_off();
+            led_ring.do_circle_annimation(NONE_RGB);
             led_ring.blink(GREEN_RGB, 100, 3);
-        } else if (payload & CALIBRATION_FAILED) {
+            is_calibrating = false;
+        } else if (payload == CALIBRATION_FAILED) {
             Log.warning("CALIBRATION FAILED");
+            led_ring.do_circle_annimation(NONE_RGB);
             led_ring.blink(RED_RGB, 100, 3);
+            is_calibrating = false;
         }
     }
 
@@ -120,5 +117,9 @@ void loop()
         }
     } else {  // Check buttons only if no hit is occuring
         checkButtonsPressed();
+    }
+
+    if (is_calibrating) {
+        runCalibrationProcess();
     }
 }
