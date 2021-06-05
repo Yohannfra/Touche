@@ -82,15 +82,15 @@ Custom ack is 8 bits
 5 : -
 4 : -
 3 : piste mode enabled / disabled
-2 : EPEE
-1 : SABRE
-0 : FOIL
+2 : SABRE
+1 : FOIL
+0 : EPEE
 */
 
 typedef uint8_t ack_payload_t;
 
 typedef enum : uint8_t {
-    ACK_PISTE_MODE = (1 << 7),
+    ACK_PISTE_MODE = (1 << 3),
     ACK_SABRE = (1 << 2),
     ACK_FOIL = (1 << 1),
     ACK_EPEE = (1 << 0),
@@ -99,7 +99,7 @@ typedef enum : uint8_t {
 
 static inline ack_payload_t CREATE_ACK_PAYLOAD(bool pisteEnabled, weapon_mode_e weapon)
 {
-    return static_cast<ack_payload_t>((pisteEnabled << 7) | (1 << weapon));
+    return static_cast<ack_payload_t>((pisteEnabled << 3) | (1 << weapon));
 }
 
 /* ------------------------------------------------------------- */
