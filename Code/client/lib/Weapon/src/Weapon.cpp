@@ -52,7 +52,7 @@ Weapon::hit_status_e Weapon::isHitting(weapon_mode_e weapon, bool checkVirtualGr
 
                 while (!digitalRead(_pin) == true) {
                     if (millis() - t1 > FENCING_MINIMUM_TIME_VALID_HIT) {
-                        Log.trace("Foil button pressed");
+                        // Log.trace("Foil button pressed");
                         if (checkVirtualGround) {
                             return _virtualGround.trigger_ground() ? VALID : INVALID;
                         } else {

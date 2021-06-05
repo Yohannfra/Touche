@@ -73,8 +73,6 @@ void setup()
 
 static void applyAckSettings(ack_payload_t ack)
 {
-    weapon_mode_e tmp = config.getWeapon();
-
     if (ack == ACK_ERROR) {
         Log.warning("ack is ACK_ERROR");
         return;
@@ -86,15 +84,14 @@ static void applyAckSettings(ack_payload_t ack)
 
     if (ack & ACK_EPEE) {
         config.setWeapon(EPEE);
+        virtualGround.reset();
     } else if (ack & ACK_FOIL) {
         config.setWeapon(FOIL);
+        virtualGround.reset();
     } else if (ack & ACK_SABRE) {
         // config.setWeapon(SABRE);
     }
 
-    if (tmp != config.getWeapon()) {  // weapon changed, write it to EEPROM
-        config.setWeapon(config.getWeapon());
-    }
     Log.notice("Weapon is now : %s", config.getWeapon() == FOIL ? "FOIL" : "EPEE");
     Log.notice("Piste is now : %s", config.getPisteMode() ? "Enabled" : "Disabled");
 }

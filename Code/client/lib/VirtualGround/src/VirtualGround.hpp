@@ -114,6 +114,12 @@ class VirtualGround {
     * @param state state of the piste mode
     */
     void setPisteEnabled(bool state);
+
+    /**
+    * @brief reset all past calibration, values etc. Call it when the weapon changes
+    *
+    */
+    void reset();
 };
 
 #endif /* CAPTOUCH_HPP */

@@ -60,7 +60,8 @@ bool VirtualGround::trigger_ground()
 
     Log.trace("trigger_ground final: %l", sum);
 
-    if (_pisteEnabled && sum > _threshold) {  // hit the piste
+    // I still need to test it with a real metal piste so it might be wrong
+    if (_pisteEnabled && sum > _threshold) {
         return true;
     }
 
@@ -100,4 +101,12 @@ void VirtualGround::end_calibration(bool success)
 void VirtualGround::setPisteEnabled(bool state)
 {
     _pisteEnabled = state;
+}
+
+void VirtualGround::reset()
+{
+    _calibrationSum = 0;
+    _calibrationIndex = 0;
+    _threshold = 0;
+    _tolerance = 0;
 }
