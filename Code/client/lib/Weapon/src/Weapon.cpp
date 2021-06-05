@@ -23,17 +23,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Weapon::Weapon(uint8_t pinButton, VirtualGround &virtualGround) : _virtualGround(virtualGround), _pin(pinButton)
 {
-    pinMode(_pin, INPUT_PULLUP);
+    pinMode(_pin, INPUT);
+}
+
+bool Weapon::buttonPressed()
+{
+    return digitalRead(_pin);
 }
 
 Weapon::hit_status_e Weapon::isHitting(weapon_mode_e weapon, bool checkVirtualGround)
 {
     switch (weapon) {
         case EPEE:
-            if (!digitalRead(_pin)) {
+            if (buttonPressed()) {
                 unsigned long t1 = millis();
 
-                while (!digitalRead(_pin) == true) {
+                while (buttonPressed()) {
                     if (millis() - t1 > FENCING_MINIMUM_TIME_VALID_HIT) {
                         // Log.trace("Epee button pressed");
                         if (checkVirtualGround) {
@@ -47,10 +52,10 @@ Weapon::hit_status_e Weapon::isHitting(weapon_mode_e weapon, bool checkVirtualGr
             break;
 
         case FOIL:
-            if (!digitalRead(_pin)) {
+            if (buttonPressed()) {
                 unsigned long t1 = millis();
 
-                while (!digitalRead(_pin) == true) {
+                while (buttonPressed()) {
                     if (millis() - t1 > FENCING_MINIMUM_TIME_VALID_HIT) {
                         // Log.trace("Foil button pressed");
                         if (checkVirtualGround) {

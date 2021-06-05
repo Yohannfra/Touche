@@ -59,6 +59,14 @@ class Weapon {
     * @brief button's pin
     */
     uint8_t _pin;
+
+    /**
+     * @brief tells if the button is pressed (for epee and foil)
+     *
+     * @return true button pressed
+     * @return false button not pressed
+     */
+    bool buttonPressed();
 };
 
 #endif /* WEAPON_HPP */
