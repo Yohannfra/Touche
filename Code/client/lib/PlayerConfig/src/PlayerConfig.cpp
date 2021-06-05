@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #error "DEFAULT_WEAPON_MODE must be EPEE or FOIL"
 #endif
 
-PlayerConfig::PlayerConfig(touche_role_e role, weapon_mode_e weapon) : _pisteMode(false)
+PlayerConfig::PlayerConfig(touche_role_e role, weapon_mode_e defaultWeapon) : _pisteMode(false)
 {
     touche_role_e role_in_mem = static_cast<touche_role_e>(EEPROM.read(ROLE_ADDR_IN_EEPROM));
     weapon_mode_e weapon_in_mem = static_cast<weapon_mode_e>(EEPROM.read(WEAPON_ADDR_IN_EEPROM));
@@ -52,10 +52,19 @@ PlayerConfig::PlayerConfig(touche_role_e role, weapon_mode_e weapon) : _pisteMod
         _role = role_in_mem;
     }
 
-    if (weapon_in_mem != weapon) {  // to avoid unnecessary call to EEPROM.update
-        this->setWeapon(weapon);
-    } else {
-        _weapon = weapon_in_mem;
+    switch (weapon_in_mem) {
+        case EPEE:
+            _weapon = EPEE;
+            break;
+        case FOIL:
+            _weapon = FOIL;
+            break;
+        // case SABRE:
+        //     _weapon = SABRE;
+        //     break;
+        default:
+            this->setWeapon(defaultWeapon);
+            break;
     }
 }
 
