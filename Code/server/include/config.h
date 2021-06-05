@@ -28,11 +28,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @brief Arduino pin used for the piste mode button
  */
 
-#define PIN_BUTTON_PISTE_MODE 4
+#define PIN_BUTTON_SWITCH_PLAYERS 4
 
-#define PIN_BUTTON_CHANGE_WEAPON 5
+#define PIN_BUTTON_PISTE_MODE 5
 
-#define PIN_BUTTON_SWITCH_PLAYERS 6
+#define PIN_BUTTON_CHANGE_WEAPON 6
 
 /**
  * @brief Arduino pin used for the neopixel ring
