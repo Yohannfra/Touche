@@ -33,8 +33,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @brief Arduino pin used for the led
  */
 #define LED_PIN_RED 10
-#define LED_PIN_GREEN 9
-#define LED_PIN_BLUE 6
+#define LED_PIN_GREEN 6
+#define LED_PIN_BLUE 9
 
 /**
  * @brief Arduino pin for the button of the weapon
