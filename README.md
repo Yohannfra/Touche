@@ -14,9 +14,11 @@ The goal is to make an **affordable**, **open source** and **open hardware** sys
 
 It currently works for **epee** and **foil**, sabre support is in the roadmap.
 
-This project is divised in two main parts : the **client** and the **server**
-- The **client** is the box that each player will use and plug their weapons to
-- The **server** is the scoring system, it turn lights on and play sounds if a player hits
+#### The system is divided in 3 parts: one base station and two fencer boxes.
+
+*During the early days of this project I called the base station the **server**
+and the fencer boxes the **clients**, I will use this naming in this document
+and across the project.*
 
 
 ## Getting started
@@ -42,18 +44,16 @@ This repository contains all the **sources**, **3d files** and **pcb files** nee
 
 ```
 .
-├── Archive      # some old versions of the project
-├── Documents    # pcb sources, and stl files
-├── Code         # source code
+├── Archive           # some old versions of the project
+├── Documents         # pcb sources, and stl files
+├── Code              # source code
 ├── Assembly_Guide/   # step by step tutorial to diy
 ```
 Each directory has it's own README.md to explain this with more details.
 
 ## Roadmap
 
-- Support sabre
-- Move to rechargable 3.7v batteries
-- Get rid arduio nano and nrf24L01 make a single pcb containing everything
+See github issues.
 
 ## License
 
