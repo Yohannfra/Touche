@@ -9,9 +9,8 @@ The total cost of the system sits somewhere around **50 euros** but since most p
 1. [Parts, material and required tools](#p1)
 2. [PCB](#p2)
 3. [3D printing](#p3)
-4. [Programming](#p4)
-5. [Assembly](#p5)
-6. [Testing](#p6)
+4. [Assembly](#p4)
+5. [Testing](#p5)
 
 
 
@@ -98,13 +97,16 @@ Ordering the PCBS is quite simple and cheap nowadays. I will show how to do it w
 
 <a name="p4"/>
 
-### 4. Programming
-
-<a name="p5"/>
-
 ### 5. Assembly
 
-<a name="p6"/>
+The assembly process is divided in 5 steps :
+1. [client's pcb](./Step1.md)
+2. [server's pcb](./Step2.md)
+3. [programming](./Step3.md)
+4. [client's assembly](./Step4.md)
+5. [server's assembly](./Step5.md)
+
+<a name="p5"/>
 
 ### 6. Testing
 
