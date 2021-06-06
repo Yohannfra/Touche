@@ -38,28 +38,19 @@ The total cost of the system sits somewhere around **50 euros** but since most p
 | Buzzer SFM-27                             | 1        | [Aliexpress](https://fr.aliexpress.com/item/1005002095783515.html?spm=a2g0o.productlist.0.0.a9add4abscUyMV&algo_pvid=d7001577-bf5f-497d-9e5e-af7428784ad3&algo_expid=d7001577-bf5f-497d-9e5e-af7428784ad3-3&btsid=2100bdec16164060163915350ec18e&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_) [Amazon](https://www.amazon.fr/YANSHON-Buzzer-dAlarme-Avertisseur-%C3%A9lectronique/dp/B07RY42FQ5/ref=sr_1_1?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=sfm+27&qid=1616406059&sr=8-1) |
 | AA battery                                | 9        | [Amazon](https://www.amazon.fr/Duracell-Plus-Power-Piles-Alcalines/dp/B005EJFLJC/ref=sr_1_5?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=aa+battery&qid=1616406100&sr=8-5) or any local store |
 | Bolt (M3 x 10) | 12 | [Aliexpress](https://fr.aliexpress.com/item/33012853233.html?spm=a2g0o.productlist.0.0.3a3888c1zqhxRF&algo_pvid=5c853c10-dafd-437e-900e-69b52295e526&algo_expid=5c853c10-dafd-437e-900e-69b52295e526-0&btsid=0b0a050b16200820396897562e170e&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_) [Amazon](https://www.amazon.fr/100pcs-Boulon-Hexagonale-Cylindrique-inoxydable/dp/B073ZY19VS/ref=sr_1_13?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=m3+x+10&qid=1620082082&sr=8-13) |
-| Mini screws (M1.75 x 5) | 16 | [Aliexpress](https://fr.aliexpress.com/item/4000930559532.html?spm=a2g0o.productlist.0.0.761321146ysipd&algo_pvid=0f249ca6-419b-4e43-90a0-ce0ec4231748&algo_expid=0f249ca6-419b-4e43-90a0-ce0ec4231748-1&btsid=0b0a050b16200822461428680e170e&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_) [Amazon](https://www.amazon.fr/1000pcs-minuscules-crois%C3%A9e-dassortiment-autotaraudeurs/dp/B07WXHH6ZL/ref=sr_1_1?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=mini+screws+m1.7&qid=1620082194&sr=8-1) |
+| Mini screws (M1.75 x 5) | 12 | [Aliexpress](https://fr.aliexpress.com/item/4000930559532.html?spm=a2g0o.productlist.0.0.761321146ysipd&algo_pvid=0f249ca6-419b-4e43-90a0-ce0ec4231748&algo_expid=0f249ca6-419b-4e43-90a0-ce0ec4231748-1&btsid=0b0a050b16200822461428680e170e&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_) [Amazon](https://www.amazon.fr/1000pcs-minuscules-crois%C3%A9e-dassortiment-autotaraudeurs/dp/B07WXHH6ZL/ref=sr_1_1?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=mini+screws+m1.7&qid=1620082194&sr=8-1) |
+| 5kΩ (or less)  potentiometer | 1 | [Aliexpress](https://www.aliexpress.com/item/1005002056193990.html?spm=a2g0o.productlist.0.0.32a713cbDKwMcm&algo_pvid=3e42dbd6-8663-4864-a628-38a8b36c8e7e&algo_expid=3e42dbd6-8663-4864-a628-38a8b36c8e7e-2&btsid=2100bdec16229737670425226e4bfa&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_) |
+| Right angle push button switch (6 x 6 x 9 mm) | 3 | [Aliexpress](https://www.aliexpress.com/item/32901481925.html?spm=a2g0s.9042311.0.0.17af6c37yXC24E) |
 
 
 
-##### Tools you'll need
+##### Tools / consumables you'll need
 
-- 3D printer (I printed all the parts on my 150$ ender 3 so IMO any decent printer could do the job)
-
-- Soldering iron
-
-- Hot glue gun
-
-- Screwdriver
-
+- 3D printer (I printed all the parts on my Ender 3 so I think any decent printer could get the job done)
+- Soldering iron and solder wire
+- Hot glue gun and glue
+- Screwdrivers
 - Wire cutting pliers
-
-
-
-##### Additional material
-
-- Hot glue
-- Solder wire
 - A few wires (I have [those](https://www.amazon.com/TUOFENG-Wire-Solid-different-colored-spools/dp/B07TX6BX47/ref=sr_1_5?dchild=1&keywords=wires&qid=1620082408&sr=8-5))
 
 
@@ -75,18 +66,18 @@ Ordering the PCBS is quite simple and cheap nowadays. I will show how to do it w
 2. Leave all the defaults settings and click on 'Quote now'
 
 
-    ![jlcpcb_home_quote](./pictures/jlcpcb_home_quote.png)
+![jlcpcb_home_quote](./pictures/jlcpcb_home_quote.png)
 
 
 3. Import the client's gerber file (it the .zip in [this](https://github.com/Yohannfra/Touche/tree/master/Documents/PCB/client) directory)
 
 
-    ![jlcpcb_import_gerber](./pictures/jlcpcb_import_gerber.png)
+![jlcpcb_import_gerber](./pictures/jlcpcb_import_gerber.png)
 
 4. Save to cart and **repeat this process for the server's gerber file** ([here](https://github.com/Yohannfra/Touche/tree/master/Documents/PCB/server))
 
 
-    ![jlcpcb_save_to_cart](./pictures/jlcpcb_save_to_cart.png)
+![jlcpcb_save_to_cart](./pictures/jlcpcb_save_to_cart.png)
 
 
 5. Pay and order.
@@ -95,9 +86,23 @@ Ordering the PCBS is quite simple and cheap nowadays. I will show how to do it w
 
 ### 3. 3D printing
 
+8 printed parts are needed for the assembly :
+
+| Name                    | Link                                                         | Quantity | Time needed | Supports |
+| ----------------------- | ------------------------------------------------------------ | -------- | ----------- | -------- |
+| Client's base           | [url](https://github.com/Yohannfra/Touche/tree/master/Documents/CAD/client/base_client.stl)    | 2        | ~4h         | Yes      |
+| Client's lid            | [url](https://github.com/Yohannfra/Touche/tree/master/Documents/CAD/client/lid_client.stl)     | 2        | ~4h         | No       |
+| Server's base           | [url](https://github.com/Yohannfra/Touche/tree/master/Documents/CAD/server/base_server.stl)    | 1        | ~6h         | Yes      |
+| Server's lid            | [url](https://github.com/Yohannfra/Touche/tree/master/Documents/CAD/server/lid_server.stl)     | 1        | ~4h         | No       |
+| Neopixel light diffuser | [url](https://github.com/Yohannfra/Touche/tree/master/Documents/CAD/server/light_diffuser.stl) | 2        | ~10 min     | No       |
+
+
+
+I recommend printing all of them with at least **20% infill** and **0.2mm layer height** and face up.
+
 <a name="p4"/>
 
-### 5. Assembly
+### 4. Assembly
 
 The assembly process is divided in 5 steps :
 1. [client's pcb](./Step1.md)
@@ -108,5 +113,5 @@ The assembly process is divided in 5 steps :
 
 <a name="p5"/>
 
-### 6. Testing
+### 5. Testing
 
