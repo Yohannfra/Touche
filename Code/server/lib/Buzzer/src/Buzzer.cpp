@@ -24,12 +24,12 @@ Buzzer::Buzzer(byte pin)
     pinMode(_pin, OUTPUT);
 }
 
-void Buzzer::play()
+void Buzzer::play(uint8_t volume)
 {
-    digitalWrite(_pin, HIGH);
+    analogWrite(_pin, volume);
 }
 
 void Buzzer::stop()
 {
-    digitalWrite(_pin, LOW);
+    analogWrite(_pin, 0);
 }

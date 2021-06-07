@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Button.hpp"
 #include "Buzzer.hpp"
 #include "LedRing.hpp"
+#include "Potentiometer.hpp"
 #include "RadioModule.hpp"
 #include "ServerConfig.hpp"
 #include "config.h"
@@ -31,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Arduino.h>
 
 Buzzer buzzer(BUZZER_PIN);
+Potentiometer potentiometer(POTENTIOMETER_PIN);
 LedRing led_ring(LED_RING_PIN);
 RadioModule radio_module(NRF24L01_CE_PIN, NRF24L01_CS_PIN);
 ServerConfig config(DEFAULT_WEAPON_MODE);
@@ -106,8 +108,8 @@ void loop()
     hit_type_e hit_type = action_manager.getHitStatus();
 
     if (hit_type != NO_HIT) {
-        buzzer.play();
         led_ring.show_hits(hit_type);
+        buzzer.play(potentiometer.getMappedValue());
 
         if (action_manager.isResetTime()) {
             Log.notice("resetting values");

@@ -20,12 +20,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Button.hpp"
 #include "Buzzer.hpp"
 #include "LedRing.hpp"
+#include "Potentiometer.hpp"
 #include "RadioModule.hpp"
 #include "ServerConfig.hpp"
 
 #include <Arduino.h>
 
 extern Buzzer buzzer;
+extern Potentiometer potentiometer;
 extern LedRing led_ring;
 extern RadioModule radio_module;
 extern ServerConfig config;
@@ -41,7 +43,7 @@ void checkButtonsPressed()
         Log.notice("Button piste pressed !");
         config.setPisteMode(!config.getPisteMode());
         radio_module.setAckPayload(CREATE_ACK_PAYLOAD(config.getPisteMode(), config.getWeapon()));
-        buzzer.play();
+        buzzer.play(potentiometer.getMappedValue());
         led_ring.blink(ORANGE_RGB, 100, 3);
         buzzer.stop();
     }
@@ -50,7 +52,7 @@ void checkButtonsPressed()
     if (buttonSwitchPlayer.isPressed()) {
         Log.notice("Button switch pressed !");
         led_ring.switchColors();
-        buzzer.play();
+        buzzer.play(potentiometer.getMappedValue());
         led_ring.blinkBoth(led_ring.getPlayerColor(PLAYER_1), led_ring.getPlayerColor(PLAYER_2), 400, 2);
         buzzer.stop();
     }
@@ -66,7 +68,7 @@ void checkButtonsPressed()
 
         Log.notice("weapon is now: %s", config.getWeapon() == EPEE ? "EPEE" : "FOIL");
 
-        buzzer.play();
+        buzzer.play(potentiometer.getMappedValue());
         led_ring.blink(ORANGE_RGB, 100, 3);
         buzzer.stop();
     }

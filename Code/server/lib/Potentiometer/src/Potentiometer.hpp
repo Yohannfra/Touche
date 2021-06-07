@@ -16,43 +16,43 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef BUZZER_HPP
-#define BUZZER_HPP
+#ifndef POTENTIOMETER_HPP
+#define POTENTIOMETER_HPP
 
 #include <Arduino.h>
 
 /**
- * @brief Abstract buzzer usage
+ * @brief Abstract potentiometer usage
  *
  */
-class Buzzer {
-  private:
-    /**
-    * @brief Pin attached to the buzzer
-    *
-    */
-    byte _pin;
-
+class Potentiometer {
   public:
     /**
-    * @brief Construct a new Buzzer object
-    *
-    * @param pin Pin attached to the buzzer
-    */
-    Buzzer(byte pin);
+     * @brief Construct a new Potentiometer object
+     *
+     * @param pin arduino pin for the potentiometer value reading
+     */
+    Potentiometer(byte pin);
 
     /**
-    * @brief Start buzzer
-    *
-    * @param volume audio volume from 0 to 255
-    */
-    void play(uint8_t volume);
+     * @brief Get the mapped value from 0 to 200
+     *
+     * @return int the mapped value
+     */
+    int getMappedValue();
 
     /**
-    * @brief Stop buzzer
-    *
+     * @brief Get the raw value of analogRead
+     *
+     * @return int the raw value
+     */
+    int getRawValue();
+
+  private:
+    /**
+    * @brief Pin attached to the potentiometer
     */
-    void stop();
+    byte _pin;
 };
 
-#endif /* BUZZER_HPP */
+#endif  // POTENTIOMETER_HPP
