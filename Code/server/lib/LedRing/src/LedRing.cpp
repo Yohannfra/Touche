@@ -95,15 +95,23 @@ void LedRing::set_half_colors(color_t color_1, color_t color_2)
     strip.show();
 }
 
-void LedRing::show_hits(hit_type_e hit_type)
+void LedRing::show_hits(uint16_t hits)
 {
-    if (hit_type == HIT_PLAYER_1) {
+    ActionManager::action_type_e action_player1 = static_cast<ActionManager::action_type_e>((hits >> 8) & 0xFF);
+    ActionManager::action_type_e action_player2 = static_cast<ActionManager::action_type_e>(hits & 0xFF);
+
+    // player 1
+    if (action_player1 == ActionManager::VALID_HIT) {
         set_color(_colorPlayer1);
-    } else if (hit_type == HIT_PLAYER_2) {
+    } else if (action_player1 == ActionManager::INVALID_HIT) {
+        set_color(ORANGE_RGB);
+    }
+
+    // player 2
+    if (action_player2 == ActionManager::VALID_HIT) {
         set_color(_colorPlayer2, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
-    } else {
-        set_color(_colorPlayer1);
-        set_color(_colorPlayer2, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
+    } else if (action_player2 == ActionManager::VALID_HIT) {
+        set_color(ORANGE_RGB, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
     }
 }
 

@@ -24,29 +24,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdint.h>
 
 /**
- * @brief All possible type of hits
- *
- */
-typedef enum : uint8_t {
-    HIT_PLAYER_1 = 0,
-    HIT_PLAYER_2 = 1,
-    DOUBLE_HIT = 2,
-    NO_HIT = 3  //
-} hit_type_e;
-
-/**
  * @brief Class to handle actions and events
  *
  */
 class ActionManager {
   public:
     /**
-         * @brief hit action or no action
-         *
-         */
+    * @brief hit action or no action
+    *
+    */
     typedef enum : uint8_t {
-        ACTION_HIT = 0,
-        NO_ACTION = 1,
+        NONE = 0,
+        VALID_HIT,
+        INVALID_HIT,
     } action_type_e;
 
     /**
@@ -65,8 +55,9 @@ class ActionManager {
     * @brief Declare a hit to the actionManager
     *
     * @param index Index of the player hitting
+    * @param valid if it's a valid hit or not
     */
-    void hit(touche_role_e role);
+    void hit(touche_role_e role, bool valid);
 
     /**
     * @brief Check if the time elapsed since the last hit is
@@ -80,9 +71,9 @@ class ActionManager {
     /**
     * @brief Get the current hit status
     *
-    * @return hit_type_e the current hit status
+    * @return an uint16 containing left hit in high byte and right hit in low bytes
     */
-    hit_type_e getHitStatus() const;
+    uint16_t getHitStatus() const;
 
   private:
     unsigned long _time_last_hit;

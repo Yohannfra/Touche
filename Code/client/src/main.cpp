@@ -109,11 +109,13 @@ void loop()
             Log.notice("== Valid hit ==");
             timerValidHit.start();
             led.setColor(RGBLed::GREEN);
-            ack_payload_t ack = radio_module.sendMsg(HIT);
-            applyAckSettings(ack);
+            applyAckSettings(radio_module.sendMsg(HIT));
             timerInvalidHit.reset();
         } else if (!timerInvalidHit.isRunning() && !timerValidHit.isRunning()) {  // INVALID HIT
             Log.notice("== Invalid hit ==");
+            if (config.getWeapon() == FOIL) {
+                applyAckSettings(radio_module.sendMsg(INVALID_HIT));
+            }
             timerInvalidHit.start();
             led.setColor(RGBLed::RED);
         }

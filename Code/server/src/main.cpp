@@ -85,7 +85,6 @@ void loop()
 
         if (payload == HIT) {
             Log.notice("HIT");
-            action_manager.hit(player_role);
             action_manager.hit(player_role, true);
         } else if (payload == INVALID_HIT) {
             Log.notice("INVALID HIT");
@@ -112,9 +111,9 @@ void loop()
     // signal hit(s)
     uint16_t hits = action_manager.getHitStatus();
 
-    if (hit_type != NO_HIT) {
-        led_ring.show_hits(hit_type);
+    if (hits != ActionManager::NONE) {
         buzzer.play(potentiometer.getMappedValue());
+        led_ring.show_hits(hits);
 
         if (action_manager.isResetTime()) {
             Log.notice("resetting values");

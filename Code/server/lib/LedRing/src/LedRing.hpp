@@ -99,7 +99,7 @@ class LedRing {
     */
     void do_circle_annimation(color_t color);
 
-    void show_hits(hit_type_e hit_type);
+    void show_hits(uint16_t hits);
 
     void switchColors();
 
