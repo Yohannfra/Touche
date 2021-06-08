@@ -104,4 +104,4 @@ static inline ack_payload_t CREATE_ACK_PAYLOAD(bool pisteEnabled, weapon_mode_e 
 
 /* ------------------------------------------------------------- */
 
-#endif  // PROTOCOL_H
+#endif /* PROTOCOL_H */
