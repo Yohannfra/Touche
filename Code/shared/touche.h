@@ -38,7 +38,9 @@ one signal lamp is lit). The tolerance allowed for timing the apparatus is that 
 these two limits (1/25th and 1/20th of a second)'
 
 -> So the time for a double hit must be somewhere beetween 0 and 50 ms,
-I set the threshold to 50 ms because nrf24l01 messages can be quite slow sometimes.
+I set the threshold to 300 ms because after testing it seems that when I press the 2 epee
+buttons at the exact same time, there is something arround 260ms beetween them
+(NRF24L01 time + processing time ...), so by setting 300ms I think that's good enough.
 
 ---
 
@@ -67,7 +69,7 @@ both sides of the apparatus'
 /**
  * @brief How long between two hits for it to be a double hit (ms)
  */
-#define FENCING_LAPS_DOUBLE_TOUCH (50)  // 50 ms
+#define FENCING_LAPS_DOUBLE_TOUCH (300)  // 50 ms
 
 /**
  * @brief Minimum time a hit must last to be valid (ms)

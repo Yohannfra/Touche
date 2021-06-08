@@ -86,6 +86,10 @@ void loop()
         if (payload == HIT) {
             Log.notice("HIT");
             action_manager.hit(player_role);
+            action_manager.hit(player_role, true);
+        } else if (payload == INVALID_HIT) {
+            Log.notice("INVALID HIT");
+            action_manager.hit(player_role, false);
         } else if (payload == CALIBRATION_STARTING) {
             Log.notice("CALIBRATION STARTED");
             is_calibrating = true;
@@ -105,7 +109,8 @@ void loop()
         }
     }
 
-    hit_type_e hit_type = action_manager.getHitStatus();
+    // signal hit(s)
+    uint16_t hits = action_manager.getHitStatus();
 
     if (hit_type != NO_HIT) {
         led_ring.show_hits(hit_type);
