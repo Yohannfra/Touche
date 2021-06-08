@@ -2,20 +2,10 @@
 
 This directory contains the PCB files and the Gerbers for the 2 boxes.
 
-I ordered all my PCB at [jlcpcb](https://jlcpcb.com/) and they always came up perfectly so i would recommend it. (No sponsorship or anything from jlcpcb I'm just a satisfied customer sharring his experience).
 
+## Order the PCBS
 
-
-## If you're not familiar with PCB making
-
-Upload the gerber files on jlcpcb (or any competitor),  leave all the settings at default and order.
-
-Be aware that you can't order less than 5 (at least on jlcpcb I dind't check anywhere else).
-
-⚠️ Order **client and server** pcb in the **same order** to save time and money.
-
-[Many tutorials](https://www.youtube.com/results?search_query=order+pcb+) exist on youtube to show how to order pcbs online so watch one if you want more informations.
-
+Check the chapter about the PCB ordering in the [Assembly guide](../../Assembly_Guide/README.md)
 
 ## If you're familiar with PCB making
 
