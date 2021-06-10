@@ -103,6 +103,12 @@ I recommend printing all of them with **20% infill** and **0.2mm layer height** 
 
 ### 4. Assembly
 
+Before starting the assembly make sure you have everything, you should have all the parts shown on this picture:
+
+![all_parts](https://imgur.com/XIzH3Ku.jpg)
+
+
+
 The assembly process is divided in 5 steps :
 1. [client's pcb](./Step1.md)
 2. [server's pcb](./Step2.md)
