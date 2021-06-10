@@ -3,7 +3,7 @@
 <eagle version="9.6.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.5" unitdist="mm" unit="mm" style="lines" multiple="1" display="no" altdistance="0.5" altunitdist="mm" altunit="mm"/>
@@ -159,20 +159,24 @@
 <board>
 <fusionsync huburn="a.YnVzaW5lc3M6ZXBpdGVjaDQw" projecturn="a.YnVzaW5lc3M6ZXBpdGVjaDQwI0QyMDIwMDMxMDI3MzUwNDYwMQ" f3durn="urn:adsk.wipprod:dm.lineage:smIWb7I_QH2r5atMStTLYg" pcbguid="" lastpulledtime="" lastsyncedchangeguid="" latestrevisionid="8f84e580-4472-4ef0-a48f-53cddb32db01" lastsyncedrevisionid="8f84e580-4472-4ef0-a48f-53cddb32db01" lastboardhashguid="d33897f3-c5e7-9f18-0b40-dca484aeffb9" lastpushedtime="2020-12-21T22:48:16Z" linktopcb3d="true"/>
 <plain>
-<hole x="52" y="36" drill="1.5"/>
-<hole x="2" y="2" drill="1.5"/>
-<hole x="2" y="36" drill="1.5"/>
-<hole x="52" y="2" drill="1.5"/>
-<wire x1="0" y1="0" x2="0" y2="38" width="0.1524" layer="20"/>
-<wire x1="0" y1="38" x2="54" y2="38" width="0.1524" layer="20"/>
-<wire x1="54" y1="38" x2="54" y2="0" width="0.1524" layer="20"/>
-<wire x1="54" y1="0" x2="0" y2="0" width="0.1524" layer="20"/>
+<hole x="52" y="36" drill="1.8"/>
+<hole x="2" y="2" drill="1.8"/>
+<hole x="2" y="36" drill="1.8"/>
+<hole x="52" y="2" drill="1.8"/>
+<wire x1="52" y1="0" x2="2" y2="0" width="0.1524" layer="20"/>
+<wire x1="2" y1="0" x2="0" y2="2" width="0.1524" layer="20" curve="-90"/>
+<wire x1="0" y1="2" x2="0" y2="36" width="0.1524" layer="20"/>
+<wire x1="0" y1="36" x2="2" y2="38" width="0.1524" layer="20" curve="-90"/>
+<wire x1="2" y1="38" x2="52" y2="38" width="0.1524" layer="20"/>
+<wire x1="52" y1="38" x2="54" y2="36" width="0.1524" layer="20" curve="-90"/>
+<wire x1="54" y1="36" x2="54" y2="2" width="0.1524" layer="20"/>
+<wire x1="54" y1="2" x2="52" y2="0" width="0.1524" layer="20" curve="-90"/>
 <dimension x1="54" y1="0" x2="0" y2="0" x3="27" y3="-3" textsize="1.778" layer="20"/>
 <dimension x1="0" y1="0" x2="0" y2="38" x3="-2" y3="19" textsize="1.778" layer="20"/>
 <text x="20" y="2" size="0.5" layer="21">+</text>
-<text x="52" y="23" size="1" layer="21" rot="R90">WSFF Client v1.0
+<text x="52" y="23" size="1" layer="21" rot="R90">Touche Client v1.0
 Assouline Yohann
-    11/04/2021</text>
+    07/06/2021</text>
 </plain>
 <libraries>
 <library name="pinhead" urn="urn:adsk.eagle:library:325">
@@ -1986,16 +1990,24 @@ design rules under a new name.</description>
 <contactref element="C1" pad="-"/>
 <contactref element="GND" pad="1"/>
 <polygon width="0.1524" layer="16" isolate="0.4064">
-<vertex x="0" y="0"/>
-<vertex x="0" y="38"/>
-<vertex x="54" y="38"/>
-<vertex x="54" y="0"/>
+<vertex x="52" y="0"/>
+<vertex x="2" y="0" curve="-90"/>
+<vertex x="0" y="2"/>
+<vertex x="0" y="36" curve="-90"/>
+<vertex x="2" y="38"/>
+<vertex x="52" y="38" curve="-90"/>
+<vertex x="54" y="36"/>
+<vertex x="54" y="2" curve="-90"/>
 </polygon>
 <polygon width="0.1524" layer="1" isolate="0.4064">
-<vertex x="0" y="0"/>
-<vertex x="0" y="38"/>
-<vertex x="54" y="38"/>
-<vertex x="54" y="0"/>
+<vertex x="52" y="0"/>
+<vertex x="2" y="0" curve="-90"/>
+<vertex x="0" y="2"/>
+<vertex x="0" y="36" curve="-90"/>
+<vertex x="2" y="38"/>
+<vertex x="52" y="38" curve="-90"/>
+<vertex x="54" y="36"/>
+<vertex x="54" y="2" curve="-90"/>
 </polygon>
 <contactref element="M2" pad="1"/>
 <contactref element="M1" pad="J1.4"/>

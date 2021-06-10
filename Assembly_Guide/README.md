@@ -59,7 +59,7 @@ The total cost of the system sits somewhere around **50 euros** but since most p
 
 ### 2. PCB
 
-Ordering the PCBS is quite simple and cheap nowadays. I will show how to do it with [JLCPCB](https://jlcpcb.com/) but it should be similar on [PCBWay](https://www.pcbway.com/) or any similar website.
+Ordering the PCBS is quite simple and cheap. I will show how to do it with [JLCPCB](https://jlcpcb.com/) but it should be similar on [PCBWay](https://www.pcbway.com/) or any similar website.
 
 1. Go to https://jlcpcb.com/
 

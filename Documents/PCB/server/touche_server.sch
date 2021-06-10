@@ -11348,15 +11348,17 @@ SparkFun BigTime Watch Kit&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 <part name="M2" library="wsff_lib" deviceset="WIRELESS-NRF24L01" device=""/>
 <part name="POT_5K" library="pot" library_urn="urn:adsk.eagle:library:331" deviceset="3RP/1610N" device="" package3d_urn="urn:adsk.eagle:package:22726/1"/>
 <part name="GND7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="BTN_PISTE_MODE" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-RIGHT-ANGLE-KIT" package3d_urn="urn:adsk.eagle:package:40168/1"/>
-<part name="CHANGE_WEAPON" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-RIGHT-ANGLE-KIT" package3d_urn="urn:adsk.eagle:package:40168/1"/>
-<part name="SWITCH_PLAYERS" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-RIGHT-ANGLE-KIT" package3d_urn="urn:adsk.eagle:package:40168/1"/>
+<part name="BTN_SWITCH" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-RIGHT-ANGLE-KIT" package3d_urn="urn:adsk.eagle:package:40168/1"/>
+<part name="BTN_PISTE" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-RIGHT-ANGLE-KIT" package3d_urn="urn:adsk.eagle:package:40168/1"/>
+<part name="BTN_CHANGE_WP" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-RIGHT-ANGLE-KIT" package3d_urn="urn:adsk.eagle:package:40168/1"/>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="P+1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
-<text x="2.54" y="22.86" size="1.778" layer="97">Buzzer</text>
+<text x="-5.08" y="-12.7" size="1.778" layer="97">Potentiometer</text>
 <text x="-5.08" y="83.82" size="1.778" layer="97">Neopixel ring</text>
 <text x="0" y="129.54" size="1.778" layer="97">Power</text>
 <text x="88.9" y="134.62" size="1.778" layer="97">NRF24l01</text>
@@ -11370,9 +11372,9 @@ SparkFun BigTime Watch Kit&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 <wire x1="-15.24" y1="38.1" x2="27.94" y2="38.1" width="0.1524" layer="97" style="longdash"/>
 <wire x1="27.94" y1="38.1" x2="27.94" y2="88.9" width="0.1524" layer="97" style="longdash"/>
 <wire x1="27.94" y1="88.9" x2="-15.24" y2="88.9" width="0.1524" layer="97" style="longdash"/>
-<wire x1="-17.78" y1="27.94" x2="-17.78" y2="-25.4" width="0.1524" layer="97" style="longdash"/>
-<wire x1="-17.78" y1="-25.4" x2="25.4" y2="-25.4" width="0.1524" layer="97" style="longdash"/>
-<wire x1="25.4" y1="-25.4" x2="25.4" y2="27.94" width="0.1524" layer="97" style="longdash"/>
+<wire x1="-17.78" y1="27.94" x2="-17.78" y2="-5.08" width="0.1524" layer="97" style="longdash"/>
+<wire x1="-17.78" y1="-5.08" x2="25.4" y2="-5.08" width="0.1524" layer="97" style="longdash"/>
+<wire x1="25.4" y1="-5.08" x2="25.4" y2="27.94" width="0.1524" layer="97" style="longdash"/>
 <wire x1="25.4" y1="27.94" x2="-17.78" y2="27.94" width="0.1524" layer="97" style="longdash"/>
 <wire x1="35.56" y1="7.62" x2="35.56" y2="-27.94" width="0.1524" layer="97" style="longdash"/>
 <wire x1="35.56" y1="-27.94" x2="162.56" y2="-27.94" width="0.1524" layer="97" style="longdash"/>
@@ -11386,6 +11388,11 @@ SparkFun BigTime Watch Kit&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 <wire x1="147.32" y1="93.98" x2="147.32" y2="139.7" width="0.1524" layer="97" style="longdash"/>
 <wire x1="147.32" y1="139.7" x2="40.64" y2="139.7" width="0.1524" layer="97" style="longdash"/>
 <wire x1="40.64" y1="139.7" x2="40.64" y2="93.98" width="0.1524" layer="97" style="longdash"/>
+<wire x1="-17.78" y1="-10.16" x2="-17.78" y2="-45.72" width="0.1524" layer="97" style="longdash"/>
+<wire x1="-17.78" y1="-45.72" x2="25.4" y2="-45.72" width="0.1524" layer="97" style="longdash"/>
+<wire x1="25.4" y1="-45.72" x2="25.4" y2="-10.16" width="0.1524" layer="97" style="longdash"/>
+<wire x1="25.4" y1="-10.16" x2="-17.78" y2="-10.16" width="0.1524" layer="97" style="longdash"/>
+<text x="0" y="25.4" size="1.778" layer="97">Buzzer</text>
 </plain>
 <instances>
 <instance part="GND" gate="G$1" x="-2.54" y="106.68" smashed="yes">
@@ -11444,24 +11451,30 @@ SparkFun BigTime Watch Kit&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 <attribute name="NAME" x="121.92" y="116.84" size="1.778" layer="95"/>
 <attribute name="VALUE" x="121.92" y="114.3" size="1.778" layer="96"/>
 </instance>
-<instance part="POT_5K" gate="G$1" x="2.54" y="0" smashed="yes">
-<attribute name="NAME" x="-5.969" y="-8.89" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="-1.27" y="-3.81" size="1.778" layer="96" rot="R90"/>
+<instance part="POT_5K" gate="G$1" x="-2.54" y="-27.94" smashed="yes">
+<attribute name="NAME" x="-5.969" y="-26.67" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="-6.35" y="-31.75" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="GND7" gate="1" x="7.62" y="-7.62" smashed="yes">
-<attribute name="VALUE" x="5.08" y="-10.16" size="1.778" layer="96"/>
+<instance part="GND7" gate="1" x="2.54" y="0" smashed="yes">
+<attribute name="VALUE" x="0" y="-2.54" size="1.778" layer="96"/>
 </instance>
-<instance part="BTN_PISTE_MODE" gate="G$1" x="109.22" y="-2.54" smashed="yes">
+<instance part="BTN_SWITCH" gate="G$1" x="109.22" y="-2.54" smashed="yes">
 <attribute name="NAME" x="109.22" y="-1.016" size="1.778" layer="95" font="vector" align="bottom-center"/>
 </instance>
-<instance part="CHANGE_WEAPON" gate="G$1" x="109.22" y="-10.16" smashed="yes">
+<instance part="BTN_PISTE" gate="G$1" x="109.22" y="-10.16" smashed="yes">
 <attribute name="NAME" x="109.22" y="-8.636" size="1.778" layer="95" font="vector" align="bottom-center"/>
 </instance>
-<instance part="SWITCH_PLAYERS" gate="G$1" x="109.22" y="-17.78" smashed="yes">
+<instance part="BTN_CHANGE_WP" gate="G$1" x="109.22" y="-17.78" smashed="yes">
 <attribute name="NAME" x="109.22" y="-16.256" size="1.778" layer="95" font="vector" align="bottom-center"/>
 </instance>
 <instance part="GND2" gate="1" x="127" y="-10.16" smashed="yes" rot="R90">
 <attribute name="VALUE" x="129.54" y="-12.7" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="GND5" gate="1" x="-2.54" y="-38.1" smashed="yes">
+<attribute name="VALUE" x="-5.08" y="-40.64" size="1.778" layer="96"/>
+</instance>
+<instance part="P+1" gate="VCC" x="-2.54" y="-17.78" smashed="yes">
+<attribute name="VALUE" x="-5.08" y="-20.32" size="1.778" layer="96" rot="R90"/>
 </instance>
 </instances>
 <busses>
@@ -11500,21 +11513,27 @@ SparkFun BigTime Watch Kit&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 <pinref part="GND9" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="GND7" gate="1" pin="GND"/>
-<pinref part="POT_5K" gate="G$1" pin="S"/>
-<wire x1="7.62" y1="-5.08" x2="7.62" y2="0" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="CHANGE_WEAPON" gate="G$1" pin="2"/>
+<pinref part="BTN_PISTE" gate="G$1" pin="2"/>
 <wire x1="114.3" y1="-10.16" x2="124.46" y2="-10.16" width="0.1524" layer="91"/>
 <pinref part="GND2" gate="1" pin="GND"/>
-<pinref part="BTN_PISTE_MODE" gate="G$1" pin="2"/>
+<pinref part="BTN_SWITCH" gate="G$1" pin="2"/>
 <wire x1="114.3" y1="-2.54" x2="124.46" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="124.46" y1="-2.54" x2="124.46" y2="-10.16" width="0.1524" layer="91"/>
 <junction x="124.46" y="-10.16"/>
 <wire x1="124.46" y1="-10.16" x2="124.46" y2="-17.78" width="0.1524" layer="91"/>
-<pinref part="SWITCH_PLAYERS" gate="G$1" pin="2"/>
+<pinref part="BTN_CHANGE_WP" gate="G$1" pin="2"/>
 <wire x1="114.3" y1="-17.78" x2="124.46" y2="-17.78" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="BZR_GND" gate="G$1" pin="1"/>
+<wire x1="-7.62" y1="5.08" x2="2.54" y2="5.08" width="0.1524" layer="91"/>
+<pinref part="GND7" gate="1" pin="GND"/>
+<wire x1="2.54" y1="5.08" x2="2.54" y2="2.54" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="POT_5K" gate="G$1" pin="A"/>
+<wire x1="-2.54" y1="-33.02" x2="-2.54" y2="-35.56" width="0.1524" layer="91" style="longdash"/>
+<pinref part="GND5" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="VCC_IN" class="0">
@@ -11610,6 +11629,11 @@ SparkFun BigTime Watch Kit&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 <wire x1="144.78" y1="30.48" x2="144.78" y2="33.02" width="0.1524" layer="91"/>
 <pinref part="P+4" gate="VCC" pin="VCC"/>
 </segment>
+<segment>
+<pinref part="POT_5K" gate="G$1" pin="E"/>
+<wire x1="-2.54" y1="-22.86" x2="-2.54" y2="-20.32" width="0.1524" layer="91" style="longdash"/>
+<pinref part="P+1" gate="VCC" pin="VCC"/>
+</segment>
 </net>
 <net name="NEOPIXEL_DIN" class="0">
 <segment>
@@ -11635,28 +11659,21 @@ SparkFun BigTime Watch Kit&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 <label x="73.66" y="33.02" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="N$1" class="0">
+<net name="PIN_BTN_SWITCH_SIDE" class="0">
 <segment>
-<pinref part="BZR_GND" gate="G$1" pin="1"/>
-<wire x1="-7.62" y1="5.08" x2="2.54" y2="5.08" width="0.1524" layer="91"/>
-<pinref part="POT_5K" gate="G$1" pin="E"/>
-</segment>
-</net>
-<net name="PIN_BTN_PISTE_MODE" class="0">
-<segment>
-<pinref part="BTN_PISTE_MODE" gate="G$1" pin="1"/>
+<pinref part="BTN_SWITCH" gate="G$1" pin="1"/>
 <wire x1="104.14" y1="-2.54" x2="93.98" y2="-2.54" width="0.1524" layer="91"/>
-<label x="63.5" y="-2.54" size="1.778" layer="95"/>
+<label x="58.42" y="-2.54" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="M1" gate="G$1" pin="D4"/>
 <wire x1="91.44" y1="48.26" x2="83.82" y2="48.26" width="0.1524" layer="91"/>
-<label x="53.34" y="48.26" size="1.778" layer="95"/>
+<label x="48.26" y="48.26" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="PIN_BTN_CHANGE_WEAPON" class="0">
+<net name="PIN_BTN_PISTE_MODE" class="0">
 <segment>
-<pinref part="CHANGE_WEAPON" gate="G$1" pin="1"/>
+<pinref part="BTN_PISTE" gate="G$1" pin="1"/>
 <wire x1="104.14" y1="-10.16" x2="93.98" y2="-10.16" width="0.1524" layer="91"/>
 <label x="58.42" y="-10.16" size="1.778" layer="95"/>
 </segment>
@@ -11666,9 +11683,9 @@ SparkFun BigTime Watch Kit&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 <label x="48.26" y="45.72" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="PIN_BTN_SWITCH_PLAYERS" class="0">
+<net name="PIN_BTN_CHANGE_WEAPON" class="0">
 <segment>
-<pinref part="SWITCH_PLAYERS" gate="G$1" pin="1"/>
+<pinref part="BTN_CHANGE_WP" gate="G$1" pin="1"/>
 <wire x1="104.14" y1="-17.78" x2="93.98" y2="-17.78" width="0.1524" layer="91"/>
 <label x="58.42" y="-17.78" size="1.778" layer="95"/>
 </segment>
@@ -11676,6 +11693,18 @@ SparkFun BigTime Watch Kit&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 <pinref part="M1" gate="G$1" pin="D6"/>
 <wire x1="91.44" y1="43.18" x2="83.82" y2="43.18" width="0.1524" layer="91"/>
 <label x="48.26" y="43.18" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="POT_IN" class="0">
+<segment>
+<pinref part="M1" gate="G$1" pin="A3"/>
+<wire x1="129.54" y1="43.18" x2="134.62" y2="43.18" width="0.1524" layer="91"/>
+<label x="137.16" y="43.18" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="POT_5K" gate="G$1" pin="S"/>
+<wire x1="2.54" y1="-27.94" x2="5.08" y2="-27.94" width="0.1524" layer="91" style="longdash"/>
+<label x="7.62" y="-27.94" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
@@ -11687,7 +11716,7 @@ SparkFun BigTime Watch Kit&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
 <approved hash="104,1,129.54,60.96,M1,GND.2,GND,,,"/>
 <approved hash="204,1,129.54,55.88,M1,5V,,,,"/>
 <approved hash="104,1,129.54,30.48,M1,3V3,VCC,,,"/>
-<approved hash="113,1,1.70434,-0.0423313,POT_5K,,,,,"/>
+<approved hash="113,1,-4.72982,-27.94,POT_5K,,,,,"/>
 </errors>
 </schematic>
 </drawing>
