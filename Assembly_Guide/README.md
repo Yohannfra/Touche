@@ -10,7 +10,7 @@ The total cost of the system sits somewhere around **50 euros** but since most p
 2. [PCB](#p2)
 3. [3D printing](#p3)
 4. [Assembly](#p4)
-5. [Testing](#p5)
+5. [Testing / Usage](#p5)
 
 
 
@@ -118,4 +118,50 @@ The assembly process is divided in 5 steps :
 
 <a name="p5"/>
 
-### 5. Testing
+### 5. Testing / Usage
+
+##### Turn on of the clients, if the led is :
+- Red -> Epee mode
+- BLUE -> Foil mode
+- GREEN -> Sabre mode (Not implemented yet)
+- Something else / nothing -> Somehing is wrong, check the assembly guide again.
+
+##### Same for the second client.
+
+##### Now turn on the server, the led rings should blink in orange, if no check the assembly guide again.
+
+### For epee
+
+Plug you epee in, if you press the button the server will signal it.
+
+By default if you touch the opponent guard it won't detect it, you must calibrate it.
+
+To calibrate the client you need to maintain the button of your epee on his guard until the server leds blinks in led (~3 seconds). If it blinks in red, an error occured and you must try again.\
+This need to be done each time something changes (new opponent, new weapon, new shoes, different piste ...).
+
+Both opponents need to do this once and the system will be good to go.
+
+One player will be signaled in green and the other one in red.
+
+### For foil
+
+By default all hits will be invalid, you must calibrate it.
+
+To calibrate the client you need to maintain the button of your foil on electric jacket until the server leds blinks in led (~3 seconds). If it blinks in red, an error occured and you must try again.\
+This need to be done each time something changes (new opponent, new weapon, new shoes, different piste ...).
+
+Both opponents need to do this once and the system will be good to go.
+
+One player will be signaled in green and the other one in red.
+
+
+##### About the buttons on the side of the server
+
+There are 3 buttons and a potentiometer on the side of the server boxe.
+
+The potentiometer controls the volume of the buzzer.
+
+Starting from the left:
+- First buttons is here to switch sides, eg. Player 1 hits are signaled on the left but he is on the right side of the server, press this button and he will be signaled on the right.
+- Second button toggles piste mode, it will detect the piste and won't signal if a hit occurs on it (still not tested because I don't have an electric piste at home but it should work)
+- Third button change wapon, press it and then hit with each player weapon to 'transfer the information' so the next hit will be in the new weapon mode.
