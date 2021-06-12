@@ -82,10 +82,10 @@ static void applyAckSettings(ack_payload_t ack)
 
     config.setPisteMode(ack & ACK_PISTE_MODE);
 
-    if (ack & ACK_EPEE) {
+    if (ack & ACK_EPEE && config.getWeapon() != EPEE) {
         config.setWeapon(EPEE);
         virtualGround.reset();
-    } else if (ack & ACK_FOIL) {
+    } else if (ack & ACK_FOIL && config.getWeapon() != FOIL) {
         config.setWeapon(FOIL);
         virtualGround.reset();
     } else if (ack & ACK_SABRE) {
