@@ -1,6 +1,6 @@
 # Step 4 : Client's assembly
 
-This step is for assembling the client's pcb to the printed part and finishing the clients boxes.
+This step is for assembling the client's pcb to the printed parts and finishing the clients boxes.
 
 
 
