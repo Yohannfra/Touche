@@ -44,13 +44,6 @@ buttons at the exact same time, there is something arround 260ms beetween them
 
 ---
 
-Page 82 part c:
-'[...] The apparatus must not register signals of less than 2 ms duration.'
-
--> So if a hit occure i must check it last more than 2 ms before sending a hit message
-
----
-
 Page 84 part a number 3:
 'The audible signal will consist of either one short ring or a continuous note lasting
 1–2 seconds, simultaneous with the light signals. The sound will be the same for
@@ -70,11 +63,6 @@ both sides of the apparatus'
  * @brief How long between two hits for it to be a double hit (ms)
  */
 #define FENCING_LAPS_DOUBLE_TOUCH (300)  // 50 ms
-
-/**
- * @brief Minimum time a hit must last to be valid (ms)
- */
-#define FENCING_MINIMUM_TIME_VALID_HIT (2)  // 2 ms
 
 /**
  * @brief The weapon mode to use, can be changed on runtime.

@@ -1,6 +1,6 @@
 # Step 3 : Programming
 
-In this step I'll show how to program everything. 
+In this step I'll show how to program everything.
 
 In this step I'll do everything with the command line (I'm on Mac) and those commands also work on linux. If you're on Windows you could use [WSL](https://docs.microsoft.com/fr-fr/windows/wsl/install-win10) or try to do everything with vscode.
 
@@ -23,7 +23,19 @@ $ pio --version
 PlatformIO Core, version 5.1.1
 ```
 
+### Select the default weapon
 
+in **Code/shared/touche.h** line number **78**
+
+by default it's
+```c
+#define DEFAULT_WEAPON_MODE EPEE
+```
+
+For now only **EPEE** and **FOIL** are available.
+
+
+### Server
 
 Go to the server's directory
 
@@ -53,7 +65,7 @@ $ make flash_release
 
 You can now unplug the server's pcb.
 
-
+### Client
 
 Now go to the client's directory
 
@@ -91,7 +103,7 @@ Now you'll have to edit a file, open **include/config.h"** in the client's direc
 #define PLAYER_ROLE PLAYER_1  // change value to PLAYER_1 or PLAYER_2
 ```
 
-to  
+to
 
 ```c
 #define PLAYER_ROLE PLAYER_2  // change value to PLAYER_1 or PLAYER_2
@@ -129,7 +141,7 @@ Between each system you should change the nrf24l01 pipes addresses, it's in the 
 
 
 
-The default pipe address is 
+The default pipe address is
 
 ```cpp
 static const uint64_t PIPES_ADDRESSES[2] = {
@@ -140,7 +152,7 @@ static const uint64_t PIPES_ADDRESSES[2] = {
 
 
 
-You can change that to anything as long as : 
+You can change that to anything as long as :
 
 - The length is the same
 - The two addresses are differents
@@ -153,27 +165,18 @@ static const uint64_t PIPES_ADDRESSES[2] = {
     0xB5C4B5B601LL,  // PLAYER 1
     0xB5C4B5B602LL   // PLAYER 2
 };
-```
 
-
-
-```cpp
 static const uint64_t PIPES_ADDRESSES[2] = {
     0xB1B4B5B601LL,  // PLAYER 1
     0xB1B4B5B602LL   // PLAYER 2
 };
-```
 
-
-
-```cpp
 static const uint64_t PIPES_ADDRESSES[2] = {
     0xA9B4B5B601LL,  // PLAYER 1
     0xA9B4B5B602LL   // PLAYER 2
 };
+
+// ...
 ```
 
-
-
-Refer to this thread if you want to know more : https://arduino.stackexchange.com/questions/2946/nrf24l01-pipe-question
-
+Refer to this thread if you want to know more about it: https://arduino.stackexchange.com/questions/2946/nrf24l01-pipe-question
