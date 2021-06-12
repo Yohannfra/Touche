@@ -120,7 +120,7 @@ The assembly process is divided in 5 steps :
 
 ### 5. Testing / Usage
 
-##### Turn on of the clients, if the led is :
+##### Turn on of the client, if the led is :
 - Red -> Epee mode
 - BLUE -> Foil mode
 - GREEN -> Sabre mode (Not implemented yet)
@@ -144,6 +144,8 @@ Both opponents need to do this once and the system will be good to go.
 One player will be signaled in green and the other one in red.
 
 ### For foil
+
+Plug you foil in, if you press the button the server will signal it as an invalid hit.
 
 By default all hits will be invalid, you must calibrate it.
 
