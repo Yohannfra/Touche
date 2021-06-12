@@ -1,6 +1,6 @@
 # CAD
 
-This directory contains the 3D stl files for the 2 boxes.
+This directory contains the 3D STL files for the 2 boxes.
 
 
 
