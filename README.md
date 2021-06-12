@@ -30,17 +30,13 @@ To make a system you'll have to go trough these steps:
 4. Solder the PCB and assemble everything
 5. Enjoy !
 
-I wrote a step by step tutorial that you can find [here](./Instructable/Instructable.md).
+I wrote a step by step tutorial that you can find in [Assembly_Guide](./Assembly_Guide).
 
 If you have a question about anything (please read the tutorial first) you can open a Github issue and I will try my best to answer you.
 
-#### ⚠️ If you don't want to make it yourself I opened an Etsy store to sell fully assembled systems.
-
-
-
 ## About the directory structure
 
-This repository contains all the **sources**, **3d files** and **pcb files** needed to make this system.
+This repository contains all the **sources**, **3D files** and **PCB files** needed to make this system.
 
 ```
 .
@@ -53,9 +49,16 @@ Each directory has it's own README.md to explain this with more details.
 
 ## Roadmap
 
-See github issues.
+See Github issues.
+
+## Contribute / Support
+
+If you have any improvement idea, find a bug or encounter a problem you can open a Github issue.
+
+I don't have any sabre equipment (that's why it doesn't support sabre yet), If you do and want to implement it please do !
+
+If you like this project and want to support it you can donate via [Paypal](https://paypal.me/pools/c/8AgHj8JHEs)
 
 ## License
 
 All the code, CAD files, PCB files and everything within this repository is licensed under the terms of the [GNU General Public License V3.0](./LICENSE).
-
