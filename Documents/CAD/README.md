@@ -22,9 +22,9 @@ This is just to give you an idea of the print time I had on my **ender 3 pro** a
 
 | Part        | Time  |
 | ----------- | ----- |
-| Client base | 5h 30 |
-| Client lid  | 3h    |
-| Server base | 7h    |
-| Server lid  | 3h 30 |
+| Client base | ~6h |
+| Client lid  | ~4h    |
+| Server base | ~7h    |
+| Server lid  | ~4h |
 | Light diffuser| 5 min |
 
