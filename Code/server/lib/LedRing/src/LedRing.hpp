@@ -107,6 +107,8 @@ class LedRing {
     color_t _colorPlayer1;
 
     color_t _colorPlayer2;
+
+    uint8_t _sides[2];
 };
 
 #endif /* LEDRING_HPP */

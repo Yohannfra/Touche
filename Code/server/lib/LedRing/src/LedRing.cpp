@@ -18,10 +18,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "LedRing.hpp"
 
+enum side_players_e {
+    LEFT = 0,
+    RIGHT = NEOPIXEL_RING_SIZE,
+};
+
 LedRing::LedRing(byte pin) : strip(2 * NEOPIXEL_RING_SIZE, pin, NEO_GRB + NEO_KHZ800)
 {
     _colorPlayer1 = RED_RGB;
     _colorPlayer2 = GREEN_RGB;
+
+    _sides[PLAYER_1] = LEFT;
+    _sides[PLAYER_2] = RIGHT;
 }
 
 void LedRing::init()
@@ -76,8 +84,8 @@ void LedRing::blink(color_t color, int time_ms, size_t nb_blinks, uint8_t index)
 void LedRing::blinkBoth(color_t color, color_t color2, int time_ms, size_t nb_blinks)
 {
     for (size_t i = 0; i < nb_blinks; i++) {
-        set_color(color, 0, NEOPIXEL_RING_SIZE);
-        set_color(color2, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
+        set_color(color, _sides[PLAYER_1], _sides[PLAYER_1] + NEOPIXEL_RING_SIZE);
+        set_color(color2, _sides[PLAYER_2], _sides[PLAYER_2] + NEOPIXEL_RING_SIZE);
         delay(time_ms);
         turn_off();
         delay(time_ms);
@@ -91,26 +99,25 @@ void LedRing::show_hits(uint16_t hits)
 
     // player 1
     if (action_player1 == ActionManager::VALID_HIT) {
-        set_color(_colorPlayer1);
+        set_color(_colorPlayer1, _sides[PLAYER_1], _sides[PLAYER_1] + NEOPIXEL_RING_SIZE);
     } else if (action_player1 == ActionManager::INVALID_HIT) {
-        set_color(ORANGE_RGB);
+        set_color(ORANGE_RGB, _sides[PLAYER_1], _sides[PLAYER_1] + NEOPIXEL_RING_SIZE);
     }
 
     // player 2
     if (action_player2 == ActionManager::VALID_HIT) {
-        set_color(_colorPlayer2, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
+        set_color(_colorPlayer2, _sides[PLAYER_2], _sides[PLAYER_2] + NEOPIXEL_RING_SIZE);
     } else if (action_player2 == ActionManager::VALID_HIT) {
-        set_color(ORANGE_RGB, NEOPIXEL_RING_SIZE, NEOPIXEL_RING_SIZE * 2);
+        set_color(ORANGE_RGB, _sides[PLAYER_2], _sides[PLAYER_2] + NEOPIXEL_RING_SIZE);
     }
 }
 
 void LedRing::switchColors()
 {
-    color_t tmp;
+    int tmp = _sides[PLAYER_1];
 
-    memcpy(&tmp, &_colorPlayer1, sizeof(color_t));
-    memcpy(&_colorPlayer1, &_colorPlayer2, sizeof(color_t));
-    memcpy(&_colorPlayer2, &tmp, sizeof(color_t));
+    _sides[PLAYER_1] = _sides[PLAYER_2];
+    _sides[PLAYER_2] = tmp;
 }
 
 color_t LedRing::getPlayerColor(touche_role_e player)
