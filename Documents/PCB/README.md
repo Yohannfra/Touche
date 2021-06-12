@@ -7,7 +7,7 @@ This directory contains the PCB files and the Gerbers for the 2 boxes.
 
 Check the chapter about the PCB ordering in the [Assembly guide](../../Assembly_Guide/README.md)
 
-## If you're familiar with PCB making
+## Quick note
 
 I designed these PCB with Eagle.
 
