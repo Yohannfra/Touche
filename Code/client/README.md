@@ -18,8 +18,8 @@ make flash_release   # release version
 
 ### Change the default player
 
-If it's the first time you program and arduino with this code you must set which 'Player' it will be, it can be **PLAYER_1** or **PLAYER_2**
-Once it's done once for an arduino you should not need to change that anymore.
+If it's the first time you program and Arduino with this code you must set which 'Player' it will be, it can be **PLAYER_1** or **PLAYER_2**
+Once it's done once for an Arduino you should not need to change that anymore.
 
 Change it in **./include/config.h** line 28
 
