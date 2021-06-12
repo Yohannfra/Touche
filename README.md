@@ -51,11 +51,13 @@ Each directory has it's own README.md to explain this with more details.
 
 See Github issues.
 
-## Contribute / Support
+## Contribute
 
 If you have any improvement idea, find a bug or encounter a problem you can open a Github issue.
 
 I don't have any sabre equipment (that's why it doesn't support sabre yet), If you do and want to implement it please do !
+
+## Support
 
 If you like this project and want to support it you can donate via [Paypal](https://paypal.me/pools/c/8AgHj8JHEs)
 
