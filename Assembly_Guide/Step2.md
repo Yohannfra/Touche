@@ -1,12 +1,12 @@
 # Step 2 : Server's PCB
 
-This second step is for soldering everything onto the server's pcb. 
+This second step is for soldering everything onto the server's pcb.
 
 1. Take the server's pcb
 
 ![server pcb](https://imgur.com/hV45DOG.jpg)
 
- 
+
 
 2. Take the 3 buttons and solder them
 
@@ -36,7 +36,7 @@ This second step is for soldering everything onto the server's pcb.
 
 ![arduino nano soldered](https://imgur.com/DhJziUz.jpg)
 
-5. Take the 10uF capacitor and solder it (be carefull, it's a polarized capacitor and therefore the positive side must match the little + on the pcb)
+5. Take the 10uF capacitor and solder it (be careful, it's a polarized capacitor and therefore the positive side must match the little + on the pcb)
 
 ![take cap](https://imgur.com/0OFEyQm.jpg)
 
@@ -44,6 +44,6 @@ This second step is for soldering everything onto the server's pcb.
 
 
 
-And you're done with the pcbs ! Now you should have all three pcbs : 
+And you're done with the pcbs ! Now you should have all three pcbs :
 
 ![all pcbs](https://imgur.com/rilbK3j.jpg)

@@ -155,7 +155,7 @@ static const uint64_t PIPES_ADDRESSES[2] = {
 You can change that to anything as long as :
 
 - The length is the same
-- The two addresses are differents
+- The two addresses are different
 - You keep the **0x** at the beginning and the **LL** at the end
 
 A few valid examples:

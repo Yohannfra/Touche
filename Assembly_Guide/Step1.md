@@ -24,7 +24,7 @@ This first step is for soldering everything onto the client's pcb. Since there a
 
 ![nrf soldered](https://imgur.com/jb3GvCg.jpg)
 
-5. Take the 10uF capacitor and solder it (be carefull, it's a polarized capacitor and therefore the positive side must match the little + on the pcb)
+5. Take the 10uF capacitor and solder it (be careful, it's a polarized capacitor and therefore the positive side must match the little + on the pcb)
 
 ![take the cap](https://imgur.com/s7FQgk6.jpg)
 
@@ -48,13 +48,13 @@ This first step is for soldering everything onto the client's pcb. Since there a
 
 ![2 1M soldered](https://imgur.com/mF7RmZo.jpg)
 
-9. Take the RGB led and solder it. Be carefull, of the side and place it like on the picture before soldering. Once soldered, bend the leads like on the pictures.
+9. Take the RGB led and solder it. Be careful, of the side and place it like on the picture before soldering. Once soldered, bend the leads like on the pictures.
 
 ![rgb led](https://imgur.com/9EEW16Z.jpg)
 
 ![rgb led soldered](https://imgur.com/Ujf1ib7.jpg)
 
-10. Flip the pcb and cut all the leads 
+10. Flip the pcb and cut all the leads
 
     ![cut the leads](https://imgur.com/C7Wuvhv.jpg)
 

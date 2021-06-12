@@ -1,6 +1,6 @@
 # Step 5 : Server's assembly
 
-This step is for assembling the server's pcb to the printed parts and finishing the server's boxe.
+This step is for assembling the server's pcb to the printed parts and finishing the server's box.
 
 
 
@@ -30,7 +30,7 @@ This step is for assembling the server's pcb to the printed parts and finishing 
 
 ![](https://imgur.com/X1sMgVM.jpg)
 
-![](https://imgur.com/v3v3zGb.jpg)`
+![](https://imgur.com/v3v3zGb.jpg)
 
 5. Take the server's pcb and the buzzer and solder the buzzer
 
@@ -40,7 +40,7 @@ This step is for assembling the server's pcb to the printed parts and finishing 
 
 
 
-6. Take 5 wires, 1x9cm and 4x5cm 
+6. Take 5 wires, 1x9cm and 4x5cm
 
 ![](https://imgur.com/BYXksOC.jpg)
 
@@ -66,7 +66,7 @@ Solder the matching wires
 
 ![](https://imgur.com/GGjZB53.jpg)
 
-Solder the new wires at the connection and place the heat shrink tubes arround the exposed part and heat them
+Solder the new wires at the connection and place the heat shrink tubes around the exposed part and heat them
 
 ![](https://imgur.com/pEU29ek.jpg)
 

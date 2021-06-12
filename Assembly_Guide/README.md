@@ -94,7 +94,7 @@ Ordering the PCBS is quite simple and cheap. I will show how to do it with [JLCP
 | Client's lid            | [url](https://github.com/Yohannfra/Touche/tree/master/Documents/CAD/client/lid_client.stl)     | 2        | ~4h         | No       |
 | Server's base           | [url](https://github.com/Yohannfra/Touche/tree/master/Documents/CAD/server/base_server.stl)    | 1        | ~6h         | Yes      |
 | Server's lid            | [url](https://github.com/Yohannfra/Touche/tree/master/Documents/CAD/server/lid_server.stl)     | 1        | ~4h         | No       |
-| Neopixel light diffuser | [url](https://github.com/Yohannfra/Touche/tree/master/Documents/CAD/server/light_diffuser.stl) | 2        | ~10 min     | No       |
+| Light diffuser          | [url](https://github.com/Yohannfra/Touche/tree/master/Documents/CAD/server/light_diffuser.stl) | 2        | ~10 min     | No       |
 
 
 I recommend printing all of them with **20% infill** and **0.2mm layer height** and face up.
@@ -124,7 +124,7 @@ The assembly process is divided in 5 steps :
 - Red -> Epee mode
 - BLUE -> Foil mode
 - GREEN -> Sabre mode (Not implemented yet)
-- Something else / nothing -> Somehing is wrong, check the assembly guide again.
+- Something else / nothing -> Something is wrong, check the assembly guide again.
 
 ##### Same for the second client.
 
@@ -136,7 +136,7 @@ Plug you epee in, if you press the button the server will signal it.
 
 By default if you touch the opponent guard it won't detect it, you must calibrate it.
 
-To calibrate the client you need to maintain the button of your epee on his guard until the server leds blinks in led (~3 seconds). If it blinks in red, an error occured and you must try again.\
+To calibrate the client you need to maintain the button of your epee on his guard until the server leds blinks in led (~3 seconds). If it blinks in red, an error occurred and you must try again.\
 This need to be done each time something changes (new opponent, new weapon, new shoes, different piste ...).
 
 Both opponents need to do this once and the system will be good to go.
@@ -149,7 +149,7 @@ Plug you foil in, if you press the button the server will signal it as an invali
 
 By default all hits will be invalid, you must calibrate it.
 
-To calibrate the client you need to maintain the button of your foil on electric jacket until the server leds blinks in led (~3 seconds). If it blinks in red, an error occured and you must try again.\
+To calibrate the client you need to maintain the button of your foil on electric jacket until the server leds blinks in led (~3 seconds). If it blinks in red, an error occurred and you must try again.\
 This need to be done each time something changes (new opponent, new weapon, new shoes, different piste ...).
 
 Both opponents need to do this once and the system will be good to go.
@@ -159,11 +159,11 @@ One player will be signaled in green and the other one in red.
 
 ### About the buttons on the side of the server
 
-There are 3 buttons and a potentiometer on the side of the server boxe.
+There are 3 buttons and a potentiometer on the side of the server box.
 
 The potentiometer controls the volume of the buzzer.
 
 Starting from the left:
 - First buttons is here to switch sides, eg. Player 1 hits are signaled on the left but he is on the right side of the server, press this button and he will be signaled on the right.
 - Second button toggles piste mode, it will detect the piste and won't signal if a hit occurs on it (still not tested because I don't have an electric piste at home but it should work)
-- Third button change wapon, press it and then hit with each player weapon to 'transfer the information' so the next hit will be in the new weapon mode.
+- Third button change weapon, press it and then hit with each player weapon to 'transfer the information' so the next hit will be in the new weapon mode.
