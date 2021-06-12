@@ -4,4 +4,4 @@
 
 **./server** -> code of the server
 
-**./shared** -> code is used in both client and server
+**./shared** -> code used in both client and server

@@ -1,6 +1,6 @@
 # Assembly guide
 
-In this document I will go trough all the steps and explain everything needed to make a complete Touché system.
+In this document, I will go through all the steps and explain everything needed to make a complete Touché system.
 
 The total cost of the system sits somewhere around **50 euros** but since most parts are sold in batch you might pay a little more and end up with unused parts at the end of the assembly.
 
@@ -16,7 +16,7 @@ The total cost of the system sits somewhere around **50 euros** but since most p
 
 <a name="p1"/>
 
-### 1. Parts, material and required tools
+### 1. Parts, material, and required tools
 
 ##### Here are all the parts required.
 
@@ -59,7 +59,7 @@ The total cost of the system sits somewhere around **50 euros** but since most p
 
 ### 2. PCB
 
-Ordering the PCBS is quite simple and cheap. I will show how to do it with [JLCPCB](https://jlcpcb.com/) but it should be similar on [PCBWay](https://www.pcbway.com/) or any similar website.
+Ordering the PCBs is quite simple and cheap. I will show how to do it with [JLCPCB](https://jlcpcb.com/) but it should be similar on [PCBWay](https://www.pcbway.com/) or any similar website.
 
 1. Go to https://jlcpcb.com/
 
@@ -103,7 +103,7 @@ I recommend printing all of them with **20% infill** and **0.2mm layer height** 
 
 ### 4. Assembly
 
-Before starting the assembly make sure you have everything, you should have all the parts shown on this picture:
+Before starting the assembly make sure you have everything, you should have all the parts shown in this picture:
 
 ![all_parts](https://imgur.com/XIzH3Ku.jpg)
 
@@ -132,12 +132,12 @@ The assembly process is divided in 5 steps :
 
 ### For epee
 
-Plug you epee in, if you press the button the server will signal it.
+Plug your epee in, if you press the button the server will signal it.
 
 By default if you touch the opponent guard it won't detect it, you must calibrate it.
 
-To calibrate the client you need to maintain the button of your epee on his guard until the server leds blinks in led (~3 seconds). If it blinks in red, an error occurred and you must try again.\
-This need to be done each time something changes (new opponent, new weapon, new shoes, different piste ...).
+To calibrate the client you need to maintain the button of your epee on his guard until the server LED blinks in led (~3 seconds). If it blinks in red, an error occurred and you must try again.\
+This needs to be done each time something changes (new opponent, new weapon, new shoes, different piste ...).
 
 Both opponents need to do this once and the system will be good to go.
 
@@ -145,12 +145,12 @@ One player will be signaled in green and the other one in red.
 
 ### For foil
 
-Plug you foil in, if you press the button the server will signal it as an invalid hit.
+Plug your foil in, if you press the button the server will signal it as an invalid hit.
 
 By default all hits will be invalid, you must calibrate it.
 
-To calibrate the client you need to maintain the button of your foil on electric jacket until the server leds blinks in led (~3 seconds). If it blinks in red, an error occurred and you must try again.\
-This need to be done each time something changes (new opponent, new weapon, new shoes, different piste ...).
+To calibrate the client you need to maintain the button of your foil on electric jacket until the server LED blinks in led (~3 seconds). If it blinks in red, an error occurred and you must try again.\
+This needs to be done each time something changes (new opponent, new weapon, new shoes, different piste ...).
 
 Both opponents need to do this once and the system will be good to go.
 
@@ -164,6 +164,6 @@ There are 3 buttons and a potentiometer on the side of the server box.
 The potentiometer controls the volume of the buzzer.
 
 Starting from the left:
-- First buttons is here to switch sides, eg. Player 1 hits are signaled on the left but he is on the right side of the server, press this button and he will be signaled on the right.
+- First buttons are here to switch sides, eg. Player 1 hits are signaled on the left but he is on the right side of the server, press this button and he will be signaled on the right.
 - Second button toggles piste mode, it will detect the piste and won't signal if a hit occurs on it (still not tested because I don't have an electric piste at home but it should work)
-- Third button change weapon, press it and then hit with each player weapon to 'transfer the information' so the next hit will be in the new weapon mode.
+- Third button changes weapon, press it and then hit with each player weapon to 'transfer the information' so the next hit will be in the new weapon mode.
