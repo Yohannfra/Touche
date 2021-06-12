@@ -4,7 +4,7 @@ This directory contains all CAD files, 3D files (STL), and PCB files.
 
 ````
 .
-├── CAD       # CAD and SLT files for 3D printing
+├── CAD       # CAD and STL files for 3D printing
 └── PCB       # PCB sources and gerber files
 ```
 
