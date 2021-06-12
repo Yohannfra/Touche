@@ -84,17 +84,6 @@ void LedRing::blinkBoth(color_t color, color_t color2, int time_ms, size_t nb_bl
     }
 }
 
-void LedRing::set_half_colors(color_t color_1, color_t color_2)
-{
-    for (size_t i = 0; i < 2; i++) {
-        if (i % 2)
-            strip.setPixelColor(i, color_1.r, color_1.g, color_1.b);
-        else
-            strip.setPixelColor(i, color_2.r, color_2.g, color_2.b);
-    }
-    strip.show();
-}
-
 void LedRing::show_hits(uint16_t hits)
 {
     ActionManager::action_type_e action_player1 = static_cast<ActionManager::action_type_e>((hits >> 8) & 0xFF);

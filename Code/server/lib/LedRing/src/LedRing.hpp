@@ -72,14 +72,6 @@ class LedRing {
     void set_color(color_t color, uint8_t start = 0, uint8_t end = NEOPIXEL_RING_SIZE);
 
     /**
-    * @brief Set one color for half of the pixels and one for the other half
-    *
-    * @param color_1 color for first half
-    * @param color_2 color for second half
-    */
-    void set_half_colors(color_t color_1, color_t color_2);
-
-    /**
     * @brief blink all pixels
     *
     * @param color color to blink
