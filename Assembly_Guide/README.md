@@ -157,7 +157,7 @@ Both opponents need to do this once and the system will be good to go.
 One player will be signaled in green and the other one in red.
 
 
-##### About the buttons on the side of the server
+### About the buttons on the side of the server
 
 There are 3 buttons and a potentiometer on the side of the server boxe.
 
