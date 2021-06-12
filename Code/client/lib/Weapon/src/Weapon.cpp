@@ -21,14 +21,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ArduinoLog.h"
 #include "touche.h"
 
-Weapon::Weapon(uint8_t pinButton, VirtualGround &virtualGround) : _virtualGround(virtualGround), _pin(pinButton)
+Weapon::Weapon(uint8_t pinButton, VirtualGround &virtualGround) :
+    _virtualGround(virtualGround), _pin(1 << pinButton /* pin is 3 so = PD3 */)
 {
-    pinMode(_pin, INPUT);
 }
 
 bool Weapon::buttonPressed()
 {
-    return digitalRead(_pin);
+    return PIND & _pin;  // read pin
 }
 
 Weapon::hit_status_e Weapon::isHitting(weapon_mode_e weapon, bool checkVirtualGround)
@@ -36,33 +36,23 @@ Weapon::hit_status_e Weapon::isHitting(weapon_mode_e weapon, bool checkVirtualGr
     switch (weapon) {
         case EPEE:
             if (buttonPressed()) {
-                unsigned long t1 = millis();
-
-                while (buttonPressed()) {
-                    if (millis() - t1 > FENCING_MINIMUM_TIME_VALID_HIT) {
-                        // Log.trace("Epee button pressed");
-                        if (checkVirtualGround) {
-                            return _virtualGround.trigger_ground() ? INVALID : VALID;
-                        } else {
-                            return VALID;
-                        }
-                    }
+                // Log.trace("Epee button pressed");
+                if (checkVirtualGround) {
+                    return _virtualGround.trigger_ground() ? INVALID : VALID;
+                } else {
+                    return VALID;
                 }
             }
             break;
 
         case FOIL:
             if (buttonPressed()) {
-                unsigned long t1 = millis();
-
-                while (buttonPressed()) {
-                    if (millis() - t1 > FENCING_MINIMUM_TIME_VALID_HIT) {
-                        // Log.trace("Foil button pressed");
-                        if (checkVirtualGround) {
-                            return _virtualGround.trigger_ground() ? VALID : INVALID;
-                        } else {
-                            return VALID;
-                        }
+                if (buttonPressed()) {
+                    // Log.trace("Foil button pressed");
+                    if (checkVirtualGround) {
+                        return _virtualGround.trigger_ground() ? VALID : INVALID;
+                    } else {
+                        return VALID;
                     }
                 }
             }
