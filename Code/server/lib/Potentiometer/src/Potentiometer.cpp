@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Potentiometer.hpp"
 
+#include "ArduinoLog.h"
+
 Potentiometer::Potentiometer(byte pin)
 {
     _pin = pin;
@@ -27,9 +29,9 @@ int Potentiometer::getMappedValue()
 {
     int val = analogRead(_pin);
 
-    int max = 710;  // with a 5k pot
+    int max = 730;  // with a 5k pot
 
-    return map(val, 0, max, 0, 200 /* after 200 it sounds bad (with a 5k pot */);
+    return map(val, 0, max, 0, 255 /* after 200 it sounds bad (with a 5k pot */);
 }
 
 int Potentiometer::getRawValue()
