@@ -16,6 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// only for debug with some old pcbs I have
+#define PWM_STYLE_BUZZER 1
+
 #include "Buzzer.hpp"
 
 Buzzer::Buzzer(byte pin)
@@ -26,10 +29,18 @@ Buzzer::Buzzer(byte pin)
 
 void Buzzer::play(uint8_t volume)
 {
+#if PWM_STYLE_BUZZER
     analogWrite(_pin, volume);
+#else
+    digitalWrite(_pin, HIGH);
+#endif
 }
 
 void Buzzer::stop()
 {
+#if PWM_STYLE_BUZZER
     analogWrite(_pin, 0);
+#else
+    digitalWrite(_pin, LOW);
+#endif
 }
