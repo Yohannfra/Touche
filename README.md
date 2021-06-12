@@ -59,7 +59,9 @@ I don't have any sabre equipment (that's why it doesn't support sabre yet), If y
 
 ## Support
 
-If you like this project and want to support it you can donate via [Paypal](https://paypal.me/pools/c/8AgHj8JHEs)
+If you like this project and want to support it you can donate via PayPal
+
+[![Alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/langfr-280px-PayPal.svg.png)](https://paypal.me/pools/c/8AgHj8JHEs "PayPal link")
 
 ## License
 
