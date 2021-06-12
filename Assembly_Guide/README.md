@@ -143,7 +143,7 @@ Both opponents need to do this once and the system will be good to go.
 
 One player will be signaled in green and the other one in red.
 
-### For foild
+### For foil
 
 Plug your foil in, if you press the button the server will signal it as an invalid hit.
 
