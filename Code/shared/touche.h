@@ -62,7 +62,7 @@ both sides of the apparatus'
 /**
  * @brief How long between two hits for it to be a double hit (ms)
  */
-#define FENCING_LAPS_DOUBLE_TOUCH (300)  // 50 ms
+#define FENCING_LAPS_DOUBLE_TOUCH (300)  // 300 ms
 
 /**
  * @brief The weapon mode to use, can be changed on runtime.
