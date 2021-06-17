@@ -6,3 +6,4 @@
 .clangd/
 compile_commands.json
 build
+.cache
