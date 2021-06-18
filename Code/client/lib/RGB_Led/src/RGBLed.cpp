@@ -43,6 +43,9 @@ void RGBLed::blink(RGBLed::color_e color, int delayMs, int nbBlinks)
         this->setColor(color);
         delay(delayMs);
         this->turnOff();
+        if (nbBlinks == 1) {
+            return;
+        }
         delay(delayMs);
     }
 }
