@@ -46,14 +46,12 @@ Weapon::hit_status_e Weapon::isHitting(weapon_mode_e weapon, bool checkVirtualGr
             break;
 
         case FOIL:
-            if (buttonPressed()) {
-                if (buttonPressed()) {
-                    // Log.trace("Foil button pressed");
-                    if (checkVirtualGround) {
-                        return _virtualGround.trigger_ground() ? VALID : INVALID;
-                    } else {
-                        return VALID;
-                    }
+            if (!buttonPressed()) {
+                // Log.trace("Foil button pressed");
+                if (checkVirtualGround) {
+                    return _virtualGround.trigger_ground() ? VALID : INVALID;
+                } else {
+                    return VALID;
                 }
             }
             break;
