@@ -88,6 +88,9 @@ void LedRing::blinkBoth(color_t color, color_t color2, int time_ms, size_t nb_bl
         set_color(color2, _sides[PLAYER_2], _sides[PLAYER_2] + NEOPIXEL_RING_SIZE);
         delay(time_ms);
         turn_off();
+        if (nb_blinks == 1) {
+            return;
+        }
         delay(time_ms);
     }
 }
