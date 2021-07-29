@@ -12,7 +12,9 @@ Touché is a wireless scoring system for fencing based on **Arduino** and **nrf2
 
 The goal is to make an **affordable**, **open source** and **open hardware** system.
 
-It currently works for **epee** and **foil**, sabre support is in the roadmap.
+It currently only works for **epee**.
+
+/!\ Foil and  sabre support is in the roadmap but in a latter version that will certainly be on a dirrerent mcu (ESP32 or STM32).
 
 #### The system is divided into 3 parts: one base station and two fencer boxes.
 
