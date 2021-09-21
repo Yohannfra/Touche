@@ -14,6 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# defaults player role
+# PLAYER_ROLE=0
+
+# export PLATFORMIO_BUILD_FLAGS = -DPLAYER_ROLE=$(PLAYER_ROLE)
+
 # defaults
 all: debug
 flash: flash_debug

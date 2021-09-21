@@ -22,10 +22,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // ------ Config ------------
 
 // Change that to 1 if you want to change a board from PLAYER_1 to PLAYER_2
-// but reflash with 0 after doing so (to preserve EEPROM)
+// but reflash with 0 after doing so to preserve EEPROM
 #define FORCE_WRITE_PLAYER_ROLE 0
 
-#define PLAYER_ROLE PLAYER_1  // change value to PLAYER_1 or PLAYER_2
+#ifndef PLAYER_ROLE
+    #define PLAYER_ROLE PLAYER_1  // change value to PLAYER_1 or PLAYER_2
+#endif
 
 // ------ Pinout ------------
 
