@@ -57,8 +57,6 @@ See Github issues.
 
 If you have any improvement idea, find a bug or encounter a problem you can open a Github issue.
 
-I don't have any sabre equipment (that's why it doesn't support sabre yet), If you do and want to implement it please do!
-
 ## License
 
 All the code, CAD files, PCB files, and everything within this repository is licensed under the terms of the [GNU General Public License V3.0](./LICENSE).
