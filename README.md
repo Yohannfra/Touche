@@ -59,12 +59,6 @@ If you have any improvement idea, find a bug or encounter a problem you can open
 
 I don't have any sabre equipment (that's why it doesn't support sabre yet), If you do and want to implement it please do!
 
-## Support
-
-If you like this project and want to support it you can donate via PayPal
-
-[![Alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/langfr-280px-PayPal.svg.png)](https://paypal.me/pools/c/8AgHj8JHEs "PayPal link")
-
 ## License
 
 All the code, CAD files, PCB files, and everything within this repository is licensed under the terms of the [GNU General Public License V3.0](./LICENSE).
