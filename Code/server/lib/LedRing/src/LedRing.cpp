@@ -110,7 +110,7 @@ void LedRing::show_hits(uint16_t hits)
     // player 2
     if (action_player2 == ActionManager::VALID_HIT) {
         set_color(_colorPlayer2, _sides[PLAYER_2], _sides[PLAYER_2] + NEOPIXEL_RING_SIZE);
-    } else if (action_player2 == ActionManager::VALID_HIT) {
+    } else if (action_player2 == ActionManager::INVALID_HIT) {
         set_color(ORANGE_RGB, _sides[PLAYER_2], _sides[PLAYER_2] + NEOPIXEL_RING_SIZE);
     }
 }
