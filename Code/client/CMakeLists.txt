@@ -8,6 +8,7 @@ project(touche_client)
 
 target_sources(app PRIVATE
     src/main.c
+    src/alive.c
 
     src/button/button.c
     src/button/button.h

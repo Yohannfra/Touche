@@ -1,5 +1,5 @@
-#ifndef BUTTON_H
-#define BUTTON_H
+#ifndef TOUCHE_CLIENT_BUTTON_H
+#define TOUCHE_CLIENT_BUTTON_H
 
 #include <stdbool.h>
 

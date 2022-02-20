@@ -3,6 +3,7 @@
 #include "protocol.h"
 #include "mac_address/mac_address.h"
 #include "radio/radio.h"
+#include "alive.h"
 
 #include <assert.h>
 #include <logging/log.h>
@@ -10,6 +11,8 @@
 #include <zephyr.h>
 
 LOG_MODULE_REGISTER(main_client, LOG_LEVEL_INF);
+
+struct k_timer my_timer;
 
 static void print_boot_header(const uint8_t *mac_addr)
 {
@@ -34,15 +37,17 @@ void main()
     __ASSERT(radio_init() == EXIT_SUCCESS, "Radio init failed");
 
     // blink led after init
-    led_blink(1000, 1);
+    led_blink(750, 1);
+
+    // init alive led blinking
+    alive_timer_start();
 
     while (true) {
         if (button_get_state()) {
+            alive_timer_reset();
             LOG_INF("Sending HIT");
-            led_set();
             radio_send_msg(HIT);
             k_sleep(K_MSEC(FENCING_BLINKING_TIME));
-            led_clear();
         }
     }
 }

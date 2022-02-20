@@ -1,5 +1,5 @@
-#ifndef MAC_ADDRESS_H
-#define MAC_ADDRESS_H
+#ifndef TOUCHE_CLIENT_MAC_ADDRESS_H
+#define TOUCHE_CLIENT_MAC_ADDRESS_H
 
 #include <stdint.h>
 
