@@ -42,7 +42,6 @@ void main()
             led_set();
             radio_send_msg(HIT);
             k_sleep(K_MSEC(FENCING_BLINKING_TIME));
-        } else {
             led_clear();
         }
     }
