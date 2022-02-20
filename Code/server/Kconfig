@@ -1,0 +1,4 @@
+config SPI
+	default y
+
+source "Kconfig.zephyr"
