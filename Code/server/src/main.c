@@ -30,16 +30,6 @@ void main()
     __ASSERT(led_ring_init() == 0, "Led ring init failed");
 
     while (1) {
-        led_ring_set_color(0xff, 0, 0);
-        k_sleep(K_MSEC(500));
-        led_ring_set_color(0, 0xff, 0);
-        k_sleep(K_MSEC(500));
-        led_ring_set_color(0, 0, 0xff);
-        k_sleep(K_MSEC(500));
-        /* led_ring_turn_off(); */
-    }
-
-    while (1) {
         struct esb_payload *packet = radio_get_last_message();
         if (packet) {
             payload_type_e payload_type = GET_PAYLOAD(packet->data[0]);
@@ -49,10 +39,11 @@ void main()
                 case HIT:
                     LOG_INF("Received message");
                     led_set();
+                    led_ring_set_color(RGB_COLOR_GREEN);
                     buzzer_start();
                     k_sleep(K_MSEC(FENCING_BLINKING_TIME));
                     buzzer_stop();
-                    led_clear();
+                    led_ring_turn_off();
                     break;
                 default:
                     LOG_ERR("Invalid payload %d", payload_type);
