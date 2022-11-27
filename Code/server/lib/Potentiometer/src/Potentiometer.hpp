@@ -32,7 +32,7 @@ class Potentiometer {
      *
      * @param pin arduino pin for the potentiometer value reading
      */
-    Potentiometer(byte pin);
+    explicit Potentiometer(byte pin);
 
     /**
      * @brief Get the mapped value from 0 to 200

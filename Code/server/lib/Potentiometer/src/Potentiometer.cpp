@@ -20,9 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ArduinoLog.h"
 
-Potentiometer::Potentiometer(byte pin)
+Potentiometer::Potentiometer(byte pin): _pin(pin)
 {
-    _pin = pin;
 }
 
 int Potentiometer::getMappedValue()

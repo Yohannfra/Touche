@@ -31,7 +31,7 @@ class Button {
     *
     * @param pin arduino pin used for the button
     */
-    Button(uint8_t pin);
+    explicit Button(uint8_t pin);
 
     /**
     * @brief Check if the button is pressed

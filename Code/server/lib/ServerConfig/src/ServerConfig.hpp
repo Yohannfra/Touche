@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class ServerConfig {
   public:
-    ServerConfig(weapon_mode_e weapon);
+    explicit ServerConfig(weapon_mode_e weapon);
 
     void setWeapon(weapon_mode_e weapon);
     weapon_mode_e getWeapon() const;

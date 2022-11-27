@@ -23,11 +23,9 @@ enum side_players_e {
     RIGHT = NEOPIXEL_RING_SIZE,
 };
 
-LedRing::LedRing(byte pin) : strip(2 * NEOPIXEL_RING_SIZE, pin, NEO_GRB + NEO_KHZ800)
+LedRing::LedRing(byte pin) : strip(2 * NEOPIXEL_RING_SIZE, pin, NEO_GRB + NEO_KHZ800):
+    _colorPlayer1(RED_RGB), _colorPlayer2(GREEN_RGB)
 {
-    _colorPlayer1 = RED_RGB;
-    _colorPlayer2 = GREEN_RGB;
-
     _sides[PLAYER_1] = LEFT;
     _sides[PLAYER_2] = RIGHT;
 }

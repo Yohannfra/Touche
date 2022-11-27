@@ -52,5 +52,8 @@ fclean:
 
 re: fclean all
 
+lint:
+	cppcheck --quiet --enable=warning,style,performance,portability src include lib/** ../shared/*.h ../shared/libraries/**
+
 .PHONY: all flash clean debug flash_debug clean_debug release \
-		flash_release clean_release clean_all fclean re
+		flash_release clean_release clean_all fclean re lint

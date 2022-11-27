@@ -49,7 +49,7 @@ class LedRing {
     *
     * @param pin Pin attached to neopixel's data pin
     */
-    LedRing(byte pin);
+    explicit LedRing(byte pin);
 
     /**
     * @brief Initialize neopixel ring

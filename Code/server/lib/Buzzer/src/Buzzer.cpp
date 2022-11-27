@@ -21,9 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "Buzzer.hpp"
 
-Buzzer::Buzzer(byte pin)
+Buzzer::Buzzer(byte pin): _pin(pin)
 {
-    _pin = pin;
     pinMode(_pin, OUTPUT);
 }
 

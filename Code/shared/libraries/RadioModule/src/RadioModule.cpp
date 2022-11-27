@@ -30,9 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PIPE_PLAYER_1 1
 #define PIPE_PLAYER_2 2
 
-RadioModule::RadioModule(uint16_t cePin, uint16_t csPin) : _nrf24(cePin, csPin)
+RadioModule::RadioModule(uint16_t cePin, uint16_t csPin) : _nrf24(cePin, csPin) : _ackPayload(0)
 {
-    _ackPayload = 0;  // default ack payload
 }
 
 void RadioModule::init(touche_role_e role)

@@ -37,7 +37,7 @@ class Timer {
     *
     * @param startDirectly if true starts the timer
     */
-    Timer(bool startDirectly = false);
+    explicit Timer(bool startDirectly = false);
 
     /**
     * @brief start the timer

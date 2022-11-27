@@ -39,7 +39,7 @@ class Buzzer {
     *
     * @param pin Pin attached to the buzzer
     */
-    Buzzer(byte pin);
+    explicit Buzzer(byte pin);
 
     /**
     * @brief Start buzzer
