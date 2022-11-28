@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <CapacitiveSensor.h>
 
-static const int MAX_CALIBRATIONS_SAMPLES = 50;
+static constexpr int MAX_CALIBRATIONS_SAMPLES = 50;
 
 VirtualGround::VirtualGround(uint8_t pin_out, uint8_t pin_in) :
     _pin_out(pin_out), _pin_in(pin_in), _capacitive_sensor(_pin_out, _pin_in)
@@ -48,7 +48,7 @@ bool VirtualGround::trigger_ground()
         return false;
     }
 
-    const uint8_t NB_OF_TIME_TO_SAMPLE = 5;
+    constexpr uint8_t NB_OF_TIME_TO_SAMPLE = 5;
     long sum = 0;
 
     for (uint8_t i = 0; i < NB_OF_TIME_TO_SAMPLE; i++) {

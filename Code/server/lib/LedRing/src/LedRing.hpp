@@ -31,10 +31,10 @@ typedef struct {
     uint8_t b;
 } color_t;
 
-static const color_t NONE_RGB = {0, 0, 0};
-static const color_t RED_RGB = {0xFF, 0, 0};
-static const color_t GREEN_RGB = {0, 0xFF, 0};
-static const color_t ORANGE_RGB = {0xFF, 0xA5, 0};
+static constexpr color_t NONE_RGB = {0, 0, 0};
+static constexpr color_t RED_RGB = {0xFF, 0, 0};
+static constexpr color_t GREEN_RGB = {0, 0xFF, 0};
+static constexpr color_t ORANGE_RGB = {0xFF, 0xA5, 0};
 
 #define NEOPIXEL_RING_SIZE 12
 

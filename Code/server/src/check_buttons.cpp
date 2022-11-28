@@ -62,7 +62,7 @@ void checkButtonsPressed()
         Log.notice("Button change weapon pressed !");
 
         constexpr uint8_t NB_WEAPONS = 2;
-        const weapon_mode_e weapons[NB_WEAPONS] = {EPEE, FOIL /*, SABRE */};
+        constexpr weapon_mode_e weapons[NB_WEAPONS] = {EPEE, FOIL /*, SABRE */};
         config.setWeapon(weapons[(config.getWeapon() + 1) % NB_WEAPONS]);  // shift to next weapon
         radio_module.setAckPayload(CREATE_ACK_PAYLOAD(config.getPisteMode(), config.getWeapon()));
 

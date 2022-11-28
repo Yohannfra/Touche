@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Modify this file to change the addresses used by the NRF24l01 modules.
  */
 
-static const uint64_t PIPES_ADDRESSES[2] = {
+static constexpr uint64_t PIPES_ADDRESSES[2] = {
     0xB3B4B5B601LL,  // PLAYER 1
     0xB3B4B5B602LL   // PLAYER 2
 };
