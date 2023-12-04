@@ -3,7 +3,7 @@
 ![](https://github.com/Yohannfra/Touche/workflows/Build/badge.svg)
 
 
-![](.github/full_set.jpg)
+![](.github/full_set.webp)
 
 
 ## Overview
