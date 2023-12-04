@@ -53,7 +53,7 @@ fclean:
 re: fclean all
 
 lint:
-	cppcheck --quiet --enable=warning,style,performance,portability src include lib/** ../shared/*.h ../shared/libraries/**
+	cppcheck -x c++ --quiet --enable=warning,style,performance,portability src include lib/** ../shared/*.h ../shared/libraries/**
 
 compiledb:
 	@pio run --target compiledb
