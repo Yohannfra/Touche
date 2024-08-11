@@ -1,6 +1,6 @@
 /*
 Touché Project
-Copyright (C) 2021 Assouline Yohann
+Copyright (C) 2024 Assouline Yohann
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
