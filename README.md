@@ -12,7 +12,7 @@ Touché is a wireless scoring system for fencing based on **Arduino** and **nrf2
 
 The goal is to make an **affordable**, **open source** and **open hardware** system.
 
-It currently only works for **epee**.
+⚠️  The capacitive touch feature (used to detect whether a hit landed on a conductive surface like the guard or a metallic piste, replacing the ground wires of a traditional setup) is currently very buggy and not usable, which makes the system hard to use with **foil**.
 
 ⚠️  Foil and  sabre support is in the roadmap but in a latter version that will certainly be on a different mcu (ESP32 or STM32).
 
