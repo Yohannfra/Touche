@@ -104,7 +104,29 @@ ack_payload_t RadioModule::sendMsg(payload_type_e payload)
         utils::print_packet(packet);
 #endif
 
-    _nrf24.write(&packet, sizeof(packet));
+    // write() returns false once the nRF24 has exhausted its hardware retries
+    // (~20 ms), which happens when both clients transmit at the same instant
+    // (double hit) or on poor reception. Without retrying here the message
+    // would be lost for good.
+    constexpr unsigned long SEND_RETRY_TIMEOUT_MS = 250;
+
+    const unsigned long start_time = millis();
+    bool sent = false;
+
+    do {
+        sent = _nrf24.write(&packet, sizeof(packet));
+        if (!sent) {
+            Log.warning("Sending failed, retrying...");
+            // wait before retrying, longer for PLAYER_2 so both clients stop
+            // colliding with each other
+            delay(1 + 2 * _role);
+        }
+    } while (!sent && millis() - start_time < SEND_RETRY_TIMEOUT_MS);
+
+    if (!sent) {
+        Log.error("Failed to send message, giving up");
+        return ACK_ERROR;
+    }
 
     // read ack payload
     ack_payload_t ack = ACK_ERROR;
