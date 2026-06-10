@@ -15,44 +15,71 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #defaults
+## all: build debug version (default)
 all: debug
+## flash: build and upload debug version
 flash: flash_debug
+## clean: clean debug build
 clean: clean_debug
 
-
-# debug config
+.PHONY: debug
+## debug: build debug version
 debug:
 	@pio run -e debug
 
+.PHONY: flash_debug
+## flash_debug: build and upload debug version
 flash_debug:
 	@pio run -e debug --target upload
 
+.PHONY: clean_debug
+## clean_debug: clean debug build
 clean_debug:
 	@pio run -e debug --target clean
 
-# release config
+.PHONY: release
+## release: build release version
 release:
 	@pio run -e release
 
+.PHONY: flash_release
+## flash_release: build and upload release version
 flash_release:
 	@pio run -e release --target upload
 
+.PHONY: clean_release
+## clean_release: clean release build
 clean_release:
 	@pio run -e release --target clean
 
-# common
+.PHONY: clean_all
+## clean_all: clean debug and release builds
 clean_all: clean_debug clean_release
 
+.PHONY: fclean
+## fclean: remove .pio directory
 fclean:
 	$(RM) -r .pio
 
+.PHONY: re
+## re: fclean then rebuild
 re: fclean all
 
+.PHONY: lint
+## lint: run cppcheck on sources
 lint:
 	cppcheck -x c++ --quiet --enable=warning,style,performance,portability src include lib/** ../shared/*.h ../shared/libraries/**
 
+.PHONY: compiledb
+## compiledb: generate compile_commands.json
 compiledb:
 	@pio run --target compiledb
 
-.PHONY: all flash clean debug flash_debug clean_debug release \
-		flash_release clean_release clean_all fclean re lint compiledb
+.PHONY: help
+## help: show this help message
+help: Makefile
+	@echo
+	@echo " Choose a command to run:"
+	@echo
+	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
+	@echo
