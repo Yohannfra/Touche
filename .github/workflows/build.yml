@@ -12,19 +12,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
+
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Cache PlatformIO
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.platformio
+          ~/.cache/pip
+        key: ${{ runner.os }}-pio-${{ hashFiles('Code/*/platformio.ini') }}
+        restore-keys: ${{ runner.os }}-pio-
+
     - name: Install PlatformIO
       run: |
-        apt-get update && apt-get install make
         python -m pip install --upgrade pip
         pip install --upgrade platformio
+
     - name: build client debug
       run: make -C Code/client
+
     - name: build client release
       run: make -C Code/client release
+
     - name: build server debug
       run: make -C Code/server
+
     - name: build server release
       run: make -C Code/server release
